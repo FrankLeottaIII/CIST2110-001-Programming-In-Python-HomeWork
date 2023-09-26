@@ -76,9 +76,9 @@ print("The sum of the three numbers is " + str(first_number + second_number + th
 print("The product of the three numbers is " + str(first_number * second_number * third_number))
 # 3. round the three numbers to the nearest integer and print the sum of the three rounded numbers divided by 3 
 print("let me add them up and then round it to the nearest interger for you, beep boop...")
-print("that would be " + str(round(first_number + second_number + third_number, 0)))
+print("the sum of the 3 numbers, rounded to the nearest integer is " + str(round(first_number + second_number + third_number, 0)))
 # 4. The average of the three numbers is <average>
-
+print("the average of the three numbers is " + str((first_number + second_number + third_number)/3))    
 # Question 7: Ask the user for an input of a symbol (in the example its *)     
 # Print a diamond of the symbol that looks like the following. Include the spaces and the | character. 
 # Hint: the print("symbol", end="") with \t and \n characters will be useful here.
@@ -90,3 +90,13 @@ print("that would be " + str(round(first_number + second_number + third_number, 
 #  *****   |
 #   ***    |
 #    *     |
+print("Thank you") 
+symbol_1 = imput("Before you go,I would now like to draw a diamond for you.  Please enter a symbol you would like to use: ")
+
+print("    " + symbol_1 + "     |")
+#("   " + ***+     |")
+#("  *****+ "    |")
+#(" *******  |")
+#("  *****   |")
+#("   ***    |")
+#("    *     |")
