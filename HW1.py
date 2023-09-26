@@ -76,11 +76,13 @@ print("The sum of the three numbers is " + str(first_number + second_number + th
 print("The product of the three numbers is " + str(first_number * second_number * third_number))
 # 3. round the three numbers to the nearest integer and print the sum of the three rounded numbers divided by 3 
 print("let me add them up and then round it to the nearest interger for you, beep boop...")
+
 print("the sum of the 3 numbers, rounded to the nearest integer is " + str(round(first_number + second_number + third_number, 0)))
 # 4. The average of the three numbers is <average>
 add_tree = int(round(first_number + second_number + third_number, 0))
-LEFT OFF HEREE~~~~~~~~~~~~~~~~~~~~~~~~~~``
-print("Also, the average of those three numbers is " + str(roundadd_tree/3) + ", rounded to the nearest integer")    
+
+
+print("Also, the average of those three numbers is " + str(round(add_tree/3)) + ", rounded to the nearest integer")    
 # Question 7: Ask the user for an input of a symbol (in the example its *)     
 # Print a diamond of the symbol that looks like the following. Include the spaces and the | character. 
 # Hint: the print("symbol", end="") with \t and \n characters will be useful here.
@@ -104,7 +106,7 @@ print("  "+ s + s + s + s + s + "   |")
 print("   " + s + s + s + "    |")
 print("    "+ s + "     |")
 print(" ")
-print("    " + s, end ="     |\n")
+print("    " + s, end = "     |\n")
 print("   " + s + s + s, end =  "    |\n")
 print("  "+s + s + s + s + s, end = "   |\n")
 print(" "+ s + s + s + s + s + s + s, end = "  |\n")
