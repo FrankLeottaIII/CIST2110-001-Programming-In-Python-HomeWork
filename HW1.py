@@ -64,18 +64,19 @@ print(num2 / num1)
 # Question 6: Write a program that asks the user for their name and then prints the following:
 
 # Hello, <name>. Please enter three numbers.
-print("Hello, " + myName + ". Please enter three numbers.")
+name_of_user =  input("hello, Please enter your name:") 
 # The program should then ask the user for three numbers (floats) and print the following:
-print(input("I need a number 3 numbers, please enter the first number: ") = )
-print(input("Please enter the second number: "))
-print(input("Please enter the third number: "))
+first_number = float(input("ok. Now I need a 3 numbers, please enter the first number: "))
+second_number = float(input("Please enter the second number next: "))
+third_number = float(input("Ok nice.  Please enter the third number: "))
 
 # 1. The sum of the three numbers is <sum>
-
+print("The sum of the three numbers is " + str(first_number + second_number + third_number))
 # 2. The product of the three numbers is <product>
-
+print("The product of the three numbers is " + str(first_number * second_number * third_number))
 # 3. round the three numbers to the nearest integer and print the sum of the three rounded numbers divided by 3 
-
+print("let me add them up and then round it to the nearest interger for you, beep boop...")
+print("that would be " + str(round(first_number + second_number + third_number, 0)))
 # 4. The average of the three numbers is <average>
 
 # Question 7: Ask the user for an input of a symbol (in the example its *)     
