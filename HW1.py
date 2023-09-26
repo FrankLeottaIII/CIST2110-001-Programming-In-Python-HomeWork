@@ -7,13 +7,13 @@ print("Hello World!")
 # Question 2:
 # Print the following:
 # Your name
-print("My name is Frank R. Leotta III")
+print("Frank R. Leotta III")
 # Your age
-print("My age is 34")
+print("34")
 # Your favorite color
-print("my favorate color is green")   
+print("green")   
 # Your favorite animal
-print("my favorate animal is the axolotl"
+print("axolotl")
 # Question 3:
 # Create a variable called "myName" and set it equal to your name
 myName = "Frank R. Leotta III"
@@ -25,33 +25,36 @@ myColor = "green"
 myAnimal = "axolotl"
 # Print the following:
 # Hello, my name is <myName>
+print("Hello, my name is " + myName)
 # I am <myAge> years old
+print("I am " + myAge + " years old")
 # My favorite color is <myColor>
+print("My favorite color is " + myColor)
 # My favorite animal is <myAnimal>
-
+print("My favorite animal is " + myAnimal)
 
 # Question 4:
 # Calculate the following and print the result:
 # 2 + 2
-
+print(2 + 2)
 # 3 * 4
-
+print(3 * 4)
 # 5 - 6
-
+print(5 - 6)
 # 8 / 2
-
+print(8 / 2)
 # Question 5:
 # Create a variable called "num1" and set it equal to 2
-
+num1 = 2
 # Create a variable called "num2" and set it equal to 3
-
+num2 = 3
 # Create a variable called "num3" and set it equal to 4
-
+num3 = 4
 # Create a variable called "num4" and set it equal to 5
-
+num4 = 5
 # Calculate the following and print the result:
 # num1 + num2
-
+print(num1 + num2)
 # num3 * num4
 
 # num4 - num1
