@@ -7,22 +7,22 @@ print("Hello World!")
 # Question 2:
 # Print the following:
 # Your name
-
+print("My name is Frank R. Leotta III")
 # Your age
-
+print("My age is 34")
 # Your favorite color
-
+print("my favorate color is green")   
 # Your favorite animal
-
+print("my favorate animal is the axolotl"
 # Question 3:
 # Create a variable called "myName" and set it equal to your name
-
+myName = "Frank R. Leotta III"
 # Create a variable called "myAge" and set it equal to your age
-
+myAge = "34"
 # Create a variable called "myColor" and set it equal to your favorite color
-
+myColor = "green"
 # Create a variable called "myAnimal" and set it equal to your favorite animal
-
+myAnimal = "axolotl"
 # Print the following:
 # Hello, my name is <myName>
 # I am <myAge> years old
