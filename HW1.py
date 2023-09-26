@@ -1,9 +1,9 @@
 # HW1.py
-# Author:
+# Author: Frank R. Leotta III
 
 # Question 1:
 # Print Hello World like we did in class
-
+print("Hello World!")
 # Question 2:
 # Print the following:
 # Your name
