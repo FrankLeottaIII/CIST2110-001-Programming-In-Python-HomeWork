@@ -8,9 +8,10 @@ print(" "+ s + s + s + s + s + s + s + "  |")
 print("  "+ s + s + s + s + s + "   |")
 print("   " + s + s + s + "    |")
 print("    "+ s + "     |")
+print(" ")
 ## trying it out a new way
-print("    " + s , end = "     |",)
-print("   " + s + s + s , end = "    |")
+print("    " + s , end = "     |\n")
+print("   " + s + s + s , end = "    |\n")
 
 n = "  "
-##ya no that would not work, since the amount of spaces are different and its in the border
+##looks more professional this wa, but still a hasle if I have to put end =  each line... but it works
