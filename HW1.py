@@ -91,12 +91,12 @@ print("the average of the three numbers is " + str((first_number + second_number
 #   ***    |
 #    *     |
 print("Thank you") 
-symbol_1 = imput("Before you go,I would now like to draw a diamond for you.  Please enter a symbol you would like to use: ")
+s = input("Before you go,I would now like to draw a diamond for you.  Please enter a symbol you would like to use: ")
 
-print("    " + symbol_1 + "     |")
-#("   " + ***+     |")
-#("  *****+ "    |")
-#(" *******  |")
-#("  *****   |")
-#("   ***    |")
-#("    *     |")
+print("    " + s + "     |")
+print("   " + s + s + s + "    |")
+print("  "+s + s + s + s + s + "   |")
+print(" "+ s + s + s + s + s + s + s + "  |")
+print("  "+ s + s + s + s + s + "   |")
+print("   " + s + s + s + "    |")
+print("    "+ s + "     |")
