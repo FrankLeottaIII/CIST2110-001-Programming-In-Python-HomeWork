@@ -78,7 +78,9 @@ print("The product of the three numbers is " + str(first_number * second_number 
 print("let me add them up and then round it to the nearest interger for you, beep boop...")
 print("the sum of the 3 numbers, rounded to the nearest integer is " + str(round(first_number + second_number + third_number, 0)))
 # 4. The average of the three numbers is <average>
-print("the average of the three numbers is " + str((first_number + second_number + third_number)/3))    
+add_tree = int(round(first_number + second_number + third_number, 0))
+LEFT OFF HEREE~~~~~~~~~~~~~~~~~~~~~~~~~~``
+print("Also, the average of those three numbers is " + str(roundadd_tree/3) + ", rounded to the nearest integer")    
 # Question 7: Ask the user for an input of a symbol (in the example its *)     
 # Print a diamond of the symbol that looks like the following. Include the spaces and the | character. 
 # Hint: the print("symbol", end="") with \t and \n characters will be useful here.
@@ -91,7 +93,8 @@ print("the average of the three numbers is " + str((first_number + second_number
 #   ***    |
 #    *     |
 print("Thank you") 
-s = input("Before you go,I would now like to draw 2 diamonds for you.  Please enter a symbol you would like to use: ")
+s = input("Before you go, I would now like to draw 2 diamonds for you.  Please enter a symbol you would like to use: ")
+print("ok here are the 2 dimonds for your time, have a wonderful day!!!")
 
 print("    " + s + "     |")
 print("   " + s + s + s + "    |")
@@ -100,7 +103,7 @@ print(" "+ s + s + s + s + s + s + s + "  |")
 print("  "+ s + s + s + s + s + "   |")
 print("   " + s + s + s + "    |")
 print("    "+ s + "     |")
-Print(" ")
+print(" ")
 print("    " + s, end ="     |\n")
 print("   " + s + s + s, end =  "    |\n")
 print("  "+s + s + s + s + s, end = "   |\n")
@@ -108,3 +111,4 @@ print(" "+ s + s + s + s + s + s + s, end = "  |\n")
 print("  "+ s + s + s + s + s, end = "   |\n")
 print("   " + s + s + s, end = "    |\n")
 print("    "+ s, end = "     |\n")
+end = ("\n")

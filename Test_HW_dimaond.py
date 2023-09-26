@@ -7,11 +7,16 @@ print("  "+s + s + s + s + s + "   |")
 print(" "+ s + s + s + s + s + s + s + "  |")
 print("  "+ s + s + s + s + s + "   |")
 print("   " + s + s + s + "    |")
-print("    "+ s + "     |")
+print("    "+ s + "     |s")
 print(" ")
 ## trying it out a new way
-print("    " + s , end = "     |\n")
-print("   " + s + s + s , end = "    |\n")
+print("    " + s, end ="     |\n")
+print("   " + s + s + s, end =  "    |\n")
+print("  "+s + s + s + s + s, end = "   |\n")
+print(" "+ s + s + s + s + s + s + s, end = "  |\n")
+print("  "+ s + s + s + s + s, end = "   |\n")
+print("   " + s + s + s, end = "    |\n")
+print("    "+ s, end = "     |\n")
 
 n = "  "
 ##looks more professional this wa, but still a hasle if I have to put end =  each line... but it works
