@@ -56,17 +56,19 @@ num4 = 5
 # num1 + num2
 print(num1 + num2)
 # num3 * num4
-
+print(num3 * num4)
 # num4 - num1
-
+print(num4 - num1)
 # num2 / num1
-
+print(num2 / num1)  
 # Question 6: Write a program that asks the user for their name and then prints the following:
 
 # Hello, <name>. Please enter three numbers.
-
+print("Hello, " + myName + ". Please enter three numbers.")
 # The program should then ask the user for three numbers (floats) and print the following:
-
+print(input("I need a number 3 numbers, please enter the first number: ") = )
+print(input("Please enter the second number: "))
+print(input("Please enter the third number: "))
 
 # 1. The sum of the three numbers is <sum>
 
