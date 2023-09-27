@@ -79,10 +79,9 @@ print("let me add them up and then round it to the nearest interger for you, bee
 
 print("the sum of the 3 numbers, rounded to the nearest integer is " + str(round(first_number + second_number + third_number, 0)))
 # 4. The average of the three numbers is <average>
-add_tree = int(round(first_number + second_number + third_number, 0))
-
-
-print("Also, the average of those three numbers is " + str(round(add_tree/3)) + ", rounded to the nearest integer")    
+print("The average of those three numbers is " + str((first_number + second_number + third_number)/3))
+add_tree = float(first_number + second_number + third_number)
+print("Also, when rounded to the nearest integer, the average of those three numbers is " + str(round(add_tree/3)))    
 # Question 7: Ask the user for an input of a symbol (in the example its *)     
 # Print a diamond of the symbol that looks like the following. Include the spaces and the | character. 
 # Hint: the print("symbol", end="") with \t and \n characters will be useful here.
