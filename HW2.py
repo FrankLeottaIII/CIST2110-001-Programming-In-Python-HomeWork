@@ -1,14 +1,20 @@
 # HW2.py
-# Author:
+# Author: Frank R. Leotta III
 
 
 # Question 1:
 # Write some code that prompts the user for their age. Depending on the input:
+age = int(input("Enter your age: "))
 
 # If the age is less than 13, print "You are a child."
+if age < 13:
+    print("You are a child.")
 # If the age is between 13 and 19, print "You are a teenager."
+elif age >= 13 and age <= 19:
+    print("You are a teenager.")
 # If the age is 20 or older, print "You are an adult."
-
+elif age >= 20:
+    print("You are an adult.")
 
 # Question 2:
 # Write some code to display the following pattern using a for or while loop:
