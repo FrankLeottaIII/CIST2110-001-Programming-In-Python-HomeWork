@@ -24,12 +24,43 @@ elif age >= 20:
 # 1234
 # 12345
 
+for i in range(1, 6):
+    for j in range(1, i + 1):
+        print(j, end = "")
+    print()
+# So first is J what you want to do, then i is how many times you want to do it... its odd and confusing
+# but it works... sometimes you need break it into chunks to understand it
+# written
+# #end = "" needed or it would be on a new number
+# remember to print() at the end of the loop to make it go to the next line
+
+
 # Question 3:
 # Write a Python program that prompts the user to input 10 numbers. After all the numbers are inputted, the program should display:
 
 # The highest number.
 # The lowest number.
 # The average of all the numbers.
+def ask_for_number():
+    number = float(input("Please enter a number I will ask you 10 times for each : "))
+    return number
+
+one = ask_for_number()
+two = ask_for_number()
+three = ask_for_number()
+four = ask_for_number()
+five = ask_for_number()
+six = ask_for_number()
+seven = ask_for_number()
+eight = ask_for_number()
+nine = ask_for_number()
+ten = ask_for_number()
+
+print("The highest number is: " + str(max(one, two, three, four, five, six, seven, eight, nine, ten)))
+print("The lowest number is: " + str(min(one, two, three, four, five, six, seven, eight, nine, ten)))
+print("The average of all the numbers is: " + str((one + two + three + four + five + six + seven + eight + nine + ten) / 10))
+
+#I wonder if you could have made a varible for varibles in min and max.  if you could deconstruct a list into varibles
 
 # Question 4:
 # Vowel Counter - Write some code that prompts the user to enter a string. The program should then display the number of vowels in the string. IE. If the user enters "Hello World", the program should display 3.
