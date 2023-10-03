@@ -67,3 +67,11 @@ print("The average of all the numbers is: " + str((one + two + three + four + fi
 # the vowels are a, e, i, o, u
 # Hint: convert the string to lowercase and use a for loop with a counter variable and an if statement
 
+counter = input("Please enter a string, I will count the vowels: ")
+counter = counter.lower()
+vowel_count = 0 
+for i in counter:
+    if i == "a" or i == "e" or i == "i" or i == "o" or i == "u":
+        vowel_count += 1
+print("There are " + str(vowel_count) + " vowels in your string")
+    
