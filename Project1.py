@@ -24,34 +24,41 @@ print("please enter the letter of the answer you think is correct, or it will re
 
 
 score = 0
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer):
+
+
+                
+def ask_question(question, option_1, option_2, option_3, option_4, correct_answer, score):
         print(question)
-        print(option_1.lower())
+        print(str(option_1.lower()))
         option_1 = "a"
-        print(option_2.lower())
+        print(str(option_2.lower()))
         option_2 = "b"
-        print(option_3.lower())
+        print(str(option_3.lower()))
         option_3 = "c"
-        print(option_4.lower())
+        print(str(option_4.lower()))
         option_4 = "d"
         answer = input("Your answer:")
         if answer == correct_answer:
-                print("Correct!")
-                return score += 1 
-        else:
+                return True
+                print("Correct!")  
+        else:   
+                return False
                 print("Incorrect, the correct answer was " + correct_answer)
-                return score += 0 
-        
 
-print(ask_question("Which species of oak tree is part of the red oak subspecies?", "a. White Oak", "b. black Oak", "c. post Oak", "d. red Maple", "b. black Oak"))
 
-answer = imput("Your answer:")
-if answer_A == "c": 
-        print("Correct!")
-        score += 1  
-else:   
-        print("Incorrect, the correct answer was c. post Oak")
-        score += 0
+
+import time   
+questions_asked = 0     
+def questionStatement():
+    while questions_asked <= 5:  
+        time.sleep(1)        
+        print("Your score is " + str(score) + " out of 5")
+        break
+print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b"))
+print(score_tracker())
+print(questionStatement())
+
+
 # Keep track of the user's score throughout the game.
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
