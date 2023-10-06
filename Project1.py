@@ -23,11 +23,27 @@ print("please enter the letter of the answer you think is correct, or it will re
 
 
 
-score = 0
+SCORE = 0
 
-
+BOO = False
                 
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer, score):
+def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,) -> bool:
+        """_summary_
+        
+        This function is designed to ask the user a question, and check if the answer is correct
+            
+            Args:
+            question: The question being asked
+            option_1: the first option for the user to choose from
+            option_2: the second option for the user to choose from
+            option_3: the third option for the user to choose from
+            option_4: the fourth option for the user to choose from
+            correct_answer: the correct answer to the question
+            boo: a boolean value to determine if the user answered correctly or not
+        
+            Returns: True or False depending on if the user answered correctly or not
+            
+            """
         print(question)
         print(str(option_1.lower()))
         option_1 = "a"
@@ -45,17 +61,30 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
                 return False
                 print("Incorrect, the correct answer was " + correct_answer)
 
+def score_tracker(SCORE)-> int:    
+        """_summary_
+        This function is designed to keep track of the score of the user
 
+        Args:score: the score of the user
+
+        Returns: score
+    
+        """ 
+        if ask_question() == True:
+                SCORE += 1
+        else:   
+                SCORE += 0
+        return SCORE
 
 import time   
 questions_asked = 0     
 def questionStatement():
     while questions_asked <= 5:  
         time.sleep(1)        
-        print("Your score is " + str(score) + " out of 5")
+        print("Your score is " + str(SCORE) + " out of 5")
         break
 print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b"))
-print(score_tracker())
+print(score_tracker(SCORE))
 print(questionStatement())
 
 
@@ -74,3 +103,4 @@ print(questionStatement())
 # Ensure that user input is cast and checked appropriately to avoid errors during execution.
 # Error Handling:
 # Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
+
