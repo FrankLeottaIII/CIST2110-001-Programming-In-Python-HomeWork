@@ -25,7 +25,7 @@ scores = 0
 SCORE = 0
 answer = ""
 correct_answer = ""
-def ask_question(question, option_1, option_2, option_3, option_4,answer,scores: int) -> str:
+def ask_question(question: str,correct_answer: str, option_1: str, option_2: str, option_3: str, option_4: str, ) -> str:
         """_summary_
         
         This function is designed to ask the user a question, and convert the answer to a simple letter string
@@ -41,25 +41,26 @@ def ask_question(question, option_1, option_2, option_3, option_4,answer,scores:
   
             """
         print(question)
-        print(str(option_1.lower()))
+        print(str(option_1))
         option_1 = "a"
-        print(str(option_2.lower()))
+        print(str(option_2))
         option_2 = "b"
-        print(str(option_3.lower()))
+        print(str(option_3))
         option_3 = "c"
-        print(str(option_4.lower()))
+        print(str(option_4))
         option_4 = "d"
-        answer = input("Your answer:")
+        answer = str(input("Your answer:"))
+        answer = answer.lower()
         if answer == correct_answer:   
                 print("Correct!")
                 return True
         else:   
-                print("Incorrect, the correct answer was " + correct_answer)
+                print("Incorrect, the correct answer was " + str(correct_answer))
                 return False
 ## cant combine the two functions (counter and answer), it will not work, it will not return the correct answer, it will return the answer the user gave
 ## probably for the best, it would be a mess to try and combine them
 
-def TFcounter(SCORE: int) -> int:
+def TFcounter() -> bool:
         """_summary_
         
         This function is designed to count the score of the user using boolean values
@@ -74,24 +75,30 @@ def TFcounter(SCORE: int) -> int:
                 SCORE += 0
         Return: print( str(SCORE) + " is your score so far")
         
-print(scores)
+print(SCORE)
         
 
-first = ask_question("Which of these trees is part of the red oak subspecies?", "white oak", "black oak", "red maple", "red oak", answer)
-while first == True:
-        scores += 1
-        print(scores)
-        break
-else:
-        scores += 0
-        print(scores)
-        break
-find_answer_right("red oak", answer, score)
-print(str(score) + " is your score so far")
-print("The correct answer is" + correct_answer)
+first = ask_question("Which of these trees is part of the red oak subspecies?", "b", "white oak", "black oak", "red maple", SCORE)
+first.TFcounter(SCORE)
+
+
+
+#while first == True:
+#        scores += 1
+#        print(scores)
+#        break
+#else:
+#        scores += 0
+#        print(scores)
+#        break
+#find_answer_right("red oak", answer, SCORE)
+
+print(str(SCORE) + " is your score so far")
+
 
           
-
+#while quiz < 5:
+#        quiz += 1
 
 
 
