@@ -20,18 +20,15 @@ print("please enter the letter of the answer you think is correct, or it will re
 # If the answer is correct, display a positive feedback message and add points to the user's score.
 # If the answer is incorrect, display a negative feedback message and provide the correct answer.
 # Score Tracking:
-
-##Clearly I Need to review the lecture more.... will have to come back to this later.##
+scores = 0
 
 SCORE = 0
-
-
-(BOO) = 0
-                
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,Score: int) -> bool:
+answer = ""
+correct_answer = ""
+def ask_question(question, option_1, option_2, option_3, option_4,answer,scores: int) -> str:
         """_summary_
         
-        This function is designed to ask the user a question, and check if the answer is correct
+        This function is designed to ask the user a question, and convert the answer to a simple letter string
             
             Args:
             question: The question being asked
@@ -40,10 +37,8 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
             option_3: the third option for the user to choose from
             option_4: the fourth option for the user to choose from
             correct_answer: the correct answer to the question
-            BOO: a boolean value to determine if the user answered correctly or not
-        
-            Returns: True or False depending on if the user answered correctly or not
-            
+            SCORE: the score of the user
+  
             """
         print(question)
         print(str(option_1.lower()))
@@ -56,39 +51,49 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
         option_4 = "d"
         answer = input("Your answer:")
         if answer == correct_answer:   
-                SCORE += 1
-                return print("Correct!")
+                print("Correct!")
+                return True
         else:   
-                SCORE += 0
-                return print("Incorrect, the correct answer was " + correct_answer)
-        
-def score_tracker(SCORE)-> int:    
+                print("Incorrect, the correct answer was " + correct_answer)
+                return False
+## cant combine the two functions (counter and answer), it will not work, it will not return the correct answer, it will return the answer the user gave
+## probably for the best, it would be a mess to try and combine them
+
+def TFcounter(SCORE: int) -> int:
         """_summary_
-        This function is designed to keep track of the score of the user
-
-        Args:score: the score of the user
-
-        Returns: score
-    
-        """ 
-        if int(BOO) == 1:
+        
+        This function is designed to count the score of the user using boolean values
+            
+            Args:
+            none
+  
+            """
+        if True:   
                 SCORE += 1
-        elif int(BOO) == 0:   
+        elif False:   
                 SCORE += 0
-        return SCORE
+        Return: print( str(SCORE) + " is your score so far")
+        
+print(scores)
+        
 
-
-import time   
-questions_asked = 0     
-def questionStatement():
-    while questions_asked <= 5:  
-        time.sleep(1)        
-        print("Your score is " + str(SCORE) + " out of 5")
+first = ask_question("Which of these trees is part of the red oak subspecies?", "white oak", "black oak", "red maple", "red oak", answer)
+while first == True:
+        scores += 1
+        print(scores)
         break
-print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b", SCORE))
+else:
+        scores += 0
+        print(scores)
+        break
+find_answer_right("red oak", answer, score)
+print(str(score) + " is your score so far")
+print("The correct answer is" + correct_answer)
 
-print(score_tracker(SCORE))
-print(questionStatement())
+          
+
+
+
 
 
 # Keep track of the user's score throughout the game.
