@@ -21,13 +21,14 @@ print("please enter the letter of the answer you think is correct, or it will re
 # If the answer is incorrect, display a negative feedback message and provide the correct answer.
 # Score Tracking:
 
-
+##Clearly I Need to review the lecture more.... will have to come back to this later.##
 
 SCORE = 0
 
-BOO = False
+
+(BOO) = 0
                 
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,BOO:int) -> bool:
+def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,Score: int) -> bool:
         """_summary_
         
         This function is designed to ask the user a question, and check if the answer is correct
@@ -55,13 +56,12 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
         option_4 = "d"
         answer = input("Your answer:")
         if answer == correct_answer:   
-                BOO = 1
+                SCORE += 1
                 return print("Correct!")
-
         else:   
-                BOO = 0
+                SCORE += 0
                 return print("Incorrect, the correct answer was " + correct_answer)
-
+        
 def score_tracker(SCORE)-> int:    
         """_summary_
         This function is designed to keep track of the score of the user
@@ -71,13 +71,13 @@ def score_tracker(SCORE)-> int:
         Returns: score
     
         """ 
-        if BOO == 1:
+        if int(BOO) == 1:
                 SCORE += 1
-        elif BOO == 0:   
+        elif int(BOO) == 0:   
                 SCORE += 0
         return SCORE
 
-print(BOO==True)
+
 import time   
 questions_asked = 0     
 def questionStatement():
@@ -85,9 +85,8 @@ def questionStatement():
         time.sleep(1)        
         print("Your score is " + str(SCORE) + " out of 5")
         break
-print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b", BOO))
-if False:
-        SCORE += 1
+print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b", SCORE))
+
 print(score_tracker(SCORE))
 print(questionStatement())
 
