@@ -27,7 +27,7 @@ SCORE = 0
 
 BOO = False
                 
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,) -> bool:
+def ask_question(question, option_1, option_2, option_3, option_4, correct_answer,BOO:int) -> bool:
         """_summary_
         
         This function is designed to ask the user a question, and check if the answer is correct
@@ -39,7 +39,7 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
             option_3: the third option for the user to choose from
             option_4: the fourth option for the user to choose from
             correct_answer: the correct answer to the question
-            boo: a boolean value to determine if the user answered correctly or not
+            BOO: a boolean value to determine if the user answered correctly or not
         
             Returns: True or False depending on if the user answered correctly or not
             
@@ -54,12 +54,13 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
         print(str(option_4.lower()))
         option_4 = "d"
         answer = input("Your answer:")
-        if answer == correct_answer:
-                return True
-                print("Correct!")  
+        if answer == correct_answer:   
+                BOO = 1
+                return print("Correct!")
+
         else:   
-                return False
-                print("Incorrect, the correct answer was " + correct_answer)
+                BOO = 0
+                return print("Incorrect, the correct answer was " + correct_answer)
 
 def score_tracker(SCORE)-> int:    
         """_summary_
@@ -70,12 +71,13 @@ def score_tracker(SCORE)-> int:
         Returns: score
     
         """ 
-        if ask_question() == True:
+        if BOO == 1:
                 SCORE += 1
-        else:   
+        elif BOO == 0:   
                 SCORE += 0
         return SCORE
 
+print(BOO==True)
 import time   
 questions_asked = 0     
 def questionStatement():
@@ -83,7 +85,9 @@ def questionStatement():
         time.sleep(1)        
         print("Your score is " + str(SCORE) + " out of 5")
         break
-print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b"))
+print(ask_question("Which of these trees is part of the red oak subspecies?", "a. White oak", "B. black oak", "C. post Oak", "D. red Maple", "b", BOO))
+if False:
+        SCORE += 1
 print(score_tracker(SCORE))
 print(questionStatement())
 
