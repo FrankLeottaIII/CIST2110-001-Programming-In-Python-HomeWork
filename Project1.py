@@ -56,19 +56,22 @@ Ninth =""
 Tenth =""
 #___________________________________________________________________________________________________________________________
 
+##BROKEN FUNCTIONs###
+#def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
+
 ### Defined Functions ###------------
-def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
-        """_summary_
+"""def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
+        _summary_
         
-        This function is designed to check if the user's answer is correct and give them a point if it is
+#        This function is designed to check if the user's answer is correct and give them a point if it is
             
-            Args:
+#            Args:
             CORRECT_ANSWER: The correct answer
             answer: The user's answer
             SCORE: The user's score
 
   
-            """
+            
         if answer == CORRECT_ANSWER:
                 print("Correct!")
                 SCORE += 1
@@ -76,12 +79,13 @@ def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
         else:
                 print("Incorrect, the correct answer is " + CORRECT_ANSWER)
                 return SCORE
+                """
 ##example of how to use this function
 ##find_answer_right(imput(), answer,<which would be a b c or de beforehand>, SCORE)   
-answer = input("what is the second letter of the alphabet?")
-answer = answer.upper() 
-CORRECT_ANSWER = B
-find_answer_right( B, answer, SCORE)  
+#answer = input("what is the second letter of the alphabet?")
+#answer = answer.upper() 
+#CORRECT_ANSWER = B
+#find_answer_right( CORRECT_ANSWER, answer, SCORE)  
 
 
 def ask_question(question: str) -> str:
