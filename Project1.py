@@ -78,11 +78,12 @@ def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
                 return SCORE
 ##example of how to use this function
 ##find_answer_right(imput(), answer,<which would be a b c or de beforehand>, SCORE)   
-answer = Upper(input())
-answer = upper(answer)
-find_answer_right( a , answer, SCORE)  
+answer = input("what is the second letter of the alphabet?")
+answer = answer.upper() 
+CORRECT_ANSWER = B
+find_answer_right( B, answer, SCORE)  
 
-lower(input())
+
 def ask_question(question: str) -> str:
         """_summary_
         
