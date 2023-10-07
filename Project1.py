@@ -21,10 +21,22 @@ print("please enter the letter of the answer you think is correct, or it will re
 # If the answer is incorrect, display a negative feedback message and provide the correct answer.
 # Score Tracking:
 
+while True:
+        SCORE = 0
+        quiz = 0
+        print("Question 1")
+        ask_question("What is the most common tree in the United States?")
+        a_letter("white oak", "black oak", "red maple", "red oak")
+        answer = input()
+        if answer == "d":
+                print("Correct!")
+                SCORE += 1
+                break
+        else:
+                print("Incorrect, the correct answer is red oak")
+                break
 
 SCORE = 0
-answer = ""
-correct_answer = ""
 def ask_question(question: str) -> str:
         """_summary_
         
@@ -37,52 +49,33 @@ def ask_question(question: str) -> str:
             """
         print(question)
 
-def l_answer(answer: str) -> str:
+
+def a_letter(A: str, B: str, C: str, D: str) -> str:
+
         """_summary_
         
-        This function is designed to convert the answer to a simple letter string
+        This function assighns a value to multible choice and  
+        adds a letter and period to make the question's multible choice look better
             
             Args:
-            answer: The answer the user gives
+            type: The question being asked
 
   
             """
-        print(answer)
-        if answer == "a":
-                answer = "a"
-        elif answer == "b":
-                answer = "b"
-        elif answer == "c":
-                answer = "c"
-        elif answer == "d":
-                answer = "d"
-        else:
-                answer = "incorrect"
-        return answer
+        print("a. " + A)
+        print("b. " + B)
+        print("c. " + C)
+        print("d. " + D)
 
-## cant combine the two functions (counter and answer), it will not work, it will not return the correct answer, it will return the answer the user gave
-## probably for the best, it would be a mess to try and combine them
-
-def TFcounter() -> bool:
-        """_summary_
-        
-        This function is designed to count the score of the user using boolean values
-            
-            Args:
-            none
-  
-            """
-        if True:   
-                SCORE += 1
-        elif False:   
-                SCORE += 0
-        Return: print( str(SCORE) + " is your score so far")
-        
+        return  ("a. " + A), ("b. " + B), ("c. " + C), ("d. " + D)
 print(SCORE)
         
+a_letter("white oak", "black oak", "red maple", "red oak")
 
-first = ask_question("Which of these trees is part of the red oak subspecies?", "b", "white oak", "black oak", "red maple", SCORE)
-first.TFcounter(SCORE)
+
+
+
+
 
 
 
@@ -96,7 +89,7 @@ first.TFcounter(SCORE)
 #        break
 #find_answer_right("red oak", answer, SCORE)
 
-print(str(SCORE) + " is your score so far")
+
 
 
           
