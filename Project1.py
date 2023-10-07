@@ -21,22 +21,68 @@ print("please enter the letter of the answer you think is correct, or it will re
 # If the answer is incorrect, display a negative feedback message and provide the correct answer.
 # Score Tracking:
 
-while True:
-        SCORE = 0
-        quiz = 0
-        print("Question 1")
-        ask_question("What is the most common tree in the United States?")
-        a_letter("white oak", "black oak", "red maple", "red oak")
-        answer = input()
-        if answer == "d":
+#while True:
+ #       SCORE = 0
+  ##      quiz = 0
+    #    print("Question 1")
+     #   ask_question("What is the most common tree in the United States?")
+      #  a_letter("white oak", "black oak", "red maple", "red oak")
+       # answer = input()
+        #if answer == "d":
+         #       print("Correct!")
+          #      SCORE += 1
+           #     break
+#        else:
+#                print("Incorrect, the correct answer is red oak")
+ #               break
+#starting varibles----------------------------------------------------------------------------------------------------------------
+SCORE = 0
+quiz = 0
+A = ""
+B = ""
+C = ""
+D = ""
+answer = ""
+CORRECT_ANSWER = ""
+first =""
+second =""
+third =""
+fourth =""
+fifth =""
+Sixth =""
+Seventh =""
+Eighth =""
+Ninth =""
+Tenth =""
+#___________________________________________________________________________________________________________________________
+
+### Defined Functions ###------------
+def find_answer_right(CORRECT_ANSWER: str, answer: str, SCORE: int) -> int:
+        """_summary_
+        
+        This function is designed to check if the user's answer is correct and give them a point if it is
+            
+            Args:
+            CORRECT_ANSWER: The correct answer
+            answer: The user's answer
+            SCORE: The user's score
+
+  
+            """
+        if answer == CORRECT_ANSWER:
                 print("Correct!")
                 SCORE += 1
-                break
+                return SCORE
         else:
-                print("Incorrect, the correct answer is red oak")
-                break
+                print("Incorrect, the correct answer is " + CORRECT_ANSWER)
+                return SCORE
+##example of how to use this function
+##find_answer_right(imput(), answer,<which would be a b c or de beforehand>, SCORE)   
+answer = Upper(input())
+answer = upper(answer)
+find_answer_right( a , answer, SCORE)  
 
-SCORE = 0
+lower(input())
 def ask_question(question: str) -> str:
         """_summary_
         
@@ -48,6 +94,10 @@ def ask_question(question: str) -> str:
   
             """
         print(question)
+
+
+
+
 
 
 def a_letter(A: str, B: str, C: str, D: str) -> str:
