@@ -185,3 +185,21 @@ print("D. It uses the Stocking chart Diagram")
 Answer= D
 
 
+def ask_question(question, option_1, option_2, option_3, option_4, correct_answer)
+    
+        """_summary_
+        
+        This function assighns a value to multible choice and  
+        adds a letter and period to make the question's multible choice look better
+            
+            Args:
+            type: The question being asked
+    
+    
+            """
+        print("a. " + A)
+        print("b. " + B)
+        print("c. " + C)
+        print("d. " + D)
+    
+        return  ("a. " + A), ("b. " + B), ("c. " + C), ("d. " + D)
