@@ -84,7 +84,10 @@ answer: D
 ## all these questions are for the Ecological Forest Management quiz 2 study guide, and for my programming class as well,
 
 """
-
+A = ""
+B = ""
+C = ""
+D = ""
 
 print("Hello, welcome to my quiz game.")
 print(" I will be asking you a few questions, and keeping score, so try your best!")
