@@ -49,7 +49,25 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
     else:
         return False
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
+def final_score():
 
+    print("Your final score is " + str(SCORE) + " out of 5")
+    if SCORE == 10:
+        print("one hundred percent! Perfect score!")
+    elif SCORE == 4:
+        print("80 percent Great job!")
+    elif SCORE == 3:
+        print("you passed, but just by the skin of your teeth!")
+    elif SCORE == 2:
+        print("Not bad!")
+    elif SCORE == 1:
+        print("You can do better!")
+    else:
+        print("Better luck next time!")
+    print("")
+
+
+    print("Thank you for playing!")
 # Loops:
 # Use a for or while loop to iterate through the questions.
 # Variable Casting:
