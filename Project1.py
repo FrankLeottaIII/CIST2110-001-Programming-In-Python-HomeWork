@@ -20,43 +20,46 @@ print("please enter the letter of the answer you think is correct, or it will re
 # If the answer is correct, display a positive feedback message and add points to the user's score.
 # If the answer is incorrect, display a negative feedback message and provide the correct answer.
 # Score Tracking:
-scores = 0
+
 
 SCORE = 0
 answer = ""
 correct_answer = ""
-def ask_question(question: str,correct_answer: str, option_1: str, option_2: str, option_3: str, option_4: str, ) -> str:
+def ask_question(question: str) -> str:
         """_summary_
         
         This function is designed to ask the user a question, and convert the answer to a simple letter string
             
             Args:
             question: The question being asked
-            option_1: the first option for the user to choose from
-            option_2: the second option for the user to choose from
-            option_3: the third option for the user to choose from
-            option_4: the fourth option for the user to choose from
-            correct_answer: the correct answer to the question
-            SCORE: the score of the user
+
   
             """
         print(question)
-        print(str(option_1))
-        option_1 = "a"
-        print(str(option_2))
-        option_2 = "b"
-        print(str(option_3))
-        option_3 = "c"
-        print(str(option_4))
-        option_4 = "d"
-        answer = str(input("Your answer:"))
-        answer = answer.lower()
-        if answer == correct_answer:   
-                print("Correct!")
-                return True
-        else:   
-                print("Incorrect, the correct answer was " + str(correct_answer))
-                return False
+
+def l_answer(answer: str) -> str:
+        """_summary_
+        
+        This function is designed to convert the answer to a simple letter string
+            
+            Args:
+            answer: The answer the user gives
+
+  
+            """
+        print(answer)
+        if answer == "a":
+                answer = "a"
+        elif answer == "b":
+                answer = "b"
+        elif answer == "c":
+                answer = "c"
+        elif answer == "d":
+                answer = "d"
+        else:
+                answer = "incorrect"
+        return answer
+
 ## cant combine the two functions (counter and answer), it will not work, it will not return the correct answer, it will return the answer the user gave
 ## probably for the best, it would be a mess to try and combine them
 
