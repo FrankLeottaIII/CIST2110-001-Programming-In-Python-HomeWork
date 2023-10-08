@@ -129,23 +129,24 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
     print(str(option_4.lower()))
     option_4 = "d"
     answer = input("Your answer:")
-    answer = answer.lower()
-    while answer != "a" and answer != "b" and answer != "c" and answer != "d":
+    answer = answer.upper()
+    while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D":
         print("That is not a valid answer, please try again")
         answer = input("Your answer:")
-        answer = answer.lower()
+        answer = answer.upper()
     if answer == correct_answer:
         print("Correct!")
         return True
 
     else:
-        print("Incorrect, the correct answer was " + correct_answer)
+        correct_answer = correct_answer.upper()
+        print("Incorrect, the correct answer was " + correct_answer.upper())
         return False
 
     
 print("testing below")
 
-q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "D")
+q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
 q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
 q4 = ask_question("4.) what is true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
