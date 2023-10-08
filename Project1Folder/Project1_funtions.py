@@ -48,6 +48,10 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
         return True
     else:
         return False
+question_1 = ask_question("which tree is part of the red oak subspecies?", )
+
+
+
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
 
