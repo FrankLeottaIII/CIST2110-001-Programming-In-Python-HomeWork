@@ -118,7 +118,7 @@ def welcome():
 # Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
 # an example would be def ask_question(question, option_1, option_2, option_3, option_4, correct_answer):
 # the return value should be a boolean (True or False) for whether the user was correct
-def ask_question(question, option_1, option_2, option_3, option_4, correct_answer) -> bool:
+def ask_question(question:str, option_1:str, option_2: str, option_3: str, option_4: str, correct_answer: str) -> bool:
     print(question)
     print(str(option_1.lower()))
     option_1 = "a"
@@ -129,10 +129,19 @@ def ask_question(question, option_1, option_2, option_3, option_4, correct_answe
     print(str(option_4.lower()))
     option_4 = "d"
     answer = input("Your answer:")
+    answer = answer.lower()
+    while answer != "a" and answer != "b" and answer != "c" and answer != "d":
+        print("That is not a valid answer, please try again")
+        answer = input("Your answer:")
+        answer = answer.lower()
     if answer == correct_answer:
+        print("Correct!")
         return True
+
     else:
+        print("Incorrect, the correct answer was " + correct_answer)
         return False
+
     
 print("testing below")
 
@@ -141,6 +150,7 @@ q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. pos
 q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
 q4 = ask_question("4.) what is true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
 q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
+
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
