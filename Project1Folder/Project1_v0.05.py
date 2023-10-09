@@ -7,6 +7,7 @@ had an error i could not fix.  reverted to older code saved and that fixed error
 
 OK i am saving it so I have a savepoint.... 
 typed out score now for each question, 
+noticed that the score was not being added to the total score... ok need another varible
 
 """
 # This project is meant to test your ability from everything we have learned so far in class
@@ -25,6 +26,7 @@ def welcome():
     print("Good luck!")
     print("")
 
+print(welcome())
 # Implement at least 5 questions, each with 4 answer options (a, b, c, d). Each question should be worth 1 point.
 # For each question, display the question and the answer options to the user.
 # Use input() to get the user's answer.
@@ -38,6 +40,7 @@ def welcome():
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
 SCORE = 0
+
 def score_now(varible:bool, SCORE:int):
     SCORE
     if varible == True:
@@ -118,7 +121,7 @@ def final_score():
     print("")
     print("Thank you for playing!")
 
-Print(final_score())
+print(final_score())
 # Loops:
 # Use a for or while loop to iterate through the questions.
 # Variable Casting:
