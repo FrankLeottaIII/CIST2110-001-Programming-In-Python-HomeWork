@@ -8,6 +8,7 @@ had an error i could not fix.  reverted to older code saved and that fixed error
 OK i am saving it so I have a savepoint.... 
 typed out score now for each question, 
 noticed that the score was not being added to the total score... ok need another varible
+total score counter not working, not adding up
 
 """
 # This project is meant to test your ability from everything we have learned so far in class
@@ -40,21 +41,22 @@ print(welcome())
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
 SCORE = 0
-
-def score_now(varible:bool, SCORE:int):
+TOTAL_SCORE = 0
+def score_now(varible:bool, SCORE:int, TOTAL_SCORE:int):
     SCORE
+    TOTAL_SCORE
     if varible == True:
-        SCORE = SCORE + 1
+        SCORE = TOTAL_SCORE + 1
         print("yours score now is now" + str(SCORE))
-        return SCORE
+        return SCORE, TOTAL_SCORE
     if varible == False:
-        SCORE = SCORE + 0
+        SCORE = TOTAL_SCORE + 0
         print("yours score now is now" + str(SCORE))
-        return SCORE
+        return SCORE, TOTAL_SCORE
     else:
         print("error")
-        print("yours score now is now: " + str(SCORE))  
-        return SCORE
+        print("yours score now is now: " + str(TOTAL_SCORE))  
+        return SCORE, TOTAL_SCORE
 
 
 # Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
@@ -92,15 +94,15 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
 print("testing below")
 
 q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
-score_now(q1, SCORE)
+score_now(q1, SCORE, TOTAL_SCORE)
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
-score_now(q2, SCORE)
+score_now(q2, SCORE, TOTAL_SCORE)
 q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
-score_now(q3, SCORE)
+score_now(q3, SCORE, TOTAL_SCORE)
 q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
-score_now(q4, SCORE)
+score_now(q4, SCORE, TOTAL_SCORE)
 q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
-score_now(q5, SCORE)
+score_now(q5, SCORE, TOTAL_SCORE)
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
