@@ -3,7 +3,8 @@
 ## I need to fix it
 
 SCORE = 0
-def final_score(type:str)-> str:
+def final_score()-> str:
+    global SCORE
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
        return print("one hundred percent! Perfect score!")
@@ -19,6 +20,17 @@ def final_score(type:str)-> str:
         return print("Better luck next time!\nThank you for playing!") 
 
 
-final_score(SCORE)
+final_score()
 
 ##StopAsyncIteration = False pop up in copilot... ill  have to look into that
+
+"""###mistakes I made, remember to not do this again###
+print("testing below")
+
+print(final_score(SCORE))
+that prints out final score flavor text, 
+            but also prints out none
+because I was calling the function incorrectly
+
+
+"""

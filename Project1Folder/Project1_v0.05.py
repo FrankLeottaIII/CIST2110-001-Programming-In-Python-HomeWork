@@ -126,12 +126,16 @@ q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  dia
 score_now(q5, SCORE)
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
-def final_score(type:str)-> str:
+def final_score()-> str:
     """
     "Displays the final score and a message based on the score.
-    :param score: the final score
     
+    Aguments: None
+
+    Returns:  various imputs based on the score
+    should not return: None
 """
+    global SCORE
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
        return print("one hundred percent! Perfect score!")
@@ -143,16 +147,15 @@ def final_score(type:str)-> str:
         return print("Not bad!")
     elif SCORE == 1:
         return print("You can do better!")
-    else:
+    elif SCORE == 0:
         return print("Better luck next time! \n + Thank you for playing!") 
-    end
+  
    
-
-
-print(final_score())
+final_score()
 # Loops:
 # Use a for or while loop to iterate through the questions.
 # Variable Casting:
 # Ensure that user input is cast and checked appropriately to avoid errors during execution.
 # Error Handling:
 # Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
+print ("")
