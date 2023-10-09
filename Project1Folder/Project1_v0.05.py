@@ -44,14 +44,14 @@ print(welcome())
 # Function Utilization:
 SCORE = 0
 test = 0
-test = int(test)
 test +=1
 print(str(test)+ ("this is a test"))
-
-def testing(test:int):
+varible = 0
+def testing(varible:int):
+    global test
     test +=1
     print(test)
-    return test + 1
+    return int(test + 1)
 
 print(testing(test))
 print(test)
@@ -128,22 +128,26 @@ score_now(q5, SCORE)
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
-
+    """
+    "Displays the final score and a message based on the score.
+    :param score: the final score
+    :return: nothing
+"""
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
-        print("one hundred percent! Perfect score!")
+       return print("one hundred percent! Perfect score!")
     elif SCORE == 4:
-        print("80 percent Great job!")
+        return print("80 percent Great job!")
     elif SCORE == 3:
-        print("you passed, but just by the skin of your teeth!")
+        return print("you passed, but just by the skin of your teeth!")
     elif SCORE == 2:
-        print("Not bad!")
+        return print("Not bad!")
     elif SCORE == 1:
-        print("You can do better!")
+        return print("You can do better!")
     else:
-        print("Better luck next time!")
-    print("")
-    print("Thank you for playing!")
+        return print("Better luck next time! \n + Thank you for playing!") 
+    
+
 
 print(final_score())
 # Loops:
