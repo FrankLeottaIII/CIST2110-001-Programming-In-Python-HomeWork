@@ -10,6 +10,8 @@ typed out score now for each question,
 noticed that the score was not being added to the total score... ok need another varible
 total score counter not working, not adding up
 
+Return for score_now is not working, it is not adding to the total score
+isolated code, now testing it
 """
 # This project is meant to test your ability from everything we have learned so far in class
 # You will need to use variables, if statements, loops, and functions
@@ -47,17 +49,17 @@ def score_now(varible:bool, SCORE:int):
     TOTAL_SCORE
     if varible == True:
         SCORE += 1
-        print("yours score now is now" + str(SCORE))
+        print("yours score now is now: " + str(SCORE))
         return SCORE
     if varible == False:
         SCORE += 0
-        print("yours score now is now" + str(SCORE))
+        print("yours score now is now: " + str(SCORE))
         return SCORE
     else:
         print("error")
         SCORE += 0
         print("yours score now is now: " + str(SCORE))  
-        return SCORE,
+        return SCORE 
 
 
 # Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
@@ -98,13 +100,13 @@ q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white
 score_now(q1, SCORE)
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
 score_now(q2, SCORE)
-q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+"""q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
 score_now(q3, SCORE)
 q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
 score_now(q4, SCORE)
 q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
 score_now(q5, SCORE)
-
+"""
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
 
