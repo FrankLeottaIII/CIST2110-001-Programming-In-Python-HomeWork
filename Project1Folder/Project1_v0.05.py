@@ -158,4 +158,12 @@ final_score()
 # Ensure that user input is cast and checked appropriately to avoid errors during execution.
 # Error Handling:
 # Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
-print ("")
+def main():
+    if __name__ == "__main__":
+        welcome()
+        ask_question()
+        score_now()
+        final_score()
+        main()
+    main()
+# Comments:

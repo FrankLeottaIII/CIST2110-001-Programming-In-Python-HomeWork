@@ -1,6 +1,4 @@
-## This is a test for final score funtion
-## it keeps giving me a non after it , which I do not need
-## I need to fix it
+
 
 SCORE = 0
 def final_score()-> str:
@@ -16,8 +14,10 @@ def final_score()-> str:
         return print("Not bad!")
     elif SCORE == 1:
         return print("You can do better!")
+    elif SCORE == 0:
+        return print("Better luck next time!\nThank you for playing!")
     else:
-        return print("Better luck next time!\nThank you for playing!") 
+        return print("Hmm, something went wrong with the score, please contact the developer") 
 
 
 final_score()
@@ -34,3 +34,23 @@ because I was calling the function incorrectly
 
 
 """
+
+""" Old text###
+## This is a test for final score funtion
+## it keeps giving me a non after it , which I do not need
+## I need to fix it
+"""
+
+### ok now for the main
+
+def main():
+    main()
+
+
+##interesting copilot stuff
+###  I guess I should add a path: to the top of each file
+# Compare this snippet from Project1Folder/Project1_v0.05.py:
+#     option_4 = "d"
+# Path: Project1Folder/Project1_v0.06.py
+if __name__ == "__main__":
+    final_score()
