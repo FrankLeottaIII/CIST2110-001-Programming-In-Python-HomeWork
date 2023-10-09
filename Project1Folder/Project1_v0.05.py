@@ -43,11 +43,22 @@ print(welcome())
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
 SCORE = 0
-SCORE = int(SCORE)
-SCORE +=1
-SCORE +=1
-print(SCORE)
+test = 0
+test = int(test)
+test +=1
+test +=1
+print(test)
 
+def testing(test:int):
+    test +=1
+    print(test)
+    return test
+
+print(testing(test))
+print(test)
+print(" this should be 4 next, it is not")
+print(testing(test))
+print(test)
 
 
 
