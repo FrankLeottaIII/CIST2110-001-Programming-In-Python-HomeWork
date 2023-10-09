@@ -46,13 +46,12 @@ SCORE = 0
 test = 0
 test = int(test)
 test +=1
-test +=1
-print(test)
+print(str(test)+ ("this is a test"))
 
 def testing(test:int):
     test +=1
     print(test)
-    return test
+    return test + 1
 
 print(testing(test))
 print(test)
@@ -70,16 +69,16 @@ def score_now(varible:bool, SCORE:int):
     if varible == True:
         SCORE += 1
         print("yours score now is now: " + str(SCORE))
-        return SCORE
+        return SCORE + 1
     if varible == False:
         SCORE += 0
         print("yours score now is now: " + str(SCORE))
-        return SCORE
+        return SCORE + 0
     else:
         print("error")
         SCORE += 0
         print("yours score now is now: " + str(SCORE))  
-        return SCORE 
+        return SCORE + 0
 
 
 # Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
@@ -95,7 +94,7 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
     option_3 = "c"
     print(str(option_4.lower()))
     option_4 = "d"
-    answer = input("Your answer:")
+    answer = input.strip("Your answer:")
     answer = answer.upper()
     while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D" and answer != ("skip") and answer != ("SKIP"):
         print("That is not a valid answer, please try again")
