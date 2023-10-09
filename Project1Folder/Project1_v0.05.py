@@ -3,11 +3,9 @@
 """
 #notes, removed, Now need to check if all questions are good
 ##while loop is contained 
+had an error i could not fix.  reverted to older code saved
+OK i am saving it so I have a savepoint.... 
 
-need to :
-add a score counter
-
-add a score message
 """
 # This project is meant to test your ability from everything we have learned so far in class
 # You will need to use variables, if statements, loops, and functions
@@ -36,6 +34,22 @@ def welcome():
 # Keep track of the user's score throughout the game.
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
+SCORE = 0
+def score_now(varible:bool, SCORE:int):
+    SCORE
+    if varible == True:
+        SCORE = SCORE + 1
+        print("yours score now is now" + str(SCORE))
+        return SCORE
+    if varible == False:
+        SCORE = SCORE + 0
+        print("yours score now is now" + str(SCORE))
+        return SCORE
+    else:
+        print("error")
+        print("yours score now is now: " + str(SCORE))  
+        return SCORE
+
 
 # Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
 # an example would be def ask_question(question, option_1, option_2, option_3, option_4, correct_answer):
@@ -52,13 +66,16 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
     option_4 = "d"
     answer = input("Your answer:")
     answer = answer.upper()
-    while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D":
+    while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D" and answer != ("skip") and answer != ("SKIP"):
         print("That is not a valid answer, please try again")
         answer = input("Your answer:")
         answer = answer.upper()
     if answer == correct_answer:
         print("Correct!")
         return True
+    if answer == ("skip") or answer == ("SKIP"):
+        print("You have chosen to skip this question")
+        return False
 
     else:
         correct_answer = correct_answer.upper()
@@ -69,6 +86,7 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
 print("testing below")
 
 q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
+score_now(q1, SCORE)
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
 q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
 q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
@@ -92,8 +110,6 @@ def final_score():
     else:
         print("Better luck next time!")
     print("")
-
-
     print("Thank you for playing!")
 # Loops:
 # Use a for or while loop to iterate through the questions.
@@ -101,4 +117,3 @@ def final_score():
 # Ensure that user input is cast and checked appropriately to avoid errors during execution.
 # Error Handling:
 # Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
-
