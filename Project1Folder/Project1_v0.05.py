@@ -3,8 +3,10 @@
 """
 #notes, removed, Now need to check if all questions are good
 ##while loop is contained 
-had an error i could not fix.  reverted to older code saved
+had an error i could not fix.  reverted to older code saved and that fixed error
+
 OK i am saving it so I have a savepoint.... 
+typed out score now for each question, 
 
 """
 # This project is meant to test your ability from everything we have learned so far in class
@@ -17,8 +19,9 @@ OK i am saving it so I have a savepoint....
 # Write a function that displays a welcome message to the user and explains the rules of the game
 def welcome():
     print("Welcome to the quiz game")
-    print("You will be asked a series of questions and given 4 options to choose from")
+    print("You will be asked a series of questions and given 4 options to choose from: a, b, c, or d")
     print("You will be awarded 1 point for every correct answer and 0 points for every incorrect answer")
+    print("You will be given the option to skip a question via typing skip, but you will not be awarded any points for that question")
     print("Good luck!")
     print("")
 
@@ -88,10 +91,13 @@ print("testing below")
 q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
 score_now(q1, SCORE)
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
+score_now(q2, SCORE)
 q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+score_now(q3, SCORE)
 q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
+score_now(q4, SCORE)
 q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
-
+score_now(q5, SCORE)
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
@@ -111,6 +117,8 @@ def final_score():
         print("Better luck next time!")
     print("")
     print("Thank you for playing!")
+
+Print(final_score())
 # Loops:
 # Use a for or while loop to iterate through the questions.
 # Variable Casting:
