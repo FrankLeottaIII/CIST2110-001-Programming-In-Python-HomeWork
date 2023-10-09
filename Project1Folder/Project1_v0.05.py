@@ -43,8 +43,17 @@ print(welcome())
 # After all questions have been answered, display the user's total score and a farewell message.
 # Function Utilization:
 SCORE = 0
+SCORE = int(SCORE)
+SCORE +=1
+SCORE +=1
+print(SCORE)
+
+
+
+
+
 TOTAL_SCORE = 0
-def score_now(varible:bool, SCORE:int):
+def score_now(varible:bool, SCORE:int): 
     SCORE
     TOTAL_SCORE
     if varible == True:
@@ -100,18 +109,18 @@ q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white
 score_now(q1, SCORE)
 q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
 score_now(q2, SCORE)
-"""q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
 score_now(q3, SCORE)
 q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
 score_now(q4, SCORE)
 q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
 score_now(q5, SCORE)
-"""
+
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
 def final_score():
 
     print("Your final score is " + str(SCORE) + " out of 5")
-    if SCORE == 10:
+    if SCORE == 5:
         print("one hundred percent! Perfect score!")
     elif SCORE == 4:
         print("80 percent Great job!")
