@@ -44,7 +44,7 @@ print(welcome())
 # Function Utilization:
 SCORE = 0
 test = 0
-test +=1
+
 print(str(test)+ ("this is a test"))
 varible = 0
 def testing(varible:int):
@@ -60,12 +60,11 @@ print(testing(test))
 print(test)
 
 
-
+amount = 0
 
 TOTAL_SCORE = 0
-def score_now(varible:bool, SCORE:int): 
-    SCORE
-    TOTAL_SCORE
+def score_now(varible:bool, amount:int): 
+    global SCORE
     if varible == True:
         SCORE += 1
         print("yours score now is now: " + str(SCORE))
@@ -94,7 +93,7 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
     option_3 = "c"
     print(str(option_4.lower()))
     option_4 = "d"
-    answer = input.strip("Your answer:")
+    answer = input("Your answer:")
     answer = answer.upper()
     while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D" and answer != ("skip") and answer != ("SKIP"):
         print("That is not a valid answer, please try again")
@@ -146,7 +145,7 @@ def final_score():
         return print("You can do better!")
     else:
         return print("Better luck next time! \n + Thank you for playing!") 
-    
+
 
 
 print(final_score())
