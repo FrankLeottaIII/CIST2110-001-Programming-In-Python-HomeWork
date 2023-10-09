@@ -5,7 +5,7 @@ B. black oak
 C. red maple
 D. chestnut oak
 
-Answer: D
+Answer: B
 
 2.) Which tree is part of the white oak subspecies?
 A. post oak
@@ -25,7 +25,7 @@ D. It is a silvicultural system that includes 3 or more age classes of trees.
 
 Answer: C
 
-4.) what is true about the B-D-q method?
+4.) what is NOT true about the B-D-q method?
 A.  it provides a guiding curve approach
 B.  applies to group selection
 C.  applies to single tree selection
