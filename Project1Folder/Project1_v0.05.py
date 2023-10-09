@@ -126,11 +126,11 @@ q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  dia
 score_now(q5, SCORE)
 
 # Create a function to display the final score, which takes the score as a parameter and displays a message.
-def final_score():
+def final_score(type:str)-> str:
     """
     "Displays the final score and a message based on the score.
     :param score: the final score
-    :return: nothing
+    
 """
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
@@ -145,7 +145,8 @@ def final_score():
         return print("You can do better!")
     else:
         return print("Better luck next time! \n + Thank you for playing!") 
-
+    end
+   
 
 
 print(final_score())

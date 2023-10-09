@@ -10,3 +10,5 @@ def testing(varible:int):
 
 test = testing(varible)
 test = testing(varible)
+
+## I figured out why my score was not adding up, I was not calling the function correctly, I was calling it without a global varible
