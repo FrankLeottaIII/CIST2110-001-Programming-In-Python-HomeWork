@@ -17,8 +17,8 @@ MainFunctionInfo.barrelMonkeys(monkey)  ## this works
 """ Remember to import it as a module, and then call the function
 I was trying to call the function directly, which is not how it works
 
-Also remember to get rid of snakes in the name, since that can cause problems
+Also remember to get rid of snakes in the PYTHON FILES NOT THE FUNTIONS, since that can cause problems
 and it will not work
 
-So just use camel case for final product, and snake case for testing
+So just use camel case for final product OF THE PYTHON FILES, and snake case for testing FILES
 """
