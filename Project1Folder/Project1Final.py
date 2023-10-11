@@ -37,9 +37,25 @@ def welcome()-> str:
 """
     return print("Welcome to the quiz game \nYou will be asked a series of questions and given 4 options to choose from: a, b, c, or d\nYou will be awarded 1 point for every correct answer and 0 points for every incorrect answer\nYou will be given the option to skip a question via typing skip, but you will not be awarded any points for that question\nGood luck!\n")
 #
-# #
 #  
-def score_now(varible:bool, amount:int): 
+def score_now(varible:bool, amount:int)-> int: 
+    """Summary
+    Messages the user thier current score in a string, and adds points to the score based on the answer
+    
+    Note: 1.) the first varible needs to be true or false, and will not work with anything else, 
+          2.)the amount is an intiger and not a float.  It will only return integers, and nothing else
+          3.)the score is a global varible, and will not work if it is not global, define SCORE = 0 or another int value in your code before running this function
+   
+    Arguments: varible, amount
+
+    Returns: 
+    if varible == True:
+        return SCORE + 1
+    if varible == False:
+        return SCORE + 0
+    else:
+        return SCORE + 0
+"""
     global SCORE
     if varible == True:
         SCORE += 1
@@ -62,23 +78,23 @@ def final_score()-> str:
     
     Aguments: None
 
-    Returns:  various imputs based on the score
+    Returns:  various imputs based on the score,
     should not return: None
 """
     global SCORE
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
-       return print("one hundred percent! Perfect score!")
+       return print("one hundred percent! Perfect score!\nCThank you for playing!")
     elif SCORE == 4:
-        return print("80 percent Great job!")
+        return print("80 percent Great job!\ncongratulations!!!Thank you for playing!")
     elif SCORE == 3:
-        return print("you passed, but just by the skin of your teeth!")
+        return print("you didn't pass, getting 60 percent of the answers right, but you were so close\nkeep trying and better luck next time! \nThank you for playing!")
     elif SCORE == 2:
-        return print("Not bad!")
+        return print("40 percentt correct...you need to study more\nBetter luck next time!\nThank you for playing!")
     elif SCORE == 1:
-        return print("You can do better!")
+        return print("20 percent correct...This is very concerning, please study more\n...anyway\nBetter luck next time!\nThank you for playing!")
     elif SCORE == 0:
-        return print("Better luck next time! \n + Thank you for playing!") 
+        return print("Hey, uh, this is pretty bad. None of these answers are correct.\nPlease study more for yourself and the people who care about you.\nAnyway...\nBetter luck next time!\nThank you for playing!") 
 #
 #
 def ask_question(question:str, option_1:str, option_2: str, option_3: str, option_4: str, correct_answer: str) -> bool:
