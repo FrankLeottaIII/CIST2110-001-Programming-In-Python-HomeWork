@@ -103,7 +103,7 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
         print("Correct!")
         return True
     if answer == ("skip") or answer == ("SKIP"):
-        print("You have chosen to skip this question")
+        print("You have chosen to skip this question. No points will be awarded")
         return False
 
     else:
@@ -159,11 +159,17 @@ final_score()
 # Error Handling:
 # Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
 def main():
-    if __name__ == "__main__":
         welcome()
         ask_question()
         score_now()
         final_score()
-        main()
+
+
+
+if __name__ == "__main__":
     main()
+
+
+
+   
 # Comments:
