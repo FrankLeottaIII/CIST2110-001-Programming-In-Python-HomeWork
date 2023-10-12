@@ -10,12 +10,13 @@
 
 # Write a function that displays a welcome message to the user and explains the rules of the game
 
-
+###Imports####
+import time
+""" remember to say time.sleep(1) or whatever number you want to delay the program by that many seconds"""
 ###-----------------varibles-----------------###
 SCORE = 0
 amount = 0
-
-
+play_or_quit = "a string that will be changed later"
 ###------------------------------------------###
 #
 ###-----------------funtions-----------------###
@@ -59,16 +60,16 @@ def score_now(varible:bool, amount:int)-> int:
     global SCORE
     if varible == True:
         SCORE += 1
-        print("yours score now is now: " + str(SCORE))
+        print("yours score now is now: " + str(SCORE) +"\n")
         return SCORE + 1
     if varible == False:
         SCORE += 0
-        print("yours score now is now: " + str(SCORE))
+        print("yours score now is now: " + str(SCORE) +"\n")
         return SCORE + 0
     else:
         print("error")
         SCORE += 0
-        print("yours score now is now: " + str(SCORE))  
+        print("yours score now is now: " + str(SCORE) +"\n")  
         return SCORE + 0
 #
 #
@@ -84,45 +85,56 @@ def final_score()-> str:
     global SCORE
     print("Your final score is " + str(SCORE) + " out of 5")
     if SCORE == 5:
-       return print("one hundred percent! Perfect score!\nCThank you for playing!")
+       return print("one hundred percent! Perfect score!\nCThank you for playing!\n")
     elif SCORE == 4:
-        return print("80 percent Great job!\ncongratulations!!!Thank you for playing!")
+        return print("80 percent Great job!\ncongratulations!!!Thank you for playing!\n")
     elif SCORE == 3:
-        return print("you didn't pass, getting 60 percent of the answers right, but you were so close\nkeep trying and better luck next time! \nThank you for playing!")
+        return print("you didn't pass, getting 60 percent of the answers right, but you were so close\nkeep trying and better luck next time! \nThank you for playing!\n")
     elif SCORE == 2:
-        return print("40 percentt correct...you need to study more\nBetter luck next time!\nThank you for playing!")
+        return print("40 percentt correct...you need to study more\nBetter luck next time!\nThank you for playing!\n")
     elif SCORE == 1:
-        return print("20 percent correct...This is very concerning, please study more\n...anyway\nBetter luck next time!\nThank you for playing!")
+        return print("20 percent correct...This is very concerning, please study more\n...anyway\nBetter luck next time!\nThank you for playing!\n")
     elif SCORE == 0:
-        return print("Hey, uh, this is pretty bad. None of these answers are correct.\nPlease study more for yourself and the people who care about you.\nAnyway...\nBetter luck next time!\nThank you for playing!") 
+        return print("Hey, uh, this is pretty bad. None of these answers are correct.\nPlease study more for yourself and the people who care about you.\nAnyway...\nBetter luck next time!\nThank you for playing!\n") 
 #
 #
 def ask_question(question:str, option_1:str, option_2: str, option_3: str, option_4: str, correct_answer: str) -> bool:
     print(question)
     print(str(option_1.lower()))
-    option_1 = "a"
     print(str(option_2.lower()))
-    option_2 = "b"
     print(str(option_3.lower()))
-    option_3 = "c"
     print(str(option_4.lower()))
-    option_4 = "d"
     answer = input("Your answer:")
     answer = answer.upper()
     while answer != "a" and answer != "b" and answer != "c" and answer != "d" and answer != "A" and answer != "B" and answer != "C" and answer != "D" and answer != ("skip") and answer != ("SKIP"):
-        print("That is not a valid answer, please try again")
+        print("That is not a valid answer, please try again\n")
         answer = input("Your answer:")
         answer = answer.upper()
     if answer == correct_answer:
-        print("Correct!")
+        print("Correct!\n")
         return True
     if answer == ("skip") or answer == ("SKIP"):
-        print("You have chosen to skip this question...in a multible choice quiz.\nwhy would you do this?\nnext time just guess, at least you'll have a chance at getting it right.\n No points will be awarded")
+        print("You have chosen to skip this question...in a multible choice quiz.\n\n...why would you do this?\nnext time just guess, at least you'll have a chance at getting it right.\n\n No points will be awarded\n")
         return False
 
     else:
-        correct_answer = correct_answer.upper()
-        print("Incorrect, the correct answer was " + correct_answer.upper())
+        correct_answer != correct_answer.upper()
+        print("Incorrect, the correct answer was " + correct_answer.upper() + "\n")
+        return False
+#########################3
+def restart_or_quit()-> bool:
+    global play_or_quit
+    global walrus
+    play_or_quit = input.upper("Would you like to play again? Y for YES and N for NO)")
+    while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
+        print("I think you mistyped, please try again.\n")
+        play_or_quit = input("Would you like to play again? Y for YES and N for NO)")
+    if play_or_quit == "y" or play_or_quit == "Y":
+        return walrus == False
+    if play_or_quit == "n" or play_or_quit == "N":
+        return walrus == True
+    else:
+        print("error, looks like you will have to play it again\n")
         return False
 #
 #
@@ -135,14 +147,11 @@ def main():
         final_score()
 
 """
+#
+#Additional code used to end program so it does not glich out
+#
 ###------------end-------------------###
-
-
-
-
-
-
-
+#
 ### Requirements for class project 1 ###
 #
 # Implement at least 5 questions, each with 4 answer options (a, b, c, d). Each question should be worth 1 point.
@@ -171,30 +180,49 @@ def main():
 ###-----------------end--------------------------------------------###
 
 ###-----------------The actual program starts here-----------------###
-welcome()
-q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
-score_now(q1, SCORE)
-q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
-score_now(q2, SCORE)
-q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
-score_now(q3, SCORE)
-q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
-score_now(q4, SCORE)
-q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
-score_now(q5, SCORE)
-final_score()
+walrus = False
+while walrus == False:
+    welcome()
+    time.sleep(1)
+    q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
+    score_now(q1, SCORE)
+    time.sleep(1)
+    q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
+    score_now(q2, SCORE)
+    time.sleep(1)
+    q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+    score_now(q3, SCORE)
+    time.sleep(1)
+    q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
+    score_now(q4, SCORE)
+    time.sleep(1)
+    q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
+    score_now(q5, SCORE)
+    time.sleep(1)
+    final_score()
+    time.sleep(1)
+    restart_or_quit()
+    
+#note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
+
 
 def main():
-        welcome()
-        ask_question()
-        score_now()
-        final_score()
-
-
+    welcome()
+    ask_question()
+    score_now()
+    final_score()
+    restart_or_quit()
+    exit()
+    
 
 if __name__ == "__main__":
     main()
 
+
+###code so it doesn't glitch out when it ends###
+
+    time.sleep(30)
+    exit()
 
 
    
