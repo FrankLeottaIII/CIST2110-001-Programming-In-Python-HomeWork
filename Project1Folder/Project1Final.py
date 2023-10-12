@@ -122,21 +122,20 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
         print("Incorrect, the correct answer was " + correct_answer.upper() + "\n")
         return False
 #########################3
-def restart_or_quit(end)-> bool:
+def restart_or_quit()-> bool:
     global play_or_quit
     global walrus
-    
     play_or_quit = input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
     while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
         print("I think you mistyped, please try again.\n")
         play_or_quit = input("Would you like to play again? Y for YES and N for NO)")
     if play_or_quit == "y" or play_or_quit == "Y":
-        return walrus == False
+        return play_or_quit == False
     if play_or_quit == "n" or play_or_quit == "N":
-        return walrus == True
+        return play_or_quit == True
     else:
         print("error, looks like you will have to play it again\n")
-        return walrus == False
+        return play_or_quit == False
 #
 #
 ##and of course main function
@@ -202,7 +201,14 @@ while walrus == False:
     time.sleep(1)
     final_score()
     time.sleep(1)
-    restart_or_quit()
+    play_or_quit = input("would you like to play again? Y for YES and N for NO\n Your answer: ")
+    if play_or_quit == "y" or play_or_quit == "Y":
+        continue
+    if play_or_quit == "n" or play_or_quit == "N":
+        exit()
+    else:
+        print("error, looks like you will have to play it again\n")
+        continue
     
 #note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
 
