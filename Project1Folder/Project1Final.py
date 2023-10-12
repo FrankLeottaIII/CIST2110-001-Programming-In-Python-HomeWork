@@ -99,6 +99,20 @@ def final_score()-> str:
 #
 #
 def ask_question(question:str, option_1:str, option_2: str, option_3: str, option_4: str, correct_answer: str) -> bool:
+    """Summary
+    asks the user a question and returns a boolean based on the answer
+
+    Arguments: question, option_1, option_2, option_3, option_4, correct_answer
+        question: the question you want to ask the user
+        option_1: the first option you want to give the user
+        option_2: the second option you want to give the user
+        option_3: the third option you want to give the user
+        option_4: the fourth option you want to give the user
+        correct_answer: the correct answer to the question
+
+    Returns:  True or False depending if the answer was correct or not.  
+        True if correct, False if incorrect
+    """
     print(question)
     print(str(option_1.lower()))
     print(str(option_2.lower()))
@@ -123,19 +137,29 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
         return False
 #########################3
 def restart_or_quit()-> bool:
+    """Summary
+    asks the user if they want to play again, and returns a boolean based on the answer
+
+    Arguments: None
+
+    Returns:  True or False
+        True if they want to quit, False if they want to play again
+
+    """
     global play_or_quit
-    global walrus
-    play_or_quit = input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
+    play_or_quit = input("Would you like to play again? Y for YES and N for NO :   ")
     while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
         print("I think you mistyped, please try again.\n")
-        play_or_quit = input("Would you like to play again? Y for YES and N for NO)")
+        play_or_quit = input("Would you like to play again? Y for YES and N for NO :  ")
     if play_or_quit == "y" or play_or_quit == "Y":
         return play_or_quit == False
     if play_or_quit == "n" or play_or_quit == "N":
         return play_or_quit == True
     else:
-        print("error, looks like you will have to play it again\n")
-        return play_or_quit == False
+        restart_or_quit() 
+        
+#calling the funtion in the function is a thing apparnetly and it will keep going until the user inputs a valid answer.. 
+# learned about it trying to troubleshoot if this had a bug
 #
 #
 ##and of course main function
@@ -145,6 +169,7 @@ def main():
         ask_question()
         score_now()
         final_score()
+        restart_or_quit()
 
 """
 #
@@ -202,13 +227,6 @@ while walrus == False:
     final_score()
     time.sleep(1)
     play_or_quit = input("would you like to play again? Y for YES and N for NO\n Your answer: ")
-    if play_or_quit == "y" or play_or_quit == "Y":
-        continue
-    if play_or_quit == "n" or play_or_quit == "N":
-        exit()
-    else:
-        print("error, looks like you will have to play it again\n")
-        continue
     
 #note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
 

@@ -4,14 +4,44 @@ walrus = True
 
 #how do I would you like to play again with a while loop?
 #how do I would you like to play again with a while loop?
+def restart_or_quit()-> bool:
+    global play_or_quit
+    play_or_quit = input("Would you like to play again? Y for YES and N for NO :   ")
+    while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N" and play_or_quit != "test":
+        print("I think you mistyped, please try again.\n")
+        play_or_quit = input("Would you like to play again? Y for YES and N for NO :  ")
+    if play_or_quit == "y" or play_or_quit == "Y":
+        return play_or_quit == False
+    if play_or_quit == "n" or play_or_quit == "N":
+        return play_or_quit == True
+    if play_or_quit == "test":
+        restart_or_quit()
+    else:
+        print("error please answer that again")
+        restart_or_quit()
+#
+while walrus == True:
+    end = restart_or_quit()
+    if end == False:
+      exit()
+    if end == True:
+        print("test")
+        walrus = False
+        end = restart_or_quit()
+
+###I am so tired... I am 
+
+
+""" CODE THAT WORKS
 play_or_quit = input("Would you like to play again? Y for YES and N for NO:  ")
-while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
+while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N" and play_or_quit != "test":
     print("I think you mistyped, please try again.\n")
     play_or_quit = input("Would you like to play again? Y for YES and N for NO\n Your answer: ")   
     if play_or_quit == "y" or play_or_quit == "Y":
         continue
     if play_or_quit == "n" or play_or_quit == "N":
         exit() 
+"""
 
 
 ###... It was the \n in the print statement that was messing it up
