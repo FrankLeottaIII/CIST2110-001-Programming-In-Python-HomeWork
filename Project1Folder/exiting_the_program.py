@@ -31,6 +31,39 @@ while walrus == True:
 
 ###I am so tired... I am 
 
+""""""
+walrus = False
+while walrus == False:
+    Score = 0
+    welcome()
+    time.sleep(1)
+    q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
+    score_now(q1, SCORE)
+    time.sleep(1)
+    q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
+    score_now(q2, SCORE)
+    time.sleep(1)
+    q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+    score_now(q3, SCORE)
+    time.sleep(1)
+    q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
+    score_now(q4, SCORE)
+    time.sleep(1)
+    q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
+    score_now(q5, SCORE)
+    time.sleep(1)
+    final_score()
+    time.sleep(1)
+    walter = restart_or_quit(walter)
+    if walter == True:
+        walrus = False
+    if walter == False:
+        exit()
+
+
+
+
+""""""
 
 """ CODE THAT WORKS
 play_or_quit = input("Would you like to play again? Y for YES and N for NO:  ")
