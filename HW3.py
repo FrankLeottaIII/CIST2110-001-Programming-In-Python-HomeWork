@@ -1,15 +1,92 @@
 # HW3.py
-# Author:
+# Author: Frank R. Leotta III
 
 # This Homework assignment is meant to test your ability to make functions within python as well as importing and using modules. This assignment might require you to do some research on your own. If you get stuck, try googling the problem, especially when it comes to importing and using the different modules.
 
 # Question 1:
 # Write a function that takes in a number and returns that number squared
-# IE. If the user inputs 3, the function should return 9
+# IE. If the user inputs 3, the function should return 9"""
+
+#attempt 1
+# def square()->int:
+#     global user_input1
+#     user_input1 = input("Enter a number: ")
+#     while user_input1 != int:
+#         print("Please enter a number")
+#         user_input1 = input("Enter a number: ")
+#     if user_input1 == int:
+#         return user_input1 ** 2 
+#              break
+#     else:   
+#         return 0  
+ ## above does not work, something to do with the while loop not working as intended or the ** malfuntioning when 
+ # checked in jupiter...     
+
+#attempt 2
+# def squared()->int:
+#     global user_input1
+#     user_input1 = input("Enter a number: ")
+#     while user_input1 != int == False:
+#         print("Please enter a number")
+#         user_input1 = input("Enter a number: ")
+#     return user_input1 * user_input1, print(user_input1 * user_input1)
+# ## above does not work, something to do with the while loop not working as intended 
+ 
+
+##found via copilot... really wanted to figure it out myself
+# user_input1 = 0
+# def squared()->int:
+#     global user_input1
+#     user_input1 = input("Enter a number: ")
+#     while not user_input1.isdigit():
+#         print("You mistyped.  Please enter a number")
+#         user_input1 = input("Enter a number: ")
+#     return print(int(user_input1) * int(user_input1)), int(user_input1) * int(user_input1)
+
+
+### no, something is wrong, the funtion should end up taking in a number and returning that number squared in the()
+# def squared(varible)->int:
+#     while not varible.isdigit():
+#         print("You mistyped.  Please enter a number")
+#         varible = input("Enter a number: ")
+#     int(varible) * int(varible)
+#     return  int(varible) * int(varible)
+#b = 2
+#squared(b)
+#nope doesnt work... ill stop complecating it and just do it the easy way
+##yea, i just wasted time dealing with this, attributeError: 'int' object has no attribute 'isdigit'... so it wouldn't work anyway to prevent accedental input of a letter or word when coding for a number...
+def squared(varible)->int:
+    """summery
+    Discription: Squares a number
+
+    Args:   varible (int): the number to be squared
+
+    Returns:  int: the number squared
+    """
+    return int(varible) * int(varible)
+squared(2)
+# its going to be 4
 
 # Question 2:
 # Write a function that takes in a string, a letter, and a number and returns the string with the letter replaced at the number index
 # IE. If the user inputs "Hello World", "a", and 3, the function should return "Helao World"
+my_string = "hello world"
+count = my_string.count("l")
+print(count) # Output: 3
+
+
+def replace(string, letter, number)->str:
+    """summery
+    Discription: replaces a letter in a string at a given index
+
+    Args:   string (str): the string to be changed
+            letter (str): the letter to be replaced
+            number (int): the index to replace the letter at
+
+    Returns:  str: the string with the letter replaced
+    """
+    return string[:number] + letter + string[number+1:]
+
 
 # Question 3:
 # Write a function that takes in a number, a lower bound, and an upper bound and returns whether the number is within the bounds

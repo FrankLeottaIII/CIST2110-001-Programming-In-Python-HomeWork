@@ -257,7 +257,7 @@ while walter == False:
     print("please exit the program to restart it")
     print("this message will repeat every minute in an infinate loop until you exit the program\n")
 
-
+#I could try to make it a for loop instead...
 
 #    walter = restart_or_quit(walter)
 #    if walter == True:
@@ -273,7 +273,9 @@ while walter == False:
 ## I cannot find a solution to igoring the if __name__ == "__main__": part of the code looping and erroring my 
 
 def main():
-
+    """Summary
+    This is the main function, it will run the program.
+    """
     import time
     SCORE = 0
     amount = 0
