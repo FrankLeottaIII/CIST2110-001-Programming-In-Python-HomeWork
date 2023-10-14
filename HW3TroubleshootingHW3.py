@@ -31,11 +31,11 @@ readlines()"""
 # join is a function that takes a list of strings and joins them together
 
 
-string = str(input("Enter a string: "))
-letter = str(input("Enter a letter: "))
-number = float(input("Enter a number: "))
-number = round(number)
-number = int(number)
+# string = str(input("Enter a string: "))
+# letter = str(input("Enter a letter: "))
+# number = float(input("Enter a number: "))
+# number = round(number)
+# number = int(number)
 # len(count) wrong, it will be the length of the string, not the index of the string
 #list(count) no and dont import re to make every eltter in a list, and get rid of one letter #copilot: and use re.split... what?
 #len(string-number) #IS WRONG
@@ -43,7 +43,7 @@ number = int(number)
 # after each letter add a space, then remove the space at the index Wrong
 # string = string + " "Wrong
 #string = <string>.join(string.split(" "))  Wrong
-l#ist(string) # this will make a list of the string, but it will be a list of each letter
+#list(string) # this will make a list of the string, but it will be a list of each letter
 #    for list(string) in string:
 
 
@@ -59,3 +59,36 @@ l#ist(string) # this will make a list of the string, but it will be a list of ea
 #.replace("a", "b") #replaces a with b
 ### This is so agrivating, I tried to turn it into a list, relpace the letter, then turn it back into a string, but if there is already a funtion that
 ### does that, then why would I waste my time doing that? ... I wish I know about that function before I spent 30 minutes trying to figure out how to do it
+
+## trying something else now
+
+sentence = str(input("Enter a string: "))
+letter = str(input("Enter a letter: "))
+number = float(input("Enter a number: "))
+number = round(number)
+number = int(number)
+# len(count) wrong, it will be the length of the string, not the index of the string
+#list(count) no and dont import re to make every eltter in a list, and get rid of one letter #copilot: and use re.split... what?
+#len(string-number) #IS WRONG
+
+# after each letter add a space, then remove the space at the index Wrong
+# string = string + " "Wrong
+#string = <string>.join(string.split(" "))  Wrong
+#ist(string) # this will make a list of the string, but it will be a list of each letter
+#    for list(string) in string:
+
+#string = string.replace(letter, str(number)) not working either
+# #for list(string) in string: #SyntaxError: cannot assign to function call
+# for number in string:
+#     if string == number:
+#         string = letter
+# print(string)
+
+#Trying something new now
+""" actually works, just need to combine list
+sentence= list(sentence)
+len(sentence)
+#if  letter == string[number] ignoring " " is how I need to do it, but I dont know how to do that... but it didnt ask for in the question so I wont do it
+sentence[number] = letter
+print(sentence)
+"""

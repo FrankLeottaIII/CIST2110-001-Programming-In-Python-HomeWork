@@ -80,35 +80,34 @@ def replace(string:str, letter:str, number:int)->str:
 
     Returns:  str: the string with the letter replaced
     """
+    sentence = str(input("Enter a string: "))
+    letter = str(input("Enter a letter: "))
+    number = float(input("Enter a number: "))
+    number = round(number)
+    number = int(number)
+    sentence= list(sentence)
+    if len[sentence] < number:
+        print("The number you inputed is larger than the string you inputed, please try again")
+        replace(string, letter, number)
+    len(sentence)
+    sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+    sentence = "".join(sentence) #joins the list back into a string
+    print(sentence)
 
-string = str(input("Enter a string: "))
-letter = str(input("Enter a letter: "))
-number = float(input("Enter a number: "))
-number = round(number)
-number = int(number)
-# len(count) wrong, it will be the length of the string, not the index of the string
-#list(count) no and dont import re to make every eltter in a list, and get rid of one letter #copilot: and use re.split... what?
-#len(string-number) #IS WRONG
-
-# after each letter add a space, then remove the space at the index Wrong
-# string = string + " "Wrong
-#string = <string>.join(string.split(" "))  Wrong
-#ist(string) # this will make a list of the string, but it will be a list of each letter
-#    for list(string) in string:
-
-#string = string.replace(letter, str(number)) not working either
-
- string = list(string)
-
-#if  letter == string[number] ignoring " " is how I need to do it, but I dont know how to do that"
-   string[number] = letter
-    print(string)
-# #for list(string) in string: #SyntaxError: cannot assign to function call
-# for number in string:
-#     if string == number:
-#         string = letter
-# print(string)
-
+  
+    sentence = str(input("Enter a string: "))
+    letter = str(input("Enter a letter: "))
+    number = float(input("Enter a number: "))
+    number = round(number)
+    number = int(number)
+    sentence= list(sentence)
+    if len[sentence] < number:
+        print("The number you inputed is larger than the string you inputed, please try again")
+        replace(string, letter, number)
+    len(sentence)
+    sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+    sentence = "".join(sentence) #joins the list back into a string
+    print(sentence)
 
 
 
