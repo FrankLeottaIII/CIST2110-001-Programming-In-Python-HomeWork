@@ -70,14 +70,9 @@ squared(2)
 # Question 2:
 # Write a function that takes in a string, a letter, and a number and returns the string with the letter replaced at the number index
 # IE. If the user inputs "Hello World", "a", and 3, the function should return "Helao World"
-my_string = "hello world"
-count = my_string.count("l")
-print(count) # Output: 3
-
-
-def replace(string, letter, number)->str:
+def replace(string:str, letter:str, number:int)->str:
     """summery
-    Discription: replaces a letter in a string at a given index
+    Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
 
     Args:   string (str): the string to be changed
             letter (str): the letter to be replaced
@@ -85,7 +80,75 @@ def replace(string, letter, number)->str:
 
     Returns:  str: the string with the letter replaced
     """
-    return string[:number] + letter + string[number+1:]
+
+string = str(input("Enter a string: "))
+letter = str(input("Enter a letter: "))
+number = float(input("Enter a number: "))
+number = round(number)
+number = int(number)
+# len(count) wrong, it will be the length of the string, not the index of the string
+#list(count) no and dont import re to make every eltter in a list, and get rid of one letter #copilot: and use re.split... what?
+#len(string-number) #IS WRONG
+
+# after each letter add a space, then remove the space at the index Wrong
+# string = string + " "Wrong
+#string = <string>.join(string.split(" "))  Wrong
+#ist(string) # this will make a list of the string, but it will be a list of each letter
+#    for list(string) in string:
+
+#string = string.replace(letter, str(number)) not working either
+
+ string = list(string)
+
+#if  letter == string[number] ignoring " " is how I need to do it, but I dont know how to do that"
+   string[number] = letter
+    print(string)
+# #for list(string) in string: #SyntaxError: cannot assign to function call
+# for number in string:
+#     if string == number:
+#         string = letter
+# print(string)
+
+
+
+
+#got via copilot
+
+# def replaced(string:str, letter:str, number:int)->str:
+#     """summery
+#     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
+
+#     Args:   string (str): the string to be changed
+#         letter (str): the letter to be replaced
+#         number (int): the index to replace the letter at
+
+#     Returns:  str: the string with the letter replaced
+#     """
+#     string_list = list(string)
+#     string_list[number] = letter
+#     return ''.join(string_list)
+
+# replaced(string, letter, number)
+#got via copilot
+#  def replace(string, letter, number)->str:
+#     """summery
+#     Discription: replaces a letter in a string at a given index
+
+#     Args:   string (str): the string to be changed
+#             letter (str): the letter to be replaced
+#             number (int): the index to replace the letter at
+
+#     Returns:  str: the string with the letter replaced
+#     """
+#     return string[:number] + letter + string[number+1:]
+
+
+#ok you know what, ill just reverse engineer what copilot gave me
+
+# def replace(string, letter, number)->str:
+#     """summery
+#     Discription: replaces a letter in a string at a given index
+
 
 
 # Question 3:
