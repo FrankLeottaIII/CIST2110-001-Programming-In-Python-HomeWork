@@ -92,3 +92,24 @@ len(sentence)
 sentence[number] = letter
 print(sentence)
 """
+## idiotproofed it, but this is the wrong code, dont want to save it due to copilot wanting to give me my mistakes as the answer lol
+##in essence,  I need to make sure the number is not larger than the string, but Its best to leave it to numbers
+"""Wrong way of coding, this code is not working
+# while checking < number == True:    #remember while loops need 2 exits, one for true and one for false
+#     print("The number you inputed is larger than the string you inputed, please try again")
+#     number = float(input("Enter a number. It will be rounded: "))
+#     number = round(number)
+#     number = int(number)
+#     if checking > number == False:
+#         continue
+#     while IndexError:
+#         print("The number you inputed is larger than the string you inputed (b), please try again")
+#         number = float(input("Enter a number. It will be rounded: "))
+#         number = round(number)
+#         number = int(number)
+#         if not IndexError:
+#             break
+it would just loop indefinatly
+
+"""
+

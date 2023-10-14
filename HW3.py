@@ -82,7 +82,7 @@ def replace(string:str, letter:str, number:int)->str:
     """
     sentence = str(input("Enter a string: "))
     letter = str(input("Enter a letter: "))
-    number = float(input("Enter a number: "))
+    number = float(input("Enter a positive number: "))
     number = round(number)
     number = int(number)
     sentence= list(sentence)
@@ -94,23 +94,42 @@ def replace(string:str, letter:str, number:int)->str:
     sentence = "".join(sentence) #joins the list back into a string
     print(sentence)
 
-  
-    sentence = str(input("Enter a string: "))
-    letter = str(input("Enter a letter: "))
-    number = float(input("Enter a number: "))
+sentence = str(input("Enter a string: "))
+letter = str(input("Enter a letter: "))
+number = float(input("Enter a number. It will be rounded: "))
+number = round(number)
+number = int(number)
+sentence= list(sentence)
+
+
+
+""" this is the part that got me for a bit:, need to remember this idiotproofing method
+counting = len(sentence)
+checking = number - 1
+#this is the part that got me for  bit:
+checking = len(sentence)
+if checking <= number == True:
+    number-=1
+if IndexError:   
+    number-=1
+# holy crap that was aggravating, but it works now.  This is a good code to idiotproof it
+sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+sentence = "".join(sentence) #joins the list back into a string
+print(sentence)
+"""
+
+"""code not working
+while counting <= checking:
+    print("The number you inputed is larger than the string you inputed, please try again")
+    number = float(input("Enter a number. It will be rounded: "))
     number = round(number)
     number = int(number)
-    sentence= list(sentence)
-    if len[sentence] < number:
-        print("The number you inputed is larger than the string you inputed, please try again")
-        replace(string, letter, number)
+else:
+    print("good")
     len(sentence)
     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
     sentence = "".join(sentence) #joins the list back into a string
-    print(sentence)
-
-
-
+"""
 #got via copilot
 
 # def replaced(string:str, letter:str, number:int)->str:
