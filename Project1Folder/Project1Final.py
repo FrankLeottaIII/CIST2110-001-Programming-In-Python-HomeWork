@@ -1,6 +1,8 @@
 #Project1.py
 # Author: Frank R. Leotta III
 
+########## Requirements for class project 1 ###
+#
 # This project is meant to test your ability from everything we have learned so far in class
 # You will need to use variables, if statements, loops, and functions
 
@@ -10,9 +12,36 @@
 
 # Write a function that displays a welcome message to the user and explains the rules of the game
 
-###Imports####
+#
+# Implement at least 5 questions, each with 4 answer options (a, b, c, d). Each question should be worth 1 point.
+# For each question, display the question and the answer options to the user.
+# Use input() to get the user's answer.
+# Use if or if-else statements to check if the answer is correct.
+# If the answer is correct, display a positive feedback message and add points to the user's score.
+# If the answer is incorrect, display a negative feedback message and provide the correct answer.
+
+# Score Tracking:
+# Keep track of the user's score throughout the game.
+# After all questions have been answered, display the user's total score and a farewell message.
+# Function Utilization:
+
+# Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
+# an example would be def ask_question(question, option_1, option_2, option_3, option_4, correct_answer):
+# the return value should be a boolean (True or False) for whether the user was correct
+# Create a function to display the final score, which takes the score as a parameter and displays a message.
+
+# Loops:
+# Use a for or while loop to iterate through the questions.
+# Variable Casting:
+# Ensure that user input is cast and checked appropriately to avoid errors during execution.
+# Error Handling:
+# Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
+###-----------------end--------------------------------------------###
+
+##################Imports##################
 import time
 """ remember to say time.sleep(1) or whatever number you want to delay the program by that many seconds"""
+
 ###-----------------varibles-----------------###
 SCORE = 0
 amount = 0
@@ -20,7 +49,8 @@ walter = False
 # walter is a varible that is used for a loop to tell the user to exit the program, and to demenatrate that I know how to use a loop
 susan = False
 # susan is a varible that is used for another loop to tell the user to exit the program, and to demenatrate that I know how to use a loop. 
-# your_mother is a trustworthy varible, part of the easter egg
+# your_mother is a trustworthy varible, part of the easter egg, 
+# varible egg is just there, and it is part of the easter egg.  Don't break it.
 
 # susan and walter are just varibles that are used for loops
 # I mean they could be dating, but its none of my buisness.
@@ -28,9 +58,6 @@ susan = False
 # its not that they will give you a true statement about their relationship anyway, given they are false.
 #denial is not just a river in egypt
 # anyway...This is off topic... moving on
-
-
-###------------------------------------------###
 #
 ###-----------------funtions-----------------###
 def welcome()-> str:
@@ -148,99 +175,13 @@ def ask_question(question:str, option_1:str, option_2: str, option_3: str, optio
         correct_answer != correct_answer.upper()
         print("Incorrect, the correct answer was " + correct_answer.upper() + "\n")
         return False
-#########################3
 
-#########################3
-
-""" Failed attempts at a restart or quit function
-def restart_or_quit(answer)-> bool:
-    Summary
-    asks the user if they want to play again, and returns a boolean based on the answer
-
-    Arguments: None
-
-    Returns:  True or False
-        True if they want to quit, False if they want to play again
-
-   
-
-    global play_or_quit
-    play_or_quit = input("Would you like to play again? Y for YES and N for NO :   ")
-    while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
-        print("I think you mistyped, please try again.\n")
-        play_or_quit = input("Would you like to play again? Y for YES and N for NO :  ")
-    if play_or_quit == "y" or play_or_quit == "Y":
-        return answer == False
-    if play_or_quit == "n" or play_or_quit == "N":
-        return answer == True
-    else:
-        restart_or_quit() 
-
-ANOTHER ONE
-
-def quit(varible)-> bool:
-    input("Would you like to play again? Y for YES and N for NO\n Your answer: ") 
-    while play_or_quit != "y" and play_or_quit != "n" and play_or_quit != "Y" and play_or_quit != "N":
-        print("I think you mistyped, please try again.\n")
-        play_or_quit = input("Would you like to play again? Y for YES and N for NO) ")
-    if play_or_quit == "y" or play_or_quit == "Y":
-        return varible == False
-    if play_or_quit == "n" or play_or_quit == "N":
-        return varible == True
-    else:
-        print("error")
-        return varible == True
-
-Im putting this in the assighnment since you probably can see my progress anyway in the github, 
-only reason I attempted it is becase the program would glitch out with the main() function
-"""        
-#calling the funtion in the function is a thing apparnetly and it will keep going until the user inputs a valid answer.. 
-# learned about it trying to troubleshoot if this had a bug
-#
-#
-##and of course main function
-"""Summary
-def main():
-        welcome()
-        ask_question()
-        score_now()
-        final_score()
-        restart_or_quit()
-
-"""
-#
-#Additional code used to end program so it does not glich out
-#
+##and of course main function, which you can find at the bottom of the code
 ###------------end-------------------###
 #
-### Requirements for class project 1 ###
-#
-# Implement at least 5 questions, each with 4 answer options (a, b, c, d). Each question should be worth 1 point.
-# For each question, display the question and the answer options to the user.
-# Use input() to get the user's answer.
-# Use if or if-else statements to check if the answer is correct.
-# If the answer is correct, display a positive feedback message and add points to the user's score.
-# If the answer is incorrect, display a negative feedback message and provide the correct answer.
 
-# Score Tracking:
-# Keep track of the user's score throughout the game.
-# After all questions have been answered, display the user's total score and a farewell message.
-# Function Utilization:
 
-# Create a function to ask a question and check the answer. This function should accept parameters like the question, options, and the correct answer, and return whether the user was correct.
-# an example would be def ask_question(question, option_1, option_2, option_3, option_4, correct_answer):
-# the return value should be a boolean (True or False) for whether the user was correct
-# Create a function to display the final score, which takes the score as a parameter and displays a message.
-
-# Loops:
-# Use a for or while loop to iterate through the questions.
-# Variable Casting:
-# Ensure that user input is cast and checked appropriately to avoid errors during execution.
-# Error Handling:
-# Implement basic error handling to manage invalid inputs from the user (e.g., an answer other than a, b, c, or d).
-###-----------------end--------------------------------------------###
-
-###-----------------The actual program starts here-----------------###
+###-----------------The actual program's meat and potatoes starts here-----------------###
 
 Score = 0
 walter= False
@@ -267,6 +208,7 @@ while walter == False:
     while susan == False:
         ask_restart= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
         if ask_restart == "y" or ask_restart == "Y":
+            SCORE= 0
             print("ok, restarting")
             time.sleep(1)
             print("beep boop beep boop")
@@ -275,6 +217,7 @@ while walter == False:
             time.sleep(1)
             susan = True
         elif ask_restart == "n" or ask_restart == "N":
+                SCORE= 0
                 print("Thank you for playing!")
                 time.sleep(1)
                 print("exiting...")
@@ -308,25 +251,6 @@ while egg == True:
     time.sleep(60)
 
 
-#I could try to make it a for loop instead...
-
-#    walter = restart_or_quit(walter)
-#    if walter == True:
- #       walrus = 0
-  #  if walter == False:
-   #     walrus = 1  
-
-#def Print(str)-> str:
-#    print(str)
-
-#recursion - callling a fintion withing a funtion 
-#recursion is a bad idea, it will crash the program?.... infinate loop , a while loop
-
-    
-#note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
-## I cannot find a solution to igoring the if __name__ == "__main__": part of the code looping and erroring my 
-
-
 def main():
     """Summary
     This is the main function, it will run the program.
@@ -356,6 +280,7 @@ def main():
         while susan == False:
             ask_restart= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
             if ask_restart == "y" or ask_restart == "Y":
+                SCORE= 0
                 print("ok, restarting")
                 time.sleep(1)
                 print("beep boop beep boop")
@@ -364,6 +289,7 @@ def main():
                 time.sleep(1)
                 susan = True
             elif ask_restart == "n" or ask_restart == "N":
+                SCORE= 0
                 print("Thank you for playing!")
                 time.sleep(1)
                 print("exiting...")
@@ -402,11 +328,8 @@ if __name__ == "__main__":
     main()
 
 ## discard code blow, it is not needed
-###code so it doesn't glitch out when it ends###
 
- ##   time.sleep(30)
- ##   exit()
 exit()
 
    
-# Comments:  I feel like main() is interfearing with the program, but I am not sure how to get rid of it without breaking the code
+# Comments:  I submitted this again due to me wanting to clean out the notes.  I have backup of my mistakes in the previous project 1 submittons
