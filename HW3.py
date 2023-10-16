@@ -116,24 +116,47 @@ def replace_in_string()->str:
 #test
 #IGNORE ABOVE
 
+#instead of doing 3 individual functions, im going to do one function that gets all the inputs, then another that does the replacing
 
-def input_string(varible: str)->str:
+STRING_A = ""
+LETTER_A = ""
+NUMBER_A = 0
+
+def grab_string_letter_number(string: str,letter: str, number: int)->str:
     """summery
-    Discription: grabs a string from the user
+    Discription: grabs a string, letter, and number from the user into a list.
+                this is to be used in the the replace_in_string funtion.
 
-    Args:  none
-
+    Args:  string (str): the string to be changed
+            letter (str): the letter to be replaced
+            number (int): the index placepoint to replace the letter at in the string a for replace_in_string funtion 
+                        example: 0 = first character, 1 = second character, etc in the index of the string
     Returns:  returns the string inputed by the user in a varible for later use
 
     Note: I used no global varibles, just assighn it to a varible outside this funtion
 
     """
-    global SENTENCE
-    varible = str(input("Enter a string: "))
-    return varible
+    string = str(input("Enter a string: "))
+    letter = str(input("Enter a letter: "))
+    number = float(input("Enter a positive number: "))
+    number = round(number)
+    number = int(number)
+    return [string, letter, number]
+string = ""
+letter = ""
+number = 0
+X = grab_string_letter_number(string, letter, number)
 
+def grab_script_list()
+
+
+"""
+grab_string_letter_number(string, letter, number)
 
 replace_in_string()
+"""
+
+
 
 """
 sentence = str(input("Enter a string: "))
