@@ -16,9 +16,19 @@ import time
 ###-----------------varibles-----------------###
 SCORE = 0
 amount = 0
-play_or_quit = "a string that will be changed later"
 walter = False
 # walter is a varible that is used for a loop to tell the user to exit the program, and to demenatrate that I know how to use a loop
+susan = False
+# susan is a varible that is used for another loop to tell the user to exit the program, and to demenatrate that I know how to use a loop. 
+# your_mother is a trustworthy varible, part of the easter egg
+
+# susan and walter are just varibles that are used for loops
+# I mean they could be dating, but its none of my buisness.
+#it's none of your buisness either, they just work together in loops pretty well
+# its not that they will give you a true statement about their relationship anyway, given they are false.
+#denial is not just a river in egypt
+# anyway...This is off topic... moving on
+
 
 ###------------------------------------------###
 #
@@ -94,7 +104,7 @@ def final_score()-> str:
     elif SCORE == 3:
         return print("you didn't pass, getting 60 percent of the answers right, but you were so close\nkeep trying and better luck next time! \nThank you for playing!\n")
     elif SCORE == 2:
-        return print("40 percentt correct...you need to study more\nBetter luck next time!\nThank you for playing!\n")
+        return print("40 percent correct...you need to study more\nBetter luck next time!\nThank you for playing!\n")
     elif SCORE == 1:
         return print("20 percent correct...This is very concerning, please study more\n...anyway\nBetter luck next time!\nThank you for playing!\n")
     elif SCORE == 0:
@@ -231,33 +241,64 @@ def main():
 ###-----------------end--------------------------------------------###
 
 ###-----------------The actual program starts here-----------------###
-#walrus = False
-#while walrus == 1:
+
 Score = 0
-welcome()
-time.sleep(1)
-q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
-score_now(q1, SCORE)
-time.sleep(1)
-q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
-score_now(q2, SCORE)
-time.sleep(1)
-q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
-score_now(q3, SCORE)
-time.sleep(1)
-q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
-score_now(q4, SCORE)
-time.sleep(1)
-q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
-score_now(q5, SCORE)
-time.sleep(1)
-final_score()
+walter= False
 while walter == False:
+    welcome()
+    time.sleep(1)
+    q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
+    score_now(q1, SCORE)
+    time.sleep(1)
+    q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
+    score_now(q2, SCORE)
+    time.sleep(1)
+    q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+    score_now(q3, SCORE)
+    time.sleep(1)
+    q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
+    score_now(q4, SCORE)
+    time.sleep(1)
+    q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
+    score_now(q5, SCORE)
+    time.sleep(1)
+    final_score()
+    susan = False
+    while susan == False:
+        ask_restart= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
+        if ask_restart == "y" or ask_restart == "Y":
+            print("ok, restarting")
+            time.sleep(1)
+            print("beep boop beep boop")
+            time.sleep(1)
+            print("loading...")
+            time.sleep(1)
+            susan = True
+        elif ask_restart == "n" or ask_restart == "N":
+            exit()
+            walter = True
+            susan = True #released from the loops, if the program still runs easter egg
+        elif ask_restart != "y" or ask_restart != "Y" or ask_restart != "n" or ask_restart != "N":
+            print("I think you mistyped, please try again.\n")
+            susan = False
+
+
+print("how did you get here?")  #easter egg string
+time.sleep(2)
+print(" this is the end of the program, please exit")s
+time.sleep(30)
+print("I said exit")
+your_mother = True
+if your_mother == True:
+    exit()
+if your_mother == False:
     time.sleep(60)
+    print(" You somehow broke the program... I'm impressed but also dissapointed in you")
     print("please exit the program to restart it")
     print("this message will repeat every minute in an infinate loop until you exit the program\n")
 
 
+#I could try to make it a for loop instead...
 
 #    walter = restart_or_quit(walter)
 #    if walter == True:
@@ -265,18 +306,48 @@ while walter == False:
   #  if walter == False:
    #     walrus = 1  
 
+#def Print(str)-> str:
+#    print(str)
 
-
+#recursion - callling a fintion withing a funtion 
+#recursion is a bad idea, it will crash the program?.... infinate loop , a while loop
 
     
 #note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
 ## I cannot find a solution to igoring the if __name__ == "__main__": part of the code looping and erroring my 
 
 def main():
-    welcome()
-    ask_question()
-    score_now()
-    final_score()
+    """Summary
+    This is the main function, it will run the program.
+    """
+    import time
+    SCORE = 0
+    amount = 0
+    while walter == False:
+        welcome()
+        time.sleep(1)
+        q1 = ask_question("1.) Which tree is part of the red oak subspecies?", "A. white oak", "B. black oak", "C. red maple", "D. chestnut oak", "B")
+        score_now(q1, SCORE)
+        time.sleep(1)
+        q2 = ask_question("2.) Which tree is part of the white oak subspecies?", "A. post oak", "B. scarlet oak", "C. silver maple", "D. willow oak", "A")
+        score_now(q2, SCORE)
+        time.sleep(1)
+        q3 = ask_question("3.) In ecological silviculture, what is NOT true about the selection system?", "A. it is a silvicultural system that maintains uneven aged stands.", "B. Often represented by “reverse J” dia. distrib. or something slightly more irregular", "C. It is a silvicultural system that maintains even aged stands.", "D. It is a silvicultural system that includes 3 or more age classes of trees.", "C")
+        score_now(q3, SCORE)
+        time.sleep(1)
+        q4 = ask_question("4.) what is NOT true about the B-D-q method?", "A.  it provides a guiding curve approach", "B.  applies to group selection", "C.  applies to single tree selection", "D.  it uses a ratio of small tree to large trees in its calculations", "B")
+        score_now(q4, SCORE)
+        time.sleep(1)
+        q5 = ask_question("5.) What does the D stand for in the B-D-q method?", "A.  diameter", "B.  Largest density class in the residual stand", "C.  Largest diameter class in the residual stand", "D.  diameter ratio", "C")
+        score_now(q5, SCORE)
+        time.sleep(1)
+        final_score()
+        ask_quit= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
+        if ask_quit == "y" or ask_quit == "Y":
+            walter = True
+        elif ask_quit == "n" or ask_quit == "N":
+            exit()
+print("Thank you for playing!")
 
 
 if __name__ == "__main__":
@@ -287,7 +358,7 @@ if __name__ == "__main__":
 
  ##   time.sleep(30)
  ##   exit()
-
+exit()
 
    
 # Comments:  I feel like main() is interfearing with the program, but I am not sure how to get rid of it without breaking the code
