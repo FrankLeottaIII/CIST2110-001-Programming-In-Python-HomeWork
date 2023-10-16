@@ -275,9 +275,13 @@ while walter == False:
             time.sleep(1)
             susan = True
         elif ask_restart == "n" or ask_restart == "N":
-            exit()
-            walter = True
-            susan = True #released from the loops, if the program still runs easter egg
+                print("Thank you for playing!")
+                time.sleep(1)
+                print("exiting...")
+                time.sleep(1)
+                exit()
+                walter = True
+                susan = True #released from the loops, if the program still runs easter egg
         elif ask_restart != "y" or ask_restart != "Y" or ask_restart != "n" or ask_restart != "N":
             print("I think you mistyped, please try again.\n")
             susan = False
@@ -285,17 +289,23 @@ while walter == False:
 
 print("how did you get here?")  #easter egg string
 time.sleep(2)
-print(" this is the end of the program, please exit")s
+print("this is the end of the program, please exit")
 time.sleep(30)
 print("I said exit")
+time.sleep(30)
+print("you know what, I will escort you out of the program")
+time.sleep(5)
+print("exiting...")
 your_mother = True
 if your_mother == True:
     exit()
 if your_mother == False:
-    time.sleep(60)
+     egg = True
+while egg == True:
     print(" You somehow broke the program... I'm impressed but also dissapointed in you")
     print("please exit the program to restart it")
     print("this message will repeat every minute in an infinate loop until you exit the program\n")
+    time.sleep(60)
 
 
 #I could try to make it a for loop instead...
@@ -316,13 +326,13 @@ if your_mother == False:
 #note, as long as the walrus is false, the program will run again... don't make the walrus true.... lol
 ## I cannot find a solution to igoring the if __name__ == "__main__": part of the code looping and erroring my 
 
+
 def main():
     """Summary
     This is the main function, it will run the program.
     """
     import time
     SCORE = 0
-    amount = 0
     while walter == False:
         welcome()
         time.sleep(1)
@@ -342,12 +352,50 @@ def main():
         score_now(q5, SCORE)
         time.sleep(1)
         final_score()
-        ask_quit= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
-        if ask_quit == "y" or ask_quit == "Y":
-            walter = True
-        elif ask_quit == "n" or ask_quit == "N":
-            exit()
-print("Thank you for playing!")
+        susan = False
+        while susan == False:
+            ask_restart= input("Would you like to play again? Y for YES and N for NO\n Your answer: ")
+            if ask_restart == "y" or ask_restart == "Y":
+                print("ok, restarting")
+                time.sleep(1)
+                print("beep boop beep boop")
+                time.sleep(1)
+                print("loading...")
+                time.sleep(1)
+                susan = True
+            elif ask_restart == "n" or ask_restart == "N":
+                print("Thank you for playing!")
+                time.sleep(1)
+                print("exiting...")
+                time.sleep(1)
+                exit()
+                walter = True
+                susan = True #released from the loops, if the program still runs easter egg
+            elif ask_restart != "y" or ask_restart != "Y" or ask_restart != "n" or ask_restart != "N":
+                print("I think you mistyped, please try again.\n")
+                susan = False
+    
+
+    print("how did you get here?")  #easter egg string
+    time.sleep(2)
+    print("this is the end of the program, please exit")
+    time.sleep(30)
+    print("I said exit")
+    time.sleep(30)
+    print("you know what, I will escort you out of the program")
+    time.sleep(5)
+    print("exiting...")
+    your_mother = True
+    if your_mother == True:
+        exit()
+        if your_mother == False:
+            egg = True
+        while egg == True:
+            time.sleep(60)
+            print(" You somehow broke the program... I'm impressed but also dissapointed in you")
+            print("please exit the program to restart it")
+            print("this message will repeat every minute in an infinate loop until you exit the program\n")
+    
 
 
 if __name__ == "__main__":
