@@ -101,7 +101,7 @@ number = round(number)
 number = int(number)
 sentence= list(sentence)
 
-
+if 
 
 """ this is the part that got me for a bit:, need to remember this idiotproofing method
 counting = len(sentence)
