@@ -7,6 +7,19 @@
 # Write a function that takes in a number and returns that number squared
 # IE. If the user inputs 3, the function should return 9"""
 
+""" THINGS TO DO
+In problem 2 , see if you can def a funtion value that has no arguments
+Solved
+def my_function() -> int:
+    # function code here
+    return 42
+
+next:
+
+
+"""
+
+
 #attempt 1
 # def square()->int:
 #     global user_input1
@@ -70,13 +83,16 @@ squared(2)
 # Question 2:
 # Write a function that takes in a string, a letter, and a number and returns the string with the letter replaced at the number index
 # IE. If the user inputs "Hello World", "a", and 3, the function should return "Helao World"
-def replace(string:str, letter:str, number:int)->str:
+#
+#def replace(string:str, letter:str, number:int)->str: """ did not need these varibles,  this is for a differnt use"""
+
+#attempt 1
+
+def replace_in_string()->str:
     """summery
     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
 
-    Args:   string (str): the string to be changed
-            letter (str): the letter to be replaced
-            number (int): the index to replace the letter at
+    Args:  string (str): the string to be changed
 
     Returns:  str: the string with the letter replaced
     """
@@ -86,22 +102,48 @@ def replace(string:str, letter:str, number:int)->str:
     number = round(number)
     number = int(number)
     sentence= list(sentence)
-    if len[sentence] < number:
+    count_characters = len[sentence]
+    count_characters = int(count_characters)
+    if count_characters < number:
         print("The number you inputed is larger than the string you inputed, please try again")
-        replace(string, letter, number)
+        replace_in_string(sentence, letter, number)
     len(sentence)
     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
     sentence = "".join(sentence) #joins the list back into a string
-    print(sentence)
+    return sentence
+### going to have to make multible functions to work around 
+#    count_characters = len[sentence]
+#test
+#IGNORE ABOVE
 
+
+def input_string(varible: str)->str:
+    """summery
+    Discription: grabs a string from the user
+
+    Args:  none
+
+    Returns:  returns the string inputed by the user in a varible for later use
+
+    Note: I used no global varibles, just assighn it to a varible outside this funtion
+
+    """
+    global SENTENCE
+    varible = str(input("Enter a string: "))
+    return varible
+
+
+replace_in_string()
+
+"""
 sentence = str(input("Enter a string: "))
 letter = str(input("Enter a letter: "))
 number = float(input("Enter a number. It will be rounded: "))
 number = round(number)
 number = int(number)
 sentence= list(sentence)
+"""
 
-if 
 
 """ this is the part that got me for a bit:, need to remember this idiotproofing method
 counting = len(sentence)
