@@ -425,54 +425,87 @@ indexerror,
 #    user_number = input("Error, please enter a number: ")
  
 # IE. If the user inputs 5, 1, and 10, the function should return True
-USER_NUMBER = 0
-LOW_BOUND = 0
-HIGH_BOUND = 0
 
 
-def is_in_bounds_data()->int:
-    """summery
-    Discription: grabs 3 imput answers from user and puts it into global varibles.  It will be used in the is_in_bounds funtion
+# USER_NUMBER = 0
+# LOW_BOUND = 0
+# HIGH_BOUND = 0
 
-    global varibles: USER_NUMBER, LOW_BOUND, HIGH_BOUND
 
-    Args:none
+# def is_in_bounds_data()->int:
+#     """summery
+#     Discription: grabs 3 imput answers from user and puts it into global varibles.  It will be used in the is_in_bounds funtion
 
-    Returns:  bool: returns true if the number is between the two other numbers, false if not
+#     global varibles: USER_NUMBER, LOW_BOUND, HIGH_BOUND
+
+#     Args:none
+
+#     Returns:  bool: returns true if the number is between the two other numbers, false if not
     
-    """
-    global USER_NUMBER
-    global LOW_BOUND
-    global HIGH_BOUND
-    USER_NUMBER = input("Enter a number: ")
-    LOW_BOUND = input("Enter a low number: ")
-    HIGH_BOUND = input("Enter a high number: ")
-    return USER_NUMBER, LOW_BOUND, HIGH_BOUND
+#     """
+#     global USER_NUMBER
+#     global LOW_BOUND
+#     global HIGH_BOUND
+#     USER_NUMBER = input("Enter a number: ")
+#     LOW_BOUND = input("Enter a low number: ")
+#     HIGH_BOUND = input("Enter a high number: ")
+#     return USER_NUMBER, LOW_BOUND, HIGH_BOUND
 
 
-def is_in_bounds()->bool:
+# def is_in_bounds()->bool:
 
-    """summery
-    Discription: checks if a number is between two other numbers
-    Uses the global varibles from is_in_bounds_data funtion
-    """
-    global USER_NUMBER
-    global LOW_BOUND
-    global HIGH_BOUND
-    varible = USER_NUMBER
-    low_bound = LOW_BOUND
-    high_bound = HIGH_BOUND
-    if varible >= low_bound and varible <= high_bound:
-        return True
-    elif varible < low_bound or varible > high_bound:
-        return False
+#     """summery
+#     Discription: checks if a number is between two other numbers
+#     Uses the global varibles from is_in_bounds_data funtion
+#     """
+#     global USER_NUMBER
+#     global LOW_BOUND
+#     global HIGH_BOUND
+#     varible = USER_NUMBER
+#     low_bound = LOW_BOUND
+#     high_bound = HIGH_BOUND
+#     if varible >= low_bound and varible <= high_bound:
+#         return True
+#     elif varible < low_bound or varible > high_bound:
+#         return False
     
-#used for testing, it works
-is_in_bounds_data()
-is_in_bounds()  
-testing = is_in_bounds()
-print(testing)
+# #used for testing, it works
+# is_in_bounds_data()
+# is_in_bounds()  
+# testing = is_in_bounds()
+# print(testing)
+# """
 
+
+# """Question 4"""
+# def get_name_age_color()->str:
+#     input_name = input("Enter your name: ")
+#     input_age = input("Enter your age: ")
+#     input_age = str(input_age)
+#     input_color = input("Enter your favorite color: ")
+#     return print("hello there, my name is " + input_name + ".  I am " + input_age + " years old, and my favorate color is " + input_color + ".")
+
+# get_name_age_color()
+## did it wrong
+NAME = ""
+AGE = 0
+AGE= int(AGE)
+COLOR = ""
+def get_name_age_color()->str:
+    global NAME
+    global AGE
+    global COLOR
+    NAME = input("Enter your name: ")
+    AGE = input("Enter your age: ")
+    COLOR = input("Enter your favorite color: ")
+    return NAME, AGE, COLOR
+print(get_name_age_color())
+exit()
+
+
+
+
+# Question 5:
 
 
 

@@ -204,12 +204,12 @@ def is_in_bounds()->bool:
 # also remember in class you can pass in pultiple variables into a function
 """
 
-
+#global varibles for this funtion
 NAME= “”
 AGE = 0
 COLOR=
 name
-
+def 
 
 T=true
 While T = true
@@ -219,7 +219,25 @@ Elsif break
  Else 
 
 """
+NAME = ""
+AGE = 0
+AGE= int(AGE)
+COLOR = ""
+def get_name_age_color()->str:
+    global NAME
+    global AGE
+    global COLOR
+    NAME = input("Enter your name: ")
+    AGE = input("Enter your age: ")
+    COLOR = input("Enter your favorite color: ")
+    return NAME, AGE, COLOR
+print(get_name_age_color())
+exit()
 
+
+
+
+#     return print("hello there, my name is " + input_name + ".  I am " + input_age + " years old, and my favorate color is " + input_color + ".")
 
 # Question 5:
 # import the random module and use it to generate a random number between 1 and 100
