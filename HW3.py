@@ -20,54 +20,6 @@ next:
 """
 
 
-#attempt 1
-# def square()->int:
-#     global user_input1
-#     user_input1 = input("Enter a number: ")
-#     while user_input1 != int:
-#         print("Please enter a number")
-#         user_input1 = input("Enter a number: ")
-#     if user_input1 == int:
-#         return user_input1 ** 2 
-#              break
-#     else:   
-#         return 0  
- ## above does not work, something to do with the while loop not working as intended or the ** malfuntioning when 
- # checked in jupiter...     
-
-#attempt 2
-# def squared()->int:
-#     global user_input1
-#     user_input1 = input("Enter a number: ")
-#     while user_input1 != int == False:
-#         print("Please enter a number")
-#         user_input1 = input("Enter a number: ")
-#     return user_input1 * user_input1, print(user_input1 * user_input1)
-# ## above does not work, something to do with the while loop not working as intended 
- 
-
-##found via copilot... really wanted to figure it out myself
-# user_input1 = 0
-# def squared()->int:
-#     global user_input1
-#     user_input1 = input("Enter a number: ")
-#     while not user_input1.isdigit():
-#         print("You mistyped.  Please enter a number")
-#         user_input1 = input("Enter a number: ")
-#     return print(int(user_input1) * int(user_input1)), int(user_input1) * int(user_input1)
-
-
-### no, something is wrong, the funtion should end up taking in a number and returning that number squared in the()
-# def squared(varible)->int:
-#     while not varible.isdigit():
-#         print("You mistyped.  Please enter a number")
-#         varible = input("Enter a number: ")
-#     int(varible) * int(varible)
-#     return  int(varible) * int(varible)
-#b = 2
-#squared(b)
-#nope doesnt work... ill stop complecating it and just do it the easy way
-##yea, i just wasted time dealing with this, attributeError: 'int' object has no attribute 'isdigit'... so it wouldn't work anyway to prevent accedental input of a letter or word when coding for a number...
 def squared(varible)->int:
     """summery
     Discription: Squares a number
@@ -88,29 +40,29 @@ squared(2)
 
 #attempt 1
 
-def replace_in_string()->str:
-    """summery
-    Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
+# def replace_in_string()->str:
+#     """summery
+#     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
 
-    Args:  string (str): the string to be changed
+#     Args:  string (str): the string to be changed
 
-    Returns:  str: the string with the letter replaced
-    """
-    sentence = str(input("Enter a string: "))
-    letter = str(input("Enter a letter: "))
-    number = float(input("Enter a positive number: "))
-    number = round(number)
-    number = int(number)
-    sentence= list(sentence)
-    count_characters = len[sentence]
-    count_characters = int(count_characters)
-    if count_characters < number:
-        print("The number you inputed is larger than the string you inputed, please try again")
-        replace_in_string(sentence, letter, number)
-    len(sentence)
-    sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
-    sentence = "".join(sentence) #joins the list back into a string
-    return sentence
+#     Returns:  str: the string with the letter replaced
+#     """
+#     sentence = str(input("Enter a string: "))
+#     letter = str(input("Enter a letter: "))
+#     number = float(input("Enter a positive number: "))
+#     number = round(number)
+#     number = int(number)
+#     sentence= list(sentence)
+#     count_characters = len[sentence]
+#     count_characters = int(count_characters)
+#     if count_characters < number:
+#         print("The number you inputed is larger than the string you inputed, please try again")
+#         replace_in_string(sentence, letter, number)
+#     len(sentence)
+#     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+#     sentence = "".join(sentence) #joins the list back into a string
+#     return sentence
 ### going to have to make multible functions to work around 
 #    count_characters = len[sentence]
 #test
@@ -118,9 +70,9 @@ def replace_in_string()->str:
 
 #instead of doing 3 individual functions, im going to do one function that gets all the inputs, then another that does the replacing
 
-STRING_A = ""
-LETTER_A = ""
-NUMBER_A = 0
+# STRING_A = ""
+# LETTER_A = ""
+# NUMBER_A = 0
 # #attempt 2
 # def grab_string_letter_number(string: str,letter: str, number: int)->str:
 #     """summery
@@ -173,7 +125,6 @@ def grab_string_letter_number(string: str,letter: str, number: int)->str:
     Note: I used no global varibles, just assighn it to a varible outside this funtion
 
     """
-
     string = str(input("Enter a string: "))
     letter = str(input("Enter a letter: "))
     number = float(input("Enter a positive number: "))
@@ -185,7 +136,6 @@ def grab_string_letter_number(string: str,letter: str, number: int)->str:
     STRING_A = string
     LETTER_A = letter
     NUMBER_A = number
-
     return STRING_A, LETTER_A, NUMBER_A
 
 
@@ -193,10 +143,51 @@ def grab_string_letter_number(string: str,letter: str, number: int)->str:
 # print(STRING_A, LETTER_A, NUMBER_A)
 
 
+def str_to_list(varible: str)->list:
+    """summery
+    Discription: converts a string into a list
+
+    Args:  varible (str): the string to be changed
+
+    Returns:  list: the string converted into a list
+
+    Note: I used no global varibles, just assighn it to a varible outside this funtion
+
+    """
+    list(varible)
+    return  list(varible)
+
+#test worked
+STRING_A = " HELLO WORLD... AGAIN"
+STRING_A = str_to_list(STRING_A)#  need to assighn it to a varible
+print(STRING_A)
+
+
+#attempt 4
+# def str_to_list(varible: str)->list:
+#     """summery
+#     Discription: converts a string into a list
+
+#     Args:  varible (str): the string to be changed
+
+#     Returns:  list: the string converted into a list
+
+#     Note: I used no global varibles, just assighn it to a varible outside this funtion
+
+#     """
+#     varible.split()
+#     return  varible.split()
+
+# STRING_A = " HELLO WORLD... AGAIN"
+# STRING_A = str_to_list(STRING_A)
+# print(STRING_A)
+# needs to be list, not indivdual words
+
+
 
 ####  CODE for main funtion###
-grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
-print(STRING_A, LETTER_A, NUMBER_A)
+# grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
+# print(STRING_A, LETTER_A, NUMBER_A)
 
 
 
