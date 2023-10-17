@@ -248,10 +248,8 @@ print(system.version)
 # Question 8:
 # import the os module and use it to display the current working directory. This time import the module using the from keyword
 # hint: use the getcwd() function
-"""
-Import os
-From os get getcwd()
-Print()
+from os import getcwd
+print(getcwd())
 
 
 """

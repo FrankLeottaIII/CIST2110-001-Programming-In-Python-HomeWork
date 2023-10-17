@@ -505,7 +505,15 @@ exit()
 
 
 
-# Question 5:
+# Question 8
+ #attept 1 didnt work
+
+# import os
+# from os import getcwd
+# print(getcwd())
+#... it was working, it just shows the current working dictonary... which is what it is desighned for...
+#I need to eat something.... :/
+# :
 
 
 
