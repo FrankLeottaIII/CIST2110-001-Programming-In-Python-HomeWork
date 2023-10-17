@@ -225,10 +225,10 @@ print_name_age_color()
 
 # Question 5:
 # import the random module and use it to generate a random number between 1 and 100
-"""Pip install random
-Import random
-Random(1,100)
-"""
+import random
+print(random.randint(1,100))
+#printed the random number generated.  The number is not saved since the question did not speficly ask for it to be saved
+
 
 
 # Question 6:
