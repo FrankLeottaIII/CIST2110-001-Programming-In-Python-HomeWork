@@ -144,6 +144,25 @@ replace_in_string()
 # Question 3:
 # Write a function that takes in a number, a lower bound, and an upper bound and returns whether the number is within the bounds
 # IE. If the user inputs 5, 1, and 10, the function should return True
+user_number = input("Enter a number: ")
+low_bound = input("Enter a low number: ")
+high_bound = input("Enter a high number: ")
+walrus = 0
+if IndexError:
+    walrus = 1
+    while walrus == 1:
+    
+        user_number = input("Enter a number: ")
+else:
+    walrus = 0
+
+
+    print("Please enter a number")
+if user_number >= low_bound and user_number <= high_bound:
+    print("True")
+elif user_number < low_bound or user_number > high_bound:
+    print("False")
+
 
 # Question 4:
 # Write a function that asks the user for their name, age, and favorite color. Then write a function that accepts those three parameters and prints them out in a sentence

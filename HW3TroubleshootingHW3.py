@@ -61,12 +61,13 @@ readlines()"""
 ### does that, then why would I waste my time doing that? ... I wish I know about that function before I spent 30 minutes trying to figure out how to do it
 
 ## trying something else now
-
+"""
 sentence = str(input("Enter a string: "))
 letter = str(input("Enter a letter: "))
 number = float(input("Enter a number: "))
 number = round(number)
 number = int(number)
+"""
 # len(count) wrong, it will be the length of the string, not the index of the string
 #list(count) no and dont import re to make every eltter in a list, and get rid of one letter #copilot: and use re.split... what?
 #len(string-number) #IS WRONG
@@ -361,6 +362,70 @@ else:
 #     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
 #     sentence = "".join(sentence) #joins the list back into a string
 #     return sentence
+
+
+
+
+
+# Question 3:
+# Write a function that takes in a number, a lower bound, and an upper bound and returns whether the number is within the bounds
+# IE. If the user inputs 5, 1, and 10, the function should return True
+
+#notes start
+
+"""Basic concept below"""
+# user_number = input("Enter a number: ")
+# low_bound = input("Enter a low number: ")
+# high_bound = input("Enter a high number: ")
+
+# if user_number >= low_bound and user_number <= high_bound:
+#     print("True")
+# elif user_number < low_bound or user_number > high_bound:
+#     print("False")
+
+""" to idiotproof,
+if not a number response
+
+indexerror, 
+
+"""
+# code for limiting user imput to numbers
+""" if IndexError:
+    walrus = 1
+    while walrus == 1:
+        user_number = input("Enter a number: ")
+        walrus = 0 if not IndexError else 1  """
+
+"""
+keeps repeating enter a number
+Now its not working at all as intended...
+
+"""
+# if not int:
+#    user_number = input("Error, please enter a number: ")
+
+user_number = input("Enter a number: ")
+low_bound = input("Enter a low number: ")
+high_bound = input("Enter a high number: ")
+if IndexError:
+    walrus = 1
+    while walrus == 1:
+        user_number = input("Error, please enter a number: ")
+        walrus = 0 if not IndexError else 1
+        # if not IndexError:
+        #     break
+        if walrus == 0:
+            break
+if user_number >= low_bound and user_number <= high_bound:
+    print("True")
+elif user_number < low_bound or user_number > high_bound:
+    print("False")
+walrus = 0
+
+
+
+
+
 
 
 
