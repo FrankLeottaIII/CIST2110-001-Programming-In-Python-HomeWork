@@ -229,16 +229,13 @@ import random
 print(random.randint(1,100))
 #printed the random number generated.  The number is not saved since the question did not speficly ask for it to be saved
 
-
-
 # Question 6:
 # import the math module and use it to find the square root of 16 (hint: use the sqrt() function)
-"""Def square_root(varible)->float
-Import math
-Sushi=1.0
-Sushi=float(sushi)
-Sushi= math.sqrt(varible)
-  Return print(float(sushi))
+import math
+sushi= 1
+sushi=float(sushi)
+sushi= math.sqrt(16)
+print(float(sushi))
 
 """
 

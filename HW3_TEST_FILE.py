@@ -1,5 +1,8 @@
 #HW3 TEST FILE
 #used for testing code
 # this is a test file
-import random
-print(random.randint(1,100))
+import math
+sushi= 1
+sushi=float(sushi)
+sushi= math.sqrt(16)
+print(float(sushi))
