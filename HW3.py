@@ -202,23 +202,7 @@ def is_in_bounds()->bool:
 # This is a two part question. You will need to write two functions
 # remember in class we learned you can return miltiple values from a function
 # also remember in class you can pass in pultiple variables into a function
-"""
 
-#global varibles for this funtion
-NAME= “”
-AGE = 0
-COLOR=
-name
-def 
-
-T=true
-While T = true
-     If  break
-     Edit break
-Elsif break
- Else 
-
-"""
 NAME = ""
 AGE = 0
 AGE= int(AGE)
@@ -230,14 +214,14 @@ def get_name_age_color()->str:
     NAME = input("Enter your name: ")
     AGE = input("Enter your age: ")
     COLOR = input("Enter your favorite color: ")
-    return NAME, AGE, COLOR
-print(get_name_age_color())
-exit()
-
-
-
-
-#     return print("hello there, my name is " + input_name + ".  I am " + input_age + " years old, and my favorate color is " + input_color + ".")
+    return str(NAME), str(AGE), str(COLOR)
+get_name_age_color()
+def print_name_age_color()->str:
+    global NAME
+    global AGE
+    global COLOR
+    return print("hello there, my name is " + NAME + ".  I am " + str(AGE) + " years old, and my favorate color is " + COLOR + ".")
+print_name_age_color()
 
 # Question 5:
 # import the random module and use it to generate a random number between 1 and 100
