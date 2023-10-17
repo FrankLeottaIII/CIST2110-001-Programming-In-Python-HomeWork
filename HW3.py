@@ -237,16 +237,14 @@ sushi=float(sushi)
 sushi= math.sqrt(16)
 print(float(sushi))
 
-"""
 
 # Question 7:
 # import the sys module and use it to display the version of python you are using
 # this time import the module using the import "as" keyword
 # hint: use the version attribute (sys.version)
-"""
+import sys as system
+print(system.version)
 
-
-"""
 # Question 8:
 # import the os module and use it to display the current working directory. This time import the module using the from keyword
 # hint: use the getcwd() function
