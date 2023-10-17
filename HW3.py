@@ -109,106 +109,35 @@ def count_characters(varible: list)->int:
     """
     len(varible)
     return  len(varible)
-CHARACTERS = 0
-CHARACTERS = count_characters(STRING_A)
-print(CHARACTERS)
 
-def replace_in_string(STRING_A, LETTER_A, NUMBER_A)
-        
+Characters = 0
+Characters = count_characters(STRING_A)
+print(Characters)
 
-
-
-
-
-####  CODE for main funtion###
-# grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
-# print(STRING_A, LETTER_A, NUMBER_A)
-
-
-
-
-
-"""
-grab_string_letter_number(string, letter, number)
+def replace_in_string()->str:
+    global STRING_A
+    global LETTER_A
+    global NUMBER_A
+    grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
+    STRING_A = str_to_list(STRING_A)
+    varible = 0
+    varible = count_characters(STRING_A)
+    if NUMBER_A <= varible == True:
+        NUMBER_A-=1
+    if IndexError:     
+        NUMBER_A-=1
+        STRING_A[NUMBER_A] = LETTER_A
+        STRING_A = "".join(STRING_A)
+        return print(STRING_A), STRING_A
 
 replace_in_string()
-"""
+
+#Sidenote: I need a more streamlined way of keeping notes... 
+# perhaps a file specifically for quicknotes for funtions in my code seperate to glance at
 
 
 
-"""
-sentence = str(input("Enter a string: "))
-letter = str(input("Enter a letter: "))
-number = float(input("Enter a number. It will be rounded: "))
-number = round(number)
-number = int(number)
-sentence= list(sentence)
-"""
 
-
-""" this is the part that got me for a bit:, need to remember this idiotproofing method
-counting = len(sentence)
-checking = number - 1
-#this is the part that got me for  bit:
-checking = len(sentence)
-if checking <= number == True:
-    number-=1
-if IndexError:   
-    number-=1
-# holy crap that was aggravating, but it works now.  This is a good code to idiotproof it
-sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
-sentence = "".join(sentence) #joins the list back into a string
-print(sentence)
-"""
-
-"""code not working
-while counting <= checking:
-    print("The number you inputed is larger than the string you inputed, please try again")
-    number = float(input("Enter a number. It will be rounded: "))
-    number = round(number)
-    number = int(number)
-else:
-    print("good")
-    len(sentence)
-    sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
-    sentence = "".join(sentence) #joins the list back into a string
-"""
-#got via copilot
-
-# def replaced(string:str, letter:str, number:int)->str:
-#     """summery
-#     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
-
-#     Args:   string (str): the string to be changed
-#         letter (str): the letter to be replaced
-#         number (int): the index to replace the letter at
-
-#     Returns:  str: the string with the letter replaced
-#     """
-#     string_list = list(string)
-#     string_list[number] = letter
-#     return ''.join(string_list)
-
-# replaced(string, letter, number)
-#got via copilot
-#  def replace(string, letter, number)->str:
-#     """summery
-#     Discription: replaces a letter in a string at a given index
-
-#     Args:   string (str): the string to be changed
-#             letter (str): the letter to be replaced
-#             number (int): the index to replace the letter at
-
-#     Returns:  str: the string with the letter replaced
-#     """
-#     return string[:number] + letter + string[number+1:]
-
-
-#ok you know what, ill just reverse engineer what copilot gave me
-
-# def replace(string, letter, number)->str:
-#     """summery
-#     Discription: replaces a letter in a string at a given index
 
 
 

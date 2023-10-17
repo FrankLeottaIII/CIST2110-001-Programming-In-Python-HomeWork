@@ -177,6 +177,7 @@ to get rid of clutter in the main file.
 #
 #def replace(string:str, letter:str, number:int)->str: """ did not need these varibles,  this is for a differnt use"""
 
+
 #attempt 1
 
 # def replace_in_string()->str:
@@ -206,6 +207,94 @@ to get rid of clutter in the main file.
 #    count_characters = len[sentence]
 #test
 #IGNORE ABOVE
+
+"""
+grab_string_letter_number(string, letter, number)
+
+replace_in_string()
+"""
+
+
+
+"""
+sentence = str(input("Enter a string: "))
+letter = str(input("Enter a letter: "))
+number = float(input("Enter a number. It will be rounded: "))
+number = round(number)
+number = int(number)
+sentence= list(sentence)
+"""
+
+
+""" this is the part that got me for a bit:, need to remember this idiotproofing method
+counting = len(sentence)
+checking = number - 1
+#this is the part that got me for  bit:
+checking = len(sentence)
+if checking <= number == True:
+    number-=1
+if IndexError:   
+    number-=1
+# holy crap that was aggravating, but it works now.  This is a good code to idiotproof it
+sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+sentence = "".join(sentence) #joins the list back into a string
+print(sentence)
+"""
+
+"""code not working
+while counting <= checking:
+    print("The number you inputed is larger than the string you inputed, please try again")
+    number = float(input("Enter a number. It will be rounded: "))
+    number = round(number)
+    number = int(number)
+else:
+    print("good")
+    len(sentence)
+    sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+    sentence = "".join(sentence) #joins the list back into a string
+"""
+#got via copilot
+
+# def replaced(string:str, letter:str, number:int)->str:
+#     """summery
+#     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
+
+#     Args:   string (str): the string to be changed
+#         letter (str): the letter to be replaced
+#         number (int): the index to replace the letter at
+
+#     Returns:  str: the string with the letter replaced
+#     """
+#     string_list = list(string)
+#     string_list[number] = letter
+#     return ''.join(string_list)
+
+# replaced(string, letter, number)
+#got via copilot
+#  def replace(string, letter, number)->str:
+#     """summery
+#     Discription: replaces a letter in a string at a given index
+
+#     Args:   string (str): the string to be changed
+#             letter (str): the letter to be replaced
+#             number (int): the index to replace the letter at
+
+#     Returns:  str: the string with the letter replaced
+#     """
+#     return string[:number] + letter + string[number+1:]
+
+
+#ok you know what, ill just reverse engineer what copilot gave me
+
+# def replace(string, letter, number)->str:
+#     """summery
+#     Discription: replaces a letter in a string at a given index
+
+
+
+
+
+
 
 #instead of doing 3 individual functions, im going to do one function that gets all the inputs, then another that does the replacing
 
@@ -261,6 +350,19 @@ to get rid of clutter in the main file.
 # STRING_A = str_to_list(STRING_A)
 # print(STRING_A)
 # needs to be list, not indivdual words
+
+
+#test it
+
+
+#         print("The number you inputed is larger than the string you inputed, please try again")
+#         replace_in_string(sentence, letter, number)
+#     len(sentence)
+#     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
+#     sentence = "".join(sentence) #joins the list back into a string
+#     return sentence
+
+
 
 
 
