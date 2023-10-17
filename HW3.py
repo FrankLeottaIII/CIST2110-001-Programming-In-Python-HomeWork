@@ -121,11 +121,48 @@ def replace_in_string()->str:
 STRING_A = ""
 LETTER_A = ""
 NUMBER_A = 0
+# #attempt 2
+# def grab_string_letter_number(string: str,letter: str, number: int)->str:
+#     """summery
+#     Discription: grabs a string, letter, and number from the user into a list.
+#                 this is to be used in the the replace_in_string funtion.
+
+#     Args:  string (str): the string to be changed
+#             letter (str): the letter to be replaced
+#             number (int): the index placepoint to replace the letter at in the string a for replace_in_string funtion 
+#                         example: 0 = first character, 1 = second character, etc in the index of the string
+#     Returns:  returns the string inputed by the user in a varible for later use
+
+#     Note: I used no global varibles, just assighn it to a varible outside this funtion
+
+#     """
+#     string = str(input("Enter a string: "))
+#     letter = str(input("Enter a letter: "))
+#     number = float(input("Enter a positive number: "))
+#     number = round(number)
+#     number = int(number)
+#     return [string, letter, number]
+# string = ""
+# letter = ""
+# number = 0
+# X = grab_string_letter_number(string, letter, number)
+
+# def grab_script_list()
+#
+#  Note: I could make it work, but I dont have ennough knowlage regarding lists to make it work, so im going to do it a differnt way
+
+#attempt 3
+STRING_A = ""
+LETTER_A = ""
+NUMBER_A = 0
+NUMBER_A = int(NUMBER_A)
 
 def grab_string_letter_number(string: str,letter: str, number: int)->str:
     """summery
-    Discription: grabs a string, letter, and number from the user into a list.
-                this is to be used in the the replace_in_string funtion.
+    Discription: grabs a string, letter, and number from the user and places them into 3 global varibles for later use.  USES GLOBAL VARIBLES
+                This is to be used in the the replace_in_string funtion.
+
+    global varibles: STRING_A, LETTER_A, NUMBER_A         
 
     Args:  string (str): the string to be changed
             letter (str): the letter to be replaced
@@ -136,18 +173,33 @@ def grab_string_letter_number(string: str,letter: str, number: int)->str:
     Note: I used no global varibles, just assighn it to a varible outside this funtion
 
     """
+
     string = str(input("Enter a string: "))
     letter = str(input("Enter a letter: "))
     number = float(input("Enter a positive number: "))
     number = round(number)
     number = int(number)
-    return [string, letter, number]
-string = ""
-letter = ""
-number = 0
-X = grab_string_letter_number(string, letter, number)
+    global STRING_A
+    global LETTER_A
+    global NUMBER_A
+    STRING_A = string
+    LETTER_A = letter
+    NUMBER_A = number
 
-def grab_script_list()
+    return STRING_A, LETTER_A, NUMBER_A
+
+
+# grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
+# print(STRING_A, LETTER_A, NUMBER_A)
+
+
+
+####  CODE for main funtion###
+grab_string_letter_number(STRING_A, LETTER_A, NUMBER_A)
+print(STRING_A, LETTER_A, NUMBER_A)
+
+
+
 
 
 """
