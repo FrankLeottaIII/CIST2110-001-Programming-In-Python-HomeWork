@@ -395,35 +395,83 @@ indexerror,
     while walrus == 1:
         user_number = input("Enter a number: ")
         walrus = 0 if not IndexError else 1  """
+"""
 
 """
-keeps repeating enter a number
-Now its not working at all as intended...
+# keeps repeating enter a number
+# Now its not working at all as intended...
 
-"""
-# if not int:
+
+
+# user_number = input("Enter a number: ")
+# low_bound = input("Enter a low number: ")
+# high_bound = input("Enter a high number: ")
+# if IndexError:
+#     walrus = 1
+#     while walrus == 1:
+#         user_number = input("Error, please enter a number: ")
+#         walrus = 0 if not IndexError else 1
+#         # if not IndexError:
+#         #     break
+#         if walrus == 0:
+#             break
+# if user_number >= low_bound and user_number <= high_bound:
+#     print("True")
+# elif user_number < low_bound or user_number > high_bound:
+#     print("False")
+# walrus = 0
+#trying this
+ ##if not int:
 #    user_number = input("Error, please enter a number: ")
-
-user_number = input("Enter a number: ")
-low_bound = input("Enter a low number: ")
-high_bound = input("Enter a high number: ")
-if IndexError:
-    walrus = 1
-    while walrus == 1:
-        user_number = input("Error, please enter a number: ")
-        walrus = 0 if not IndexError else 1
-        # if not IndexError:
-        #     break
-        if walrus == 0:
-            break
-if user_number >= low_bound and user_number <= high_bound:
-    print("True")
-elif user_number < low_bound or user_number > high_bound:
-    print("False")
-walrus = 0
+ 
+# IE. If the user inputs 5, 1, and 10, the function should return True
+USER_NUMBER = 0
+LOW_BOUND = 0
+HIGH_BOUND = 0
 
 
+def is_in_bounds_data()->int:
+    """summery
+    Discription: grabs 3 imput answers from user and puts it into global varibles.  It will be used in the is_in_bounds funtion
 
+    global varibles: USER_NUMBER, LOW_BOUND, HIGH_BOUND
+
+    Args:none
+
+    Returns:  bool: returns true if the number is between the two other numbers, false if not
+    
+    """
+    global USER_NUMBER
+    global LOW_BOUND
+    global HIGH_BOUND
+    USER_NUMBER = input("Enter a number: ")
+    LOW_BOUND = input("Enter a low number: ")
+    HIGH_BOUND = input("Enter a high number: ")
+    return USER_NUMBER, LOW_BOUND, HIGH_BOUND
+
+
+def is_in_bounds()->bool:
+
+    """summery
+    Discription: checks if a number is between two other numbers
+    Uses the global varibles from is_in_bounds_data funtion
+    """
+    global USER_NUMBER
+    global LOW_BOUND
+    global HIGH_BOUND
+    varible = USER_NUMBER
+    low_bound = LOW_BOUND
+    high_bound = HIGH_BOUND
+    if varible >= low_bound and varible <= high_bound:
+        return True
+    elif varible < low_bound or varible > high_bound:
+        return False
+    
+#used for testing, it works
+is_in_bounds_data()
+is_in_bounds()  
+testing = is_in_bounds()
+print(testing)
 
 
 

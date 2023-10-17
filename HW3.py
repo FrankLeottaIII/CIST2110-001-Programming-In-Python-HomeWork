@@ -138,31 +138,62 @@ replace_in_string()
 
 
 
+user_number = 0
 
-
+a = None
+b = None
+c = None
 
 # Question 3:
 # Write a function that takes in a number, a lower bound, and an upper bound and returns whether the number is within the bounds
 # IE. If the user inputs 5, 1, and 10, the function should return True
-user_number = input("Enter a number: ")
-low_bound = input("Enter a low number: ")
-high_bound = input("Enter a high number: ")
-walrus = 0
-if IndexError:
-    walrus = 1
-    while walrus == 1:
+#global varibles for this funtion
+USER_NUMBER = 0
+LOW_BOUND = 0
+HIGH_BOUND = 0
+
+
+def is_in_bounds_data()->int:
+    """summery
+    Discription: grabs 3 imput answers from user and puts it into global varibles.  It will be used in the is_in_bounds funtion
+
+    global varibles: USER_NUMBER, LOW_BOUND, HIGH_BOUND
+
+    Args:none
+
+    Returns:  bool: returns true if the number is between the two other numbers, false if not
     
-        user_number = input("Enter a number: ")
-else:
-    walrus = 0
+    """
+    global USER_NUMBER
+    global LOW_BOUND
+    global HIGH_BOUND
+    USER_NUMBER = input("Enter a number: ")
+    LOW_BOUND = input("Enter a low number: ")
+    HIGH_BOUND = input("Enter a high number: ")
+    return USER_NUMBER, LOW_BOUND, HIGH_BOUND
 
+def is_in_bounds()->bool:
 
-    print("Please enter a number")
-if user_number >= low_bound and user_number <= high_bound:
-    print("True")
-elif user_number < low_bound or user_number > high_bound:
-    print("False")
+    """summery
+    Discription: checks if a number is between two other numbers
+    Uses the global varibles from is_in_bounds_data funtion
+    low bound is the lowest number, high bound is the highest number, user number is the number to be checked
 
+    global varibles: USER_NUMBER, LOW_BOUND, HIGH_BOUND
+
+    Args:none
+
+    """
+    global USER_NUMBER
+    global LOW_BOUND
+    global HIGH_BOUND
+    varible = USER_NUMBER
+    low_bound = LOW_BOUND
+    high_bound = HIGH_BOUND
+    if varible >= low_bound and varible <= high_bound:
+        return True
+    elif varible < low_bound or varible > high_bound:
+        return False
 
 # Question 4:
 # Write a function that asks the user for their name, age, and favorite color. Then write a function that accepts those three parameters and prints them out in a sentence
@@ -172,6 +203,8 @@ elif user_number < low_bound or user_number > high_bound:
 # remember in class we learned you can return miltiple values from a function
 # also remember in class you can pass in pultiple variables into a function
 """
+
+
 NAME= “”
 AGE = 0
 COLOR=
