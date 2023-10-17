@@ -34,76 +34,10 @@ squared(2)
 
 # Question 2:
 # Write a function that takes in a string, a letter, and a number and returns the string with the letter replaced at the number index
-# IE. If the user inputs "Hello World", "a", and 3, the function should return "Helao World"
-#
-#def replace(string:str, letter:str, number:int)->str: """ did not need these varibles,  this is for a differnt use"""
+###MISSING TEXT
 
-#attempt 1
 
-# def replace_in_string()->str:
-#     """summery
-#     Discription: replaces a letter in a string, any floats will be rounded to the nearest whole number
 
-#     Args:  string (str): the string to be changed
-
-#     Returns:  str: the string with the letter replaced
-#     """
-#     sentence = str(input("Enter a string: "))
-#     letter = str(input("Enter a letter: "))
-#     number = float(input("Enter a positive number: "))
-#     number = round(number)
-#     number = int(number)
-#     sentence= list(sentence)
-#     count_characters = len[sentence]
-#     count_characters = int(count_characters)
-#     if count_characters < number:
-#         print("The number you inputed is larger than the string you inputed, please try again")
-#         replace_in_string(sentence, letter, number)
-#     len(sentence)
-#     sentence[number] = letter  #replaces the letter at the index with the varible number, which is what was inputed
-#     sentence = "".join(sentence) #joins the list back into a string
-#     return sentence
-### going to have to make multible functions to work around 
-#    count_characters = len[sentence]
-#test
-#IGNORE ABOVE
-
-#instead of doing 3 individual functions, im going to do one function that gets all the inputs, then another that does the replacing
-
-# STRING_A = ""
-# LETTER_A = ""
-# NUMBER_A = 0
-# #attempt 2
-# def grab_string_letter_number(string: str,letter: str, number: int)->str:
-#     """summery
-#     Discription: grabs a string, letter, and number from the user into a list.
-#                 this is to be used in the the replace_in_string funtion.
-
-#     Args:  string (str): the string to be changed
-#             letter (str): the letter to be replaced
-#             number (int): the index placepoint to replace the letter at in the string a for replace_in_string funtion 
-#                         example: 0 = first character, 1 = second character, etc in the index of the string
-#     Returns:  returns the string inputed by the user in a varible for later use
-
-#     Note: I used no global varibles, just assighn it to a varible outside this funtion
-
-#     """
-#     string = str(input("Enter a string: "))
-#     letter = str(input("Enter a letter: "))
-#     number = float(input("Enter a positive number: "))
-#     number = round(number)
-#     number = int(number)
-#     return [string, letter, number]
-# string = ""
-# letter = ""
-# number = 0
-# X = grab_string_letter_number(string, letter, number)
-
-# def grab_script_list()
-#
-#  Note: I could make it work, but I dont have ennough knowlage regarding lists to make it work, so im going to do it a differnt way
-
-#attempt 3
 STRING_A = ""
 LETTER_A = ""
 NUMBER_A = 0
@@ -162,26 +96,27 @@ STRING_A = " HELLO WORLD... AGAIN"
 STRING_A = str_to_list(STRING_A)#  need to assighn it to a varible
 print(STRING_A)
 
+def count_characters(varible: list)->int:
+    """summery
+    Discription: counts the number of characters in a list, used forin replace_in_string funtion
 
-#attempt 4
-# def str_to_list(varible: str)->list:
-#     """summery
-#     Discription: converts a string into a list
+    Args:  varible (str): the string to be changed
 
-#     Args:  varible (str): the string to be changed
+    Returns:  int: the number of characters in a string
 
-#     Returns:  list: the string converted into a list
+    Note: I used no global varibles, just assighn it to a varible outside this funtion
 
-#     Note: I used no global varibles, just assighn it to a varible outside this funtion
+    """
+    len(varible)
+    return  len(varible)
+CHARACTERS = 0
+CHARACTERS = count_characters(STRING_A)
+print(CHARACTERS)
 
-#     """
-#     varible.split()
-#     return  varible.split()
+def replace_in_string(STRING_A, LETTER_A, NUMBER_A)
+        
 
-# STRING_A = " HELLO WORLD... AGAIN"
-# STRING_A = str_to_list(STRING_A)
-# print(STRING_A)
-# needs to be list, not indivdual words
+
 
 
 
