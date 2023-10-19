@@ -29,7 +29,8 @@ def squared(varible)->int:
     Returns:  int: the number squared
     """
     return int(varible) * int(varible)
-squared(2)
+
+print(squared(2))
 # its going to be 4
 
 # Question 2:
@@ -94,7 +95,6 @@ def str_to_list(varible: str)->list:
 #test worked
 STRING_A = " HELLO WORLD... AGAIN"
 STRING_A = str_to_list(STRING_A)#  need to assighn it to a varible
-print(STRING_A)
 
 def count_characters(varible: list)->int:
     """summery
@@ -112,7 +112,6 @@ def count_characters(varible: list)->int:
 
 Characters = 0
 Characters = count_characters(STRING_A)
-print(Characters)
 
 def replace_in_string()->str:
     global STRING_A
@@ -220,7 +219,7 @@ def print_name_age_color()->str:
     global NAME
     global AGE
     global COLOR
-    return print("hello there, my name is " + NAME + ".  I am " + str(AGE) + " years old, and my favorate color is " + COLOR + ".")
+    return print("Hello there, my name is " + NAME + ".  I am " + str(AGE) + " years old, and my favorate color is " + COLOR + ".")
 print_name_age_color()
 
 # Question 5:
@@ -252,4 +251,3 @@ from os import getcwd
 print(getcwd())
 
 
-"""
