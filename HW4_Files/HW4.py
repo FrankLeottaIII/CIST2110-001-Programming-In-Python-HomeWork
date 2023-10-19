@@ -28,9 +28,9 @@ def add(a:float, b:float) -> float:
     Returns:
         float: the sum of a and b
     """
-    return a - b
+    return a + b
 # Where is the bug in the buggy function?
-# A:
+# A:  There was a minus sign instead of a plus sign(a - b). It should be (a + b)
 
 def subtract(a:float, b:float) -> float:
     """Subtract two numbers
