@@ -28,9 +28,10 @@ def add(a:float, b:float) -> float:
     Returns:
         float: the sum of a and b
     """
-    return a + b
+    return float(a) + float(b)
 # Where is the bug in the buggy function?
-# A:  There was a minus sign instead of a plus sign(a - b). It should be (a + b)
+# A:  There was a minus sign instead of a plus sign(a - b). It should be (a + b). 
+#  Also there is not type enforcement for the return value,  and should be both floats.
 
 def subtract(a:float, b:float) -> float:
     """Subtract two numbers
@@ -42,11 +43,12 @@ def subtract(a:float, b:float) -> float:
     Returns:
         float: the difference of a and b
     """
-    return a + b
+    return float(a) - float(b)
 # Where is the bug in the buggy function?
-# A:
+# A: there was a plus sign instead of a minus sign(a + b). It should be (a - b)
+#Also there is not type enforcement for the return value,  and should be both floats.
 
-def divide(a, b):
+def divide(a:float, b:float)-> float:
     """Divide two numbers
 
     Args:
@@ -56,9 +58,11 @@ def divide(a, b):
     Returns:
         float: the quotient of a and b
     """
-    return a * b
+    return float(a) * float(b)
 # Where is the bug in the buggy function?
-# A:
+# A: there was a muliplication sign instead of a division sign(a * b). It should be (a / b).  also there is not type indent or hinting,
+#  it should be a float not just a and b, and there needs to be type enforcement for the return value,  and type hinting 
+#   for what returns a funtion
 
 
 def multiply(a:float, b:float) -> float:
@@ -71,11 +75,11 @@ def multiply(a:float, b:float) -> float:
     Returns:
         float: the product of a and b
     """
-    return a / b
+    return float(a) * float(b)
 
 # Where is the bug in the buggy function?
-# A:
-
+# A: there was a division sign instead of a multiplication sign(a / b). It should be (a * b).
+#Also there is not type enforcement for the return value,  and should be both floats.
 
 def greet(name:str)->str:
     """Greet a person
@@ -189,3 +193,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""import os
+
+os.chdir('/path/to/new/directory')"""
+
+""" how to pytest
+
+
+
+
+
+"""

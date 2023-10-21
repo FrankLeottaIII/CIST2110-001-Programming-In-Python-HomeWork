@@ -1,17 +1,22 @@
 # test.py
 # Author:
 
-import pytest
+#in command prompt pip install pytest
+
+
+#import pytest
 from HW4 import add, subtract, divide, multiply, greet, square, is_even, grade_calculator, speed_check, is_leap_year
 
 def test_add():
     assert add(3, 2) == 5, "Addition failed"
     assert add(0, 5) == 5, "Addition failed with 0"
 
+
+
 def test_subtract():
     assert subtract(5, 3) == 2, "Subtraction failed"
     assert subtract(3, 5) == -2, "Subtraction failed with negative result"
-
+print(test_subtract())
 def test_divide():
     assert divide(6, 2) == 3, "Division failed"
     with pytest.raises(ZeroDivisionError):  # Expected error for dividing by zero
@@ -54,3 +59,9 @@ def test_is_leap_year():
     assert is_leap_year(2021) == False, "Leap year check failed for non-leap year"
     assert is_leap_year(2000) == True, "Leap year check failed for century leap year"
     assert is_leap_year(1900) == False, "Leap year check failed for century non-leap year"
+
+
+###
+
+#[notice] A new release of pip is available: 23.2.1 -> 23.3.1
+#[notice] To update, run: python.exe -m pip install --upgrade pip
