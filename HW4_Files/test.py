@@ -4,7 +4,8 @@
 #in command prompt pip install pytest
 
 
-#import pytest
+
+import pytest
 from HW4 import add, subtract, divide, multiply, greet, square, is_even, grade_calculator, speed_check, is_leap_year
 
 def test_add():
@@ -16,11 +17,14 @@ def test_add():
 def test_subtract():
     assert subtract(5, 3) == 2, "Subtraction failed"
     assert subtract(3, 5) == -2, "Subtraction failed with negative result"
-print(test_subtract())
+
+
 def test_divide():
     assert divide(6, 2) == 3, "Division failed"
     with pytest.raises(ZeroDivisionError):  # Expected error for dividing by zero
         divide(1, 0)
+# division fialed
+
 
 def test_multiply():
     assert multiply(4, 3) == 12, "Multiplication failed"
@@ -65,3 +69,9 @@ def test_is_leap_year():
 
 #[notice] A new release of pip is available: 23.2.1 -> 23.3.1
 #[notice] To update, run: python.exe -m pip install --upgrade pip
+
+# """ 
+# platform win32 -- Python 3.12.0, pytest-7.4.2, pluggy-1.3.0
+# rootdir: C:\Users\green\Documents\2023 python class\CIST2110-001-Programming-In-Python-HomeWork
+# collected 0 items                
+# ================================ test session starts ================================="""

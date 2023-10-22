@@ -28,10 +28,18 @@ def add(a:float, b:float) -> float:
     Returns:
         float: the sum of a and b
     """
-    return float(a) + float(b)
+    return float(a) - float(b)
 # Where is the bug in the buggy function?
 # A:  There was a minus sign instead of a plus sign(a - b). It should be (a + b). 
 #  Also there is not type enforcement for the return value,  and should be both floats.
+
+#  error message from pytest before correction:
+# >       assert add(3, 2) == 5, "Addition failed"
+# E       AssertionError: Addition failed
+# E       assert 1.0 == 5
+# E        +  where 1.0 = add(3, 2)
+
+
 
 def subtract(a:float, b:float) -> float:
     """Subtract two numbers
@@ -43,10 +51,16 @@ def subtract(a:float, b:float) -> float:
     Returns:
         float: the difference of a and b
     """
-    return float(a) - float(b)
+    return float(a) + float(b)
 # Where is the bug in the buggy function?
 # A: there was a plus sign instead of a minus sign(a + b). It should be (a - b)
 #Also there is not type enforcement for the return value,  and should be both floats.
+
+# error message from pytest before correction:
+# # E       AssertionError: Subtraction failed
+# E       assert 8.0 == 2
+# E        +  where 8.0 = subtract(5, 3)
+
 
 def divide(a:float, b:float)-> float:
     """Divide two numbers
@@ -58,11 +72,20 @@ def divide(a:float, b:float)-> float:
     Returns:
         float: the quotient of a and b
     """
-    return float(a) * float(b)
+    return float(a) / float(b)
 # Where is the bug in the buggy function?
 # A: there was a muliplication sign instead of a division sign(a * b). It should be (a / b).  also there is not type indent or hinting,
 #  it should be a float not just a and b, and there needs to be type enforcement for the return value,  and type hinting 
 #   for what returns a funtion
+
+
+# error message from pytest
+# E       AssertionError: Division failed
+# E       assert 12.0 == 3
+# E        +  where 12.0 = divide(6, 2)
+
+
+
 
 
 def multiply(a:float, b:float) -> float:
@@ -78,8 +101,12 @@ def multiply(a:float, b:float) -> float:
     return float(a) * float(b)
 
 # Where is the bug in the buggy function?
-# A: there was a division sign instead of a multiplication sign(a / b). It should be (a * b).
-#Also there is not type enforcement for the return value,  and should be both floats.
+# A: there was a division sign instead of a multiplication sign(a / b). It should be (a * b).  it was an assertion error
+#Also there is not type enforcement for the return value,  and should be both floats.  
+
+
+# error message from pytest before correction:
+
 
 def greet(name:str)->str:
     """Greet a person
@@ -94,6 +121,13 @@ def greet(name:str)->str:
 # Where is the bug in the buggy function?
 # A:
 
+# error message from pytest before correction:
+# E       AssertionError: Greeting failed
+# E       assert 'Heloo, John!' == 'Hello, John!'
+# E         - Hello, John!
+# E         ?    ^
+# E         + Heloo, John!
+# E         ?    ^
 
 def square(num:int) -> int:
     """Square a number
@@ -108,6 +142,7 @@ def square(num:int) -> int:
 # Where is the bug in the buggy function?
 # A:
 
+#error message from pytest before correction:
 
 def is_even(num:int) -> bool:
     """Check if a number is even
