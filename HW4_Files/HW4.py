@@ -218,14 +218,15 @@ def speed_check(speed:float) -> str:
     # Assuming general speed limits: min: 20, max: 70 (in mph)
     if speed < 20:  
         return "Too slow"
-    elif 20 <= speed <= 60:
+    elif 20 <= speed <= 70:
         return "Within limit"
     elif speed > 70: 
         return "Over speed limit"
     else:
         return "Unknown"
 # Where is the bug in the buggy function?
-# A:
+# A: elif 20 <= speed <= 60:  should have been elif 20 <= speed <= 70:  it was an assertion error due to 10 miles per hour 
+# left out of the calculation.
 
 # error message from pytest before correction:
 # E       AssertionError: Speed check failed for upper end of within limit
