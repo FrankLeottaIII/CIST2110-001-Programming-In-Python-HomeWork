@@ -28,10 +28,10 @@ def add(a:float, b:float) -> float:
     Returns:
         float: the sum of a and b
     """
-    return print(float(a) + float(b))
+    return float(a) + float(b)
 
 # Where is the bug in the buggy function?
-# A:  There was no print funtion in the return statment. There was a minus sign instead of a plus sign(a - b). It should be (a + b). 
+# A:  There was a minus sign instead of a plus sign(a - b). It should be (a + b). 
 #  Also there is not type enforcement for the return value,  and should be both floats.
 
 #  error message from pytest before correction:
@@ -52,9 +52,9 @@ def subtract(a:float, b:float) -> float:
     Returns:
         float: the difference of a and b
     """
-    return print(float(a) - float(b))
+    return float(a) - float(b)
 # Where is the bug in the buggy function?
-# A: There was no print funtion in the return statment. There was a plus sign instead of a minus sign (a + b). It should be (a - b)
+# A:  There was a plus sign instead of a minus sign (a + b). It should be (a - b)
 #Also there is not type enforcement for the return value,  and should be both floats.
 
 # error message from pytest before correction:
@@ -87,9 +87,10 @@ def divide(a:float, b:float)-> float:
 
 
 
+a= float
+b= float
 
-
-def multiply(a:float, b:float) -> float:
+def multiply(a: float, b: float) -> float:
     """Multiply two numbers
 
     Args:
@@ -102,18 +103,17 @@ def multiply(a:float, b:float) -> float:
         note: the pytest makes this  function fail, but it is not the only bug in this function
 
     """
-    a= float(a)
-    b= float(b)
-    return print(a * b)
 
-multiply(4, 3)
+    return float(a) * float(b)
+
+
 # Where is the bug in the buggy function?
-# A:  There is no print funtion in the return statement. There was a division sign instead of a multiplication sign(a / b). It should be (a * b).  it was an assertion error
+# A:  There was a division sign instead of a multiplication sign(a / b). It should be (a * b).  it was an assertion error
 #Also there is not type enforcement for the return value,  and should be both floats.  
 # ... the pytest makes this  function fail, but it is not supposed to fail, 3 times 4 is 12, and saying it fails when you get a 12 is wrong.
 #
 
-
+### do not put print statment in the funtion, apprently it will cause the pytest to fail,  I had to remove the print statment i accedently added to get the pytest to pass.
 # error message from pytest before correction:
 # E       AssertionError: Multiplication failed
 # E       assert 1.3333333333333333 == 12
@@ -128,7 +128,7 @@ def greet(name:str)->str:
     Returns:
         _type_: the greeting message
     """
-    return "Heloo, " + name + "!"
+    return "Hello, " + name + "!"
 # Where is the bug in the buggy function?
 # A: there was a typo in the greeting message and the + needed to be outside of the "" marks and spaced properly.
 # It should be "Hello, " + name + "!" not "Heloo, "+name+"!"
