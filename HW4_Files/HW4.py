@@ -243,17 +243,18 @@ def is_leap_year(year:int) -> bool:
     Returns:
         bool: True if the year is a leap year, False otherwise
     """
-    if year % 4 == 0:
+    if year % 4 == 0 and year % 100 != 0:
         return True
-    elif year % 100 == 0:
-        return False
     elif year % 400 == 0:
         return True
     else:
         return False
-# Where is the bug in the buggy function?
-# A:
+        
 
+# Where is the bug in the buggy function?
+# A: year if % 4 == 0 return true and elsif year % 100 == 0 return false were not combined.  it should be if year % 4 == 0 and year % 100 != 0:
+
+# note: Leap years occur almost every four years, with the exception of years that are divisible by 100 but not divisible by 400 
 # error message from pytest before correction:
 # E       AssertionError: Leap year check failed for century non-leap year
 # E       assert True == False
