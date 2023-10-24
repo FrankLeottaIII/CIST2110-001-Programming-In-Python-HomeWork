@@ -252,7 +252,8 @@ def is_leap_year(year:int) -> bool:
         
 
 # Where is the bug in the buggy function?
-# A: year if % 4 == 0 return true and elsif year % 100 == 0 return false were not combined.  it should be if year % 4 == 0 and year % 100 != 0:
+# A: (if year % 4 == 0 return true and elsif year % 100 == 0 return false) were not combined.  it should be if year % 4 == 0 and year % 100 != 0: 
+#in one if statment, with the elif year % 400 == 0: as an exception to the rule.
 
 # note: Leap years occur almost every four years, with the exception of years that are divisible by 100 but not divisible by 400 
 # error message from pytest before correction:
@@ -265,15 +266,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-"""import os
-
-os.chdir('/path/to/new/directory')"""
-
-""" how to pytest
-
-
-
-
-
-"""
