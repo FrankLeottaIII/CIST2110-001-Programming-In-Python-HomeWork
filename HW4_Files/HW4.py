@@ -17,6 +17,7 @@
 # After you fix the function, you should run test.py to make sure that the function is fixed.
 
 
+# REMEMBER TO play your code to save it into the memory... or you will get an error message when you run the pytest
 
 def add(a:float, b:float) -> float:
     """Add two numbers together
@@ -63,7 +64,7 @@ def subtract(a:float, b:float) -> float:
 # E        +  where 8.0 = subtract(5, 3)
 
 
-def divide(a:float, b:float)-> float:
+def divide(a:float, b:float) -> float:
     """Divide two numbers
 
     Args:
@@ -75,9 +76,9 @@ def divide(a:float, b:float)-> float:
     """
     return float(a) / float(b)
 # Where is the bug in the buggy function?
-# A: there was a muliplication sign instead of a division sign(a * b). It should be (a / b).  also there is not type indent or hinting,
-#  it should be a float not just a and b, and there needs to be type enforcement for the return value,  and type hinting 
-#   for what returns a funtion
+# A: there was a muliplication sign instead of a division sign(a * b). It should be (a / b). 
+# while it isnt a bug,  also there is not type indent or hinting,  and it should be both floats in defining the function
+# also there is not type enforcement for the return value,  and should be both floats... but it works without it.
 
 
 # error message from pytest
@@ -85,10 +86,6 @@ def divide(a:float, b:float)-> float:
 # E       assert 12.0 == 3
 # E        +  where 12.0 = divide(6, 2)
 
-
-
-a= float
-b= float
 
 def multiply(a: float, b: float) -> float:
     """Multiply two numbers
@@ -110,8 +107,7 @@ def multiply(a: float, b: float) -> float:
 # Where is the bug in the buggy function?
 # A:  There was a division sign instead of a multiplication sign(a / b). It should be (a * b).  it was an assertion error
 #Also there is not type enforcement for the return value,  and should be both floats.  
-# ... the pytest makes this  function fail, but it is not supposed to fail, 3 times 4 is 12, and saying it fails when you get a 12 is wrong.
-#
+
 
 ### do not put print statment in the funtion, apprently it will cause the pytest to fail,  I had to remove the print statment i accedently added to get the pytest to pass.
 # error message from pytest before correction:
@@ -128,10 +124,11 @@ def greet(name:str)->str:
     Returns:
         _type_: the greeting message
     """
-    return "Hello, " + name + "!"
+    return "Hello, " + str(name) + "!"
 # Where is the bug in the buggy function?
 # A: there was a typo in the greeting message and the + needed to be outside of the "" marks and spaced properly.
 # It should be "Hello, " + name + "!" not "Heloo, "+name+"!"
+# it doesn't fail, but it should be type hinting  name in the return value, such as str(name)
 
 # error message from pytest before correction:
 # E       AssertionError: Greeting failed
@@ -150,9 +147,9 @@ def square(num:int) -> int:
     Returns:
         int: the square of the number
     """
-    return num + num
+    return int(num) * int(num)
 # Where is the bug in the buggy function?
-# A:
+# A: It should be return num * num not return num + num.  While it doesnt fail the pytest,  it should be type hinting  num in the return value, such as int(num)
 
 #error message from pytest before correction:
 # E       AssertionError: Squaring failed
