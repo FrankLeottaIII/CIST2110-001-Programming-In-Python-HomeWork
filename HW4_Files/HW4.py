@@ -167,7 +167,8 @@ def is_even(num:int) -> bool:
     """
     return int(num) % 2 == 0
 # Where is the bug in the buggy function?
-# A: It should be return num % 2 == 0 not return num % 2 == 1.  While it doesnt fail the pytest,  it should be type hinting  num in the return value, such as int(num)
+# A: It should be return num % 2 == 0 not return num % 2 == 1. 
+#  While it doesnt fail the pytest,  it should be type hinting  num in the return value, such as int(num)
 
 # error message from pytest before correction:
 # E       AssertionError: Even check failed for even number
@@ -187,7 +188,7 @@ def grade_calculator(score:float) -> str:
         return "A"
     elif 80 <= score < 90:
         return "B"
-    elif 70 <= score < 79:
+    elif 70 <= score < 80:
         return "C"
     elif 60 <= score < 70:
         return "D"
@@ -196,7 +197,8 @@ def grade_calculator(score:float) -> str:
     else:
         return "Invalid Score"
 # Where is the bug in the buggy function?
-# A:
+# A:  elif 70 <= score < 79: should have been elif 70 <= score < 80:  it was an assertion error due to 79 left out of the calculation.
+# it could have been elif 70 <= score <= 79:  but that is not how the other elif statements are written.
 
 # error message from pytest before correction:
 # E       AssertionError: Grade calculation failed for C
