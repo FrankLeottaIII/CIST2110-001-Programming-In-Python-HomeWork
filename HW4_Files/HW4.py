@@ -165,9 +165,9 @@ def is_even(num:int) -> bool:
     Returns:
         bool: True if the number is even, False otherwise
     """
-    return num % 2 == 1
+    return int(num) % 2 == 0
 # Where is the bug in the buggy function?
-# A:
+# A: It should be return num % 2 == 0 not return num % 2 == 1.  While it doesnt fail the pytest,  it should be type hinting  num in the return value, such as int(num)
 
 # error message from pytest before correction:
 # E       AssertionError: Even check failed for even number
