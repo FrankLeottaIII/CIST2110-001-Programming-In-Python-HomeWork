@@ -143,6 +143,9 @@ def square(num:int) -> int:
 # A:
 
 #error message from pytest before correction:
+# E       AssertionError: Squaring failed
+# E       assert 8 == 16
+# E        +  where 8 = square(4)
 
 def is_even(num:int) -> bool:
     """Check if a number is even
@@ -157,6 +160,10 @@ def is_even(num:int) -> bool:
 # Where is the bug in the buggy function?
 # A:
 
+# error message from pytest before correction:
+# E       AssertionError: Even check failed for even number
+# E       assert False == True
+# E        +  where False = is_even(4)
 
 def grade_calculator(score:float) -> str:
     """Calculate the grade based on the score
@@ -182,6 +189,12 @@ def grade_calculator(score:float) -> str:
 # Where is the bug in the buggy function?
 # A:
 
+# error message from pytest before correction:
+# E       AssertionError: Grade calculation failed for C
+# E       assert 'Invalid Score' == 'C'
+# E         - C
+# E         + Invalid Score
+
 def speed_check(speed:float) -> str:
     """Check if the speed is within the speed limit
     
@@ -203,6 +216,12 @@ def speed_check(speed:float) -> str:
 # Where is the bug in the buggy function?
 # A:
 
+# error message from pytest before correction:
+# E       AssertionError: Speed check failed for upper end of within limit
+# E       assert 'Unknown' == 'Within limit'
+# E         - Within limit
+# E         + Unknown
+
 def is_leap_year(year:int) -> bool:
     """Check if a year is a leap year
 
@@ -223,6 +242,10 @@ def is_leap_year(year:int) -> bool:
 # Where is the bug in the buggy function?
 # A:
 
+# error message from pytest before correction:
+# E       AssertionError: Leap year check failed for century non-leap year
+# E       assert True == False
+# E        +  where True = is_leap_year(1900)
 def main():
     print("You are running me directly!")
 
