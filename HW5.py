@@ -1,10 +1,11 @@
 # HW5.py
-# Author:
+# Author: Frank R. Leotta III
 
 # This homework assignment tests on list in python
 
 # Question 1: Create a list with 5 of your favorite foods. Print the list
-
+FavoriteFoods = ["sushi", "pizza", "steak", "chicken", "pasta"]
+print(FavoriteFoods)
 # Question 2: Using the list from question 1, print the first and last element of the list
 
 # Question 3: Using the list from question 1, print the 3rd element of the list
