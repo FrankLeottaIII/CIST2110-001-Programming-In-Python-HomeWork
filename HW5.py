@@ -16,7 +16,7 @@ print ("question 4")
 print(FavoriteFoods[0:3]) #prints 0,1,2
 # Question 5: Using the list from question 1, print the last 2 elements of the list using list slicing
 print ("question 5")
-#print(FavoriteFoods[-2:]) #prints -2,-1 one way of doing it
+#print(FavoriteFoods[-2:]) #prints -2,-1 one way of doing it.  It means start at -2 and go to the end
 print(FavoriteFoods[3:5]) #prints 3,4
 # Question 6: Using the list from question 1, create a for each loop that prints each element of the list
 print ("question 6")
@@ -44,9 +44,10 @@ def reverseList(varible: list)-> list:
     reverses a list and returns it
 
     Args:
-        list (list): list to be reversed
-        Returns:
-        list: reversed list"""
+        varible: list to be reversed
+        Returns: varible (list) reversed
+        
+            """
     return  varible.reverse()  #list[::-1] also works
 
 reverseList(FavoriteFoods) # it calls the funtion, it works but it doesn't return anything, print it out to see it
