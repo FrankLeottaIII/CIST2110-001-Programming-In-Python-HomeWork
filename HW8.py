@@ -1,5 +1,5 @@
 # HW8.py
-# Author:
+# Author: Frank R Leotta III
 
 # This homework will exapnd upon the code for Lab9.py. If you did not complete Lab9.py, you should do so before attempting this homework.
 
@@ -37,6 +37,8 @@ print("these are the most common words, with their number in the text: ", word_c
 # from numpy.ma.tests.test_extras import append
 
 # Import statements (activate venv and install streamlit if you haven't already)
+# in terminal pip install streamlit
+# and
 import streamlit as st
 import datetime as dt
 
