@@ -132,15 +132,8 @@ button_semester = st.button("Calculate days until the semester ends")
 result = ""
 birthday = ""
 semester = ""
-def app():
-    if button:
-        # st.write("you clicked me")  #this is just to test if the button works
-        try:
-            global result
-            result = calculate_days(date)
-        except ValueError:
-            st.write("Please enter a valid date.")
-            return 
+
+def birthday_code():
     if button_birthday:
         try:
             global birthday
@@ -149,10 +142,24 @@ def app():
         except ValueError:
             st.write("Please enter a valid date.")
             return
+
+def semester_code():
     if button_semester:
         try:
             global semester
             semester = days_until_semester_ends(semester_end)
+
+        except ValueError:
+            st.write("Please enter a valid date.")
+            return
+
+def app():
+    birthday_code()
+    semester_code()
+    if button:
+        try:
+            global result
+            result = calculate_days(date)
         except ValueError:
             st.write("Please enter a valid date.")
             return
@@ -161,30 +168,20 @@ def app():
     st.write(f"first Selected Date: {date}")
     st.write(f"Birthday date: {birthday_imput}")
     st.write(f"Date the semester ends: {semester_end}")
-    st.subheader("Calculated results: ")
+    st.subheader("Calculated results after pressing button: ")
     st.write(f'Days until selected date: {result}')
     st.write(f'Days until your birthday: {birthday}')
     st.write(f'Days until the semester ends: {semester}')
+    st.write("\n")
+    st.subheader("For your convience, only 1 calculation will be displayed at a time")
 
-def app2():
-    if button_birthday:
-        try:
-            global birthday
-            birthday = calculate_days_until_birthday(birthday_imput)
 
-        except ValueError:
-            st.write("Please enter a valid date.")
-            return
-    st.write(f"Current Date: {dt.datetime.now().date()}")    
-    st.subheader("Dates entered by the user: ")
-    st.write(f'Days until your birthday: {birthday}')
-    st.write(f"Birthday date: {birthday_imput}")
 
 #note, if i do elif, its only 1, not all 3, so i need to do if statements instead of elif
 
 if __name__ == '__main__':
     app()
-    app2()
+
 
 #   Warning: to view this Streamlit app on a browser, run it with the following
 #   command:
@@ -199,3 +196,5 @@ if __name__ == '__main__':
 # its not working as intended, all the dates are wro
 
 ### i cant make a app2() funtion since thats not part of my homework for a second birthday button since i cant have 2 app() functions... such a shame
+#ya, no, i just need to call them in the app(), so I just made 2 functions for the birthday and semester, and then just called them in the app() function
+#didn't say i couldnt do that, so i did it.
