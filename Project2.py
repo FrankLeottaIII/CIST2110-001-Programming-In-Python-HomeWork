@@ -1,6 +1,8 @@
 # Project 2
-# Name:
-# Project 2 will test on topics learned in class so far. You will be creating a contact list program with an external csv file that will store the contacts. The program will have the following features:
+# Name: Frank R. Leotta III
+# Project 2 will test on topics learned in class so far. 
+#You will be creating a contact list program with an external csv file that will store the contacts. 
+#The program will have the following features:
 # 1. Add contact
 # 2. View contacts
 # 3. Delete contact
@@ -66,3 +68,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#______________ notes
+#Rainbow CSV was installed in VS Code to help with the csv file
+#Welcome to the Contact List Program...?
