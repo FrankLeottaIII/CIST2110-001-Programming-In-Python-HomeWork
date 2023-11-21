@@ -110,3 +110,7 @@ def calculate_days_until_birthday(birthday)->int:
 #   command:
 
 #     streamlit run c:/Users/green/Documents/2023 python class/CIST2110-001-Programming-In-Python-HomeWork/HW8.py [ARGUMENTS]
+#... so streamlit run HW8.py worked for me... i wonder why it didnt work last time...
+#... i think it was because i was in the wrong directory... i was in the directory for the venv...
+
+# anyway  windows firewall blocked part of it. cool i guess
