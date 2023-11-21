@@ -6,30 +6,46 @@
 # Copy the code from Lab9.py into this file. I'll add some comments to help you out.
 
 # Import statements (activate venv and install streamlit if you haven't already)
-# from typing import Text
-# from numpy import append
-# from numpy.core.fromnumeric import size
-# from numpy.lib.function_base import append
-# from numpy.lib.npyio import load
-# from numpy.lib.type_check import imag
-# from numpy.ma.core import append
-# from numpy.ma.extras import append
-# from numpy.ma.tests.test_extras import append
 
-# Import statements (activate venv and install streamlit if you haven't already)
+
 # in terminal pip install streamlit
-# and
-import streamlit as st
+
 import datetime as dt
+import streamlit as st
+
 
 # Streamlit title, subtitle, date, and button
 
-
-
+# Title:
+st.title("Date Counter  Web Application")
+# Subtitle:
+st.subheader("This Web Application will calculate the number of days until a certain date")
+# Date:
+date = st.date_input("Enter a date: ", format="MM/DD/YYYY") 
+# Button:
+button = st.button("Calculate")
 
 # The calculate_days function from Lab9.py
 
+def calculate_days(date)->int:
+    """_summary_
+        Returns the number of days until the date entered by the user.
 
+    Args:
+        date (date): The date entered by the user. Format: YYYY-MM-DD
+
+    Returns:
+        int: The number of days until the date entered by the user.
+    """
+    #get the current date
+    current_date = dt.datetime.now().date()
+    #calculate the number of days until the date entered by the user
+    days_difference = date - current_date
+    #Debugging to see if what the days_difference is
+    st.write(days_difference.days)
+    if days_difference.days < 0:
+        raise ValueError("The date entered is in the past.")
+    return days_difference.days
 
 
 
@@ -37,8 +53,29 @@ import datetime as dt
 
 # START OF HOMEWORK Questions
 
-# 1. Create a function calculate_days_until_birthday that will calculate how many days from now until the user's birthday. The function should take in the user's birthday as a parameter and return the number of days until their birthday. The function should also display the number of days until their birthday in the Streamlit app. The function should be called in the app function.
+# 1. Create a function calculate_days_until_birthday that will calculate how many days from now until the user's birthday. 
+# The function should take in the user's birthday as a parameter and return the number of days until their birthday. 
+# The function should also display the number of days until their birthday in the Streamlit app. 
+# The function should be called in the app function.
+def calculate_days_until_birthday(birthday)->int:
+    """_summary_
+        Returns the number of days until the date entered by the user.
 
+    Args:
+        date (date): The date entered by the user. Format: YYYY-MM-DD
+
+    Returns:
+        int: The number of days until the date entered by the user.
+    """
+    #get the current date
+    current_date = dt.datetime.now().date()
+    #calculate the number of days until the date entered by the user
+    days_difference = birthday - current_date
+    #Debugging to see if what the days_difference is
+    st.write(days_difference.days)
+    if days_difference.days < 0:
+        raise ValueError("The date entered is in the past.")
+    return days_difference.days
 
 
 # 2. Create a function days_until_semester_ends that will calculate how many days from now until the end of the semester. The function should take in the current date as a parameter and return the number of days until the end of the semester. The function should also display the number of days until the end of the semester in the Streamlit app. The function should be called in the app function.
@@ -66,5 +103,10 @@ import datetime as dt
 
 
 
-if __name__ == '__main__':
-    app()
+# if __name__ == '__main__':
+#     app()
+
+#   Warning: to view this Streamlit app on a browser, run it with the following
+#   command:
+
+#     streamlit run c:/Users/green/Documents/2023 python class/CIST2110-001-Programming-In-Python-HomeWork/HW8.py [ARGUMENTS]
