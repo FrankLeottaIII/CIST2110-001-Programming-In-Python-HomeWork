@@ -118,9 +118,53 @@ button_semester = st.button("Calculate days until the semester ends")
 # new_years = dt.date(2024, 1, 1)
 # Hint: To add an emoji, use the st.write() function. IE. st.write("🎉")
 
+#code defining the current year
+current_year = dt.datetime.now().year
+next_new_years = dt.date(2024, 1, 1)
+while next_new_year < current_year == True and next_new_year > current_year == True:  #this is the range condition for the while loop
+    next_new_year = dt.datetime.now().year + 1
+
+
+
+def days_until_new_years(current_date)->int:
+    """_summary_
+        Returns the number of days until the date entered by the user.
+
+    Args:
+        date (date): The date entered by the user. Format: YYYY-MM-DD
+
+    Returns:
+        int: The number of days until the date entered by the user.
+    """
+    #get the current date
+    # current_date = dt.datetime.now().date()
+    #calculate the number of days until the date entered by the user
+    new_years = dt.date(2024, 1, 1)
+    days_difference = new_years - current_date
+    # Debugging to see what the days_semester is
+    st.write(days_difference.days)
+    if days_difference.days < 0:
+        raise ValueError("The date entered is in the past, or the programs date is outdated.")
+
+    return days_difference.days
+
+
+
 
 # 4. create a button that will display the number of days until New Year's Day when clicked. The button should be labeled "Days until New Year's Day". The button should call the 
-# days_until_new_years function when clicked. The button should be placed below the "Calculate" button.Inside the app function call the days_until_new_years function when the button is clicked.
+# days_until_new_years function when clicked. The button should be placed below the "Calculate" button.
+# Inside the app function call the days_until_new_years function when the button is clicked.
+
+def 
+year_date = st.date_input("Enter a date: ", format="MM/DD/YYYY")
+if date.month != 12 and date.day != 31:
+        raise ValueError("The date entered is not New Year's Day.")
+button_year = st.button("Days until New Year's Day")
+
+
+
+
+#... i made all that code, and now i need to make a
 
 # Hint: You can use the st.button() function. IE. button = st.button("Click me")
 # Hint2: the days_until_new_years function takes in the current date as a parameter. You can use the dt.datetime.now().date() function to get the current date. 
@@ -153,6 +197,15 @@ def semester_code():
             st.write("Please enter a valid date.")
             return
 
+def year_code():
+    if button_year:
+        try:
+            global year
+            year = days_until_new_years(year_date)
+        except ValueError:
+            st.write("Please enter a valid date.")
+            return
+
 def app():
     birthday_code()
     semester_code()
@@ -173,7 +226,7 @@ def app():
     st.write(f'Days until your birthday: {birthday}')
     st.write(f'Days until the semester ends: {semester}')
     st.write("\n")
-    st.subheader("For your convience, only 1 calculation will be displayed at a time")
+    st.subheader("For your convience, only 1 calculation will be displayed at a time.\nIf you want to see another calculation, press the button again.")
 
 
 
