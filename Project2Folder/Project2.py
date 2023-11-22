@@ -38,13 +38,13 @@ def import_csv(csv_file):
             next(reader)  # Skip the first line
             contacts = {} # create empty dictionary
             for row in reader: # loop through reader object, to define the values of the dictionary
-                name = row[0] # name is the key, row[0] is the first column in the csv file
-                phone = row[1] # phone is the key, row[1] is the second column in the csv file
-                email = row[2]
-                birthday = row[3]
-                name_lower = name.lower()
+                Name = row[0] # name is the key, row[0] is the first column in the csv file
+                Phone = row[1] # phone is the key, row[1] is the second column in the csv file
+                Email = row[2]
+                Birthday = row[3]
+                name_lower = Name.lower()
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-                contacts[name_lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+                contacts[name_lower] = {'Name': Name,'Phone': Phone, 'Email': Email, 'Birthday': Birthday} 
             print("Contacts imported successfully.")
             return contacts
     except FileNotFoundError:
