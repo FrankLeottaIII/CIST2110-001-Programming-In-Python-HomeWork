@@ -7,10 +7,11 @@
 # 4. Save contacts to csv file
 # 5. Next Birthday
 # 0. Quit
-
+#
 # Import the csv module, datetime module
 import csv
 import datetime as dt
+import time
 
 # Make sure to show docs strings for each function and include comments in your code. Make sure to include a main function and call the main function at the end of the program.
 
