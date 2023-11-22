@@ -30,17 +30,34 @@ print("Welcome to the Contact List Program")
 # Hint5: You will need to create a dictionary of the phone number, email address, and birthday. You can do that by creating a dictionary and adding the values to the dictionary. IE. contact[row[0]] = {'Phone': row[1], 'Email': row[2], 'Birthday': dt.datetime.strptime(row[3], '%m/%d/%Y')}
 # Hint6: Use the FileNotFoundError exception to catch if the file does not exist.
 
-# contacts_read = {}
-# contacts_read = csv.reader("Project2Folder/contacts.csv")
-# print(contacts_read)
+
+def import_csv(csv_file):
+    try:
+        with open(csv_file, 'r') as file: # open file in read mode
+            reader = csv.reader(file) # create reader object, a reader object is an iterator.  It will read one line at a time
+            next(reader)  # Skip the first line
+            contacts = {} # create empty dictionary
+            for row in reader: # loop through reader object, to define the values of the dictionary
+                name = row[0] # name is the key, row[0] is the first column in the csv file
+                phone = row[1] # phone is the key, row[1] is the second column in the csv file
+                email = row[2]
+                birthday = row[3]
+                #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
+                contacts[name] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+            print("Contacts imported successfully.")
+            return contacts
+    except FileNotFoundError:
+        print("File does not exist.")
+
+#we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
+
+info = import_csv("contacts.csv")    
+print(info)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
 
-#attempt
-# next(contacts_read)
-# for row in contacts_read:
-#     print(row)
+
 
 # add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. The function will take four parameters, the name, phone number, email address, and birthday. The function will return True if the contact was added and False if the contact was not added. The function will display an error message if the contact already exists.
 # Hint 1: You will need to convert the birthday to a datetime object. You can do that by using the strptime function. IE. dt.datetime.strptime(birthday, '%m/%d/%Y')
