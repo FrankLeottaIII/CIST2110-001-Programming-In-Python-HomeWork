@@ -139,6 +139,7 @@ def days_until_new_years(current_date)->int:
     #get the current date
     # current_date = dt.datetime.now().date()
     #calculate the number of days until the date entered by the user
+    current_year = dt.datetime.now().year
     new_years = dt.date(2024, 1, 1)
     days_difference = new_years - current_date
     # Debugging to see what the days_semester is
@@ -147,6 +148,18 @@ def days_until_new_years(current_date)->int:
         raise ValueError("The date entered is in the past, or the programs date is outdated.")
 
     return days_difference.days
+
+
+def year_code():
+    global current_year
+    if button_year:
+        try:
+            global year
+            year = days_until_new_years(year_date)
+        except ValueError:
+            st.write("Please enter a valid date.")
+            return
+
 
 
 
@@ -197,6 +210,7 @@ def semester_code():
             st.write("Please enter a valid date.")
             return
 
+
 def year_code():
     if button_year:
         try:
@@ -206,9 +220,15 @@ def year_code():
             st.write("Please enter a valid date.")
             return
 
+def new_year_celebration():
+    if year = c
+
+
 def app():
     birthday_code()
     semester_code()
+    year_code()
+    
     if button:
         try:
             global result
