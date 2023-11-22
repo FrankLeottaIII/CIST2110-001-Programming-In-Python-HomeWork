@@ -29,7 +29,14 @@ print("Welcome to the Contact List Program")
 # Hint4: You will need to convert the birthday to a datetime object. You can do that by using the strptime function. IE. dt.datetime.strptime(row[3], '%m/%d/%Y')
 # Hint5: You will need to create a dictionary of the phone number, email address, and birthday. You can do that by creating a dictionary and adding the values to the dictionary. IE. contact[row[0]] = {'Phone': row[1], 'Email': row[2], 'Birthday': dt.datetime.strptime(row[3], '%m/%d/%Y')}
 # Hint6: Use the FileNotFoundError exception to catch if the file does not exist.
+contacts_read = csv.reader("Project2Folder/contacts.csv")
+contacts = {}
 
+# Skip the first line of the csv file since it contains the column headers
+# i can use next() to skip the first line
+next(contacts_read)
+for row in contacts_read:
+    print(row)
 
 # add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. The function will take four parameters, the name, phone number, email address, and birthday. The function will return True if the contact was added and False if the contact was not added. The function will display an error message if the contact already exists.
 # Hint 1: You will need to convert the birthday to a datetime object. You can do that by using the strptime function. IE. dt.datetime.strptime(birthday, '%m/%d/%Y')
