@@ -41,7 +41,7 @@ def import_csv(csv_file):
                 Name = row[0] # name is the key, row[0] is the first column in the csv file
                 Phone = row[1] # phone is the key, row[1] is the second column in the csv file
                 Email = row[2]
-                Birthday = row[3]
+                Birthday = dt.datetime.strptime(row[3], '%m/%d/%Y')
                 name_lower = Name.lower()
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
                 contacts[name_lower] = {'Name': Name,'Phone': Phone, 'Email': Email, 'Birthday': Birthday} 
