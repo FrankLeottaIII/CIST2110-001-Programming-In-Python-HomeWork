@@ -42,8 +42,9 @@ def import_csv(csv_file):
                 phone = row[1] # phone is the key, row[1] is the second column in the csv file
                 email = row[2]
                 birthday = row[3]
+                name_lower = name.lower()
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-                contacts[name] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+                contacts[name_lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
             print("Contacts imported successfully.")
             return contacts
     except FileNotFoundError:
@@ -59,9 +60,33 @@ print(info)
 
 
 
-# add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. The function will take four parameters, the name, phone number, email address, and birthday. The function will return True if the contact was added and False if the contact was not added. The function will display an error message if the contact already exists.
-# Hint 1: You will need to convert the birthday to a datetime object. You can do that by using the strptime function. IE. dt.datetime.strptime(birthday, '%m/%d/%Y')
-# Hint 2: To add a contact to the dictionary, you need to use the key as the name and the values as a dictionary that contains the phone number, email address, and birthday. To reference the specific key you can use contact[name]
+# add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. 
+# The function will take four parameters, the name, phone number, email address, and birthday.
+#  The function will return True if the contact was added and False if the contact was not added. 
+# The function will display an error message if the contact already exists.
+# Hint 1: You will need to convert the birthday to a datetime object.
+#  You can do that by using the strptime function. IE. dt.datetime.strptime(birthday, '%m/%d/%Y')
+# Hint 2: To add a contact to the dictionary, you need to use the key as the name and the values as a 
+# dictionary that contains the phone number, email address, and birthday. To reference the specific key you can use contact[name]
+
+
+def gather_contact():
+    name = input("Enter name: ")
+    phone = input("Enter phone: ")
+    email = input("Enter email: ")
+    birthday = input("Enter birthday: ")
+    return name, phone, email, birthday
+
+def add_contact(name, phone, email, birthday):
+    
+    if name in info:
+        print("Contact already exists.")
+        return False
+    else:
+
+        info[name.lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday}
+        return True
+
 
 
 # view_contacts() - This function will display the contacts in the dictionary. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. Use string formatting to display the contacts in a table format. The table should have a header row and each contact should be on a separate row. The table should have the following columns: Name, Phone, Email, Birthday. The birthday should be formatted as mm/dd/yyyy. The table should be sorted by name.
