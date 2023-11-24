@@ -42,13 +42,21 @@ def import_csv(csv_file):
                 phone = row[1] # phone is the key, row[1] is the second column in the csv file
                 email = row[2]
                 birthday = dt.datetime.strptime(row[3], '%m/%d/%Y')
-                name_lower = Name.lower()
+                name2 = name
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-                contacts[name_lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+                contacts[name2] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
             print("Contacts imported successfully.")
             return contacts
     except FileNotFoundError:
         print("File does not exist.")
+
+
+                #finding something
+#                name_lower = name.lower()
+                #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
+#                contacts[name_lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+#
+#
 
 #we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
 
@@ -100,8 +108,18 @@ def add_contact(name, phone, email, birthday):
 #  The function will display an error message if the contact does not exist.
 """ this is done for the most part, need to program  what happens"""
 
-# next_birthday() - This function will display the next birthday. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. The function will display a message if there are no birthdays in the next 30 days. The function will display the next birthday and name if there is a birthday in the next 30 days. Use string formatting to display the next birthday. The next birthday should be sorted by the next birthday. The next birthday should be formatted as mm/dd/yyyy.
-# Hint: We dont care about the year, only the month and day. There are many ways to solve this issue. 1st you could replace all the years with the current year.2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the current month and day.
+# next_birthday() - This function will display the next birthday. 
+# The function will take no parameters. The function will return nothing.
+#  The function will display a message if there are no contacts in the dictionary.
+#  The function will display a message if there are no birthdays in the next 30 days.
+#  The function will display the next birthday and name if there is a birthday in the next 30 days.
+#  Use string formatting to display the next birthday.
+#  The next birthday should be sorted by the next birthday.
+#  The next birthday should be formatted as mm/dd/yyyy.
+# Hint: We dont care about the year, only the month and day.
+#  There are many ways to solve this issue. 1st you could replace all the years with the current year.
+# 2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the 
+# current month and day.
 
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
 
