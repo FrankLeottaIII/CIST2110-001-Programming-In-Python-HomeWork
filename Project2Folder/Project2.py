@@ -93,8 +93,12 @@ def add_contact(name, phone, email, birthday):
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
 
-
-# delete_contact(id) - This function will delete a contact from the dictionary. The function will take one parameter, the name of the contact to delete. The function will return True if the contact was deleted and False if the contact was not deleted. The function will display an error message if the contact does not exist.
+""" I think I got this done"""
+# delete_contact(id) - This function will delete a contact from the dictionary. 
+# The function will take one parameter, the name of the contact to delete.
+#  The function will return True if the contact was deleted and False if the contact was not deleted.
+#  The function will display an error message if the contact does not exist.
+""" this is done for the most part, need to program  what happens"""
 
 # next_birthday() - This function will display the next birthday. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. The function will display a message if there are no birthdays in the next 30 days. The function will display the next birthday and name if there is a birthday in the next 30 days. Use string formatting to display the next birthday. The next birthday should be sorted by the next birthday. The next birthday should be formatted as mm/dd/yyyy.
 # Hint: We dont care about the year, only the month and day. There are many ways to solve this issue. 1st you could replace all the years with the current year.2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the current month and day.
