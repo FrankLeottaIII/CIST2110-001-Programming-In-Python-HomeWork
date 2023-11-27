@@ -29,22 +29,24 @@ print("Welcome to the Contact List Program")
 # Hint4: You will need to convert the birthday to a datetime object. You can do that by using the strptime function. IE. dt.datetime.strptime(row[3], '%m/%d/%Y')
 # Hint5: You will need to create a dictionary of the phone number, email address, and birthday. You can do that by creating a dictionary and adding the values to the dictionary. IE. contact[row[0]] = {'Phone': row[1], 'Email': row[2], 'Birthday': dt.datetime.strptime(row[3], '%m/%d/%Y')}
 # Hint6: Use the FileNotFoundError exception to catch if the file does not exist.
-
+contacts = {}
 
 def import_csv(csv_file):
     try:
         with open(csv_file, 'r') as file: # open file in read mode
             reader = csv.reader(file) # create reader object, a reader object is an iterator.  It will read one line at a time
             next(reader)  # Skip the first line
+            global contacts
             contacts = {} # create empty dictionary
             for row in reader: # loop through reader object, to define the values of the dictionary
                 name = row[0] # name is the key, row[0] is the first column in the csv file
                 phone = row[1] # phone is the key, row[1] is the second column in the csv file
                 email = row[2]
-                birthday = dt.datetime.strptime(row[3], '%m/%d/%Y')
+                birthday = row[3]
+                birthday_code = dt.datetime.strptime(row[3], '%m/%d/%Y')
                 name2 = name
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-                contacts[name2] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
+                contacts[name2] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday, 'birthday_code': birthday_code} 
             print("Contacts imported successfully.")
             return contacts
     except FileNotFoundError:
@@ -58,15 +60,18 @@ def import_csv(csv_file):
 #
 #
 
+
+
 #we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
 
+#contacts = the dictionary now
 info = import_csv("contacts.csv")    
 print(info)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
 
-
+# -------------------------------------------------------------------------------------
 
 # add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. 
 # The function will take four parameters, the name, phone number, email address, and birthday.
@@ -77,31 +82,184 @@ print(info)
 # Hint 2: To add a contact to the dictionary, you need to use the key as the name and the values as a 
 # dictionary that contains the phone number, email address, and birthday. To reference the specific key you can use contact[name]
 
+# global varibles:
+name = ""
+name_key = ""
+phone = ""
+email = ""
+birthday = ""
+birthday_converted = ""
 
-def gather_contact():
-    name = input("Enter name: ")
-    phone = input("Enter phone: ")
+
+def get_name():
+    global name
+    name = input("Enter name, This is case sensitive : ")
+    return name,
+
+def lower_name_key():
+    global name_key
+    global name
+    name_key = name.lower()
+    return name_key
+
+def get_phone():
+    global phone
+    print(" I will need the phone number in the following format: 123-456-7890")
+    phone = input("Enter phone number: ")
+    return phone
+
+
+def get_email():
+    global email
     email = input("Enter email: ")
+    return email
+
+def get_birthday():
+    global birthday
+    #print(" I will need the birthday in the following format: mm/dd/yyyy")
+    soon = True
+    while soon == True:
+         month = input("Enter month: ")
+        if month == 1 or month == 2 or month == 3 or month == 4 or month == 5 or month == 6 or month == 7 or month == 8 or month == 9
+            month = "0" + month
+            soon = False
+        elif month == 10 or month == 11 or month == 12:
+            month = month
+            soon = False
+        else:
+            print("Error: invalid month")
+            soon = True
+    cage = True
+    while cage == True:
+        day = input("Enter day: ")
+        if day == 1 or day == 2 or day == 3 or day == 4 or day == 5 or day == 6 or day == 7 or day == 8 or day == 9
+            day = "0" + day
+            cage = False
+        elif day == 10 or day == 11 or day == 12 or day == 13 or day == 14 or day == 15 or day == 16 or day == 17 or day == 18 or day == 19 or day == 20 or day == 21 or day == 22 or day == 23 or day == 24 or day == 25 or day == 26 or day == 27 or day == 28 or day == 29 or day == 30 or day == 31:
+            day = day
+            cage = False
+        else:
+            print("Error: invalid day")
+            cage = True
+    mouse = True
+    while mouse == True:
+        year = input("Enter year: ")    
+            if year !=
+
     birthday = input("Enter birthday: ")
-    return name, phone, email, birthday
+    #birthday = dt.datetime.strptime(birthday, '%m/%d/%Y')
+    return birthday
+def birthday_convert(date):
+    global birthday
+    birthday_converted = birthday.strftime('%m/%d/%Y')
+    return birthday_converted
+
+
+def get_contact_info():
+    global name
+    global name_key
+    global phone
+    global email
+    global birthday
+    get_name()
+    lower_name_key()
+    get_phone()
+    get_email()
+    get_birthday()
+    birthday_convert(birthday)
+
+    return name, name_key, phone, email, birthday, birthday_converted 
+
+
+#------------------------
+
+
+
 
 def add_contact(name, phone, email, birthday):
-    
-    if name in info:
-        print("Contact already exists.")
-        return False
+    global contacts
+    try:
+        if name in contacts:
+            print("Error: Contact already exists")
+            return False
+        global contacts
+        contacts[name] = {'phone': phone, 'email': email, 'birthday': birthday}
+        return True    
+    except ValueError:
+        print("Error: cannot add contact due to ValueError")
+        return False 
+
+waldo = add_contact(name, phone, email, birthday)
+
+def add_contact_action(name, phone, email, birthday, birthday_converted):
+    global contacts
+    if waldo == True:
+        contacts[name] = {'phone': phone, 'email': email, 'birthday': birthday}
+        print("Contact added successfully.")
+        return contacts
     else:
+        print("Contact not added.")
+    return contacts
 
-        info[name.lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday}
-        return True
+#in code
+def reset_contact_varibles():
+    global name
+    global name_key
+    global phone
+    global email
+    global birthday
+    name = ""
+    name_key = ""
+    phone = ""
+    email = ""
+    birthday = ""
+    return name, name_key, phone, email, birthday
 
 
 
-# view_contacts() - This function will display the contacts in the dictionary. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. Use string formatting to display the contacts in a table format. The table should have a header row and each contact should be on a separate row. The table should have the following columns: Name, Phone, Email, Birthday. The birthday should be formatted as mm/dd/yyyy. The table should be sorted by name.
+# def gather_contact():
+#     name = input("Enter name: ")
+#     phone = input("Enter phone: ")
+#     email = input("Enter email: ")
+#     birthday = input("Enter birthday: ")
+#     return name, phone, email, birthday
+
+# def add_contact(name, phone, email, birthday):
+#     global contacts
+#     if name in contacts:
+#         print("Contact already exists.")
+#         return False
+#     else:
+
+#         contacts[name] = {'name': name,'phone': phone, 'email': email, 'birthday': birthday}
+#         return True
+# case sensisive warning
+
+#-------------------------------------------------------------------------------------
+
+#2.) view_contacts() - This function will display the contacts in the dictionary. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. Use string formatting to display the contacts in a table format. The table should have a header row and each contact should be on a separate row. The table should have the following columns: Name, Phone, Email, Birthday. The birthday should be formatted as mm/dd/yyyy. The table should be sorted by name.
+# key = input("please enter a name.  This is case sensitive: ")
+# for contacts, value in contacts.items():
+#         if key == 'name' in contacts:
+#             print(value)
+
+
+def view_contacts():
+    global contacts
+    if len(contacts) == 0:
+        print("There are no contacts in the dictionary.")
+    else:
+        print("Name\tPhone\tEmail\tBirthday")
+        for name, info in contacts.items():
+            print(f'{name}\t{info["Phone"]}\t{info["Email"]}\t{info["Birthday"]}')
+view_contacts()
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
 
 """ I think I got this done"""
+
+#____----------------------------
+
 # delete_contact(id) - This function will delete a contact from the dictionary. 
 # The function will take one parameter, the name of the contact to delete.
 #  The function will return True if the contact was deleted and False if the contact was not deleted.
