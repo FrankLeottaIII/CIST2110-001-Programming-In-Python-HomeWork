@@ -10,15 +10,12 @@ counter = 0
 score_total = 0
 test_score = 0
 
-something = True
 
-while something == True:
+while True:
     test_score = input("Enter test score (or 'x' to quit): ")
     if test_score != "x":
         test_score = int(test_score)
         counter += 1
-    else:
-        something = False
     if test_score >= 0 and test_score <= 100:
         score_total += test_score
         counter += 1
