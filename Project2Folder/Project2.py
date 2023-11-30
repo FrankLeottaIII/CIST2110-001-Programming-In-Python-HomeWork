@@ -15,7 +15,7 @@ import time
 
 # Make sure to show docs strings for each function and include comments in your code. Make sure to include a main function and call the main function at the end of the program.
 
-print("Welcome to the Contact List Program")
+# print("Welcome to the Contact List Program")
 
 # There is also a contact.csv file that will be used to store the contacts. The csv file will have the following format:
 # Name,Phone,Email,Birthday
@@ -70,7 +70,7 @@ print(info)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
-
+############################################################
 # -------------------------------------------------------------------------------------
 
 # add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. 
@@ -177,38 +177,35 @@ def add_contact_action(name, phone, email, birthday, birthday_converted):
     return contacts
 
 #in code
-def reset_contact_varibles():
+def reset_varibles():
     global name
     global name_key
     global phone
     global email
     global birthday
+    global do_I_delete_contact
     name = ""
     name_key = ""
     phone = ""
     email = ""
     birthday = ""
-    return name, name_key, phone, email, birthday
+    do_I_delete_contact = None
+    return name, name_key, phone, email, do_I_delete_contact 
 
+##################################
 
+def view_contacts():
+    if len(contacts) == 0:
+        print("No contacts found.")
+    else:
+        print("Name\tPhone\t\tEmail\t\t\tBirthday")
+        print("----------------------------------------------")
+        for name, contact in sorted(contacts.items()):
+            phone = contact['Phone']
+            email = contact['Email']
+            birthday = contact['Birthday'].strftime("%m/%d/%Y")
+            print(f"{name}\t{phone}\t{email}\t{birthday}")
 
-# def gather_contact():
-#     name = input("Enter name: ")
-#     phone = input("Enter phone: ")
-#     email = input("Enter email: ")
-#     birthday = input("Enter birthday: ")
-#     return name, phone, email, birthday
-
-# def add_contact(name, phone, email, birthday):
-#     global contacts
-#     if name in contacts:
-#         print("Contact already exists.")
-#         return False
-#     else:
-
-#         contacts[name] = {'name': name,'phone': phone, 'email': email, 'birthday': birthday}
-#         return True
-# case sensisive warning
 
 #-------------------------------------------------------------------------------------
 
@@ -240,6 +237,28 @@ view_contacts()
 #  The function will return True if the contact was deleted and False if the contact was not deleted.
 #  The function will display an error message if the contact does not exist.
 """ this is done for the most part, need to program  what happens"""
+def delete_contact(do_I_delete_contact: bool)->bool:
+    global contacts
+
+    if name in contacts:
+        #del contacts[name]
+        return True
+    else:
+        print("Error: Contact does not exist")
+        return False
+
+def delete_contact_action():
+    if do_I_delete_contact == True:
+        try:
+            name = get_name()
+            del contacts[name]
+            print("Contact deleted")
+            return  contacts[name]
+        except:
+            print("Error: Contact does not exist")
+    else:
+        print("Contact not deleted")
+
 
 # next_birthday() - This function will display the next birthday. 
 # The function will take no parameters. The function will return nothing.
@@ -261,6 +280,62 @@ view_contacts()
 
 def main():
     """Add Code here to call the functions and run the program"""
+    import csv
+    import datetime as dt
+    import time
+    wilson = True
+    while wilson == True:
+        contacts = {}
+        info = import_csv("contacts.csv")    
+        #Global varibles:
+        # global varibles:
+name = ""
+name_key = ""
+phone = ""
+email = ""
+birthday = ""
+birthday_converted = ""
+do_I_delete_contact = bool()
+
+        print("Welcome to the Contact List Program")
+    print("please choose from the following options below: ")
+    print("--------------------------------------------------")
+print("press 1 to Add contact")
+print("press 2 to View contacts")
+print("press 3 to Delete contact")
+print("press 4 to Save contacts to csv file")
+print("press 5 to Next Birthday")
+print("press 0 to Quit")
+print("--------------------------------------------------")
+print("\n")
+imput = input("Please enter your choice: ")
+if imput == "1":
+        add_contact(name, phone, email, birthday)
+        add_contact_action(name, phone, email, birthday, birthday_converted)
+        reset_contact_varibles()
+        print("returning to main menu")
+elif imput == "2":
+        get_name()
+        view_contacts()
+        reset_varibles()
+elif imput == "3":
+        get_name()
+        delete_contact(name)
+        delete_contact_action()
+        reset_varibles()
+elif imput == "4":
+        save_csv()
+elif imput == "5":
+        next_birthday()
+elif imput == "0":
+    print("Thank you for using the Contact List Program")
+    time.sleep(2)
+    print("Goodbye")
+    quit()
+
+else:
+    print("Invalid input")
+
     pass  # Remove this line when you start writing your code
 
     # After you are done with the program, answer the following questions using code (show your code and output):
