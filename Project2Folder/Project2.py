@@ -259,7 +259,7 @@ def delete_contact_action():
     else:
         print("Contact not deleted")
 
-
+#-------------------------------------------------------------------------------------
 # next_birthday() - This function will display the next birthday. 
 # The function will take no parameters. The function will return nothing.
 #  The function will display a message if there are no contacts in the dictionary.
@@ -272,7 +272,46 @@ def delete_contact_action():
 #  There are many ways to solve this issue. 1st you could replace all the years with the current year.
 # 2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the 
 # current month and day.
+import datetime as dt
+today = ""
+next_birthdays = ""
+birthday = ""
 
+def next_birthday():
+    if not contacts:# not sure if this is needed
+        print("No contacts in the dictionary.") # not sure if this is needed
+        return #not sure if this is needed 
+    global today
+    global next_birthdays
+    today = dt.date.today()
+    next_birthdays = None
+    
+    for contact in contacts.values():
+        birthday = contact.get('birthday')
+        if birthday:
+            birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
+            birthday = birthday.replace(year=today.year)
+            
+            if birthday >= today and (next_birthday is None or birthday < next_birthday):
+                next_birthdays = birthday
+    
+    if next_birthday is None:
+        print("No birthdays in the next 30 days.")
+    else:
+        print("Next birthday: {}".format(next_birthday.strftime("%m/%d/%Y")))
+ 
+def reset_birthday_varibles():
+    global today
+    global next_birthday
+    global birthday
+    today = ""
+    next_birthday = ""
+    birthday = ""
+    return today, next_birthdays, birthday
+
+
+
+#-------------------------------------------------------------------------------------
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
 
 # The main function will be used to run the program. The main function will use a while loop to display the menu and get the user's choice. The main function will call the appropriate function based on the user's choice. The main function will also call the save_csv function to save the contacts to the csv file before the program ends.
@@ -314,19 +353,24 @@ if imput == "1":
         add_contact_action(name, phone, email, birthday, birthday_converted)
         reset_contact_varibles()
         print("returning to main menu")
+        wilson = True
 elif imput == "2":
         get_name()
         view_contacts()
         reset_varibles()
+        wilson = True
 elif imput == "3":
         get_name()
-        delete_contact(name)
+        delete_contact(name) #should i pop this instead???
         delete_contact_action()
         reset_varibles()
+        wilson = True
 elif imput == "4":
         save_csv()
 elif imput == "5":
         next_birthday()
+        reset_birthday_varibles()
+        wilson = True
 elif imput == "0":
     print("Thank you for using the Contact List Program")
     time.sleep(2)
