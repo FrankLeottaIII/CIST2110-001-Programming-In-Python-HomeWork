@@ -70,7 +70,7 @@ def import_csv(csv_file):
 
 #contacts = the dictionary now
 contacts = import_csv("contacts.csv")    
-#print(contacts)
+print(contacts)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
@@ -86,75 +86,87 @@ contacts = import_csv("contacts.csv")
 # Hint 2: To add a contact to the dictionary, you need to use the key as the name and the values as a 
 # dictionary that contains the phone number, email address, and birthday. To reference the specific key you can use contact[name]
 
-# global varibles:
-name = ""
-phone = ""
-email = ""
-birthday = ""
-waldo = None
+# global variables:
+NAME = ""
+PHONE = ""
+EMAIL = ""
+BIRTHDAY = ""
+WALDO = None
 
 
 def get_name():
-    global name
+    """
+    Get the name from the user.
+    """
+    global NAME
     try:
-        name = input("Enter name, This is case sensitive : ")
-        return name
+        NAME = input("Enter name, This is case sensitive : ")
+        return NAME
     except ValueError:
         print("Error: cannot add contact due to ValueError")
-        name = input("Enter name, This is case sensitive : ")
+        NAME = input("Enter name, This is case sensitive : ")
 
-first_three = ""
-second_three = ""
-last_four = ""
+FIRST_THREE = ""
+SECOND_THREE = ""
+LAST_FOUR = ""
 
 def first_three_fun():
-    global first_three
+    """
+    Get the first three digits of the phone number from the user.
+    """
+    global FIRST_THREE
     print(" I will need the phone number in the following format: 123-456-7890")
     try:
-        global first_three
-        first_three = input("Enter the first three digits of the phone number: ")
-        if not first_three.isdigit() or len(first_three) != 3:
+        FIRST_THREE = input("Enter the first three digits of the phone number: ")
+        if not FIRST_THREE.isdigit() or len(FIRST_THREE) != 3:
             print("Invalid input, please try again")
-            first_three = input("Enter the first three digits of the phone number: ")
-        return first_three
+            FIRST_THREE = input("Enter the first three digits of the phone number: ")
+        return FIRST_THREE
     except ValueError:
         print("Error: lets try that again")
 
 def second_three_fun():
-    global second_three
+    """
+    Get the second three digits of the phone number from the user.
+    """
+    global SECOND_THREE
     try:
-        global second_three
-        second_three = input("Enter the second three digits of the phone number: ")
-        if not second_three.isdigit() or len(second_three) != 3:
+        SECOND_THREE = input("Enter the second three digits of the phone number: ")
+        if not SECOND_THREE.isdigit() or len(SECOND_THREE) != 3:
             print("Invalid input, lets try that again")
-            second_three = input("Enter the second three digits of the phone number: ")
-        return second_three
+            SECOND_THREE = input("Enter the second three digits of the phone number: ")
+        return SECOND_THREE
     except ValueError:
         print("Error: lets try that again")
     # Not sure if value error will work here
 
 def last_four_fun():
-    global last_four
+    """
+    Get the last four digits of the phone number from the user.
+    """
+    global LAST_FOUR
     try:
-        global last_four
-        last_four = input("Enter the last four digits of the phone number: ")
-        if not last_four.isdigit() or len(last_four) != 4:
+        LAST_FOUR = input("Enter the last four digits of the phone number: ")
+        if not LAST_FOUR.isdigit() or len(LAST_FOUR) != 4:
             print("Invalid input, lets try that again")
-            last_four = input("Enter the last four digits of the phone number: ")
-        return last_four
+            LAST_FOUR = input("Enter the last four digits of the phone number: ")
+        return LAST_FOUR
     except ValueError:
         print("Error: lets try that again")
 
 def get_phone():
-    global phone
-    global first_three
-    global second_three
-    global last_four
+    """
+    Get the phone number from the user.
+    """
+    global PHONE
+    global FIRST_THREE
+    global SECOND_THREE
+    global LAST_FOUR
     first_three_fun()
     second_three_fun()
     last_four_fun()
-    phone = first_three + "-" + second_three + "-" + last_four
-    return phone
+    PHONE = FIRST_THREE + "-" + SECOND_THREE + "-" + LAST_FOUR
+    return PHONE
 
 
 
@@ -180,7 +192,7 @@ def get_birthday():
 
 
 def get_contact_info():
-    global name
+    global NAME
     global phone
     global email
     global birthday
@@ -189,7 +201,7 @@ def get_contact_info():
     get_email()
     get_birthday()
 
-    return name, phone, email, birthday
+    return NAME, phone, email, birthday
 
 
 #------------------------
@@ -222,8 +234,12 @@ def add_contact_action(name, phone, email, birthday):
     """
     global contacts
     global waldo
+    global NAME
+    global phone
+    global email
+    global birthday
     if waldo is True:
-        contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
+        contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
         print("Contact added successfully.")
     else:
         print("Contact not added.")
@@ -231,24 +247,24 @@ def add_contact_action(name, phone, email, birthday):
 
 #in code
 def reset_variables():
-    global name
-    global phone
-    global email
-    global birthday
-    global do_I_delete_contact
-    global first_three
-    global second_three
-    global last_four
-    global waldo
-    name = ""
-    phone = ""
-    email = ""
-    birthday = ""
-    do_I_delete_contact = ""
-    first_three = ""
-    second_three = ""
-    last_four = ""
-    waldo = ""
+    global NAME
+    global PHONE
+    global EMAIL
+    global BIRTHDAY
+    global DO_I_DELETE_CONTACT
+    global FIRST_THREE
+    global SECOND_THREE
+    global LAST_FOUR
+    global WALDO
+    NAME = ""
+    PHONE = ""
+    EMAIL = ""
+    BIRTHDAY = ""
+    DO_I_DELETE_CONTACT = ""
+    FIRST_THREE = ""
+    SECOND_THREE = ""
+    LAST_FOUR = ""
+    WALDO = ""
 
 ##################################
 
@@ -455,7 +471,7 @@ def main():
         print("--------------------------------------------------")
         print("\n")
         imput = input("Please enter your choice: ")
-        imput_list = ["0", "1", "2", "3", "4", "5", "restart"]
+        imput_list = ["0", "1", "2", "3", "4", "5", "restart",'list']
         while imput not in imput_list:
             print("Invalid input")
             imput = input("Please enter your choice: ")
@@ -474,24 +490,24 @@ def main():
             imput = input("Please enter your choice: ")
         elif imput == "1":
             print("Add contact has been selected")
-            reset_varibles()
+            reset_variables()
             get_contact_info()
             waldo = add_contact(name, phone, email, birthday)
             add_contact_action(name, phone, email, birthday)
-            reset_varibles()
+            reset_variables()
             print("returning to main menu")
             imput = "restart"
         elif imput == "2":
             print("View contacts has been selected")
             view_contacts()
-            reset_varibles()
+            reset_variables()
             imput = "restart"
         elif imput == "3":
             print("Delete contact has been selected")
             get_name()
             delete_contact(name) #should i pop this instead???
             delete_contact_action()
-            reset_varibles()
+            reset_variables()
             imput = "restart"
         elif imput == "4":
             print("Save contacts has been selected")
@@ -508,7 +524,6 @@ def main():
             filename = None
             greg = None
             imput = "restart"
-
         elif imput == "5":
             print("Look up next birthday has been selected")
             next_birthday()
@@ -519,6 +534,9 @@ def main():
             time.sleep(2)
             print("Goodbye")
             quit()
+        elif imput == "list":
+            print(contacts)
+            imput = "restart"
         else:
             print("Invalid input")
             print("returning to the main menu")
