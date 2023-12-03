@@ -209,11 +209,13 @@ waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
 
 def add_contact_action(name, phone, email, birthday):
+    """
+    Add a contact to the contacts dictionary.
+    """
     global contacts
-    if waldo == True:
-        contacts[name] = {'phone': phone, 'email': email, 'birthday': birthday}
+    if waldo is True:
+        contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
         print("Contact added successfully.")
-        return contacts
     else:
         print("Contact not added.")
     return contacts
@@ -243,23 +245,19 @@ def reset_varibles():
 #-------------------------------------------------------------------------------------
 
 #2.) view_contacts() - This function will display the contacts in the dictionary. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. Use string formatting to display the contacts in a table format. The table should have a header row and each contact should be on a separate row. The table should have the following columns: Name, Phone, Email, Birthday. The birthday should be formatted as mm/dd/yyyy. The table should be sorted by name.
-# key = input("please enter a name.  This is case sensitive: ")
-# for contacts, value in contacts.items():
-#         if key == 'name' in contacts:
-#             print(value)
-
 
 def view_contacts():
+    """
+    Display the contacts in the dictionary in a table format.
+    """
     global contacts
-    global imput
+
     if len(contacts) == 0:
         print("There are no contacts in the dictionary.")
-        imput = "restart"
     else:
-        
         print("Name\tPhone\tEmail\tBirthday")
-        for name, contacts in contacts.items():
-            print(f'{name}\t{contacts["Phone"]}\t{contacts["Email"]}\t{contacts["Birthday"].strftime("%m/%d/%Y")}')
+        for name, contact in contacts.items():
+            print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{contact["Birthday"].strftime("%m/%d/%Y")}')
 
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
