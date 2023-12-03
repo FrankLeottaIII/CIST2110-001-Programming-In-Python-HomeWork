@@ -265,8 +265,7 @@ def view_contacts():
         print("Name\tPhone\tEmail\tBirthday")
         for name, contact in contacts.items():
             birthday_string = contact["Birthday"]
-            birthday_object = dt.datetime.strptime(birthday_string, "%Y-%m-%d")
-            formatted_birthday = birthday_object.strftime("%m/%d/%Y")
+            formatted_birthday = birthday_string.strftime("%m/%d/%Y")
             print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{formatted_birthday}')# remember to format before putting into f string... jesus crist
 
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
