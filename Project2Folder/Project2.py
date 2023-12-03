@@ -88,7 +88,6 @@ print(contacts)
 
 # global varibles:
 name = ""
-name_key = ""
 phone = ""
 email = ""
 birthday = ""
@@ -97,14 +96,16 @@ birthday = ""
 
 def get_name():
     global name
-    name = input("Enter name, This is case sensitive : ")
-    return name
+    try:
+        name = input("Enter name, This is case sensitive : ")
+        return name
+    except ValueError:
+        print("Error: cannot add contact due to ValueError")
+        name = input("Enter name, This is case sensitive : ")
 
-def lower_name_key():
-    global name_key
-    global name
-    name_key = name.lower()
-    return name_key
+
+
+
 
 def get_phone():
     global phone
@@ -134,17 +135,15 @@ def get_birthday():
 
 def get_contact_info():
     global name
-    global name_key
     global phone
     global email
     global birthday
     get_name()
-    lower_name_key()
     get_phone()
     get_email()
     get_birthday()
 
-    return name, name_key, phone, email, birthday
+    return name, phone, email, birthday
 
 
 #------------------------
@@ -180,18 +179,16 @@ def add_contact_action(name, phone, email, birthday):
 #in code
 def reset_varibles():
     global name
-    global name_key
     global phone
     global email
     global birthday
     global do_I_delete_contact
     name = ""
-    name_key = ""
     phone = ""
     email = ""
     birthday = ""
     do_I_delete_contact = None
-    return name, name_key, phone, email, do_I_delete_contact 
+    return name, phone, email, do_I_delete_contact 
 
 ##################################
 
@@ -382,7 +379,6 @@ def main():
     wilson = True
     while wilson == True:
         name = ""
-        name_key = ""
         phone = "" 
         email = ""
         birthday = ""
