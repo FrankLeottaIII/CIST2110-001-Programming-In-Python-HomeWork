@@ -309,7 +309,66 @@ def reset_birthday_varibles():
 
 #-------------------------------------------------------------------------------------
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
+question = None
+the_filename = None
+def save_question():
+    global imput
+    global the_filename
+    question = input("Would you like to save the contacts to a csv file? (y/n): ")
+    if question.lower() == 'y':
+        the_filename = input("Enter the filename to save the contacts to: ")
+        return the_filename
+    else:
+        print("Contacts not saved.")
+        imput = "restart"
+        return imput
 
+
+def save_csv(filename):
+    try:
+        with open(filename, 'w') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+            for contact in contacts.values():
+                writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
+        return True
+    except:
+        return False
+
+
+
+def save_csv_action(question):
+        if question == True:
+            with open(filename, 'w') as file:
+                writer = csv.writer(file)
+                writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+                for contact in contacts.values():
+                    writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
+            print("Contacts saved successfully.")
+            return contacts
+        else:  
+            print("Contacts not saved.")
+            return contacts
+        
+question = None
+filename = None
+
+"""
+question = None
+filename = None
+greg = None
+save_question()
+greg = save_csv(the_filename)
+save_csv_action(greg)
+question = None
+filename = None
+greg = None
+imput = "restart"
+
+
+
+
+"""
 # The main function will be used to run the program. The main function will use a while loop to display the menu and get the user's choice. The main function will call the appropriate function based on the user's choice. The main function will also call the save_csv function to save the contacts to the csv file before the program ends.
 
 
@@ -383,8 +442,20 @@ def main():
             imput = "restart"
         elif imput == "4":
             print("Save contacts has been selected")
-            save_csv()
+            global question
+            global The_filename
+            global greg
+            question = None
+            the_filename = None
+            greg = None
+            save_question()
+            greg = save_csv(the_filename)
+            save_csv_action(greg)
+            question = None
+            filename = None
+            greg = None
             imput = "restart"
+
         elif imput == "5":
             print("Look up next birthday has been selected")
             next_birthday()
