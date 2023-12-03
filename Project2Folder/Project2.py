@@ -170,6 +170,7 @@ def get_birthday():
             break
         except ValueError:
             print("Invalid date format. Please enter the birthday in the format mm/dd/yyyy.")
+    birthday = dt.datetime.strptime(birthday, '%m/%d/%Y')
     return birthday
 
 
@@ -263,7 +264,10 @@ def view_contacts():
     else:
         print("Name\tPhone\tEmail\tBirthday")
         for name, contact in contacts.items():
-            print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{contact["Birthday"].strftime("%m/%d/%Y")}')
+            birthday_string = contact["Birthday"]
+            birthday_object = dt.datetime.strptime(birthday_string, "%Y-%m-%d")
+            formatted_birthday = birthday_object.strftime("%m/%d/%Y")
+            print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{formatted_birthday}')# remember to format before putting into f string... jesus crist
 
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
