@@ -343,9 +343,8 @@ def main():
         print("--------------------------------------------------")
         print("\n")
         imput = input("Please enter your choice: ")
-        if imput != "0" or "1" or "2" or "3" or "4" or "5" or "restart":
+        if imput != 0 or imput != 1 or imput != 2 or imput != 3 or or imput != 4 oror imput != 5 or imput != "restart":
             print("Invalid input")
-            imput = input("Please enter your choice: ")
         elif imput == "restart":
             print("Welcome to the Contact List Program")
             print("please choose from the following options below: ")
