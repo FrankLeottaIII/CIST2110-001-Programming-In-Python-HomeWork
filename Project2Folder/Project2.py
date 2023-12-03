@@ -113,9 +113,8 @@ def first_three_fun():
     
     try:
         first_three = input("Enter the first three digits of the phone number: ")
-
-        if len(first_three) != 3:
-            print("Invalid input")
+        if not first_three.isdigit() or len(first_three) != 3:
+            print("Invalid input, please try again")
             first_three = input("Enter the first three digits of the phone number: ")
         return first_three
     except ValueError:
@@ -125,7 +124,7 @@ def second_three_fun():
     global second_three
     try:
         second_three = input("Enter the second three digits of the phone number: ")
-        if len(second_three) != 3:
+        if not second_three.isdigit() or len(second_three) != 3:
             print("Invalid input, lets try that again")
             second_three = input("Enter the second three digits of the phone number: ")
         return second_three
@@ -137,7 +136,7 @@ def last_four_fun():
     global last_four
     try:
         last_four = input("Enter the last four digits of the phone number: ")
-        if len(last_four) != 4:
+        if not last_four.isdigit() or len(last_four) != 4:
             print("Invalid input, lets try that again")
             last_four = input("Enter the last four digits of the phone number: ")
         return last_four
