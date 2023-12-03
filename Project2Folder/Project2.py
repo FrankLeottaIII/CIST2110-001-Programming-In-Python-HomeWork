@@ -1,5 +1,10 @@
 # Project 2
 # Name:
+"""NEED TO
+later fix the add contact funtions, notable the get stuff.
+try and except needed for each get function notably
+
+"""
 # Project 2 will test on topics learned in class so far. You will be creating a contact list program with an external csv file that will store the contacts. The program will have the following features:
 # 1. Add contact
 # 2. View contacts
