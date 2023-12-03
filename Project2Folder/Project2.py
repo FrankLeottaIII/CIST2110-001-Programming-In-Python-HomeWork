@@ -42,11 +42,10 @@ def import_csv(csv_file):
                 name = row[0] # name is the key, row[0] is the first column in the csv file
                 phone = row[1] # phone is the key, row[1] is the second column in the csv file
                 email = row[2]
-                birthday = row[3]
-                birthday_code = dt.datetime.strptime(row[3], '%m/%d/%Y')
+                birthday = dt.datetime.strptime(row[3], '%m/%d/%Y')
                 name2 = name
                 #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-                contacts[name2] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday, 'birthday_code': birthday_code} 
+                contacts[name2] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
             print("Contacts imported successfully.")
             return contacts
     except FileNotFoundError:
@@ -65,8 +64,8 @@ def import_csv(csv_file):
 #we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
 
 #contacts = the dictionary now
-info = import_csv("contacts.csv")    
-print(info)
+contacts = import_csv("contacts.csv")    
+print(contacts)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
@@ -88,7 +87,7 @@ name_key = ""
 phone = ""
 email = ""
 birthday = ""
-birthday_converted = ""
+
 
 
 def get_name():
@@ -116,18 +115,16 @@ def get_email():
 
 def get_birthday():
     global birthday
-    #print(" I will need the birthday in the following format: mm/dd/yyyy")
-    date = st.date_input("Enter a date: ", format="MM/DD/YYYY") 
-
-    
-
-    birthday = input("Enter birthday: ")
-    #birthday = dt.datetime.strptime(birthday, '%m/%d/%Y')
+    while True:
+        try:
+            birthday = input("Enter birthday in this format: (mm/dd/yyyy): ")
+            dt.datetime.strptime(birthday, '%m/%d/%Y')
+            break
+        except ValueError:
+            print("Invalid date format. Please enter the birthday in the format mm/dd/yyyy.")
     return birthday
-def birthday_convert(date):
-    global birthday
-    birthday_converted = birthday.strftime('%m/%d/%Y')
-    return birthday_converted
+
+
 
 
 def get_contact_info():
@@ -141,9 +138,8 @@ def get_contact_info():
     get_phone()
     get_email()
     get_birthday()
-    birthday_convert(birthday)
 
-    return name, name_key, phone, email, birthday, birthday_converted 
+    return name, name_key, phone, email, birthday
 
 
 #------------------------
@@ -163,8 +159,9 @@ def add_contact(name, phone, email, birthday):
     except ValueError:
         print("Error: cannot add contact due to ValueError")
         return False 
-
+#________________________________________________________________________________
 waldo = add_contact(name, phone, email, birthday)
+#________________________________________________________________________________
 
 def add_contact_action(name, phone, email, birthday, birthday_converted):
     global contacts
@@ -223,7 +220,7 @@ def view_contacts():
     else:
         print("Name\tPhone\tEmail\tBirthday")
         for name, info in contacts.items():
-            print(f'{name}\t{info["Phone"]}\t{info["Email"]}\t{info["Birthday"]}')
+            print(f'{name}\t{contacts["Phone"]}\t{contacts["Email"]}\t{contacts["Birthday"]}')
 view_contacts()
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
@@ -318,6 +315,7 @@ def reset_birthday_varibles():
 
 
 def main():
+    
     """Add Code here to call the functions and run the program"""
     import csv
     import datetime as dt
@@ -325,62 +323,85 @@ def main():
     wilson = True
     while wilson == True:
         contacts = {}
-        info = import_csv("contacts.csv")    
+        contacts = import_csv("contacts.csv")    
         #Global varibles:
         # global varibles:
-name = ""
-name_key = ""
-phone = ""
-email = ""
-birthday = ""
-birthday_converted = ""
-do_I_delete_contact = bool()
+        name = ""
+        name_key = ""
+        phone = "" 
+        email = ""
+        birthday = ""
+        do_I_delete_contact = bool()
 
-        print("Welcome to the Contact List Program")
+    print("Welcome to the Contact List Program")
     print("please choose from the following options below: ")
     print("--------------------------------------------------")
-print("press 1 to Add contact")
-print("press 2 to View contacts")
-print("press 3 to Delete contact")
-print("press 4 to Save contacts to csv file")
-print("press 5 to Next Birthday")
-print("press 0 to Quit")
-print("--------------------------------------------------")
-print("\n")
-imput = input("Please enter your choice: ")
-if imput == "1":
+    print("press 1 to Add contact")
+    print("press 2 to View contacts")
+    print("press 3 to Delete contact")
+    print("press 4 to Save contacts to csv file")
+    print("press 5 to Next Birthday")
+    print("press 0 to Quit")
+    print("--------------------------------------------------")
+    print("\n")
+    imput = input("Please enter your choice: ")
+    if imput != "0" or "1" or "2" or "3" or "4" or "5" or "restart":
+        print("Invalid input")
+        imput = input("Please enter your choice: ")
+        wilson = True
+    elif imput == "restart":   
+        print("Welcome to the Contact List Program")
+        print("please choose from the following options below: ")
+        print("--------------------------------------------------")
+        print("press 1 to Add contact")
+        print("press 2 to View contacts")
+        print("press 3 to Delete contact")
+        print("press 4 to Save contacts to csv file")
+        print("press 5 to Next Birthday")
+        print("press 0 to Quit")
+        print("--------------------------------------------------")
+        print("\n")
+        imput = input("Please enter your choice: ")
+    elif imput == "1":
         add_contact(name, phone, email, birthday)
-        add_contact_action(name, phone, email, birthday, birthday_converted)
+        add_contact_action(name, phone, email, birthday)
         reset_contact_varibles()
         print("returning to main menu")
+        imput = "restart"
         wilson = True
-elif imput == "2":
+    elif imput == "2":
         get_name()
         view_contacts()
         reset_varibles()
+        imput = "restart"
         wilson = True
-elif imput == "3":
+    elif imput == "3":
         get_name()
         delete_contact(name) #should i pop this instead???
         delete_contact_action()
         reset_varibles()
+        imput = "restart"
         wilson = True
-elif imput == "4":
+    elif imput == "4":
         save_csv()
-elif imput == "5":
+        imput = "restart"
+    elif imput == "5":
         next_birthday()
         reset_birthday_varibles()
+        imput = "restart"
         wilson = True
-elif imput == "0":
-    print("Thank you for using the Contact List Program")
-    time.sleep(2)
-    print("Goodbye")
-    quit()
+    elif imput == "0":
+        print("Thank you for using the Contact List Program")
+        time.sleep(2)
+        print("Goodbye")
+        quit()
+    else:
+        print("Invalid input")
+        print("returning to the main menu")
+        imput = "restart"
+        wilson = True
 
-else:
-    print("Invalid input")
-
-    pass  # Remove this line when you start writing your code
+    #pass  # Remove this line when you start writing your code
 
     # After you are done with the program, answer the following questions using code (show your code and output):
     # How many names start with the letter A?
