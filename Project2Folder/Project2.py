@@ -93,7 +93,7 @@ birthday = ""
 def get_name():
     global name
     name = input("Enter name, This is case sensitive : ")
-    return name,
+    return name
 
 def lower_name_key():
     global name_key
@@ -190,17 +190,6 @@ def reset_varibles():
 
 ##################################
 
-def view_contacts():
-    if len(contacts) == 0:
-        print("No contacts found.")
-    else:
-        print("Name\tPhone\t\tEmail\t\t\tBirthday")
-        print("----------------------------------------------")
-        for name, contact in sorted(contacts.items()):
-            phone = contact['Phone']
-            email = contact['Email']
-            birthday = contact['Birthday'].strftime("%m/%d/%Y")
-            print(f"{name}\t{phone}\t{email}\t{birthday}")
 
 
 #-------------------------------------------------------------------------------------
@@ -214,13 +203,16 @@ def view_contacts():
 
 def view_contacts():
     global contacts
+    global imput
     if len(contacts) == 0:
         print("There are no contacts in the dictionary.")
+        imput = "restart"
     else:
+        
         print("Name\tPhone\tEmail\tBirthday")
         for name, contacts in contacts.items():
-            print(f'{name}\t{contacts["Phone"]}\t{contacts["Email"]}\t{contacts["Birthday"]}')
-view_contacts()
+            print(f'{name}\t{contacts["Phone"]}\t{contacts["Email"]}\t{contacts["Birthday"].strftime("%m/%d/%Y")}')
+
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
 
@@ -429,7 +421,6 @@ def main():
             imput = "restart"
         elif imput == "2":
             print("View contacts has been selected")
-            get_name()
             view_contacts()
             reset_varibles()
             imput = "restart"
