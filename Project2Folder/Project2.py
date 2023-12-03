@@ -362,7 +362,6 @@ def next_birthday():
             
             if birthday >= today and (next_birthday is None or birthday < next_birthday):
                 next_birthdays = birthday
-    
     if next_birthday is None:
         print("No birthdays in the next 30 days.")
     else:
