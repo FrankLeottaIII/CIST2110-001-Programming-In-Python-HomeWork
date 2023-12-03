@@ -424,7 +424,7 @@ def main():
             print("Add contact has been selected")
             add_contact(name, phone, email, birthday)
             add_contact_action(name, phone, email, birthday)
-            reset_contact_varibles()
+            reset_varibles()
             print("returning to main menu")
             imput = "restart"
         elif imput == "2":
