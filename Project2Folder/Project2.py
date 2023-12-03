@@ -559,13 +559,33 @@ def main():
 
     # After you are done with the program, answer the following questions using code (show your code and output):
     # How many names start with the letter A?
-
+count = 0
+for name in contacts:
+    if name.startswith('A'):
+        count += 1
+print(count)
     # How many emails are yahoo emails?
-
+yahoo_count = 0
+for email in contacts:
+    if email.endswith('yahoo.com'):
+        yahoo_count += 1
+print(yahoo_count)
     # How many .org emails are there?
-
+org_count = 0
+for email in contacts:
+    if email.endswith('.org'):
+        org_count += 1
+print(org_count)
     # How many contacts have a birthday in January?
-
-
+jan_count = 0
+for contact in contacts:
+    if contact['birthday'].month == 1:
+        jan_count += 1
+print(jan_count)
+    # How many contacts have a birthday in February?
+feb_count = 0
+for contact in contacts:
+    if contact['birthday'].month == 2:
+        feb_count += 1
 if __name__ == "__main__":
     main()
