@@ -226,9 +226,18 @@ def get_contact_info():
 #________________________________________________________________________________
 #waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
+new_name = ""
+def put_contact_together(NAME, PHONE, EMAIL, BIRTHDAY):
+    global new_name
+    NAME = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+    new_name = NAME
+    return new_name
 
-def put_contact_action(name, phone, email, birthday):
-        return contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
+def put_in_dictionary(name):
+    global contacts
+    contacts = {NAME: name}
+    return contacts 
+#contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
 
 
 def add_contact(name, phone, email, birthday) -> bool:
@@ -488,11 +497,11 @@ def main():
             print("\n")
             imput = input("Please enter your choice: ")
         elif imput == "1":
-            global WALDO
             print("Add contact has been selected")
             reset_variables()
             get_contact_info()
-            put_contact_action(NAME, PHONE, EMAIL, BIRTHDAY)
+            put_contact_together(NAME, PHONE, EMAIL, BIRTHDAY)  
+            put_in_dictionary(new_name)
             WALDO = add_contact(NAME, PHONE, EMAIL, BIRTHDAY)
             if WALDO == False:
                 print("Error: Contact already exists")
