@@ -70,7 +70,7 @@ def import_csv(csv_file):
 
 #contacts = the dictionary now
 contacts = import_csv("contacts.csv")    
-print(contacts)
+#print(contacts)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
