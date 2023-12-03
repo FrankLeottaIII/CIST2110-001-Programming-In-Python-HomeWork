@@ -110,8 +110,8 @@ last_four = ""
 def first_three_fun():
     global first_three
     print(" I will need the phone number in the following format: 123-456-7890")
-    
     try:
+        global first_three
         first_three = input("Enter the first three digits of the phone number: ")
         if not first_three.isdigit() or len(first_three) != 3:
             print("Invalid input, please try again")
@@ -123,6 +123,7 @@ def first_three_fun():
 def second_three_fun():
     global second_three
     try:
+        global second_three
         second_three = input("Enter the second three digits of the phone number: ")
         if not second_three.isdigit() or len(second_three) != 3:
             print("Invalid input, lets try that again")
@@ -135,6 +136,7 @@ def second_three_fun():
 def last_four_fun():
     global last_four
     try:
+        global last_four
         last_four = input("Enter the last four digits of the phone number: ")
         if not last_four.isdigit() or len(last_four) != 4:
             print("Invalid input, lets try that again")
@@ -228,23 +230,25 @@ def add_contact_action(name, phone, email, birthday):
     return contacts
 
 #in code
-def reset_varibles():
+def reset_variables():
     global name
     global phone
     global email
     global birthday
     global do_I_delete_contact
     global first_three
+    global second_three
+    global last_four
     global waldo
     name = ""
     phone = ""
     email = ""
     birthday = ""
+    do_I_delete_contact = ""
     first_three = ""
     second_three = ""
     last_four = ""
-    do_I_delete_contact = None
-    waldo = None
+    waldo = ""
 
 ##################################
 
