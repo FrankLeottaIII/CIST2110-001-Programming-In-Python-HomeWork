@@ -91,7 +91,7 @@ name = ""
 phone = ""
 email = ""
 birthday = ""
-
+waldo = None
 
 
 def get_name():
@@ -193,19 +193,23 @@ def get_contact_info():
 
 
 
-def add_contact(name, phone, email, birthday):
+def add_contact(name, phone, email, birthday) -> bool:
+    """ returns true if contact was added, false if not"""
     global contacts
+    global waldo
     try:
         if name in contacts:
             print("Error: Contact already exists")
             return False
-        contacts[name] = {'Phone': phone, 'Email': email, 'Birthday': birthday}
-        return True    
+        else: 
+            contacts[name] = {'Phone': phone, 'Email': email, 'Birthday': birthday}
+            waldo = True
+            return True    
     except ValueError:
         print("Error: cannot add contact due to ValueError")
         return False 
 #________________________________________________________________________________
-waldo = add_contact(name, phone, email, birthday)
+#waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
 
 def add_contact_action(name, phone, email, birthday):
@@ -213,6 +217,7 @@ def add_contact_action(name, phone, email, birthday):
     Add a contact to the contacts dictionary.
     """
     global contacts
+    global waldo
     if waldo is True:
         contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
         print("Contact added successfully.")
@@ -228,6 +233,7 @@ def reset_varibles():
     global birthday
     global do_I_delete_contact
     global first_three
+    global waldo
     name = ""
     phone = ""
     email = ""
@@ -236,7 +242,7 @@ def reset_varibles():
     second_three = ""
     last_four = ""
     do_I_delete_contact = None
-    return name, phone, email, do_I_delete_contact 
+    waldo = None
 
 ##################################
 
@@ -430,6 +436,7 @@ def main():
         second_three = ""
         last_four = ""
         do_I_delete_contact = bool()
+        waldo = None
         print("Welcome to the Contact List Program")
         print("please choose from the following options below: ")
         print("--------------------------------------------------")
@@ -463,7 +470,7 @@ def main():
             print("Add contact has been selected")
             reset_varibles()
             get_contact_info()
-            add_contact(name, phone, email, birthday)
+            waldo = add_contact(name, phone, email, birthday)
             add_contact_action(name, phone, email, birthday)
             reset_varibles()
             print("returning to main menu")
