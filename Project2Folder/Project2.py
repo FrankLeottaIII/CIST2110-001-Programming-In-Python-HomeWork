@@ -325,6 +325,7 @@ def main():
         contacts = import_csv("contacts.csv")    
         #Global varibles:
         # global varibles:
+
         name = ""
         name_key = ""
         phone = "" 
@@ -343,13 +344,15 @@ def main():
         print("--------------------------------------------------")
         print("\n")
         imput = input("Please enter your choice: ")
-        if imput != 0 or imput != 1 or imput != 2 or imput != 3 or imput != 4 or imput != 5 or imput != "restart":
+        imput_list = ["0", "1", "2", "3", "4", "5", "restart"]
+        while imput not in imput_list:
             print("Invalid input")
-        elif imput == "restart":
+            imput = input("Please enter your choice: ")
+        if imput == "restart":
             print("Welcome to the Contact List Program")
             print("please choose from the following options below: ")
             print("--------------------------------------------------")
-            print("press 1 to Add contact")
+            print("press 1 to Add contact") 
             print("press 2 to View contacts")
             print("press 3 to Delete contact")
             print("press 4 to Save contacts to csv file")
