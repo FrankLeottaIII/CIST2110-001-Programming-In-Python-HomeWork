@@ -91,7 +91,7 @@ NAME = ""
 PHONE = ""
 EMAIL = ""
 BIRTHDAY = ""
-WALDO = None
+WALDO = ""
 
 
 def get_name():
@@ -171,37 +171,37 @@ def get_phone():
 
 
 def get_email():
-    global email
-    email = input("Enter email: ")
-    return email
+    global EMAIL
+    EMAIL = input("Enter email: ")
+    return EMAIL
 
 
 def get_birthday():
-    global birthday
+    global BIRTHDAY
     while True:
         try:
-            birthday = input("Enter birthday in this format: (mm/dd/yyyy): ")
-            dt.datetime.strptime(birthday, '%m/%d/%Y')
+            BIRTHDAY = input("Enter birthday in this format: (mm/dd/yyyy): ")
+            dt.datetime.strptime(BIRTHDAY, '%m/%d/%Y')
             break
         except ValueError:
             print("Invalid date format. Please enter the birthday in the format mm/dd/yyyy.")
-    birthday = dt.datetime.strptime(birthday, '%m/%d/%Y')
-    return birthday
+    BIRTHDAY = dt.datetime.strptime(BIRTHDAY, '%m/%d/%Y')
+    return BIRTHDAY
 
 
 
 
 def get_contact_info():
     global NAME
-    global phone
-    global email
-    global birthday
+    global PHONE
+    global EMAIL
+    global BIRTHDAY
     get_name()
     get_phone()
     get_email()
     get_birthday()
 
-    return NAME, phone, email, birthday
+    return NAME, PHONE, EMAIL, BIRTHDAY
 
 
 #------------------------
@@ -209,41 +209,40 @@ def get_contact_info():
 
 
 
-def add_contact(name, phone, email, birthday) -> bool:
-    """ returns true if contact was added, false if not"""
-    global contacts
-    global waldo
-    try:
-        if name in contacts:
-            print("Error: Contact already exists")
-            return False
-        else: 
-            contacts[name] = {'Phone': phone, 'Email': email, 'Birthday': birthday}
-            waldo = True
-            return True    
-    except ValueError:
-        print("Error: cannot add contact due to ValueError")
-        return False 
+# def add_contact(name, phone, email, birthday) -> bool:
+#     """ returns true if contact was added, false if not"""
+#     global contacts
+#     try:
+#         if name in contacts:
+#             print("Error: Contact already exists")
+#             return False
+#         elif name not in contacts: 
+#             contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
+#             WALDO = True
+#             return True    
+#     except ValueError:
+#         print("Error: cannot add contact due to ValueError")
+#         return False 
 #________________________________________________________________________________
 #waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
 
-def add_contact_action(name, phone, email, birthday):
-    """
-    Add a contact to the contacts dictionary.
-    """
+def put_contact_action(name, phone, email, birthday):
+        return contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
+
+
+def add_contact(name, phone, email, birthday) -> bool:
+    """ returns true if contact was added, false if not"""
     global contacts
-    global waldo
-    global NAME
-    global phone
-    global email
-    global birthday
-    if waldo is True:
-        contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
-        print("Contact added successfully.")
-    else:
-        print("Contact not added.")
-    return contacts
+    try:
+        if NAME in contacts:
+            print("contact sucessfully added")
+            return True
+        elif name not in contacts:  
+            return False
+    except ValueError:
+        print("Error: cannot add contact due to ValueError")
+        return False 
 
 #in code
 def reset_variables():
@@ -301,8 +300,8 @@ def view_contacts():
 """ this is done for the most part, need to program  what happens"""
 def delete_contact(do_I_delete_contact: bool)->bool:
     global contacts
-
-    if name in contacts:
+    global NAME
+    if NAME in contacts:
         #del contacts[name]
         return True
     else:
@@ -450,15 +449,15 @@ def main():
     # global varibles:
     wilson = True
     while wilson == True:
-        name = ""
-        phone = "" 
-        email = ""
-        birthday = ""
-        first_three = ""
-        second_three = ""
-        last_four = ""
-        do_I_delete_contact = bool()
-        waldo = None
+        NAME = ""
+        PHONE = "" 
+        EMAIL = ""
+        BIRTHDAY = ""
+        FIRST_THREE = ""
+        SECOND_THREE = ""
+        LAST_FOUR = ""
+        DO_I_DELETE_CONTACT = bool()
+        WALDO = ""
         print("Welcome to the Contact List Program")
         print("please choose from the following options below: ")
         print("--------------------------------------------------")
@@ -489,11 +488,20 @@ def main():
             print("\n")
             imput = input("Please enter your choice: ")
         elif imput == "1":
+            global WALDO
             print("Add contact has been selected")
             reset_variables()
             get_contact_info()
-            waldo = add_contact(name, phone, email, birthday)
-            add_contact_action(name, phone, email, birthday)
+            put_contact_action(NAME, PHONE, EMAIL, BIRTHDAY)
+            WALDO = add_contact(NAME, PHONE, EMAIL, BIRTHDAY)
+            if WALDO == False:
+                print("Error: Contact already exists")
+                reset_variables()
+                imput = "restart"
+            elif WALDO == True:
+                print("contact sucessfully added")
+                reset_variables()
+                imput = "restart"
             reset_variables()
             print("returning to main menu")
             imput = "restart"
