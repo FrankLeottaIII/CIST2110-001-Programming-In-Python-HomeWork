@@ -153,8 +153,7 @@ def add_contact(name, phone, email, birthday):
         if name in contacts:
             print("Error: Contact already exists")
             return False
-        global contacts
-        contacts[name] = {'phone': phone, 'email': email, 'birthday': birthday}
+        contacts[name] = {'Phone': phone, 'Email': email, 'Birthday': birthday}
         return True    
     except ValueError:
         print("Error: cannot add contact due to ValueError")
@@ -163,7 +162,7 @@ def add_contact(name, phone, email, birthday):
 waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
 
-def add_contact_action(name, phone, email, birthday, birthday_converted):
+def add_contact_action(name, phone, email, birthday):
     global contacts
     if waldo == True:
         contacts[name] = {'phone': phone, 'email': email, 'birthday': birthday}
@@ -219,7 +218,7 @@ def view_contacts():
         print("There are no contacts in the dictionary.")
     else:
         print("Name\tPhone\tEmail\tBirthday")
-        for name, info in contacts.items():
+        for name, contacts in contacts.items():
             print(f'{name}\t{contacts["Phone"]}\t{contacts["Email"]}\t{contacts["Birthday"]}')
 view_contacts()
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
@@ -349,7 +348,7 @@ def main():
         print("Invalid input")
         imput = input("Please enter your choice: ")
         wilson = True
-    elif imput == "restart":   
+    elif imput == "restart":
         print("Welcome to the Contact List Program")
         print("please choose from the following options below: ")
         print("--------------------------------------------------")
