@@ -414,6 +414,8 @@ def main():
             imput = input("Please enter your choice: ")
         elif imput == "1":
             print("Add contact has been selected")
+            reset_varibles()
+            get_contact_info()
             add_contact(name, phone, email, birthday)
             add_contact_action(name, phone, email, birthday)
             reset_varibles()
