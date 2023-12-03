@@ -370,13 +370,12 @@ def main():
     import csv
     import datetime as dt
     import time
+    contacts = {}
+    contacts = import_csv("contacts.csv")    
+    #Global varibles:
+    # global varibles:
     wilson = True
     while wilson == True:
-        contacts = {}
-        contacts = import_csv("contacts.csv")    
-        #Global varibles:
-        # global varibles:
-
         name = ""
         name_key = ""
         phone = "" 
