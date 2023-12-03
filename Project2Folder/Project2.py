@@ -103,15 +103,58 @@ def get_name():
         print("Error: cannot add contact due to ValueError")
         name = input("Enter name, This is case sensitive : ")
 
+first_three = ""
+second_three = ""
+last_four = ""
 
+def first_three_fun():
+    global first_three
+    print(" I will need the phone number in the following format: 123-456-7890")
+    
+    try:
+        first_three = input("Enter the first three digits of the phone number: ")
 
+        if len(first_three) != 3:
+            print("Invalid input")
+            first_three = input("Enter the first three digits of the phone number: ")
+        return first_three
+    except ValueError:
+        print("Error: lets try that again")
 
+def second_three_fun():
+    global second_three
+    try:
+        second_three = input("Enter the second three digits of the phone number: ")
+        if len(second_three) != 3:
+            print("Invalid input, lets try that again")
+            second_three = input("Enter the second three digits of the phone number: ")
+        return second_three
+    except ValueError:
+        print("Error: lets try that again")
+    # Not sure if value error will work here
+
+def last_four_fun():
+    global last_four
+    try:
+        last_four = input("Enter the last four digits of the phone number: ")
+        if len(last_four) != 4:
+            print("Invalid input, lets try that again")
+            last_four = input("Enter the last four digits of the phone number: ")
+        return last_four
+    except ValueError:
+        print("Error: lets try that again")
 
 def get_phone():
     global phone
-    print(" I will need the phone number in the following format: 123-456-7890")
-    phone = input("Enter phone number: ")
+    global first_three
+    global second_three
+    global last_four
+    first_three_fun()
+    second_three_fun()
+    last_four_fun()
+    phone = first_three + "-" + second_three + "-" + last_four
     return phone
+
 
 
 def get_email():
@@ -183,10 +226,14 @@ def reset_varibles():
     global email
     global birthday
     global do_I_delete_contact
+    global first_three
     name = ""
     phone = ""
     email = ""
     birthday = ""
+    first_three = ""
+    second_three = ""
+    last_four = ""
     do_I_delete_contact = None
     return name, phone, email, do_I_delete_contact 
 
@@ -382,6 +429,9 @@ def main():
         phone = "" 
         email = ""
         birthday = ""
+        first_three = ""
+        second_three = ""
+        last_four = ""
         do_I_delete_contact = bool()
         print("Welcome to the Contact List Program")
         print("please choose from the following options below: ")
