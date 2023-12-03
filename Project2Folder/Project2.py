@@ -331,24 +331,6 @@ def main():
         email = ""
         birthday = ""
         do_I_delete_contact = bool()
-
-    print("Welcome to the Contact List Program")
-    print("please choose from the following options below: ")
-    print("--------------------------------------------------")
-    print("press 1 to Add contact")
-    print("press 2 to View contacts")
-    print("press 3 to Delete contact")
-    print("press 4 to Save contacts to csv file")
-    print("press 5 to Next Birthday")
-    print("press 0 to Quit")
-    print("--------------------------------------------------")
-    print("\n")
-    imput = input("Please enter your choice: ")
-    if imput != "0" or "1" or "2" or "3" or "4" or "5" or "restart":
-        print("Invalid input")
-        imput = input("Please enter your choice: ")
-        wilson = True
-    elif imput == "restart":
         print("Welcome to the Contact List Program")
         print("please choose from the following options below: ")
         print("--------------------------------------------------")
@@ -361,44 +343,61 @@ def main():
         print("--------------------------------------------------")
         print("\n")
         imput = input("Please enter your choice: ")
-    elif imput == "1":
-        add_contact(name, phone, email, birthday)
-        add_contact_action(name, phone, email, birthday)
-        reset_contact_varibles()
-        print("returning to main menu")
-        imput = "restart"
-        wilson = True
-    elif imput == "2":
-        get_name()
-        view_contacts()
-        reset_varibles()
-        imput = "restart"
-        wilson = True
-    elif imput == "3":
-        get_name()
-        delete_contact(name) #should i pop this instead???
-        delete_contact_action()
-        reset_varibles()
-        imput = "restart"
-        wilson = True
-    elif imput == "4":
-        save_csv()
-        imput = "restart"
-    elif imput == "5":
-        next_birthday()
-        reset_birthday_varibles()
-        imput = "restart"
-        wilson = True
-    elif imput == "0":
-        print("Thank you for using the Contact List Program")
-        time.sleep(2)
-        print("Goodbye")
-        quit()
-    else:
-        print("Invalid input")
-        print("returning to the main menu")
-        imput = "restart"
-        wilson = True
+        if imput != "0" or "1" or "2" or "3" or "4" or "5" or "restart":
+            print("Invalid input")
+            imput = input("Please enter your choice: ")
+            wilson = True
+        elif imput == "restart":
+            print("Welcome to the Contact List Program")
+            print("please choose from the following options below: ")
+            print("--------------------------------------------------")
+            print("press 1 to Add contact")
+            print("press 2 to View contacts")
+            print("press 3 to Delete contact")
+            print("press 4 to Save contacts to csv file")
+            print("press 5 to Next Birthday")
+            print("press 0 to Quit")
+            print("--------------------------------------------------")
+            print("\n")
+            imput = input("Please enter your choice: ")
+        elif imput == "1":
+            add_contact(name, phone, email, birthday)
+            add_contact_action(name, phone, email, birthday)
+            reset_contact_varibles()
+            print("returning to main menu")
+            imput = "restart"
+            wilson = True
+        elif imput == "2":
+            get_name()
+            view_contacts()
+            reset_varibles()
+            imput = "restart"
+            wilson = True
+        elif imput == "3":
+            get_name()
+            delete_contact(name) #should i pop this instead???
+            delete_contact_action()
+            reset_varibles()
+            imput = "restart"
+            wilson = True
+        elif imput == "4":
+            save_csv()
+            imput = "restart"
+        elif imput == "5":
+            next_birthday()
+            reset_birthday_varibles()
+            imput = "restart"
+            wilson = True
+        elif imput == "0":
+            print("Thank you for using the Contact List Program")
+            time.sleep(2)
+            print("Goodbye")
+            quit()
+        else:
+            print("Invalid input")
+            print("returning to the main menu")
+            imput = "restart"
+            wilson = True
 
     #pass  # Remove this line when you start writing your code
 
