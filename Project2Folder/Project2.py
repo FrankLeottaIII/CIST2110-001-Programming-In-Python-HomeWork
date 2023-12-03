@@ -346,7 +346,6 @@ def main():
         if imput != "0" or "1" or "2" or "3" or "4" or "5" or "restart":
             print("Invalid input")
             imput = input("Please enter your choice: ")
-            wilson = True
         elif imput == "restart":
             print("Welcome to the Contact List Program")
             print("please choose from the following options below: ")
@@ -366,20 +365,17 @@ def main():
             reset_contact_varibles()
             print("returning to main menu")
             imput = "restart"
-            wilson = True
         elif imput == "2":
             get_name()
             view_contacts()
             reset_varibles()
             imput = "restart"
-            wilson = True
         elif imput == "3":
             get_name()
             delete_contact(name) #should i pop this instead???
             delete_contact_action()
             reset_varibles()
             imput = "restart"
-            wilson = True
         elif imput == "4":
             save_csv()
             imput = "restart"
@@ -387,7 +383,6 @@ def main():
             next_birthday()
             reset_birthday_varibles()
             imput = "restart"
-            wilson = True
         elif imput == "0":
             print("Thank you for using the Contact List Program")
             time.sleep(2)
@@ -397,7 +392,6 @@ def main():
             print("Invalid input")
             print("returning to the main menu")
             imput = "restart"
-            wilson = True
 
     #pass  # Remove this line when you start writing your code
 
