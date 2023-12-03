@@ -362,26 +362,31 @@ def main():
             print("\n")
             imput = input("Please enter your choice: ")
         elif imput == "1":
+            print("Add contact has been selected")
             add_contact(name, phone, email, birthday)
             add_contact_action(name, phone, email, birthday)
             reset_contact_varibles()
             print("returning to main menu")
             imput = "restart"
         elif imput == "2":
+            print("View contacts has been selected")
             get_name()
             view_contacts()
             reset_varibles()
             imput = "restart"
         elif imput == "3":
+            print("Delete contact has been selected")
             get_name()
             delete_contact(name) #should i pop this instead???
             delete_contact_action()
             reset_varibles()
             imput = "restart"
         elif imput == "4":
+            print("Save contacts has been selected")
             save_csv()
             imput = "restart"
         elif imput == "5":
+            print("Look up next birthday has been selected")
             next_birthday()
             reset_birthday_varibles()
             imput = "restart"
