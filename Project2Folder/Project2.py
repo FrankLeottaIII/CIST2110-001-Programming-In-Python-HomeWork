@@ -227,16 +227,14 @@ def get_contact_info():
 #waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
 new_name = ""
-def put_contact_together(NAME, PHONE, EMAIL, BIRTHDAY):
-    global new_name
-    NAME = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
-    new_name = NAME
-    return new_name
+def put_contact_together(name, phone, email, birthday):
+    global contracts
+    contacts[name] = {
+    'phone': phone,
+    'email': email,
+    'birthday': birthday
+    }
 
-def put_in_dictionary(name):
-    global contacts
-    contacts = {NAME: name}
-    return contacts 
 #contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
 
 
@@ -501,7 +499,6 @@ def main():
             reset_variables()
             get_contact_info()
             put_contact_together(NAME, PHONE, EMAIL, BIRTHDAY)  
-            put_in_dictionary(new_name)
             WALDO = add_contact(NAME, PHONE, EMAIL, BIRTHDAY)
             if WALDO == False:
                 print("Error: Contact already exists")
@@ -522,7 +519,7 @@ def main():
         elif imput == "3":
             print("Delete contact has been selected")
             get_name()
-            delete_contact(name) #should i pop this instead???
+            delete_contact(NAME) #should i pop this instead???
             delete_contact_action()
             reset_variables()
             imput = "restart"
