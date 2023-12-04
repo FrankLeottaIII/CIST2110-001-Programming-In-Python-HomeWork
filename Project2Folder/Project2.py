@@ -64,7 +64,28 @@ def import_csv(csv_file):
 #
 #
 
+contacts = {
+    'John': {
+        'Phone': '1234567890',
+        'Email': 'john@example.com',
+        'Birthday': '01/01/2000'
+    }
+}
 
+# Iterate over the outer dictionary
+for key, value in contacts.items():
+    # Check if the value is a dictionary
+    if isinstance(value, dict):
+        # Access the inner dictionary
+        inner_dict = value
+        print(inner_dict)
+        # Access specific values within the inner dictionary
+        phone = inner_dict.get('Phone')
+        email = inner_dict.get('Email')
+        birthday = inner_dict.get('Birthday')
+        print(phone)
+        print(email)
+        print(birthday)
 
 #we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
 
@@ -229,10 +250,11 @@ def get_contact_info():
 new_name = ""
 def put_contact_together(name, phone, email, birthday):
     global contracts
-    contacts[name] = {
-    'phone': phone,
-    'email': email,
-    'birthday': birthday
+    contacts[name] = { 
+    'Name': name,
+    'Phone': phone,
+    'Email': email,
+    'Birthday': birthday
     }
 
 #contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
@@ -351,57 +373,36 @@ def delete_contact_action(question):
         print("Contact not deleted")
 
 #-------------------------------------------------------------------------------------
-# next_birthday() - This function will display the next birthday. 
-# The function will take no parameters. The function will return nothing.
-#  The function will display a message if there are no contacts in the dictionary.
-#  The function will display a message if there are no birthdays in the next 30 days.
-#  The function will display the next birthday and name if there is a birthday in the next 30 days.
-#  Use string formatting to display the next birthday.
-#  The next birthday should be sorted by the next birthday.
-#  The next birthday should be formatted as mm/dd/yyyy.
-# Hint: We dont care about the year, only the month and day.
-#  There are many ways to solve this issue. 1st you could replace all the years with the current year.
-# 2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the 
-# current month and day.
 def next_birthday():
     """
-    1st) Display the next birthday in the contacts dictionary.
+    Display the next birthday in the contacts dictionary.
 
     For each contact in contacts, check the birthday value of that contact.
     If the birthday is in the next 30 days, print the next birthday and the directory name.
     If there are no birthdays in the next 30 days, print a message saying so.
-    2nd)  The function will display a message if there are no contacts in the dictionary.
-    3rd) The function will display a message, in f string format, to display the next birthday.
-        None
-        
+    If there are no contacts in the dictionary, print a message saying so.
+
     Returns:
         None
     """
-    x = True
-    no_birthdays = True
-    while x is True:
-        if len(contacts) == 0:
-            print("There are no contacts in the dictionary.")
-            x = False
+    today = dt.date.today()
+    next_birthday_date = None
 
-        today = dt.date.today()
+    for name, contact in contacts.items():
+        birthday = contact.get('birthday')
+        if birthday:
+            birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
+            if (birthday - today).days <= 30:
+                if next_birthday_date is None or birthday < next_birthday_date:
+                    next_birthday_date = birthday
+                    next_birthday_name = name
 
-        for contact in contacts.values():
-            birthday = contact.get('birthday')
-            if birthday:
-                birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
-                if (birthday - today).days <= 30:
-                    print(birthday.strftime("%m/%d/%Y"))
-                    x = False
-                    no_birthdays = False
-            if birthday is None:
-                x = False
-
-        if no_birthdays:
-            print("There are no birthdays in the next 30 days.")
-        break
-
-
+    if next_birthday_date:
+        print(f"The next birthday belongs to {next_birthday_name}, on this date: {next_birthday_date.strftime('%m/%d/%Y')}")
+    elif len(contacts) == 0:
+        print("There are no contacts in the dictionary.")
+    else:
+        print("There are no birthdays in the next 30 days.")
 
 
 #-------------------------------------------------------------------------------------
