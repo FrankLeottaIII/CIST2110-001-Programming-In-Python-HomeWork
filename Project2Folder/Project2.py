@@ -64,34 +64,34 @@ def import_csv(csv_file):
 #
 #
 
-contacts = {
-    'John': {
-        'Phone': '1234567890',
-        'Email': 'john@example.com',
-        'Birthday': '01/01/2000'
-    }
-}
+# contacts = {
+#     'John': {
+#         'Phone': '1234567890',
+#         'Email': 'john@example.com',
+#         'Birthday': '01/01/2000'
+#     }
+# }
 
-# Iterate over the outer dictionary
-for key, value in contacts.items():
-    # Check if the value is a dictionary
-    if isinstance(value, dict):
-        # Access the inner dictionary
-        inner_dict = value
-        print(inner_dict)
-        # Access specific values within the inner dictionary
-        phone = inner_dict.get('Phone')
-        email = inner_dict.get('Email')
-        birthday = inner_dict.get('Birthday')
-        print(phone)
-        print(email)
-        print(birthday)
+# # Iterate over the outer dictionary
+# for key, value in contacts.items():
+#     # Check if the value is a dictionary
+#     if isinstance(value, dict):
+#         # Access the inner dictionary
+#         inner_dict = value
+#         print(inner_dict)
+#         # Access specific values within the inner dictionary
+#         phone = inner_dict.get('Phone')
+#         email = inner_dict.get('Email')
+#         birthday = inner_dict.get('Birthday')
+#         print(phone)
+#         print(email)
+#         print(birthday)
 
 #we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
 
 #contacts = the dictionary now
 contacts = import_csv("contacts.csv")    
-print(contacts)
+# print(contacts)
 
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
@@ -445,8 +445,8 @@ def next_birthday():
 #
 #-------------------------------------------------------------------------------------
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
-question = None
-the_filename = None
+question = ""
+the_filename = ""
 def save_question():
     global imput
     global the_filename
@@ -588,9 +588,9 @@ def main():
             save_question()
             greg = save_csv(the_filename)
             save_csv_action(greg)
-            question = None
-            filename = None
-            greg = None
+            question = ""
+            filename = ""
+            greg = ""
             imput = "restart"
         elif imput == "5":
             print("Look up next birthday has been selected")
