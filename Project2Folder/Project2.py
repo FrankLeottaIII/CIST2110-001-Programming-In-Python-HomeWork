@@ -631,32 +631,28 @@ def main():
     # After you are done with the program, answer the following questions using code (show your code and output):
     # How many names start with the letter A?
 count = 0
-for name in contacts:
-    if name.startswith('A'):
+for name in contacts.keys(): # loop through the keys in the dictionary, names are the keys
+    if name.startswith('A'): # if the name starts with A... didn't even know .startswith was a thing
         count += 1
 print(f'{count} is the number of names that start with the letter A')
     # How many emails are yahoo emails?
 yahoo_count = 0
-for email in contacts:
-    if email.endswith('yahoo.com'):
-        yahoo_count += 1
+yahoo_list = []
+for contact in contacts.values():# loop through the values in the dictionary, including the inner dictionaries
+    yahoo_list.append(contact['Email']) # append the emails in the dictionary to the list
+yahoo_list = ' '.join(yahoo_list) # convert the list to a string
+yahoo_count = yahoo_list.count('yahoo.com') # count the number of times yahoo.com appears in the string
 print(f'{yahoo_count} is the number of emails that end with yahoo.com')
-def ends_with(email, suffix):
-    return email.endswith(suffix)
+
     # How many .org emails are there?
 org_count = 0
 email_list = []
-for contact in contacts.values():
-    email_list.append(contact['Email']) # append the email to the list
+for contact in contacts.values():# loop through the values in the dictionary, including the inner dictionaries
+    email_list.append(contact['Email']) # append the emails in the dictionary to the list
 email_list = ' '.join(email_list) # convert the list to a string
-org_count = email_list.count('.org')
-
+org_count = email_list.count('.org') # count the number of times .org appears in the string
 print(f'{org_count} is the number of emails that end with .org')
-    
-    
-#if element in email_list.endswith('.org'):
-    #org_count += 1
-print(email_list)
+
 
         
 #     if email.endswith('.org'):
