@@ -371,7 +371,7 @@ birthday = ""
 def next_birthday():
     if not contacts:# not sure if this is needed
         print("No contacts in the dictionary.") # not sure if this is needed
-        return #not sure if this is needed 
+        return  None
     global today
     global next_birthdays
     today = dt.date.today()
