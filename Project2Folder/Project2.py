@@ -485,7 +485,7 @@ def save_csv_action(filename):
         with open(filename, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
-            for contact in contacts.values():
+            for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
                 contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
                 writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         print("beep boop... saving...")
@@ -649,7 +649,7 @@ for email in contacts:
 print(org_count)
 
 keys=contacts.keys()
-print(keys)
+# print(keys)
 
 
 
