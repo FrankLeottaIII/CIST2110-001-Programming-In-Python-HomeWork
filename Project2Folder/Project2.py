@@ -37,6 +37,17 @@ import time
 contacts = {}
 
 def import_csv(csv_file):
+    """Summery:
+    Import the contacts from the csv file.
+    
+    Args:   
+        csv_file (str): The name of the csv file to import.
+        
+    Returns:
+        dict: A dictionary of contacts, with each contact having a dictionary associeated with them,
+            The contact name is the key, the contact info dictionary contents is the value. 
+            The contact info dictionary has the following keys: 'Name', 'Phone', 'Email', 'Birthday'
+                       """
     try:
         with open(csv_file, 'r') as file: # open file in read mode
             reader = csv.reader(file) # create reader object, a reader object is an iterator.  It will read one line at a time
@@ -57,48 +68,9 @@ def import_csv(csv_file):
         print("File does not exist.")
     except IndexError:
         print("IndexError: list index out of range")
-        
 
-
-                #finding something
-#                name_lower = name.lower()
-                #birthday = dt.datetime.strptime(row[3], '%m/%d/%Y') # 
-#                contacts[name_lower] = {'Name': name,'Phone': phone, 'Email': email, 'Birthday': birthday} 
-#
-#
-
-# contacts = {
-#     'John': {
-#         'Phone': '1234567890',
-#         'Email': 'john@example.com',
-#         'Birthday': '01/01/2000'
-#     }
-# }
-
-# # Iterate over the outer dictionary
-# for key, value in contacts.items():
-#     # Check if the value is a dictionary
-#     if isinstance(value, dict):
-#         # Access the inner dictionary
-#         inner_dict = value
-#         print(inner_dict)
-#         # Access specific values within the inner dictionary
-#         phone = inner_dict.get('Phone')
-#         email = inner_dict.get('Email')
-#         birthday = inner_dict.get('Birthday')
-#         print(phone)
-#         print(email)
-#         print(birthday)
-
-#we just created a dictionary of dictionaries, the key is the name, the value is a dictionary of the  name, phone, email, and birthday
-
-#contacts = the dictionary now
 contacts = import_csv("contacts.csv")    
-# print(contacts)
 
-# Skip the first line of the csv file since it contains the column headers
-# i can use next() to skip the first line
-############################################################
 # -------------------------------------------------------------------------------------
 
 # add_contact(name, phone, email, birthday) - This function will add a contact to the dictionary. 
@@ -110,17 +82,19 @@ contacts = import_csv("contacts.csv")
 # Hint 2: To add a contact to the dictionary, you need to use the key as the name and the values as a 
 # dictionary that contains the phone number, email address, and birthday. To reference the specific key you can use contact[name]
 
-# global variables:
+# global variables for add_contact() stuff:
 NAME = ""
 PHONE = ""
 EMAIL = ""
 BIRTHDAY = ""
 WALDO = ""
 
-
+#------------------------Functions for add_contact() stuff------------------------
 def get_name():
-    """
+    """ Summery:
     Get the name from the user.
+
+
     """
     global NAME
     try:
@@ -135,8 +109,14 @@ SECOND_THREE = ""
 LAST_FOUR = ""
 
 def first_three_fun():
-    """
+    """ Summery:
     Get the first three digits of the phone number from the user.
+
+    Agrs:
+        None
+
+    Returns:
+        str: The first three digits of the phone number.
     """
     global FIRST_THREE
     print(" I will need the phone number in the following format: 123-456-7890")
@@ -150,8 +130,14 @@ def first_three_fun():
         print("Error: lets try that again")
 
 def second_three_fun():
-    """
+    """Summery:
     Get the second three digits of the phone number from the user.
+
+    Args:
+        None
+
+    Returns:
+        str: The second three digits of the phone number.
     """
     global SECOND_THREE
     try:
@@ -162,11 +148,18 @@ def second_three_fun():
         return SECOND_THREE
     except ValueError:
         print("Error: lets try that again")
-    # Not sure if value error will work here
+
 
 def last_four_fun():
-    """
+    """Summery:
     Get the last four digits of the phone number from the user.
+
+    Args:
+        None
+
+    Returns:
+        str: The last four digits of the phone number.
+
     """
     global LAST_FOUR
     try:
@@ -179,22 +172,51 @@ def last_four_fun():
         print("Error: lets try that again")
 
 def get_phone():
-    """
-    Get the phone number from the user.
-    """
-    global PHONE
-    global FIRST_THREE
-    global SECOND_THREE
-    global LAST_FOUR
-    first_three_fun()
-    second_three_fun()
-    last_four_fun()
-    PHONE = FIRST_THREE + "-" + SECOND_THREE + "-" + LAST_FOUR
-    return PHONE
+    """Summery:
+        Combines the FIRST_THREE, SECOND_THREE AND LAST_FOUR varibles of the phone number into one string.
+        Global varibles used: FIRST_THREE, SECOND_THREE, LAST_FOUR, PHONE
+        Funtions used in this funtion: first_three_fun(), second_three_fun(), last_four_fun()
 
+
+    loops if: the phone number is not in the correct format.
+
+    Args:
+        None
+    
+    Returns:
+        str: The phone number in the format xxx-xxx-xxxx in the PHONE varible.
+
+    """
+    try:
+        global PHONE
+        global FIRST_THREE
+        global SECOND_THREE
+        global LAST_FOUR
+        first_three_fun()
+        second_three_fun()
+        last_four_fun()
+        PHONE = FIRST_THREE + "-" + SECOND_THREE + "-" + LAST_FOUR
+        return PHONE
+    except ValueError:
+        print("ValueError: lets try that again...")
 
 
 def get_email():
+    """Summery:
+    Get the email from the user.
+    Uses the global varible EMAIL
+
+    loops if: the email is not in the correct format.
+
+    Args:
+        None
+
+    returns:
+        str: The email for this person in the EMAIL varible.
+
+    regrets:
+        None
+        """
     global EMAIL
     try:
         EMAIL = input("Enter email: ")
@@ -209,7 +231,23 @@ def get_email():
 
 
 
-def get_birthday():
+def get_birthday()-> dt.datetime:
+    """Summery:
+    Get the birthday from the user, and turns it into a datetime object string via .strptime(Birthday,'%m/%d/%Y').
+    Uses the global varible BIRTHDAY
+
+    loops if: the birthday is not in the correct format.
+
+    Args:
+        None
+    
+    Returns:
+        dt.datetime: The birthday for this person in the BIRTHDAY varible.
+    
+    Sanity level after writing this funtion:
+        100% sane, no problems here, no sir...probably. Datetime objects are aggrivating.
+
+    """
     global BIRTHDAY
     while True:
         try:
@@ -226,24 +264,65 @@ def get_birthday():
 
 
 def get_contact_info():
+    """Summery:
+    Get the contact info from the user, and puts it into the contacts dictionary.
+    Uses the global varibles NAME, PHONE, EMAIL, BIRTHDAY, contacts
+
+    Used funtions in this funtion: get_name(), get_phone(), get_email(), get_birthday()
+
+    Args:
+        None
+
+    Returns:
+        dict: The contact info for this person in the contacts dictionary.
+    """
     global NAME
     global PHONE
     global EMAIL
     global BIRTHDAY
-    get_name()
-    get_phone()
-    get_email()
-    get_birthday()
-    contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
-    return contacts[NAME]
-
-def add_contact():
     try:
+        get_name()
+        get_phone()
+        get_email()
+        get_birthday()
+        contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+        return contacts[NAME]
+    except ValueError:
+        print("Error: cannot add contact to dictionary due to ValueError")
+
+
+def add_contact(name, phone, email, birthday) -> bool:
+    """Summery:
+        Checks to see if the contact is already in the contacts dictionary, if not, adds the contact to the contacts dictionary.
+        Uses the global varibles NAME, PHONE, EMAIL, BIRTHDAY, contacts
+    
+        Args:   
+            name (str): The name of the contact.
+            phone (str): The phone number of the contact.
+            email (str): The email of the contact.
+            birthday (str): The birthday of the contact.
+        Note: the only reason I put them here is due to the assighnment saying to do so, they aren't doing anything
+            I guess they are on vacation, or something... I don't know, I'm not their boss.
+            i think... is someone truly a boss of a varible? I mean, they are just a bunch of 1's and 0's, right?
+            anyway...
+          
+        
+        Returns:
+            bool: True if the contact is successfully added, False otherwise.
+
+    """
+    name
+    phone
+    email
+    birthday
+    try:
+        global contacts
         if NAME in contacts:
             print("Error: Contact already exists")
             return False
         elif NAME not in contacts:
             contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+            print("Contact sucessfully added")
             return True
         else:
             print("Error: cannot add contact due to ValueError")
@@ -578,7 +657,7 @@ def main():
         elif imput == "1":
             print("Add contact has been selected")
             get_contact_info()
-            add_contact()
+            add_contact(NAME, PHONE, EMAIL, BIRTHDAY)
             print("\nremember to save after entering a contact, or it will be overwritten.\n")
             imput = "restart"
         elif imput == "2":
