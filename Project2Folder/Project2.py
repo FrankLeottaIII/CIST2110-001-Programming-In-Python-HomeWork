@@ -363,41 +363,41 @@ def delete_contact_action(question):
 #  There are many ways to solve this issue. 1st you could replace all the years with the current year.
 # 2nd you could use the month and day attributes of the datetime object to compare the month and day of the birthday to the 
 # current month and day.
-import datetime as dt
-today = ""
-next_birthdays = ""
-birthday = ""
-
 def next_birthday():
-    if not contacts:# not sure if this is needed
-        print("No contacts in the dictionary.") # not sure if this is needed
-        return  None
-    global today
-    global next_birthdays
-    today = dt.date.today()
-    next_birthdays = None
-    
-    for contact in contacts.values():
-        birthday = contact.get('birthday')
-        if birthday:
-            birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
-            birthday = birthday.replace(year=today.year)
-            
-            if birthday >= today and (next_birthday is None or birthday < next_birthday):
-                next_birthdays = birthday
-    if next_birthday is None:
-        print("No birthdays in the next 30 days.")
-    else:
-        print("Next birthday: {}".format(next_birthday.strftime("%m/%d/%Y")))
- 
-def reset_birthday_varibles():
-    global today
-    global next_birthday
-    global birthday
-    today = ""
-    next_birthday = ""
-    birthday = ""
-    return today, next_birthdays, birthday
+    """
+    1st) Display the next birthday in the contacts dictionary.
+
+    For each contact in contacts, check the birthday value of that contact.
+    If the birthday is in the next 30 days, print the birthday.
+    If there are no birthdays in the next 30 days, print a message saying so.
+    2nd)  The function will display a message if there are no contacts in the dictionary.
+    3rd) The function will display a message, in f string format, to display the next birthday.
+        None
+        
+    Returns:
+        None
+    """
+    x = True
+    while x == True:
+        if len(contacts) == 0:
+            print("There are no contacts in the dictionary.")
+            x= False
+        global today
+
+        today = dt.date.today()
+
+        for contact in contacts.values():
+            birthday = contact.get('birthday')
+            if birthday:
+                birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
+                if (birthday - today).days <= 30:
+                    print(birthday.strftime("%m/%d/%Y"))
+                    x = False
+            if birthday is None:
+                print("There are no birthdays in the next 30 days.")
+                x = False
+        break
+
 
 
 
@@ -564,8 +564,8 @@ def main():
             imput = "restart"
         elif imput == "5":
             print("Look up next birthday has been selected")
+            today = dt.date.today()
             next_birthday()
-            reset_birthday_varibles()
             imput = "restart"
         elif imput == "0":
             print("Thank you for using the Contact List Program")
