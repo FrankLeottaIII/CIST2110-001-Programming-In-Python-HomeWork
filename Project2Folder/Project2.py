@@ -391,12 +391,16 @@ def next_birthday():
 
     for contact_name, contact_info in contacts.items():
         contact_birthday = contact_info.get('Birthday')
-        if contact_birthday:
-            contact_birthday = dt.datetime.strptime(contact_birthday, "%m/%d/%Y").date()
-            if (contact_birthday - today).days <= 30:
-                if next_birthday_date is None or contact_birthday < next_birthday_date:
-                    next_birthday_date = contact_birthday
-                    next_birthday_name = contact_name
+        contact_birthday = dt.datetime.now().date()
+        contact_birthday = contact_birthday.strftime('%Y-%m-%d %H:%M:%S')
+        contact_birthday = dt.datetime.strptime(contact_birthday, '%Y-%m-%d %H:%M:%S').date()
+        #if contact_birthday:
+            # convert the datetime object to a string
+            #contact_birthday = dt.datetime.strptime(contact_birthday, "%m/%d/%Y").date()
+        if (contact_birthday - today).days <= 30:
+            if next_birthday_date is None or contact_birthday < next_birthday_date:
+                next_birthday_date = contact_birthday
+                next_birthday_name = contact_name
 
     if next_birthday_date is not None and len(contacts) > 0:
         birthday_message = f"The next birthday belongs to {next_birthday_name}, on this date: {next_birthday_date.strftime('%m/%d/%Y')}"
