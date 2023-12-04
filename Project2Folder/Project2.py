@@ -193,8 +193,17 @@ def get_phone():
 
 def get_email():
     global EMAIL
-    EMAIL = input("Enter email: ")
-    return EMAIL
+    try:
+        EMAIL = input("Enter email: ")
+        if "@" in EMAIL and "." in EMAIL:
+            return EMAIL
+        else:
+            print("Invalid email, please try again")
+            EMAIL = input("Enter email: ")
+    except ValueError:
+        print("Error: cannot add contact due to ValueError")
+
+
 
 
 def get_birthday():
@@ -212,6 +221,7 @@ def get_birthday():
 
 
 
+
 def get_contact_info():
     global NAME
     global PHONE
@@ -221,9 +231,23 @@ def get_contact_info():
     get_phone()
     get_email()
     get_birthday()
+    contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+    return contacts[NAME]
 
-    return NAME, PHONE, EMAIL, BIRTHDAY
-
+def add_contact():
+    try:
+        if NAME in contacts:
+            print("Error: Contact already exists")
+            return False
+        elif NAME not in contacts:
+            contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+            return True
+        else:
+            print("Error: cannot add contact due to ValueError")
+            return False
+    except ValueError:
+        print("Error: cannot add contact due to ValueError")
+        return False
 
 #------------------------
 
@@ -247,31 +271,38 @@ def get_contact_info():
 #________________________________________________________________________________
 #waldo = add_contact(name, phone, email, birthday)
 #________________________________________________________________________________
-new_name = ""
-def put_contact_together(name, phone, email, birthday):
-    global contracts
-    contacts[name] = { 
-    'Name': name,
-    'Phone': phone,
-    'Email': email,
-    'Birthday': birthday
-    }
+# new_name = ""
+# def put_contact_together(name, phone, email, birthday):
+#     global contracts
+#     contacts[name] = { 
+#     'Name': name,
+#     'Phone': phone,
+#     'Email': email,
+#     'Birthday': birthday
+    
 
 #contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
 
 
-def add_contact(name, phone, email, birthday) -> bool:
-    """ returns true if contact was added, false if not"""
-    global contacts
-    try:
-        if NAME in contacts:
-            print("contact sucessfully added")
-            return True
-        elif name not in contacts:  
-            return False
-    except ValueError:
-        print("Error: cannot add contact due to ValueError")
-        return False 
+# def add_contact(name, phone, email, birthday) -> bool:
+#     """ returns true if contact was added, false if not"""
+#     global contacts
+#     phone
+#     email
+#     birthday
+#     try:
+
+#         if name in key_list:
+#             print("Error: Contact already exists")
+#             return False
+#         if name in contacts:
+#             print("contact sucessfully added")
+#             return True
+#         elif name not in contacts:  
+#             return False
+#     except ValueError:
+#         print("Error: cannot add contact due to ValueError")
+#         return False 
 """ 
 def add_keys(name):
     global keys
@@ -485,8 +516,7 @@ def main():
     import time
     contacts = {}
     contacts = import_csv("contacts.csv")  
-    key = [] 
-    key = contacts.keys() 
+
     #Global varibles:
     # global varibles:
     wilson = True
@@ -531,20 +561,9 @@ def main():
             imput = input("Please enter your choice: ")
         elif imput == "1":
             print("Add contact has been selected")
-            reset_variables()
             get_contact_info()
-            put_contact_together(NAME, PHONE, EMAIL, BIRTHDAY)  
-            WALDO = add_contact(NAME, PHONE, EMAIL, BIRTHDAY)
-            if WALDO == False:
-                print("Error: Contact already exists")
-                reset_variables()
-                imput = "restart"
-            elif WALDO == True:
-                print("contact sucessfully added")
-                reset_variables()
-                imput = "restart"
-            reset_variables()
-            print("returning to main menu")
+            add_contact()
+            print("\nremember to save after entering a contact, or it will be overwritten.\n")
             imput = "restart"
         elif imput == "2":
             print("View contacts has been selected")
