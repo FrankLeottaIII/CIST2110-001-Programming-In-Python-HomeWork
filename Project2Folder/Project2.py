@@ -600,6 +600,7 @@ def main():
             save_question()
             # greg = save_csv(the_filename)
             save_csv_action(the_filename)
+            did_it_save(greg)
             question = ""
             the_filename = ""
             imput = "restart"
