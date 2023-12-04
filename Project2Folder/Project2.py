@@ -272,13 +272,13 @@ def add_contact(name, phone, email, birthday) -> bool:
     except ValueError:
         print("Error: cannot add contact due to ValueError")
         return False 
-    
+""" 
 def add_keys(name):
     global keys
     keys.append(name)
     keys = contacts.keys()
     return keys
-
+"""
 #in code
 def reset_variables():
     global NAME
