@@ -482,10 +482,11 @@ def save_question():
 
 def save_csv_action(filename):
     try:
-        with open(filename, 'w', encoding='utf-8',newline='') as file: # open file in write mode with encoding specified
-            writer = csv.writer(file) # create writer object. file is the file object
-            writer.writerow(['Name', 'Phone', 'Email', 'Birthday']) # write header row
+        with open(filename, 'w', encoding='utf-8', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
             for contact in contacts.values():
+                contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
                 writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         print("beep boop... saving...")
     except FileNotFoundError:
