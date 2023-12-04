@@ -634,19 +634,19 @@ count = 0
 for name in contacts:
     if name.startswith('A'):
         count += 1
-print([count)
+print(f'{count} is the number of names that start with the letter A')
     # How many emails are yahoo emails?
 yahoo_count = 0
 for email in contacts:
     if email.endswith('yahoo.com'):
         yahoo_count += 1
-print(yahoo_count)
+print(f'{yahoo_count} is the number of emails that end with yahoo.com')
     # How many .org emails are there?
 org_count = 0
 for email in contacts:
     if email.endswith('.org'):
         org_count += 1
-print(org_count)
+print(f'{org_count} is the number of emails that end with .org')
 
 keys=contacts.keys()
 # print(keys)
@@ -658,19 +658,13 @@ jan_count = 0
 for contact in contacts.values():
     if contact['Birthday'].month == 1:
         jan_count += 1
+print(f'{jan_count} is the number of contacts that have a birthday in January')
 
-# jan_count = 0
-# birthday_list = []
-#  contacts[][birthday]
-
-# for contact in contacts:
-#     if contact['birthday'].month == 1:
-#         jan_count += 1
-# print(jan_count)
     # How many contacts have a birthday in February?
-# feb_count = 0
-# for contact in contacts:
-#     if contact['birthday'].month == 2:
-#         feb_count += 1
+feb_count = 0
+for contact in contacts.values():
+    if contact['Birthday'].month == 2:
+        feb_count += 1
+print(f'{feb_count} is the number of contacts that have a birthday in February')
 if __name__ == "__main__":
     main()
