@@ -394,17 +394,20 @@ def delete_contact_action(question):
         question (bool): A boolean value indicating whether to delete the contact or not.
         
         Returns:
-        bool: True if the contact is successfully deleted, False otherwise."""
-    if question == True:
-        try:
-            name = get_name()
-            del contacts[name]
+            None 
+        """
+    try:
+        if question == True:
+            del contacts[NAME]
             print("Contact deleted")
-            return  contacts[name]
-        except:
+        elif question == False:
+            print("Contact not deleted")
+        else:
             print("Error: Contact does not exist")
-    else:
-        print("Contact not deleted")
+    except:
+        print("Error: Contact does not exist")
+
+
 
 #-------------------------------------------------------------------------------------
 def next_birthday():
@@ -448,6 +451,7 @@ def next_birthday():
 #
 #-------------------------------------------------------------------------------------
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
+import csv
 question = ""
 the_filename = ""
 def save_question():
@@ -476,16 +480,15 @@ def save_question():
 
 
 
-def save_csv_action(cvs_file):
+def save_csv_action(filename):
     try:
-        global filename
-        with open(filename, 'w') as file: # open file in write mode
-            writer = csv.writer(file) # create writer object.  file is the file object
+        with open(filename, 'w', encoding='utf-8') as file: # open file in write mode with encoding specified
+            writer = csv.writer(file) # create writer object. file is the file object
             writer.writerow(['Name', 'Phone', 'Email', 'Birthday']) # write header row
             for contact in contacts.values():
-                writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
+                writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         print("beep boop... saving...")
-    except:
+    except FileNotFoundError:
         print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERRO")
         global greg
         greg = False
