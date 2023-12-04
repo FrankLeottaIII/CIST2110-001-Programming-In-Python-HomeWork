@@ -634,7 +634,7 @@ count = 0
 for name in contacts:
     if name.startswith('A'):
         count += 1
-print(count)
+print([count)
     # How many emails are yahoo emails?
 yahoo_count = 0
 for email in contacts:
@@ -653,9 +653,11 @@ keys=contacts.keys()
 
 
 
-
-    # How many contacts have a birthday in January?
-
+# How many contacts have a birthday in January?
+jan_count = 0
+for contact in contacts.values():
+    if contact['Birthday'].month == 1:
+        jan_count += 1
 
 # jan_count = 0
 # birthday_list = []
