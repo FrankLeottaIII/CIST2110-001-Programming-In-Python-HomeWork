@@ -55,6 +55,9 @@ def import_csv(csv_file):
             return contacts
     except FileNotFoundError:
         print("File does not exist.")
+    except IndexError:
+        print("IndexError: list index out of range")
+        
 
 
                 #finding something
@@ -460,34 +463,43 @@ def save_question():
         return imput
 
 
-def save_csv(filename):
+# def save_csv(filename):
+#     try:
+#         with open(filename, 'w') as file:
+#             writer = csv.writer(file)
+#             writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+#             for contact in contacts.values():
+#                 writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
+#         return True
+#     except:
+#         return False
+
+
+
+def save_csv_action(cvs_file):
     try:
-        with open(filename, 'w') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+        global filename
+        with open(filename, 'w') as file: # open file in write mode
+            writer = csv.writer(file) # create writer object.  file is the file object
+            writer.writerow(['Name', 'Phone', 'Email', 'Birthday']) # write header row
             for contact in contacts.values():
                 writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
-        return True
+        print("beep boop... saving...")
     except:
-        return False
-
-
-
-def save_csv_action(question):
-        if question == True:
-            with open(filename, 'w') as file:
-                writer = csv.writer(file)
-                writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
-                for contact in contacts.values():
-                    writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
-            print("Contacts saved successfully.")
-            return contacts
-        else:  
-            print("Contacts not saved.")
-            return contacts
+        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERRO")
+        global greg
+        greg = False
+        return greg
         
-question = None
-filename = None
+def did_it_save(greg):
+    if greg == True:
+        print("Contacts saved successfully.")
+    else:
+        print("Contacts not saved.")
+        return greg
+
+question = ""
+filename = ""
 
 """
 question = None
@@ -580,17 +592,16 @@ def main():
             imput = "restart"
         elif imput == "4":
             print("Save contacts has been selected")
-            global The_filename
+            global the_filename
             global greg
-            question = None
-            the_filename = None
-            greg = None
-            save_question()
-            greg = save_csv(the_filename)
-            save_csv_action(greg)
+            greg = True
             question = ""
-            filename = ""
-            greg = ""
+            the_filename = ""
+            save_question()
+            # greg = save_csv(the_filename)
+            save_csv_action(the_filename)
+            question = ""
+            the_filename = ""
             imput = "restart"
         elif imput == "5":
             print("Look up next birthday has been selected")
