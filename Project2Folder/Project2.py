@@ -387,25 +387,27 @@ def next_birthday():
     """
     today = dt.date.today()
     next_birthday_date = None
+    next_birthday_name = None
 
-    for name, contact in contacts.items():
-        birthday = contact.get('birthday')
-        if birthday:
-            birthday = dt.datetime.strptime(birthday, "%m/%d/%Y").date()
-            if (birthday - today).days <= 30:
-                if next_birthday_date is None or birthday < next_birthday_date:
-                    next_birthday_date = birthday
-                    next_birthday_name = name
+    for contact_name, contact_info in contacts.items():
+        contact_birthday = contact_info.get('Birthday')
+        if contact_birthday:
+            contact_birthday = dt.datetime.strptime(contact_birthday, "%m/%d/%Y").date()
+            if (contact_birthday - today).days <= 30:
+                if next_birthday_date is None or contact_birthday < next_birthday_date:
+                    next_birthday_date = contact_birthday
+                    next_birthday_name = contact_name
+
     if next_birthday_date is not None and len(contacts) > 0:
-        print(f"The next birthday belongs to {next_birthday_name}, on this date: {next_birthday_date.strftime('%m/%d/%Y')}")
+        birthday_message = f"The next birthday belongs to {next_birthday_name}, on this date: {next_birthday_date.strftime('%m/%d/%Y')}"
+        print(birthday_message)
     elif len(contacts) == 0:
         print("There are no contacts in the dictionary.")
-        global imput
         imput = "restart"
     else:
         print("error")
 
-
+#
 #-------------------------------------------------------------------------------------
 # save_csv(filename) - This function will save the contacts to the csv file. Prompt the user to enter a filename to save the contacts to. If the file exists, overwrite the file. If the file does not exist, create the file. The function will return True if the contacts were saved and False if the contacts were not saved.
 question = None
