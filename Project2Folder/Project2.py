@@ -482,7 +482,7 @@ def save_question():
 
 def save_csv_action(filename):
     try:
-        with open(filename, 'w', encoding='utf-8') as file: # open file in write mode with encoding specified
+        with open(filename, 'w', encoding='utf-8',newline='') as file: # open file in write mode with encoding specified
             writer = csv.writer(file) # create writer object. file is the file object
             writer.writerow(['Name', 'Phone', 'Email', 'Birthday']) # write header row
             for contact in contacts.values():
