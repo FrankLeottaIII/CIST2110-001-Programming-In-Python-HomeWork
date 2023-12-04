@@ -641,12 +641,26 @@ for email in contacts:
     if email.endswith('yahoo.com'):
         yahoo_count += 1
 print(f'{yahoo_count} is the number of emails that end with yahoo.com')
+
     # How many .org emails are there?
 org_count = 0
-for email in contacts:
-    if email.endswith('.org'):
-        org_count += 1
+email_list = []
+for contact in contacts.values():
+    email_list.append(contact['Email']) # append the email to the list
+# email_list = ' '.join(email_list) # convert the list to a string
+from collections import Counter
+org_count = Counter(email_list)[".org"]
 print(f'{org_count} is the number of emails that end with .org')
+    
+    
+#if element in email_list.endswith('.org'):
+    #org_count += 1
+print(email_list)
+
+        
+#     if email.endswith('.org'):
+#         org_count += 1
+# print(f'{org_count} is the number of emails that end with .org')
 
 keys=contacts.keys()
 # print(keys)
