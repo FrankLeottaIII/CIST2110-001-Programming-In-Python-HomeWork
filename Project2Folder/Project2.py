@@ -396,13 +396,14 @@ def next_birthday():
                 if next_birthday_date is None or birthday < next_birthday_date:
                     next_birthday_date = birthday
                     next_birthday_name = name
-
-    if next_birthday_date:
+    if next_birthday_date is not None and len(contacts) > 0:
         print(f"The next birthday belongs to {next_birthday_name}, on this date: {next_birthday_date.strftime('%m/%d/%Y')}")
     elif len(contacts) == 0:
         print("There are no contacts in the dictionary.")
+        global imput
+        imput = "restart"
     else:
-        print("There are no birthdays in the next 30 days.")
+        print("error")
 
 
 #-------------------------------------------------------------------------------------
