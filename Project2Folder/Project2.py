@@ -368,7 +368,7 @@ def next_birthday():
     1st) Display the next birthday in the contacts dictionary.
 
     For each contact in contacts, check the birthday value of that contact.
-    If the birthday is in the next 30 days, print the birthday.
+    If the birthday is in the next 30 days, print the next birthday and the directory name.
     If there are no birthdays in the next 30 days, print a message saying so.
     2nd)  The function will display a message if there are no contacts in the dictionary.
     3rd) The function will display a message, in f string format, to display the next birthday.
@@ -378,11 +378,11 @@ def next_birthday():
         None
     """
     x = True
-    while x == True:
+    no_birthdays = True
+    while x is True:
         if len(contacts) == 0:
             print("There are no contacts in the dictionary.")
-            x= False
-        global today
+            x = False
 
         today = dt.date.today()
 
@@ -393,9 +393,12 @@ def next_birthday():
                 if (birthday - today).days <= 30:
                     print(birthday.strftime("%m/%d/%Y"))
                     x = False
+                    no_birthdays = False
             if birthday is None:
-                print("There are no birthdays in the next 30 days.")
                 x = False
+
+        if no_birthdays:
+            print("There are no birthdays in the next 30 days.")
         break
 
 
