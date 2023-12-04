@@ -250,6 +250,12 @@ def add_contact(name, phone, email, birthday) -> bool:
     except ValueError:
         print("Error: cannot add contact due to ValueError")
         return False 
+    
+def add_keys(name):
+    global keys
+    keys.append(name)
+    keys = contacts.keys()
+    return keys
 
 #in code
 def reset_variables():
@@ -305,18 +311,35 @@ def view_contacts():
 #  The function will return True if the contact was deleted and False if the contact was not deleted.
 #  The function will display an error message if the contact does not exist.
 """ this is done for the most part, need to program  what happens"""
-def delete_contact(do_I_delete_contact: bool)->bool:
+def delete_contact(do_I_delete_contact: bool) -> bool:
+    """
+    part one of a process of deleting a contact from the contacts dictionary.
+
+    Args:
+        do_I_delete_contact (bool): A boolean value indicating whether to delete the contact or not.
+
+    Returns:
+        bool: True if the contact is successfully deleted, False otherwise.
+    """
     global contacts
     global NAME
-    if NAME in contacts:
-        #del contacts[name]
+    if NAME in keys:
+        # del contacts[name]
         return True
     else:
         print("Error: Contact does not exist")
         return False
 
-def delete_contact_action():
-    if do_I_delete_contact == True:
+def delete_contact_action(question):
+    """
+    part two of a process of deleting a contact from the contacts dictionary.
+    
+    Args:
+        question (bool): A boolean value indicating whether to delete the contact or not.
+        
+        Returns:
+        bool: True if the contact is successfully deleted, False otherwise."""
+    if question == True:
         try:
             name = get_name()
             del contacts[name]
@@ -450,7 +473,9 @@ def main():
     import datetime as dt
     import time
     contacts = {}
-    contacts = import_csv("contacts.csv")    
+    contacts = import_csv("contacts.csv")  
+    key = [] 
+    key = contacts.keys() 
     #Global varibles:
     # global varibles:
     wilson = True
@@ -518,13 +543,13 @@ def main():
         elif imput == "3":
             print("Delete contact has been selected")
             get_name()
-            delete_contact(NAME) #should i pop this instead???
-            delete_contact_action()
+            global question
+            question = delete_contact(NAME) #should i pop this instead???
+            delete_contact_action(question)
             reset_variables()
             imput = "restart"
         elif imput == "4":
             print("Save contacts has been selected")
-            global question
             global The_filename
             global greg
             question = None
@@ -576,16 +601,28 @@ for email in contacts:
     if email.endswith('.org'):
         org_count += 1
 print(org_count)
+
+keys=contacts.keys()
+print(keys)
+
+
+
+
     # How many contacts have a birthday in January?
-jan_count = 0
-for contact in contacts:
-    if contact['birthday'].month == 1:
-        jan_count += 1
-print(jan_count)
+
+
+# jan_count = 0
+# birthday_list = []
+#  contacts[][birthday]
+
+# for contact in contacts:
+#     if contact['birthday'].month == 1:
+#         jan_count += 1
+# print(jan_count)
     # How many contacts have a birthday in February?
-feb_count = 0
-for contact in contacts:
-    if contact['birthday'].month == 2:
-        feb_count += 1
+# feb_count = 0
+# for contact in contacts:
+#     if contact['birthday'].month == 2:
+#         feb_count += 1
 if __name__ == "__main__":
     main()
