@@ -90,19 +90,38 @@ BIRTHDAY = ""
 WALDO = ""
 
 #------------------------Functions for add_contact() stuff------------------------
-def get_name():
+def get_name()-> str:
     """ Summery:
     Get the name from the user.
+    Uses the global varible NAME
 
+    Loops if: both the lasts name and the first name are not in the correct format with a while loop.. loops seperately.
 
+    Args:
+        None
+
+    Returns:
+        str: The name for this person in the NAME varible.
     """
     global NAME
-    try:
-        NAME = input("Enter name, This is case sensitive : ")
+    try:  
+        first_name = input("Enter the first name. It is case sensitive: ")
+        while not first_name.isalpha(): # if the name is not all letters
+            print("Hey now, No numbers or special characters allowed in the name, please try again Parnter")
+            print("That includes spaces and grammer... remember, this is a name, not a sentence")
+            first_name = input("Enter name, This is case sensitive : ")
+        first_name = first_name.title() # makes the first letter of the first name capitalized
+        last_name = input("Enter the last name. It is case sensitive: ")
+        while not last_name.isalpha(): # if the name is not all letters
+            print("Hey now, No numbers or special characters allowed in the name, please try again Bucko")
+            print("That includes spaces and grammer... remember, this is a name, not a sentence")
+            last_name = input("Enter name, This is case sensitive : ")
+        last_name = last_name.title() # makes the first letter of the last name capitalized
+        NAME = f"{first_name} {last_name}"
         return NAME
     except ValueError:
         print("Error: cannot add contact due to ValueError")
-        NAME = input("Enter name, This is case sensitive : ")
+
 
 FIRST_THREE = ""
 SECOND_THREE = ""
@@ -111,6 +130,9 @@ LAST_FOUR = ""
 def first_three_fun():
     """ Summery:
     Get the first three digits of the phone number from the user.
+    Uses the global varible FIRST_THREE
+
+    Loops if: the phone number is not in the correct format with a while loop.
 
     Agrs:
         None
@@ -122,7 +144,7 @@ def first_three_fun():
     print(" I will need the phone number in the following format: 123-456-7890")
     try:
         FIRST_THREE = input("Enter the first three digits of the phone number: ")
-        if not FIRST_THREE.isdigit() or len(FIRST_THREE) != 3:
+        while not FIRST_THREE.isdigit() or len(FIRST_THREE) != 3:
             print("Invalid input, please try again")
             FIRST_THREE = input("Enter the first three digits of the phone number: ")
         return FIRST_THREE
@@ -142,7 +164,7 @@ def second_three_fun():
     global SECOND_THREE
     try:
         SECOND_THREE = input("Enter the second three digits of the phone number: ")
-        if not SECOND_THREE.isdigit() or len(SECOND_THREE) != 3:
+        while not SECOND_THREE.isdigit() or len(SECOND_THREE) != 3:
             print("Invalid input, lets try that again")
             SECOND_THREE = input("Enter the second three digits of the phone number: ")
         return SECOND_THREE
@@ -164,28 +186,26 @@ def last_four_fun():
     global LAST_FOUR
     try:
         LAST_FOUR = input("Enter the last four digits of the phone number: ")
-        if not LAST_FOUR.isdigit() or len(LAST_FOUR) != 4:
+        while not LAST_FOUR.isdigit() or len(LAST_FOUR) != 4:
             print("Invalid input, lets try that again")
             LAST_FOUR = input("Enter the last four digits of the phone number: ")
         return LAST_FOUR
     except ValueError:
         print("Error: lets try that again")
 
-def get_phone():
+def get_phone() -> str:
     """Summery:
-        Combines the FIRST_THREE, SECOND_THREE AND LAST_FOUR varibles of the phone number into one string.
-        Global varibles used: FIRST_THREE, SECOND_THREE, LAST_FOUR, PHONE
-        Funtions used in this funtion: first_three_fun(), second_three_fun(), last_four_fun()
+    Combines the FIRST_THREE, SECOND_THREE, and LAST_FOUR variables of the phone number into one string.
+    Global variables used: FIRST_THREE, SECOND_THREE, LAST_FOUR, PHONE
+    Functions used in this function: first_three_fun(), second_three_fun(), last_four_fun()
 
-
-    loops if: the phone number is not in the correct format.
+    Loops if the phone number is not in the correct format.
 
     Args:
         None
     
     Returns:
-        str: The phone number in the format xxx-xxx-xxxx in the PHONE varible.
-
+        str: The phone number in the format xxx-xxx-xxxx in the PHONE variable.
     """
     try:
         global PHONE
@@ -195,13 +215,13 @@ def get_phone():
         first_three_fun()
         second_three_fun()
         last_four_fun()
-        PHONE = FIRST_THREE + "-" + SECOND_THREE + "-" + LAST_FOUR
+        PHONE = f"{FIRST_THREE}-{SECOND_THREE}-{LAST_FOUR}"
         return PHONE
     except ValueError:
-        print("ValueError: lets try that again...")
+        print("ValueError: let's try that again...")
 
 
-def get_email():
+def get_email()-> str:
     """Summery:
     Get the email from the user.
     Uses the global varible EMAIL
@@ -263,7 +283,7 @@ def get_birthday()-> dt.datetime:
 
 
 
-def get_contact_info():
+def get_contact_info()-> dict:
     """Summery:
     Get the contact info from the user, and puts it into the contacts dictionary.
     Uses the global varibles NAME, PHONE, EMAIL, BIRTHDAY, contacts
@@ -281,6 +301,8 @@ def get_contact_info():
     global EMAIL
     global BIRTHDAY
     try:
+        print("Ok, now lets get the contact info for this person")
+        print("lets start with the name, I'll ask for the first and last name seperatly")
         get_name()
         get_phone()
         get_email()
@@ -301,14 +323,14 @@ def add_contact(name, phone, email, birthday) -> bool:
             phone (str): The phone number of the contact.
             email (str): The email of the contact.
             birthday (str): The birthday of the contact.
-        Note: the only reason I put them here is due to the assighnment saying to do so, they aren't doing anything
+        Note: the only reason I put them here is due to the assighnment saying to do so, they aren't doing anything since I already put them in the contacts dictionary in the get_contact_info() funtion.
             I guess they are on vacation, or something... I don't know, I'm not their boss.
             i think... is someone truly a boss of a varible? I mean, they are just a bunch of 1's and 0's, right?
             anyway...
           
         
         Returns:
-            bool: True if the contact is successfully added, False otherwise.
+            bool: True if the contact was successfully added and/or updated, False otherwise.
 
     """
     name
@@ -317,15 +339,15 @@ def add_contact(name, phone, email, birthday) -> bool:
     birthday
     try:
         global contacts
-        if NAME in contacts:
-            print("Error: Contact already exists")
-            return False
-        elif NAME not in contacts:
-            contacts[NAME] = {'Name': NAME, 'Phone': PHONE, 'Email': EMAIL, 'Birthday': BIRTHDAY}
+        if name in contacts.keys(): # if the name is in the keys
+            print("Contact Sucessfully added and/or updated")
+            return True
+        elif name not in contacts:
+            contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
             print("Contact sucessfully added")
             return True
         else:
-            print("Error: cannot add contact due to ValueError")
+            print("Error: contact not added")
             return False
     except ValueError:
         print("Error: cannot add contact due to ValueError")
