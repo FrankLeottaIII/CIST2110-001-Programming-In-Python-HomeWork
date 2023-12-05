@@ -610,7 +610,7 @@ def save_csv_action(filename):
                 writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         print("beep boop... saving...")
     except FileNotFoundError:
-        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...")
+        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...NOOOOOOOOOOO")
         global greg
         greg = False
         return greg
@@ -641,6 +641,84 @@ def did_it_save(greg)-> bool:
 
 question = ""
 filename = ""
+
+#-------------------------------------------------------------------------------------
+def leave():
+    """Summery:
+    Asks the user if they want to leave the program.  Will automatically save the contacts to a csv file if the user says yes.
+    You cannot escape the program without saving, although what you save it to is up to you.
+    uses code from the save_question() and save_csv() funtions in a way that exits the while loop.
+    Makes use of the FileNotFoundError exception to exit the funtion and go to main menu in a amusing way.
+
+    global varibles used:
+        imput
+        the_filename
+        question
+        contacts
+    
+        
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    """
+    global imput
+    global the_filename
+    question = ""
+    the_filename = ""
+    global contacts
+    try:
+        question = input("Would you like to quit and save the contacts to a csv file? (y/n): ")
+        question_choice= ['y', 'n', 'Y', 'N']   
+        while question not in question_choice:
+            question = input("Would you like to quit and save the contacts to a csv file? (y/n): ")
+        if question == 'n':
+            print("Contacts not saved.")
+            raise FileNotFoundError
+        elif question == 'y':
+            the_filename = input("Enter the filename to save the contacts to: ")
+            with open(the_filename, 'w', encoding='utf-8', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+                for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
+                    contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
+                    writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
+            print("beep boop... saving...")
+            print("goodbye")
+            quit()
+    except FileNotFoundError:
+        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...NOOOOOOOOOOO")
+        return None
+    except ValueError:
+        print("Error: cannot save contacts due to ValueError")
+        return None
+
+
+def save_csv_action(filename):
+
+    global greg
+    try:
+        with open(filename, 'w', encoding='utf-8', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+            for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
+                contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
+                writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
+        print("beep boop... saving...")
+    except FileNotFoundError:
+        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...")
+        global greg
+        greg = False
+        return greg
+
+
+
+
+
+#################3
+
 
 # The main function will be used to run the program. The main function will use a while loop to display the menu and get the user's choice. The main function will call the appropriate function based on the user's choice. The main function will also call the save_csv function to save the contacts to the csv file before the program ends.
 
@@ -736,10 +814,10 @@ def main():
             next_birthday()
             imput = "restart"
         elif imput == "0":
-            print("Thank you for using the Contact List Program")
-            time.sleep(2)
-            print("Goodbye")
-            quit()
+            print("Quit has been selected")
+            leave()
+            print("heading back to the main menu")
+            imput = "restart"
         elif imput == "6":
             print("View contacts with pandas has been selected")
             print("downloading pandas...please wait...")
