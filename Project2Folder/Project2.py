@@ -574,7 +574,13 @@ def next_birthday():
 import csv
 question = ""
 the_filename = ""
-def save_question():
+def save_csv()-> str:
+    """Summery:
+    Asks the user if they want to save the contacts to a csv file, but doesn't save them, just asks to see if they want to.
+    relys on the save_
+    
+    
+    """
     global imput
     global the_filename
     question = input("Would you like to save the contacts to a csv file? (y/n): ")
@@ -582,13 +588,13 @@ def save_question():
         the_filename = input("Enter the filename to save the contacts to: ")
         return the_filename
     else:
-        print("Contacts not saved.")
+        print(".....")
         imput = "restart"
-        return imput
+        return imput #this approch doesnt work, but its funnier to let it go to fileNotFound error in the save_csv_action() funtion.
 
 def save_csv_action(filename):
     """Summery:
-    Saves the contacts to the csv file.
+    This funtion Saves the contacts to the csv file.
     Uses the global varible contacts
     This function is the action part of the save_csv() funtion.
     This funtion only returns False if the file is not found, otherwise it runs normally.
@@ -614,6 +620,14 @@ def save_csv_action(filename):
         global greg
         greg = False
         return greg
+    except AttributeError:
+        with open(filename, 'w', encoding='utf-8', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+            for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
+                contact['Birthday'] = dt.datetime.strptime(contact['Birthday'], '%m/%d/%Y')
+                contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
+                writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         
 def did_it_save(greg)-> bool:
     """summery:
@@ -647,7 +661,7 @@ def leave():
     """Summery:
     Asks the user if they want to leave the program.  Will automatically save the contacts to a csv file if the user says yes.
     You cannot escape the program without saving, although what you save it to is up to you.
-    uses code from the save_question() and save_csv() funtions in a way that exits the while loop.
+    uses code from the save_csv() and save_csv_action() funtions in a way that exits the while loop.
     Makes use of the FileNotFoundError exception to exit the funtion and go to main menu in a amusing way.
 
     global varibles used:
@@ -696,22 +710,22 @@ def leave():
         return None
 
 
-def save_csv_action(filename):
+# def save_csv_action(filename):
 
-    global greg
-    try:
-        with open(filename, 'w', encoding='utf-8', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
-            for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
-                contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
-                writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
-        print("beep boop... saving...")
-    except FileNotFoundError:
-        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...")
-        global greg
-        greg = False
-        return greg
+#     global greg
+#     try:
+#         with open(filename, 'w', encoding='utf-8', newline='') as file:
+#             writer = csv.writer(file)
+#             writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+#             for contact in contacts.values(): # Loop through the contacts dictionary, the values are the inner dictionaries(how you deal with inner dictionaries)
+#                 contact['Birthday'] = contact['Birthday'].strftime('%m/%d/%Y')  # Fix here
+#                 writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
+#         print("beep boop... saving...")
+#     except FileNotFoundError:
+#         print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...")
+#         global greg
+#         greg = False
+#         return greg
 
 
 
@@ -800,8 +814,7 @@ def main():
             greg = True
             question = ""
             the_filename = ""
-            save_question()
-            print("ok, then, I will ask you the filename of  the ")
+            save_csv()
             # greg = save_csv(the_filename)
             save_csv_action(the_filename)
             did_it_save(greg)
