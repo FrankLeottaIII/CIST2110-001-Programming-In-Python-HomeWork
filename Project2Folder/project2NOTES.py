@@ -127,3 +127,13 @@ def add_keys(name):
 
 ##################################
 
+# def save_csv(filename):
+#     try:
+#         with open(filename, 'w') as file:
+#             writer = csv.writer(file)
+#             writer.writerow(['Name', 'Phone', 'Email', 'Birthday'])
+#             for contact in contacts.values():
+#                 writer.writerow([contact['name'], contact['phone'], contact['email'], contact['birthday']])
+#         return True
+#     except:
+#         return False
