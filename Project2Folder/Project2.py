@@ -392,27 +392,87 @@ def view_contacts()-> None: # none is the same as void in java, it means that th
 # Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries.
 #  Like in Lab 10 and then use the tabulate library to display the contacts in a table format.
 #  This is optional and not required. You can use string formatting to display the contacts in a table format.
-def unpack_dict(dictionary):
-    """
-    Unpacks a dictionary into a list of dictionaries.
+#from IPython.display import display
 
-    Args:
-        dictionary (dict): The dictionary to be unpacked.
+# import pandas as pd
+def panda_display()-> None:
+    """Summery:
+    desplays the contacts in a table format using the pandas module.
 
+    args:
+        None
+    
+    Moduals used:
+        pandas
+    
     Returns:
-        list: A list of dictionaries containing the unpacked data.
+        Prints the contacts in a table format, using the pandas module.
+        or
+        None if ValueError or ModuleNotFoundError
+    
     """
-    list_of_dicts = []
-    for key, value in dictionary.items():
-        list_of_dicts.append({key: value})
-    return print(list_of_dicts)
+    global contacts
+    try:
+        df = pd.DataFrame(contacts.values(), columns=['Name', 'Phone', 'Email', 'Birthday'])
+        print(df)
+    except ValueError:
+        print("Error: cannot view contacts due to ValueError")
+        return None
+    except ModuleNotFoundError:
+        print("Error: No module named 'pandas', cannot view contacts due to ModuleNotFoundError")
+        return None
+    except NameError: #its supposed to fail the first time to install pandas, so it can be imported.  it will work correctly the next time
+        import pandas as pd
+        df = pd.DataFrame(contacts.values(), columns=['Name', 'Phone', 'Email', 'Birthday'])
+        print(df)
+    df = pd.DataFrame(contacts.values(), columns=['Name', 'Phone', 'Email', 'Birthday'])
+#     print(df)
+# print(df)
+# print("\n\n\n")
+# print(df)
+# def unpack_dict(dictionary, list_varible):
+#     """
+#     Unpacks a dictionary into a list of dictionaries.
 
-# not right , need 
+#     Args:
+#         dictionary (dict): The dictionary to be unpacked.
+
+#     Returns:
+#         list: A list of dictionaries containing the unpacked data.
+#     """
+#     try:
+#         list_varible = []
+#         for key, value in dictionary.items():
+#             list_varible.append({key: value})
+#         return list_varible
+#     except ValueError:
+#         print("Error: cannot unpack dictionary due to ValueError")
+#     except TypeError:
+#         print("Error: cannot unpack dictionary due to TypeError")
+# list_of_dicts = []
+# unpack_dict(contacts, list_of_dicts)
+
+# # not right , need 
 # from IPython.display import display
-#import pandas as pd
+# import pandas as pd
 
-# list_of_dict = pd.DataFrame(dict)
-# display(df)
+# def panda_dict(list_varible):
+#     """Summery:
+#     Displays the contacts in the dictionary in a table format."""
+#     try:
+#         list_varible = pd.DataFrame(dict)
+#         list_varible = display(list_varible)
+#         return list_varible
+#     except ValueError:
+#         print("Error: cannot unpack dictionary due to ValueError")
+#         return None
+#     except ModuleNotFoundError:
+#         print("Error: No module named 'pandas', cannot unpack dictionary due to ModuleNotFoundError")
+#         return None
+# # unpack_dict2(contacts)
+# # list_of_dict = pd.DataFrame(dict)
+# # display(list_of_dict)
+# print(panda_dict(contacts))
 
 #will run it to see the errors, and ajust accordingly
 
@@ -615,11 +675,12 @@ def main():
         print("press 3 to Delete contact")
         print("press 4 to Save contacts to csv file")
         print("press 5 to Next Birthday")
+        print("press 6 to view contacts with pandas (Warning: will load slower)")
         print("press 0 to Quit")
         print("--------------------------------------------------")
         print("\n")
         imput = input("Please enter your choice: ")
-        imput_list = ["0", "1", "2", "3", "4", "5", "restart",'list']
+        imput_list = ["0", "1", "2", "3", "4", "5", "restart","6"]
         while imput not in imput_list:
             print("Invalid input")
             imput = input("Please enter your choice: ")
@@ -632,6 +693,7 @@ def main():
             print("press 3 to Delete contact")
             print("press 4 to Save contacts to csv file")
             print("press 5 to Next Birthday")
+            print("press 6 to view contacts with pandas (Warning: will load slower)")
             print("press 0 to Quit")
             print("--------------------------------------------------")
             print("\n")
@@ -678,8 +740,10 @@ def main():
             time.sleep(2)
             print("Goodbye")
             quit()
-        elif imput == "list":
-            print(contacts)
+        elif imput == "6":
+            print("View contacts with pandas has been selected")
+            print("downloading pandas...please wait...")
+            panda_display()
             imput = "restart"
         else:
             print("Invalid input")
