@@ -542,6 +542,20 @@ def save_question():
 
 
 def save_csv_action(filename):
+    """Summery:
+    Saves the contacts to the csv file.
+    Uses the global varible contacts
+    This function is the action part of the save_csv() funtion.
+    This funtion only returns False if the file is not found, otherwise it runs normally.
+
+
+    Args:
+        filename (str): The name of the csv file to save the contacts to.
+    
+    Returns:
+        bool: True if the contacts were saved, False otherwise.
+    """
+    global greg
     try:
         with open(filename, 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
@@ -551,17 +565,34 @@ def save_csv_action(filename):
                 writer.writerow([contact['Name'], contact['Phone'], contact['Email'], contact['Birthday']])
         print("beep boop... saving...")
     except FileNotFoundError:
-        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERRO")
+        print("BEEEEEEEP BOOOOOOOOOOP ERROR ERROR ERROR ERROR ERROR...")
         global greg
         greg = False
         return greg
         
-def did_it_save(greg):
-    if greg == True:
-        print("Contacts saved successfully.")
-    else:
-        print("Contacts not saved.")
-        return greg
+def did_it_save(greg)-> bool:
+    """summery:
+    Tells the user if the contacts were saved or not.
+
+    args:
+       greg (bool): A boolean value indicating whether the contacts were saved or not.
+
+    returns:
+        bool: True if the contacts were saved, False otherwise.
+    
+    """
+    try:
+        if greg == True:
+            print("Contacts saved successfully.")
+            return True
+        else:
+            print("Contacts not saved.")
+            return False
+    except ValueError:
+        print("Error: cannot save contacts due to ValueError")
+        return False
+
+
 
 question = ""
 filename = ""
@@ -661,6 +692,7 @@ def main():
             question = ""
             the_filename = ""
             save_question()
+            print("ok, then, I will ask you the filename of  the ")
             # greg = save_csv(the_filename)
             save_csv_action(the_filename)
             did_it_save(greg)
