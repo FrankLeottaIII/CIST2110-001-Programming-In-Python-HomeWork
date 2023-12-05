@@ -127,7 +127,7 @@ FIRST_THREE = ""
 SECOND_THREE = ""
 LAST_FOUR = ""
 
-def first_three_fun():
+def first_three_fun()-> str:
     """ Summery:
     Get the first three digits of the phone number from the user.
     Uses the global varible FIRST_THREE
@@ -151,7 +151,7 @@ def first_three_fun():
     except ValueError:
         print("Error: lets try that again")
 
-def second_three_fun():
+def second_three_fun() -> str:
     """Summery:
     Get the second three digits of the phone number from the user.
 
@@ -172,7 +172,7 @@ def second_three_fun():
         print("Error: lets try that again")
 
 
-def last_four_fun():
+def last_four_fun()-> str:
     """Summery:
     Get the last four digits of the phone number from the user.
 
@@ -226,7 +226,7 @@ def get_email()-> str:
     Get the email from the user.
     Uses the global varible EMAIL
 
-    loops if: the email is not in the correct format.
+    loops if: the email is not in the correct format.  May cause colorblindness.
 
     Args:
         None
@@ -240,11 +240,18 @@ def get_email()-> str:
     global EMAIL
     try:
         EMAIL = input("Enter email: ")
-        if "@" in EMAIL and "." in EMAIL:
-            return EMAIL
-        else:
-            print("Invalid email, please try again")
-            EMAIL = input("Enter email: ")
+        EMAIL = EMAIL.strip()
+        red = True
+        green = False
+        while red == True:
+            if "@" not in EMAIL or "." not in EMAIL:
+                print("Invalid email, all emails have a "@" and a "." in them. Please try again")
+                EMAIL = input("Enter email: ")
+                red = True
+            elif "@" in EMAIL and "." in EMAIL:
+                red = False
+                green = True    # You are colorblind now from this point on, sorry
+        return EMAIL
     except ValueError:
         print("Error: cannot add contact due to ValueError")
 
