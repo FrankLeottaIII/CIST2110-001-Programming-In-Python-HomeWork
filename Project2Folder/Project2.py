@@ -245,7 +245,7 @@ def get_email()-> str:
         green = False
         while red == True:
             if "@" not in EMAIL or "." not in EMAIL:
-                print("Invalid email, all emails have a "@" and a "." in them. Please try again")
+                print("Invalid email, all emails have a @ and a period Please try again")
                 EMAIL = input("Enter email: ")
                 red = True
             elif "@" in EMAIL and "." in EMAIL:
@@ -360,111 +360,64 @@ def add_contact(name, phone, email, birthday) -> bool:
         print("Error: cannot add contact due to ValueError")
         return False
 
-#------------------------
-
-
-
-
-# def add_contact(name, phone, email, birthday) -> bool:
-#     """ returns true if contact was added, false if not"""
-#     global contacts
-#     try:
-#         if name in contacts:
-#             print("Error: Contact already exists")
-#             return False
-#         elif name not in contacts: 
-#             contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
-#             WALDO = True
-#             return True    
-#     except ValueError:
-#         print("Error: cannot add contact due to ValueError")
-#         return False 
-#________________________________________________________________________________
-#waldo = add_contact(name, phone, email, birthday)
-#________________________________________________________________________________
-# new_name = ""
-# def put_contact_together(name, phone, email, birthday):
-#     global contracts
-#     contacts[name] = { 
-#     'Name': name,
-#     'Phone': phone,
-#     'Email': email,
-#     'Birthday': birthday
-    
-
-#contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
-
-
-# def add_contact(name, phone, email, birthday) -> bool:
-#     """ returns true if contact was added, false if not"""
-#     global contacts
-#     phone
-#     email
-#     birthday
-#     try:
-
-#         if name in key_list:
-#             print("Error: Contact already exists")
-#             return False
-#         if name in contacts:
-#             print("contact sucessfully added")
-#             return True
-#         elif name not in contacts:  
-#             return False
-#     except ValueError:
-#         print("Error: cannot add contact due to ValueError")
-#         return False 
-""" 
-def add_keys(name):
-    global keys
-    keys.append(name)
-    keys = contacts.keys()
-    return keys
-"""
-#in code
-def reset_variables():
-    global NAME
-    global PHONE
-    global EMAIL
-    global BIRTHDAY
-    global DO_I_DELETE_CONTACT
-    global FIRST_THREE
-    global SECOND_THREE
-    global LAST_FOUR
-    global WALDO
-    NAME = ""
-    PHONE = ""
-    EMAIL = ""
-    BIRTHDAY = ""
-    DO_I_DELETE_CONTACT = ""
-    FIRST_THREE = ""
-    SECOND_THREE = ""
-    LAST_FOUR = ""
-    WALDO = ""
-
-##################################
-
-
-
 #-------------------------------------------------------------------------------------
 
 #2.) view_contacts() - This function will display the contacts in the dictionary. The function will take no parameters. The function will return nothing. The function will display a message if there are no contacts in the dictionary. Use string formatting to display the contacts in a table format. The table should have a header row and each contact should be on a separate row. The table should have the following columns: Name, Phone, Email, Birthday. The birthday should be formatted as mm/dd/yyyy. The table should be sorted by name.
 
-def view_contacts():
+def view_contacts()-> None: # none is the same as void in java, it means that the function returns nothing, it is a place holder.
     """
     Display the contacts in the dictionary in a table format.
+    For each contact in contacts, print the contact info in a table format.
+    If there are no contacts in the dictionary, prints a message saying so.
+
+    Args:
+        None 
+    
+    Returns:
+        None
     """
     global contacts
+    try:
+        if len(contacts) == 0:
+            print("There are no contacts in the dictionary.")
+        else:
+            print("Name\tPhone\tEmail\tBirthday")
+            for name, contact in contacts.items():
+                print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{contact["Birthday"]}')
+    except ValueError:
+        print("Error: cannot view contacts due to ValueError")
 
-    if len(contacts) == 0:
-        print("There are no contacts in the dictionary.")
-    else:
-        print("Name\tPhone\tEmail\tBirthday")
-        for name, contact in contacts.items():
-            print(f'{name}\t{contact["Phone"]}\t{contact["Email"]}\t{contact["Birthday"]}')
 
 # Hint 1: You will need to loop through the dictionary to display the contacts. IE. for key, value in contact.items():
-# Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries. Like in Lab 10 and then use the tabulate library to display the contacts in a table format. This is optional and not required. You can use string formatting to display the contacts in a table format.
+# Extra Credit: The data is a dictionary of dictionaries. You can unpack the dictionary into a list of dictionaries.
+#  Like in Lab 10 and then use the tabulate library to display the contacts in a table format.
+#  This is optional and not required. You can use string formatting to display the contacts in a table format.
+def unpack_dict(dictionary):
+    """
+    Unpacks a dictionary into a list of dictionaries.
+
+    Args:
+        dictionary (dict): The dictionary to be unpacked.
+
+    Returns:
+        list: A list of dictionaries containing the unpacked data.
+    """
+    list_of_dicts = []
+    for key, value in dictionary.items():
+        list_of_dicts.append({key: value})
+    return print(list_of_dicts)
+
+# not right , need 
+# from IPython.display import display
+#import pandas as pd
+
+# list_of_dict = pd.DataFrame(dict)
+# display(df)
+
+#will run it to see the errors, and ajust accordingly
+
+
+
 
 """ I think I got this done"""
 
@@ -692,7 +645,6 @@ def main():
         elif imput == "2":
             print("View contacts has been selected")
             view_contacts()
-            reset_variables()
             imput = "restart"
         elif imput == "3":
             print("Delete contact has been selected")
@@ -700,7 +652,6 @@ def main():
             global question
             question = delete_contact(NAME) #should i pop this instead???
             delete_contact_action(question)
-            reset_variables()
             imput = "restart"
         elif imput == "4":
             print("Save contacts has been selected")

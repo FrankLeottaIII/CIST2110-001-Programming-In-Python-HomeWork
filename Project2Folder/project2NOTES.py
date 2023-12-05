@@ -43,3 +43,87 @@
 # Skip the first line of the csv file since it contains the column headers
 # i can use next() to skip the first line
 ############################################################
+
+### this is all attempts at trying to get the csv file to work
+# I think I lost a few years of my life trying to figure this out
+
+
+# def add_contact(name, phone, email, birthday) -> bool:
+#     """ returns true if contact was added, false if not"""
+#     global contacts
+#     try:
+#         if name in contacts:
+#             print("Error: Contact already exists")
+#             return False
+#         elif name not in contacts: 
+#             contacts[name] = {'Name': name, 'Phone': phone, 'Email': email, 'Birthday': birthday}
+#             WALDO = True
+#             return True    
+#     except ValueError:
+#         print("Error: cannot add contact due to ValueError")
+#         return False 
+#________________________________________________________________________________
+#waldo = add_contact(name, phone, email, birthday)
+#________________________________________________________________________________
+# new_name = ""
+# def put_contact_together(name, phone, email, birthday):
+#     global contracts
+#     contacts[name] = { 
+#     'Name': name,
+#     'Phone': phone,
+#     'Email': email,
+#     'Birthday': birthday
+    
+
+#contact is a list of dictionaries, with the key being the name, and the value being a dictionary of the name, phone, email, and birthday
+
+
+# def add_contact(name, phone, email, birthday) -> bool:
+#     """ returns true if contact was added, false if not"""
+#     global contacts
+#     phone
+#     email
+#     birthday
+#     try:
+
+#         if name in key_list:
+#             print("Error: Contact already exists")
+#             return False
+#         if name in contacts:
+#             print("contact sucessfully added")
+#             return True
+#         elif name not in contacts:  
+#             return False
+#     except ValueError:
+#         print("Error: cannot add contact due to ValueError")
+#         return False 
+""" 
+def add_keys(name):
+    global keys
+    keys.append(name)
+    keys = contacts.keys()
+    return keys
+"""
+#in code, unused and not needed
+# def reset_variables():
+#     global NAME
+#     global PHONE
+#     global EMAIL
+#     global BIRTHDAY
+#     global DO_I_DELETE_CONTACT
+#     global FIRST_THREE
+#     global SECOND_THREE
+#     global LAST_FOUR
+#     global WALDO
+#     NAME = ""
+#     PHONE = ""
+#     EMAIL = ""
+#     BIRTHDAY = ""
+#     DO_I_DELETE_CONTACT = ""
+#     FIRST_THREE = ""
+#     SECOND_THREE = ""
+#     LAST_FOUR = ""
+#     WALDO = ""
+
+##################################
+
