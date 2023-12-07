@@ -1,5 +1,5 @@
 # HW9.py
-# Author:
+# Author: Frank R. Leotta III
 
 # This homework will expand upon the code for Lab11.py. If you did not complete Lab11.py, you should do so before attempting this homework.
 
@@ -7,6 +7,60 @@
 
 
 ### INSERT CODE FROM LAB11.PY HERE 1-11###
+import tabulate #pip install tabulate first if need be.
+class Product:
+    def __init__(self, name, price: float, product_id):# self is ref that varible  regular and optional varibles. assume name product price is required
+        self.name = name # self is a ref to the object, name is a varible, self.name is a attribute
+        self.price = price 
+        self.product_id = product_id
+
+    def __str__(self):
+        return f"Product: {self.name}, Price: {self.price}, ID: {self.product_id}" # could tpye haha  you will never get this, its always typing it up in the stirng format
+
+
+class Customer:
+    def __init__(self, name, customer_id): #all of these are required
+        self.name = name #diff over time
+        self.customer_id = customer_id # diff over time
+        self.cart = [] # its going to be the same every time, so no need to pass it in as a paramiter
+    
+    def __str__(self): #need to pass in self as paramiter
+        return f"Customer: {self.name}, ID: {self.customer_id}" # this is a string, not a list, so no brackets, just a string
+
+    def add_to_cart(self, product: Product): # self is the customer, product is the product  #taking a product and add it to cart.  List can hold anything inside of them.  sting as an object is, lists can hold objects. cart can hold product objects inside of it.
+            self.cart.append(product) # add the product to the cart class 
+            print(f"{product.name} was added to {self.name}'s cart") # print out the product that was added and the customer's name.
+   
+    def remove_from_cart(self, product: Product): # self is the customer, product is the product
+        self.cart.remove(product) # remove the product from the cart list
+        print(f"{product.name} was removed from {self.name}'s cart") # print out the product that was removed and the customer's name.
+
+    def checkout(self): # self is the customer
+        total = 0 # create a total variable and set it to 0
+        for product in self.cart:
+            total += product.price  #all way upp  here the products have price associated with them, so you can add them up... remember datetime having . associated with that headach only different
+        print(f"{self.name}'s total is {total}") # print out the customer's name and the total price of all the products in the cart. #api in website, take the total charge and add taxes to it. 
+        self.cart = [] # empty the cart list
+
+    def display_products(self): # self is the customer  
+        print(f"{self.name}'s cart:") # print out the customer's name and the total price of all the products in the cart.  Self.name is whatever funtion you are currently in
+        for product in self.cart:
+            print(product)
+
+    def display_products_pretty(self): # self is the customer  
+        print(f"{self.name}'s cart:") # print out the customer's name and the total price of all the products in the cart.  Self.name is whatever funtion you are currently in
+        print(tabulate.tabulate(
+        [{"Name": Product.name, "Price": Product.price, "ID": Product.product_id} for Product in self.cart], 
+        headers="keys", tablefmt="fancy_grid"))
+
+class Store:      
+    def __init__(self): # self is the store
+        self.products = [] # this should be a list that contains Product objects.
+        self.customers = [] # this should be a list that contains Customer objects.
+
+
+
+
 
 ### END CODE FROM LAB11.PY ###
 
