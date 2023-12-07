@@ -58,9 +58,30 @@ class Store:
         self.products = [] # this should be a list that contains Product objects.
         self.customers = [] # this should be a list that contains Customer objects.
 
+    def add_product(self, product: Product): # self is the store, product is the product
+        self.products.append(product) # add the product to the products list
+        print(f"{product.name} was added to the store") # print out the product that was added and the store name.
 
+    def add_customer(self, customer: Customer):
+        self.customers.append(customer)
+        print(f"{customer.name} was added to the store")
 
+    def display_products(self):
+        print("Products:")
+        for product in self.products:
+            print(product)
 
+    def display_customers(self):
+        print("Customers:")
+        for customer in self.customers:
+            print(customer)
+
+store = Store() # create a store object called store
+product1 =  Product("iPhone 12", 799.99, 1)
+product2 = Product("iPhone 12 Pro", 999.99, 2) # this is how you create a product object
+product3 = Product("iPhone 12 Pro Max", 1099.99, 3) # this is how you create a product object
+customer1 = Customer("John", 1) # this is how you create a customer object
+customer2 = Customer("Jane", 2)
 
 ### END CODE FROM LAB11.PY ###
 
