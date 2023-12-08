@@ -6,7 +6,7 @@
 # Copy the code from Lab11.py into this file 1-11. I'll add some comments to help you out.
 
 
-### INSERT CODE FROM LAB11.PY HERE 1-11###
+### INSERT CODE FROM LAB11.PY HERE Questions 1-11###
 import tabulate #pip install tabulate first if need be.
 class Product:
     def __init__(self, name, price: float, product_id):# self is ref that varible  regular and optional varibles. assume name product price is required
@@ -86,15 +86,25 @@ customer2 = Customer("Jane", 2)
 ### END CODE FROM LAB11.PY ###
 
 # START OF HOMEWORK Questions
-# 1. Create a method called add_product_to_customer_cart that takes in a Customer object and a Product object. The method should add the product to the customer's cart. The method should also print out the product that was added and the customer's name.
+# 1. Create a method called add_product_to_customer_cart that takes in a Customer object and a Product object. 
+# The method should add the product to the customer's cart. 
+# The method should also print out the product that was added and the customer's name.
 # Hint: You can use the add_to_cart method from the Customer class.
-# Hint2: This method does not need to be in a class. It should be a regular function that takes in a Customer object and a Product object.
+# Hint2: This method does not need to be in a class. 
+# It should be a regular function that takes in a Customer object and a Product object.
+def add_product_to_customer_cart(customer: Customer, product: Product): # self is the customer, product is the product
+    customer.add_to_cart(product) # add the product to the cart list
+    print(f"{product.name} was added to {customer.name}'s cart") # print out the product that was added and the customer's name.
 
-
-# 2. Create a method called remove_product_from_customer_cart that takes in a Customer object and a Product object. The method should remove the product from the customer's cart. The method should also print out the product that was removed and the customer's name.
+# 2. Create a method called remove_product_from_customer_cart that takes in a Customer object and a Product object. 
+# The method should remove the product from the customer's cart. 
+# The method should also print out the product that was removed and the customer's name.
 # Hint: You can use the remove_from_cart method from the Customer class.
-# Hint2: This method does not need to be in a class. It should be a regular function that takes in a Customer object and a Product object.
-
+# Hint2: This method does not need to be in a class. 
+# It should be a regular function that takes in a Customer object and a Product object.
+def remove_product_from_customer_cart(customer: Customer, product: Product): # self is the customer, product is the product
+    customer.remove_from_cart(product) # remove the product from the cart list
+    print(f"{product.name} was removed from {customer.name}'s cart") # print out the product that was removed and the customer's name.
 
 # 3. Create a menu function that will display the following menu:
 # 1. Add Product
@@ -110,6 +120,44 @@ customer2 = Customer("Jane", 2)
 
 # The menu function should return the user's choice as an integer.
 # Hint: Print out the menu and then use the input() function to get the user's choice.
+#nOTE
+def menu():
+
+    print("welcome to the store Menu. What would you like to do?")
+    print("press 1 to Add Product")
+    print("press 2 to Add Customer")
+    print("press 3 to Add Product to Customer's Cart")
+    print("press 4 to Remove Product from Customer's Cart")
+    print("press 5 to Display Products")
+    print("press 6 to Display Customers")
+    print("press 7 to Display Customer's Cart")
+    choice = imput = input("What would you like to do?")
+    return choice
+
+ 
+
+
+if imput == "1":
+    print("Add Product")
+    
+elif imput == "2":
+    print("Add Customer")
+elif imput == "3":
+    print("Add Product to Customer's Cart")
+elif imput == "4":
+    print("Remove Product from Customer's Cart")
+elif imput == "5":
+    print("Display Products")
+elif imput == "6":
+    print("Display Customers")
+elif imput == "7":
+    print("Display Customer's Cart")
+
+###########333
+
+
+
+##############3
 
 # 4. Create a main function that will call the menu function and then call the appropriate methods based on the user's choice. The main function should be in a while loop that will continue to call the menu function until the user enters 0 to exit the program.
 # IMPORTANT: The main function should create a Store object and then call the appropriate methods on the Store object. Without the Store object, you will not be able to add products or customers.
@@ -136,7 +184,57 @@ customer2 = Customer("Jane", 2)
 
 
 def main():
-    pass  # remove this line when you start working on the main function
+    store = Store()
+    waldo = True
+    while waldo == True:
+        imput = menu()
+        imput = input("Please enter your choice: ")
+        imput_list = ["0", "1", "2", "3", "4", "5", "restart","6"]
+        while imput not in imput_list:
+            print("Invalid input")
+            imput = input("Please enter your choice: ")
+            
+        if imput == "0":
+            print("Exiting Program")
+            quit()
+        elif imput == "1":
+            print("Add Product")
+            name = input("Please enter the product name: ")
+            price = input("Please enter the product price: ")
+            product_id = input("Please enter the product id: ")
+            store.add_product(Product(name, price, product_id))
+        elif imput == "2":
+            print("Add Customer")
+            name = input("Please enter the customer name: ")
+            customer_id = input("Please enter the customer id: ")
+            store.add_customer(Customer(name, customer_id))
+        elif imput == "3":
+            print("Add Product to Customer's Cart")
+            customer_name = input("Please enter the customer name: ")
+            product_name = input("Please enter the product name: ")
+            customer = store.find_customer(customer_name)
+            product = store.find_product(product_name)
+            customer.add_to_cart(product)
+        elif imput == "4":
+            print("Remove Product from Customer's Cart")
+            customer_name = input("Please enter the customer name: ")
+            product_name = input("Please enter the product name: ")
+            customer = store.find_customer(customer_name)
+            product = store.find_product(product_name)
+            customer.remove_from_cart(product)
+        elif imput == "5":
+            print("Display Products")
+            store.display_products()
+        elif imput == "6":
+            print("Display Customers")
+            store.display_customers()
+        elif imput == "7":
+            print("Display Customer's Cart")
+            customer_name = input("Please enter the customer name: ")
+            customer = store.find_customer(customer_name)
+            customer.display_products_pretty()
+
+      # remove this line when you start working on the main function
 
 
 if __name__ == "__main__":
