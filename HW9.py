@@ -303,8 +303,9 @@ def main():
             print("Add Product")
             name = input("Please enter the product name: ")
             price = input("Please enter the product price: ")
+            products_id = input("Please enter the product id: ")
             pricecheck(price)
-            store.add_product(Product(name, price, product_id))
+            store.add_product(Product(name, price, products_id))
         elif imput == "2":
             print("Add Customer")
             name = input("Please enter the customer name: ")
