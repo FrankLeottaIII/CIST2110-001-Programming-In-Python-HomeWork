@@ -143,6 +143,54 @@ def remove_product_from_customer_cart(customer: Customer, product: Product)-> No
 # 9. Exit
 
 
+def check_customer_in_store(customer: Customer) -> bool:
+    """Summary:
+    This function checks if a customer is in the store.
+
+    Parameters:
+    customer (Customer): The customer object.
+
+    Returns:
+    bool: True if the customer is in the store, False otherwise.
+    """
+    if customer in store.customers:
+        return True
+    else:
+        return False
+
+def check_product_in_store(product: Product) -> bool:
+    """Summary:
+    This function checks if a product is in the store.
+
+    Parameters:
+    product (Product): The product object.
+
+    Returns:
+    bool: True if the product is in the store, False otherwise.
+    """
+    if product in store.products:
+        return True
+    else:
+        return False
+    
+ def should_banish_to_menu(varible) -> None:
+    """Summary:
+    This function prints out a message and then returns to the menu.
+
+    Parameters:
+    Varible: The varible that is being checked to see if it is true or false
+
+    Returns:
+     if True, prints string and None, 
+     If False, menu() function.
+    """
+    if varible == True:
+        print("...authenticated... beep boop")
+        return None
+    if varible == False:
+        menu()
+
+
 # The menu function should return the user's choice as an integer.
 # Hint: Print out the menu and then use the input() function to get the user's choice.
 #nOTE
