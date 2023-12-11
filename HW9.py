@@ -1,4 +1,3 @@
-import sys
 # HW9.py
 # Author: Frank R. Leotta III
 
@@ -167,11 +166,11 @@ def menu()-> int:
     print("press 5 to Display Products")
     print("press 6 to Display Customers")
     print("press 7 to Display Customer's Cart")
-    choice = input("What would you like to do?: ")
+    choice = input("What would you like to do?")
     choice_list = ["1", "2", "3", "4", "5", "6", "7"]
     while choice not in choice_list:
         print("Invalid input, please try again.")
-        choice = input("What would you like to do?: ")
+        choice = input("What would you like to do?")
     return choice
 
  
@@ -202,7 +201,7 @@ def remove_product_from_customer_cart(customer: Customer, product: Product)-> No
 
 ##############3
 #check imput funtions
-def add_price_check(price: float)-> float:
+def add_pricecheck(price: float)-> float:
     """Summery:
         This function checks to see if the price is a number.  If it is not a number, it will ask the user to enter a number.
         
@@ -228,7 +227,7 @@ def add_price_check(price: float)-> float:
 
 def customer_check(customer_name: str, store: Store)-> str:
     """Summery:
-        This function checks to see if the customer is in the store object.    If the customer is not in the store list , it will ask the user to enter a customer that is in the store.
+        This function checks to see if the customer is in the store.  If the customer is not in the store, it will ask the user to enter a customer that is in the store.
         
     Parameters:
         customer_name (str): The name of the customer.
@@ -239,11 +238,9 @@ def customer_check(customer_name: str, store: Store)-> str:
         
         
         """
-    while customer_name not in store.customers or store.customers == [] or customer_name == "quit":
+    while customer_name not in store.customers or store.customers == []:
         if store.customers == []:
             print("There are no customers in the store.")
-            menu()
-        elif customer_name == "quit":
             menu()
         print("Customer not found.")
         customer_name = input("Please enter the customer name: ")
@@ -295,20 +292,19 @@ def product_check(product_name: str, store: Store)-> str:
 
 
 def main():
-    """
-    This is the main function that runs the program.
-    """
     store = Store()
-    while True:
+    waldo = True
+    while waldo == True:
         imput = menu()
         if imput == "0":
             print("Exiting Program")
+            quit()
         elif imput == "1":
             print("Add Product")
             name = input("Please enter the product name: ")
             price = input("Please enter the product price: ")
             products_id = input("Please enter the product id: ")
-            add_price_check(price)
+            pricecheck(price)
             store.add_product(Product(name, price, products_id))
         elif imput == "2":
             print("Add Customer")
@@ -318,18 +314,30 @@ def main():
         elif imput == "3":
             print("Add Product to Customer's Cart")
             customer_name = input("Please enter the customer name: ")
-            customer_name = customer_check(customer_name, store)
+            customer_check(customer_name, store)
             product_name = input("Please enter the product name: ")
-            product_name = product_check(product_name, store)
+            product_check(product_name, store)
+            # customer = store.find_customer(customer_name)
+            # product = store.find_product(product_name)
             customer_name.add_to_cart(product_name)
             
         elif imput == "4":
             print("Remove Product from Customer's Cart")
             customer_name = input("Please enter the customer name: ")
-            customer_name = customer_check(customer_name, store)
+            while customer_name not in store.customers or store.customers == []:
+                if store.customers == []:
+                    print("There are no customers in the store.")
+                    menu()
+                print("Customer not found.")
+                customer_name = input("Please enter the customer name: ")
             product_name = input("Please enter the product name: ")
-            product_name = product_check(product_name, store)
-            customer_name.remove_from_cart(product_name)
+            while product_name not in store.products or store.products == []:
+                if store.products == []:
+                    print("There are no products in the store.")
+                    menu()
+                print("Product not found.")
+                product_name = input("Please enter the product name: ")
+            customer.remove_from_cart(product)
         elif imput == "5":
             print("Display Products")
             store.display_products()
@@ -339,11 +347,14 @@ def main():
         elif imput == "7":
             print("Display Customer's Cart")
             customer_name = input("Please enter the customer name: ")
-            customer = store.find_customer(customer_name)
             customer.display_products_pretty()
+
+      # remove this line when you start working on the main function
+
 
 if __name__ == "__main__":
     """
     Leave this code at the bottom of the file. It will call the main function when you run the file.
     """
+
     main()
