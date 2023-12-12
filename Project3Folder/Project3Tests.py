@@ -51,9 +51,14 @@ def test_user_borrow():
     assert book.borrowed
 
 
-def test_user_return():
+def test_user_return(): ############This is the test case that I added
+    user = User("John Doe", 1)
+    book = Book("Test Book", "Author Name", 1234567890)
+    user.borrow_book(book)
+    user.return_book(book)
+    assert book not in user.borrowed_books
     ### Implement this test case ###
-    pass  # Remove this line when you implement this test case
+
 
 
 # Test cases for the Library class
@@ -79,6 +84,11 @@ def test_library_find_book():
     assert found == book
 
 
-def test_library_find_user():
+def test_library_find_user(): ############This is the test case that I added
+    library = Library()
+    user = User("John Doe", 1)
+    library.add_user(user)
+    found = library.find_user(1)
+    assert found == user
     ### Implement this test case ###
-    pass  # Remove this line when you implement this test case
+
