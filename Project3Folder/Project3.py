@@ -79,10 +79,10 @@ class Book:
 #   d. borrowedBooks (list of books)
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
-    def __init__(self, Name, member_id): #says member_id in pytest instead of ID, fixing it...
-        self.Name: str = Name
+    def __init__(self, name, member_id): #says member_id in pytest instead of ID, fixing it...
+        self.name: str = name
         self.member_id: int = member_id
-        self.borrowedBooks: list = []
+        self.borrowed_books: list = [] #says borrowed_books in pytest but barrowed books here, fixing it...
     
 
     
@@ -90,15 +90,15 @@ class User:
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
     def __str__(self):
-        return f"Name: {self.name}, ID: {self.member_id}, Borrowed Books: {self.borrowedBooks}"
+        return f"Name: {self.name}, ID: {self.member_id}, Borrowed Books: {self.borrowed_books}"
 #    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
     def borrow_book(self, book: Book):
-        self.borrowedBooks.append(book)
+        self.borrowed_books.append(book)
         book.check_out()
         return f"Book has been checked out"
 #    c. return_book - removes the book from the borrowedBooks list, updates the isBorrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
     def return_book(self, book: Book):
-        self.borrowedBooks.remove(book)
+        self.borrowed_books.remove(book)
         book.check_in()
         return f"Book has been checked in"
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
