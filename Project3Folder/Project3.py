@@ -313,6 +313,7 @@ def imput_isbn_convert(isbn: int)-> str:
 
         Returns:
             isbn (str): The ISBN converted to a string.
+            None: If ValueError is raised.
     """
     try:
         if isbn = int:
@@ -329,6 +330,7 @@ def imput_isbn_convert(isbn: int)-> str:
     except ValueError:
         print("Error, Value incorrect. Returning to menu.")
         menu()
+        return None
 
 ############################################
 def imput_title()-> str:
@@ -340,15 +342,55 @@ def imput_title()-> str:
         
         Returns:
             title (str): The title the user entered.
+            None: If ValueError is raised.
     """
     try:
         print ("Please enter the title of the book.  Please watch your capitalization and enter it ver batem.")
         title = input("Please enter the title: ")
         return title
     except ValueError:
-        print("Error, the Value is somehow incorrect... anyway let me escoret you to the main menu.")
+        print("Error, the Value is somehow incorrect... anyway let me escort you to the main menu.")
         menu()
+        return None
 ##############33
+def imput_author()-> str:
+    """Summery:
+        Asks the user to enter an author. Since authors can have number, letter and special numbers in them, no real checking is need...Authors can be robots or internet users nowadays so its only natural they have odd names.  The only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu, and returns nothing  The code is encapsulated in a try except block to handle errors.
+
+        Args:
+            None
+        
+        Returns:
+            author (str): The author the user entered.
+            None: If ValueError is raised.
+    """
+    try:
+        print ("Enter the author of the book.  Please watch your capitalization and enter it ver batem.")
+        author = input("Please enter the author: ")
+        return author
+    except ValueError:
+        print("Error, the Value is somehow incorrect...what a mess. Let me escort you to the main menu while I clean this up for next time.")
+        menu()
+        return None
+##############333
+def imput_name()-> str:
+    """Summery:
+        Asks the user to enter a name. Since names can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.
+
+        Args:
+            None
+        
+        Returns:
+            name (str): The name the user entered.
+    """
+    try:
+        print ("Enter the name of the user.  Please watch your capitalization and enter it ver batem.")
+        name = input("Please enter the name: ")
+        return name
+    except ValueError:
+        print("Error, the Value is somehow incorrect..which is odd since names are usually cut and dry. Let me escort you to the main menu while I clean this up for next time.")
+        menu()
+        return None
 
 
 
@@ -359,18 +401,18 @@ def main():
     library = Library()
     menu()
     Walter = True
-    while Walter == True
+    while Walter == True:
         if choice == "1": #add books
             isbn = imput_isbn()
             imput_isbn_convert(isbn)
             title = imput_title()
-            author = input("Enter the author: ")
+            author = imput_author()
             book = Book(isbn, title, author)
             library.add_book(book)
             print(f"Book added: {book}")
             menu()
         elif choice == "2": #add users
-            name = input("Enter the name: ")
+            name = imput_name()
             id = input("Enter the ID: ")
             user = User(name, id)
             library.add_user(user)
