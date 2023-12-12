@@ -131,28 +131,39 @@ class Library:
                 return user
         return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
-    def export_users_to_csv(users, filename):
+#       The csv file should have the following format: ISBN,Title,Author,Borrowed
+#       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
+    def export_books_to_csv(self, filename):
+        """
+        Export the books list to a csv file.
+
+        Args:
+            filename (str): The name of the file to export to.
+        """
+        with open(filename, "w", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
+            writer.writeheader()
+            for book in self.books:
+                writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
+
+
+#    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
+#       This will be similar to the export_books_to_csv method but there is a slight difference with the borrowedBooks attribute if you get stuck this code might help:
+#       borrowed_books_titles = [book.title for book in user.borrowed_books]
+#       Use that and pythons .join method to create a string of the borrowed books titles
+    def export_users_to_csv(self, filename):
         """
         Export the users list to a csv file.
 
         Args:
-            users (list): The list of users to export.
             filename (str): The name of the file to export to.
         """
         with open(filename, "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["Name", "ID", "Borrowed Books"])
-            for user in users:
+            for user in self.users:
                 borrowed_books_titles = [book.title for book in user.borrowed_books]
                 writer.writerow([user.name, user.id, ", ".join(borrowed_books_titles)])
-
-#       The csv file should have the following format: ISBN,Title,Author,Borrowed
-#       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
-#    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
-#       This will be similar to the export_books_to_csv method but there is a slight difference with the borrowedBooks attribute if you get stuck this code might help:
-#       borrowed_books_titles = [book.title for book in user.borrowed_books]
-#       Use that and pythons .join method to create a string of the borrowed books titles
-
 # 4. Create a menu that will allow users to:
 #    a. Add books
 #    b. Add users
