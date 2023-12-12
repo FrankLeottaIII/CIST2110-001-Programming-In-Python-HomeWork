@@ -28,7 +28,19 @@ import csv
 #    d. borrowed (boolean) - this should not be passed in as a parameter, it should be set to False by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Book:
-    def __init__(self, isbn, title, author):
+    def __init__(self, isbn: int, title: str, author: str) -> None:
+        """
+        Initializes a Book object with the given attributes: isbn, title, author, and borrowed.
+        The borrowed attribute is not a necessary argument and is set to False by default.
+
+        Args:
+            isbn (int): The ISBN of the book.
+            title (str): The title of the book.
+            author (str): The author of the book.
+
+        Returns:
+            None
+        """
         self.isbn: int = isbn
         self.title: str = title
         self.author: str = author
@@ -38,7 +50,16 @@ class Book:
 #    b. checkout - sets borrowed to True and returns a message that the book has been checked out
 #    c. checkin - sets borrowed to False and returns a message that the book has been checked in
 #    d. isBorrowed - returns True if the book is borrowed and False if the book is not borrowed
-    def __str__(self):
+    def __str__(self)-> str:
+        """Summery:
+            Returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>
+
+            Args:
+                None
+            
+            Returns:
+                str: The string representation of the book.
+        """
         return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
 
     def checkout(self):
