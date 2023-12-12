@@ -81,10 +81,10 @@ class Book:
 #   d. borrowedBooks (list of books)
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
-    def __init__(self, name, id):
-        self.name: str = name
-        self.id: int = id
-        self.borrowed_books: list = []
+    def __init__(self, Name, ID):
+        self.Name: str = Name
+        self.ID: int = ID
+        self.borrowedBooks: list = []
     
 
     
@@ -154,7 +154,7 @@ class Library:
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
-    def export_books_to_csv(self, filename):
+    def export_books_to_csv(self, filename: str)-> None:
         """
         Export the books list to a csv file.
 
@@ -310,7 +310,6 @@ def imput_isbn():
  #while loop to prevent user from entering letters
     try:
         isbn = int(input("Enter the ISBN: "))
-        if isbn = 
         while len(str(isbn)) != 13 or isbn < 0:
             isbn = int(input("Error. Please enter a valid 13-digit ISBN: "))
             if len(str(isbn)) == 13 and isbn > 0:
@@ -337,12 +336,12 @@ def imput_isbn_convert(isbn: int)-> str:
             None: If ValueError is raised.
     """
     try:
-        if isbn = int:
+        if isbn == int:
             isbn = str(isbn)
             return isbn
-        elif isbn = str:
+        elif isbn == str:
             return isbn
-        elif isbn = float:
+        elif isbn == float:
             isbn = round(isbn)
             print("what the... ok. The ISBN was rounded to nearest whole number.")
             isbn = int(isbn)
@@ -449,8 +448,8 @@ def main():
                 library.books.remove(book)
                 print(f"Book deleted: {book}")
             else:
-                print(f"Book not found")
-            menu()
+                print("Book not found")
+                menu()
         elif choice == "4": #delete users
             id = input("Enter the ID of the user you want to delete: ")
             user = library.find_user(id)
@@ -458,8 +457,8 @@ def main():
                 library.users.remove(user)
                 print(f"User deleted: {user}")
             else:
-                print(f"User not found")
-            menu()
+                print("User not found")
+                menu()
         elif choice == "5": #borrow books
             print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
@@ -473,9 +472,11 @@ def main():
                     user.borrow_book(book)
                     print(f"Book borrowed: {book}")
                 else:
-                    print(f"User not found")
+                    print("User not found")
+                    menu()
             else:
-                print(f"Book not found")
+                print("Book not found")
+                menu()
             menu()
         elif choice == "6": #return books
             print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
@@ -503,8 +504,8 @@ def main():
             if book is not None:
                 print(f"Book found: {book}")
             else:
-                print(f"Book not found")
-            menu()
+                print("Book not found")
+                menu()
         elif choice == "8":#check if book is available to be borrowed
             print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
