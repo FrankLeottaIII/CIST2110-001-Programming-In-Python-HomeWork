@@ -59,7 +59,7 @@ class Book:
         """
         return f"ISBN: {self.ISBN}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
 #    b. checkout - sets borrowed to True and returns a message that the book has been checked out
-    def checkout(self):
+    def check_out(self): #says check_out in pytest, fixing it...
         self.borrowed = True
         return f"has been checked out"
 #    c. checkin - sets borrowed to False and returns a message that the book has been checked in
@@ -80,7 +80,7 @@ class Book:
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
     def __init__(self, Name, ID):
-        self.Name: str = Name
+        self.name: str = Name
         self.ID: int = ID
         self.borrowedBooks: list = []
     
@@ -90,7 +90,7 @@ class User:
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
     def __str__(self):
-        return f"Name: {self.Name}, ID: {self.ID}, Borrowed Books: {self.borrowedBooks}"
+        return f"Name: {self.name}, ID: {self.ID}, Borrowed Books: {self.borrowedBooks}"
 #    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
     def borrow_book(self, book: Book):
         self.borrowedBooks.append(book)
@@ -294,61 +294,33 @@ def continue_question()-> bool:
 #Methods to use for correct input from user:
 
 def imput_isbn(): 
-    
-    #problemsToADRESS =  prevent user from entering letters, prevent user from entering negative numbers, prevent user from entering numbers less than 13 digits, prevent user from entering numbers more than 13 digits.  prevent user from entering numbers with decimals. prevent user from entering special characters.
-    """Summery:
-        Asks the user to enter an ISBN.  If the ISBN is not a number, the user is asked to enter a valid ISBN.  If the ISBN is not 13 numbers long, or less then 13 numbers the funtion will prompt the user to enter a valid ISBN. the  The code is encapsulated in a try except block to handle errors.
+    """Summary:
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered. The code is encapsulated in a try-except block to handle errors.
 
         Args:
             None
-        
         Returns:
             isbn (int): The ISBN the user entered.
-    """
- #while loop to prevent user from entering letters
-    try:
-        isbn = int(input("Enter the ISBN: "))
-        while len(str(isbn)) != 13 or isbn < 0:
-            isbn = int(input("Error. Please enter a valid 13-digit ISBN: "))
-            if len(str(isbn)) == 13 and isbn > 0:
-                break
-        return isbn
-    except ValueError:
-        print("Error. Please enter a valid 13-digit ISBN.")
-        isbn = int(input("Enter the ISBN: "))
-        while len(str(isbn)) != 13 or isbn < 0:
-            isbn = int(input("Error. Please enter a valid 13-digit ISBN: "))
-            if len(str(isbn)) == 13 and isbn > 0:
-                break
-        return isbn
-
-def imput_isbn_convert(isbn: int)-> str:
-    """Summery:
-        Converts the isbn to a string. If isbn is already a string, it returns a string.  If isbn is somehow a float the user is notified it was rounded to the nearest whole number, then turned into a integer, then finally turned into a string.  The code is encapsulated in a try except block to handle errors.  If ValueError is raised, the funtion will notify the user of the error and return to the menu.
-
-        Args:
-            isbn (int): The ISBN the user entered.
-
-        Returns:
-            isbn (str): The ISBN converted to a string.
             None: If ValueError is raised.
+            None: If UnboundLocalError is raised.
     """
     try:
-        if isbn == int:
-            isbn = str(isbn)
-            return isbn
-        elif isbn == str:
-            return isbn
-        elif isbn == float:
-            isbn = round(isbn)
-            print("what the... ok. The ISBN was rounded to nearest whole number.")
-            isbn = int(isbn)
-            isbn = str(isbn)
-            return isbn
+        isbn = input("Enter the ISBN: ")
+        while not isbn.isdigit():
+            print("Wrong, only enter numbers, no letters or special characters.")
+            isbn = (input("Please enter a valid positive integer for the ISBN: "))
+        isbn = int(isbn)
+        return isbn
     except ValueError:
-        print("Error, Value incorrect. Returning to menu.")
+        print("Hey now, not cool. Taking you back to the main menu while I clean up the mess you made")
         menu()
         return None
+    except UnboundLocalError:
+        print("oh my...  Ok lets get you back to the main menu while I spruse up the place.")
+        menu()
+        return None
+
+
 
 ############################################
 def imput_title()-> str:
@@ -412,30 +384,27 @@ def imput_name()-> str:
 #######
 def imput_id()-> int:
     """Summery:
-        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  If the ID is not 13 numbers long, or less then 13 numbers the funtion will prompt the user to enter a valid ID. the  The code is encapsulated in a try except block to handle errors.
+        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.
 
         Args:
             None
         
         Returns:
             id (int): The ID the user entered.
+            None: If ValueError is raised.
     """
     try:
-        print("Enter the ID of the user. \nThis is a 13 digit number, consisting of only numbers.")
-        print("If you enter a number with less than 13 digits, or more than 13 digits, you will be asked to enter a valid ID.")
-        id = int(input("Enter the ID: "))
-        while len(str(id)) != 13 or id < 0:
-            id = int(input("Error. Please enter a valid 13-digit ID: "))
+        print("Enter the ID of the user. Do not use letters or special characters.")
+        id = input("Enter the ID: ")
+        while id not in id.isdigit():
+            print("Hold your horses, I said only to enter numbers, that means no letters or special characters.")
+            id = input("Please enter a valid  ID number: ")
+        id = int(id)
         return id
     except ValueError:
-        print("Error. Please enter a valid 13-digit ID.")
-        id = int(input("Enter the ID: "))
-        while len(str(id)) != 13 or id < 0:
-            id = int(input("Error. Please enter a valid 13-digit ID: "))
-        return id
-
-
-
+        print("Error Error Error beep boop.  I am malfuntioning so you are being ushered into the  main menu.")
+        menu()
+        return None
 
 def main():
     import csv
@@ -444,8 +413,8 @@ def main():
     Walter = True
     while Walter == True:
         if choice == "1": #add books
+            print("Add books Selected.  Please answer the following questions to add a book.")
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             title = imput_title()
             author = imput_author()
             book = Book(isbn, title, author)
@@ -453,6 +422,7 @@ def main():
             print(f"Book added: {book}")
             menu()
         elif choice == "2": #add users
+            print("Add users Selected.  Please answer the following questions to add a user.")
             name = imput_name()
             id = imput_id()
             user = User(name, id)
@@ -460,10 +430,10 @@ def main():
             print(f"User added: {user}")
             menu()
         elif choice == "3": #delete books
+            print("Delete books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to delete.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
                 library.books.remove(book)
@@ -472,6 +442,7 @@ def main():
                 print(f"Book with {isbn} ISBN not found")
                 menu()
         elif choice == "4": #delete users
+            print("Delete users Selected.")
             print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
             continue_question()
             id = imput_id()
@@ -483,10 +454,10 @@ def main():
                 print("User not found")
                 menu()
         elif choice == "5": #borrow books
+            print("Borrow books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
                 print(f"Book found: {book}")
@@ -505,11 +476,10 @@ def main():
                 menu()
             menu()
         elif choice == "6": #return books
-            
+            print("Return books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
                 print(f"Book found: {book}")
@@ -521,15 +491,15 @@ def main():
                     user.return_book(book)
                     print(f"Book returned: {book}")
                 else:
-                    print(f"User not found")
+                    print(f"User {user} not found in the library system")
             else:
-                print(f"Book not found")
+                print("Book was not found in the library")
             menu()
         elif choice == "7":#search books
+            print("Search books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to search for.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
                 print(f"Book found: {book}")
@@ -537,10 +507,10 @@ def main():
                 print("Book not found")
                 menu()
         elif choice == "8":#check if book is available to be borrowed
+            print("Check if book is available Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
-            imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
                 if book.isBorrowed():
