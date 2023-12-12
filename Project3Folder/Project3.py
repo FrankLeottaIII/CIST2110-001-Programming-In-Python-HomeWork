@@ -16,7 +16,7 @@
 # VIEW (at the top) -> WORD WRAP
 
 # Import statements:
-
+import csv
 # Project outline and requirements:
 
 # OUTLINE - The LMS will consist of the following classes and methods:
@@ -131,19 +131,20 @@ class Library:
                 return user
         return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
-    def export_books_to_csv(self, filename: str):
+    def export_users_to_csv(users, filename):
         """
-        Export the books list to a csv file.
+        Export the users list to a csv file.
 
         Args:
+            users (list): The list of users to export.
             filename (str): The name of the file to export to.
         """
-        with open(filename, "w") as file:
-            file.write("ISBN,Title,Author,Borrowed\n")
-            for book in self.books:
-                file.write(f"{book.isbn},{book.title},{book.author},{book.borrowed}\n")
-###I feel like this is wrong, but I need to come back to it.  will have to reference project 2 for this one.
-
+        with open(filename, "w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(["Name", "ID", "Borrowed Books"])
+            for user in users:
+                borrowed_books_titles = [book.title for book in user.borrowed_books]
+                writer.writerow([user.name, user.id, ", ".join(borrowed_books_titles)])
 
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
