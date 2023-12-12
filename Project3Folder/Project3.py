@@ -329,8 +329,27 @@ def imput_isbn_convert(isbn: int)-> str:
     except ValueError:
         print("Error, Value incorrect. Returning to menu.")
         menu()
-            
-           
+
+############################################
+def imput_title()-> str:
+    """Summery:
+        Asks the user to enter a title. Since books can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.
+
+        Args:
+            None
+        
+        Returns:
+            title (str): The title the user entered.
+    """
+    try:
+        print ("Please enter the title of the book.  Please watch your capitalization and enter it ver batem.")
+        title = input("Please enter the title: ")
+        return title
+    except ValueError:
+        print("Error, the Value is somehow incorrect... anyway let me escoret you to the main menu.")
+        menu()
+##############33
+
 
 
 
@@ -344,7 +363,7 @@ def main():
         if choice == "1": #add books
             isbn = imput_isbn()
             imput_isbn_convert(isbn)
-            title = input("Enter the title: ")
+            title = imput_title()
             author = input("Enter the author: ")
             book = Book(isbn, title, author)
             library.add_book(book)
