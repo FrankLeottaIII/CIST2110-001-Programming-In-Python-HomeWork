@@ -44,29 +44,107 @@ class Book:
     def checkout(self):
         self.borrowed = True
         return f"Book has been checked out"
+    
+    def checkin(self):
+        self.borrowed = False
+        return f"Book has been checked in"
+    
+    def isBorrowed(self):
+        if self.borrowed == True:
+            return True
+        else:
+            return False
 # 2. Create a User class that has the following attributes (create a __init__ method)):
 #    a. Name (string)
 #    c. ID (int)
 #   d. borrowedBooks (list of books)
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
+class User:
+    def __init__(self, name, id):
+        self.name: str = name
+        self.id: int = id
+        self.borrowed_books: list = []
+    
+
+    
 
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
+    def __str__(self):
+        return f"Name: {self.name}, ID: {self.id}, Borrowed Books: {self.borrowed_books}"
 #    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
+    def borrow_book(self, book: Book):
+        self.borrowed_books.append(book)
+        book.checkout()
+        return f"Book has been checked out"
 #    c. return_book - removes the book from the borrowedBooks list, updates the isBorrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
-
+    def return_book(self, book: Book):
+        self.borrowed_books.remove(book)
+        book.checkin()
+        return f"Book has been checked in"
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
 #    a. books (list of books)
 #    b. users (list of users)
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
-
+class Library:
+    def __init__(self):
+        self.books: list = []
+        self.users: list = []
 # Methods:
 #    a. __str__ (returns a string representation of the library using the following format: Books: <Books>, Users: <Users>)
+    def __str__(self):
+        return f"Books: {self.books}, Users: {self.users}"
 #    b. add_book - adds a book to the books list (should take a book as a parameter)
+    def add_book(self, book: Book):
+        self.books.append(book)
 #    c. add_user - adds a user to the users list (should take a user as a parameter)
+    def add_user(self, user: User):
+        self.users.append(user)
 #    d. find_book - returns the book with the given ISBN (should take an ISBN as a parameter)
+    def find_book(self, isbn: str) -> Book:
+        """
+            Find a book by its ISBN.
+
+        Args:
+            isbn (str): The ISBN of the book to find.
+
+        Returns:
+            Book: The book object if found, None otherwise.
+        """
+        for book in self.books:
+            if book.isbn == isbn:
+                return book
+        return None
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
+    def find_user(self, id: int) -> User:
+        """
+        Find a user by their ID.
+
+        Args:
+            id (int): The ID of the user to find.
+
+        Returns:
+            User: The user object if found, None otherwise.
+        """
+        for user in self.users:
+            if user.id == id:
+                return user
+        return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
+    def export_books_to_csv(self, filename: str):
+        """
+        Export the books list to a csv file.
+
+        Args:
+            filename (str): The name of the file to export to.
+        """
+        with open(filename, "w") as file:
+            file.write("ISBN,Title,Author,Borrowed\n")
+            for book in self.books:
+                file.write(f"{book.isbn},{book.title},{book.author},{book.borrowed}\n")
+###I feel like this is wrong, but I need to come back to it.  will have to reference project 2 for this one.
+
+
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
 #    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
