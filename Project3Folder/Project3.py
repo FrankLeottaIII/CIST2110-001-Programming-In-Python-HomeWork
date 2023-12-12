@@ -104,6 +104,19 @@ class User:
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
 #    a. books (list of books)
 #    b. users (list of users)
+####Exceptions for the library class:
+class CustomException(Exception):
+    def __init__(self, message):
+        self.message = message
+
+# Usage:
+try:
+    raise CustomException("This is a custom exception message")
+except CustomException as e:
+    print(e.message)
+
+
+
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Library:
     def __init__(self):
@@ -114,26 +127,35 @@ class Library:
     def __str__(self):
         return f"Books: {self.books}, Users: {self.users}"
 #    b. add_book - adds a book to the books list (should take a book as a parameter)
-    def add_book(self, book: Book):
+    def add_book(self, book: Book)-> None:
+        """Summery:
+            Adds a book to the books list.  A book object is passed in as a parameter.  This method does not return anything. This method is exclusive to the Library class.
+            """
         self.books.append(book)
+        return None
+
 #    c. add_user - adds a user to the users list (should take a user as a parameter)
     def add_user(self, user: User):
         self.users.append(user)
 #    d. find_book - returns the book with the given ISBN (should take an ISBN as a parameter)
     def find_book(self, isbn: int) -> Book:
         """
-            Find a book by its ISBN.
+            Find a book by its ISBN.   This method takes an ISBN as a parameter. This method searches the book list to see if the paramiter ISBN matches the isbn in the book list.   It returns the book object if found, None otherwise.
 
         Args:
             isbn (int): The ISBN of the book to find.
 
         Returns:
-            Book: The book object if found, None otherwise.
+            Book: The book object if found
         """
-        for book in self.books:
-            if book.isbn == isbn:
-                return book
-        return None
+        try:
+            for book in self.books:
+                if book.isbn == isbn:
+                    return book
+                if book.isbn != isbn:
+                    raise
+
+
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
     def find_user(self, member_id: int) -> User:
         """
@@ -148,7 +170,6 @@ class Library:
         for user in self.users:
             if user.member_id == member_id:
                 return user
-        return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
