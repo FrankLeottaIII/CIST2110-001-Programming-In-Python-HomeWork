@@ -63,7 +63,7 @@ class Book:
         self.borrowed = True
         return f"has been checked out"
 #    c. checkin - sets borrowed to False and returns a message that the book has been checked in
-    def checkin(self):
+    def check_in(self):
         self.borrowed = False
         return f"Book has been checked in"
 #    d. isBorrowed - returns True if the book is borrowed and False if the book is not borrowed
@@ -79,9 +79,9 @@ class Book:
 #   d. borrowedBooks (list of books)
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
-    def __init__(self, Name, ID):
-        self.name: str = Name
-        self.ID: int = ID
+    def __init__(self, Name, member_id): #says member_id in pytest instead of ID, fixing it...
+        self.Name: str = Name
+        self.member_id: int = member_id
         self.borrowedBooks: list = []
     
 
@@ -90,16 +90,16 @@ class User:
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
     def __str__(self):
-        return f"Name: {self.name}, ID: {self.ID}, Borrowed Books: {self.borrowedBooks}"
+        return f"Name: {self.name}, ID: {self.member_id}, Borrowed Books: {self.borrowedBooks}"
 #    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
     def borrow_book(self, book: Book):
         self.borrowedBooks.append(book)
-        book.checkout()
+        book.check_out()
         return f"Book has been checked out"
 #    c. return_book - removes the book from the borrowedBooks list, updates the isBorrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
     def return_book(self, book: Book):
         self.borrowedBooks.remove(book)
-        book.checkin()
+        book.check_in()
         return f"Book has been checked in"
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
 #    a. books (list of books)
@@ -135,7 +135,7 @@ class Library:
                 return book
         return None
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
-    def find_user(self, id: int) -> User:
+    def find_user(self, member_id: int) -> User:
         """
         Find a user by their ID.
 
@@ -146,7 +146,7 @@ class Library:
             User: The user object if found, None otherwise.
         """
         for user in self.users:
-            if user.id == id:
+            if user.member_id == member_id:
                 return user
         return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
@@ -182,7 +182,7 @@ class Library:
             writer.writerow(["Name", "ID", "Borrowed Books"])
             for user in self.users:
                 borrowed_books_titles = [book.title for book in user.borrowed_books]
-                writer.writerow([user.name, user.id, ", ".join(borrowed_books_titles)])
+                writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
 # 4. Create a menu that will allow users to:
 #    a. Add books
 #    b. Add users
@@ -382,7 +382,7 @@ def imput_name()-> str:
         menu()
         return None
 #######
-def imput_id()-> int:
+def imput_member_id()-> int:
     """Summery:
         Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.
 
@@ -424,7 +424,7 @@ def main():
         elif choice == "2": #add users
             print("Add users Selected.  Please answer the following questions to add a user.")
             name = imput_name()
-            id = imput_id()
+            id = imput_member_id()
             user = User(name, id)
             library.add_user(user)
             print(f"User added: {user}")
@@ -445,7 +445,7 @@ def main():
             print("Delete users Selected.")
             print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
             continue_question()
-            id = imput_id()
+            id = imput_member_id()
             user = library.find_user(id)
             if user is not None:
                 library.users.remove(user)
@@ -485,7 +485,7 @@ def main():
                 print(f"Book found: {book}")
                 print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
                 continue_question()
-                id = imput_id()
+                id = imput_member_id()
                 user = library.find_user(id)
                 if user is not None:
                     user.return_book(book)
