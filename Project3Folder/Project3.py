@@ -177,7 +177,45 @@ class Library:
 #    l. Export books to csv
 #    m. Export users to csv
 #    z. Exit
+choice = ""
+def menu():
+    """Summary:
+        Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.
 
+        Args:
+            None
+        
+        Returns:
+            choice (str): The user's choice from the menu.
+    
+    """
+    global choice
+    try:
+        print("Welcome to the Library Management System!")
+        print("Please choose an option from the menu below:")
+        print("Press 1 to Add books")
+        print("Press 2 to Add users")
+        print("Press 3 to Delete books")
+        print("Press 4 to Delete users")
+        print("Press 5 to Borrow books")
+        print("Press 6 to Return books")
+        print("Press 7 to Search books")
+        print("Press 8 to Check if book is available")
+        print("Press 9 to Search users")
+        print("Press 10 to Export books to csv")
+        print("Press 11 to Export users to csv")
+        print("Press 12 to Exit")
+        choice = input("Enter your choice: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
+    except ValueError:
+        choice = input("ValueError.  Please enter a valid option from the menu: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+    return choice
 # RQUIREMENTS:
 # 1. You should be doing error checking on all user input (make sure the user enters a valid ISBN, ID, etc.) and handle any errors appropriately (i.e. if the user enters an invalid ISBN, ask them to enter a valid ISBN)
 # 2. You should be using try except blocks to handle any errors
@@ -203,9 +241,119 @@ class Library:
 # 7. Did you include type hints for all methods?
 # 8. Did your pytests for the test_user_return and test_library_find_user work?
 
+#Methods to 
+
 
 def main():
-    pass  # Remove this line when you implement this method
+    import csv
+    library = Library()
+    menu()
+    Walter = True
+    while Walter == True
+        if choice == "1": #add books
+            isbn = input("Enter the ISBN: ")
+            title = input("Enter the title: ")
+            author = input("Enter the author: ")
+            book = Book(isbn, title, author)
+            library.add_book(book)
+            print(f"Book added: {book}")
+            menu()
+        elif choice == "2": #add users
+            name = input("Enter the name: ")
+            id = input("Enter the ID: ")
+            user = User(name, id)
+            library.add_user(user)
+            print(f"User added: {user}")
+            menu()
+        elif choice == "3": #delete books
+            isbn = input("Enter the ISBN of the book you want to delete: ")
+            book = library.find_book(isbn)
+            if book is not None:
+                library.books.remove(book)
+                print(f"Book deleted: {book}")
+            else:
+                print(f"Book not found")
+            menu()
+        elif choice == "4": #delete users
+            id = input("Enter the ID of the user you want to delete: ")
+            user = library.find_user(id)
+            if user is not None:
+                library.users.remove(user)
+                print(f"User deleted: {user}")
+            else:
+                print(f"User not found")
+            menu()
+        elif choice == "5": #borrow books
+            isbn = input("Enter the ISBN of the book you want to borrow: ")
+            book = library.find_book(isbn)
+            if book is not None:
+                id = input("Enter the ID of the user that is borrowing the book: ")
+                user = library.find_user(id)
+                if user is not None:
+                    user.borrow_book(book)
+                    print(f"Book borrowed: {book}")
+                else:
+                    print(f"User not found")
+            else:
+                print(f"Book not found")
+            menu()
+        elif choice == "6": #return books
+            isbn = input("Enter the ISBN of the book you want to return: ")
+            book = library.find_book(isbn)
+            if book is not None:
+                id = input("Enter the ID of the user that is returning the book: ")
+                user = library.find_user(id)
+                if user is not None:
+                    user.return_book(book)
+                    print(f"Book returned: {book}")
+                else:
+                    print(f"User not found")
+            else:
+                print(f"Book not found")
+            menu()
+        elif choice == "7":#search books
+            isbn = input("Enter the ISBN of the book you want to search for: ")
+            book = library.find_book(isbn)
+            if book is not None:
+                print(f"Book found: {book}")
+            else:
+                print(f"Book not found")
+            menu()
+        elif choice == "8":#check if book is available to be borrowed
+            isbn = input("Enter the ISBN of the book you want to check: ")
+            book = library.find_book(isbn)
+            if book is not None:
+                if book.isBorrowed():
+                    print(f"Book is not available")
+                else:
+                    print(f"Book is available")
+            else:
+                print(f"Book not found")
+            menu()
+        elif choice == "9":#search users
+            id = input("Enter the ID of the user you want to search for: ")
+            user = library.find_user(id)
+            if user is not None:
+                print(f"User found: {user}")
+            else:
+                print(f"User not found")
+            menu()
+        elif choice == "10":#export books to csv
+            filename = input("Enter the filename you want to export the books to: ")
+            library.export_books_to_csv(filename)
+            menu()
+        elif choice == "11":#export users to csv
+            filename = input("Enter the filename you want to export the users to: ")
+            library.export_users_to_csv(filename)
+            menu()
+        elif choice == "12":
+            print("Goodbye!")
+            quit()
+        else:
+            print("Error.  Please enter a valid option from the menu: ")
+            menu()
+    Walter = True
+
 
 
 if __name__ == "__main__":
