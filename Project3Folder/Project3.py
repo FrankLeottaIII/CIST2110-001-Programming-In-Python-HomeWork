@@ -411,8 +411,30 @@ def imput_name()-> str:
         print("Error, the Value is somehow incorrect..which is odd since names are usually cut and dry. Let me escort you to the main menu while I clean this up for next time.")
         menu()
         return None
+#######
+def imput_id()-> int:
+    """Summery:
+        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  If the ID is not 13 numbers long, or less then 13 numbers the funtion will prompt the user to enter a valid ID. the  The code is encapsulated in a try except block to handle errors.
 
-
+        Args:
+            None
+        
+        Returns:
+            id (int): The ID the user entered.
+    """
+    try:
+        print("Enter the ID of the user. \nThis is a 13 digit number, consisting of only numbers.
+        print("If you enter a number with less than 13 digits, or more than 13 digits, you will be asked to enter a valid ID.")
+        id = int(input("Enter the ID: "))
+        while len(str(id)) != 13 or id < 0:
+            id = int(input("Error. Please enter a valid 13-digit ID: "))
+        return id
+    except ValueError:
+        print("Error. Please enter a valid 13-digit ID.")
+        id = int(input("Enter the ID: "))
+        while len(str(id)) != 13 or id < 0:
+            id = int(input("Error. Please enter a valid 13-digit ID: "))
+        return id
 
 
 
@@ -448,7 +470,7 @@ def main():
                 library.books.remove(book)
                 print(f"Book deleted: {book}")
             else:
-                print("Book not found")
+                print(f"Book with {isbn} ISBN not found")
                 menu()
         elif choice == "4": #delete users
             id = input("Enter the ID of the user you want to delete: ")
