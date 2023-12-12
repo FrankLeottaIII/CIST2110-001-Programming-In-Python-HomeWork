@@ -28,7 +28,7 @@ import csv
 #    d. borrowed (boolean) - this should not be passed in as a parameter, it should be set to False by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Book:
-    def __init__(self, isbn: int, title: str, author: str) -> None:
+    def __init__(self, ISBN: int, title: str, author: str) -> None:
         """
         Initializes a Book object with the given attributes: isbn, title, author, and borrowed.
         The borrowed attribute is not a necessary argument and is set to False by default.
@@ -41,15 +41,12 @@ class Book:
         Returns:
             None
         """
-        self.isbn: int = isbn
+        self.ISBN: int = ISBN
         self.title: str = title
         self.author: str = author
         self.borrowed: bool = False
 # Methods:
 #    a. __str__ (returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>)
-#    b. checkout - sets borrowed to True and returns a message that the book has been checked out
-#    c. checkin - sets borrowed to False and returns a message that the book has been checked in
-#    d. isBorrowed - returns True if the book is borrowed and False if the book is not borrowed
     def __str__(self)-> str:
         """Summery:
             Returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>
@@ -60,21 +57,22 @@ class Book:
             Returns:
                 str: The string representation of the book.
         """
-        return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
-
+        return f"ISBN: {self.ISBN}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
+#    b. checkout - sets borrowed to True and returns a message that the book has been checked out
     def checkout(self):
         self.borrowed = True
-        return f"Book has been checked out"
-    
+        return f"has been checked out"
+#    c. checkin - sets borrowed to False and returns a message that the book has been checked in
     def checkin(self):
         self.borrowed = False
         return f"Book has been checked in"
-    
+#    d. isBorrowed - returns True if the book is borrowed and False if the book is not borrowed
     def isBorrowed(self):
         if self.borrowed == True:
             return True
         else:
             return False
+
 # 2. Create a User class that has the following attributes (create a __init__ method)):
 #    a. Name (string)
 #    c. ID (int)
@@ -92,15 +90,15 @@ class User:
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
     def __str__(self):
-        return f"Name: {self.name}, ID: {self.id}, Borrowed Books: {self.borrowed_books}"
+        return f"Name: {self.Name}, ID: {self.ID}, Borrowed Books: {self.borrowedBooks}"
 #    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
     def borrow_book(self, book: Book):
-        self.borrowed_books.append(book)
+        self.borrowedBooks.append(book)
         book.checkout()
         return f"Book has been checked out"
 #    c. return_book - removes the book from the borrowedBooks list, updates the isBorrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
     def return_book(self, book: Book):
-        self.borrowed_books.remove(book)
+        self.borrowedBooks.remove(book)
         book.checkin()
         return f"Book has been checked in"
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
@@ -122,18 +120,18 @@ class Library:
     def add_user(self, user: User):
         self.users.append(user)
 #    d. find_book - returns the book with the given ISBN (should take an ISBN as a parameter)
-    def find_book(self, isbn: str) -> Book:
+    def find_book(self, isbn: int) -> Book:
         """
             Find a book by its ISBN.
 
         Args:
-            isbn (str): The ISBN of the book to find.
+            isbn (int): The ISBN of the book to find.
 
         Returns:
             Book: The book object if found, None otherwise.
         """
         for book in self.books:
-            if book.isbn == isbn:
+            if book.ISBN == isbn:
                 return book
         return None
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
@@ -423,7 +421,7 @@ def imput_id()-> int:
             id (int): The ID the user entered.
     """
     try:
-        print("Enter the ID of the user. \nThis is a 13 digit number, consisting of only numbers.
+        print("Enter the ID of the user. \nThis is a 13 digit number, consisting of only numbers.")
         print("If you enter a number with less than 13 digits, or more than 13 digits, you will be asked to enter a valid ID.")
         id = int(input("Enter the ID: "))
         while len(str(id)) != 13 or id < 0:
@@ -435,6 +433,7 @@ def imput_id()-> int:
         while len(str(id)) != 13 or id < 0:
             id = int(input("Error. Please enter a valid 13-digit ID: "))
         return id
+
 
 
 
@@ -455,7 +454,7 @@ def main():
             menu()
         elif choice == "2": #add users
             name = imput_name()
-            id = input("Enter the ID: ")
+            id = imput_id()
             user = User(name, id)
             library.add_user(user)
             print(f"User added: {user}")
@@ -473,7 +472,9 @@ def main():
                 print(f"Book with {isbn} ISBN not found")
                 menu()
         elif choice == "4": #delete users
-            id = input("Enter the ID of the user you want to delete: ")
+            print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+            continue_question()
+            id = imput_id()
             user = library.find_user(id)
             if user is not None:
                 library.users.remove(user)
@@ -488,7 +489,10 @@ def main():
             imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
-                id = input("Enter the ID of the user that is borrowing the book: ")
+                print(f"Book found: {book}")
+                print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                continue_question()
+                id = imput_id()
                 user = library.find_user(id)
                 if user is not None:
                     user.borrow_book(book)
@@ -501,13 +505,17 @@ def main():
                 menu()
             menu()
         elif choice == "6": #return books
+            
             print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
             isbn = imput_isbn()
             imput_isbn_convert(isbn)
             book = library.find_book(isbn)
             if book is not None:
-                id = input("Enter the ID of the user that is returning the book: ")
+                print(f"Book found: {book}")
+                print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                continue_question()
+                id = imput_id()
                 user = library.find_user(id)
                 if user is not None:
                     user.return_book(book)
@@ -543,6 +551,7 @@ def main():
                 print(f"Book not found")
             menu()
         elif choice == "9":#search users
+            print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
             id = input("Enter the ID of the user you want to search for: ")
             user = library.find_user(id)
             if user is not None:
