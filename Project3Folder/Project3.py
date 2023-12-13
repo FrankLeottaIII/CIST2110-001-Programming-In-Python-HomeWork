@@ -28,22 +28,21 @@ import csv
 #    d. borrowed (boolean) - this should not be passed in as a parameter, it should be set to False by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Book:
-    def __init__(self, isbn: int, title: str, author: str) -> None:
+    def __init__(self, title: str, author: str, isbn: int,) -> None:
         """
         Initializes a Book object with the given attributes: isbn, title, author, and borrowed.
         The borrowed attribute is not a necessary argument and is set to False by default.
 
         Args:
-            isbn (int): The ISBN of the book.
             title (str): The title of the book.
             author (str): The author of the book.
-
+            isbn (int): The ISBN of the book.
         Returns:
             None
         """
-        self.isbn: int = isbn
         self.title: str = title
         self.author: str = author
+        self.isbn: int = isbn
         self.borrowed: bool = False
 # Methods:
 #    a. __str__ (returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>)
@@ -101,10 +100,6 @@ class User:
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
 #    a. books (list of books)
 #    b. users (list of users)
-####Exceptions for the library class:
-class BookNotFound(Exception):
-    def __init__(self, message):
-        self.message = message
 
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Library:
@@ -426,7 +421,7 @@ def main():
             isbn = imput_isbn()
             title = imput_title()
             author = imput_author()
-            book = Book(isbn, title, author)
+            book = Book(title, author, isbn)
             library.add_book(book)
             print(f"Book added: {book}")
             menu()
@@ -472,7 +467,7 @@ def main():
                 print(f"Book found: {book}")
                 print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
                 continue_question()
-                id = imput_id()
+                id = imput_member_id()
                 user = library.find_user(id)
                 if user is not None:
                     user.borrow_book(book)
