@@ -83,9 +83,6 @@ class User:
         self.name: str = name
         self.member_id: int = member_id
         self.borrowed_books: list = [] #says borrowed_books in pytest but barrowed books here, fixing it...
-    
-
-    
 
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
@@ -105,17 +102,9 @@ class User:
 #    a. books (list of books)
 #    b. users (list of users)
 ####Exceptions for the library class:
-class CustomException(Exception):
+class BookNotFound(Exception):
     def __init__(self, message):
         self.message = message
-
-# Usage:
-try:
-    raise CustomException("This is a custom exception message")
-except CustomException as e:
-    print(e.message)
-
-
 
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Library:
@@ -146,15 +135,14 @@ class Library:
             isbn (int): The ISBN of the book to find.
 
         Returns:
-            Book: The book object if found
-        """
-        try:
-            for book in self.books:
-                if book.isbn == isbn:
-                    return book
-                if book.isbn != isbn:
-                    raise
+            Book: The book object if found, or None otherwise.
 
+        """
+        for book in self.books:
+            if book.isbn == isbn:
+                return book
+            return None
+  
 
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
     def find_user(self, member_id: int) -> User:
