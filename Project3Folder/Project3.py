@@ -58,7 +58,16 @@ class Book:
         """
         return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
 #    b. checkout - sets borrowed to True and returns a message that the book has been checked out
-    def check_out(self): #says check_out in pytest, fixing it...
+    def check_out(self)->str: #says check_out in pytest, fixing it...
+        """Summery:
+        
+        Sets the borrowed attribute to True and returns a message that the book has been checked out.
+        
+        Args:
+            None
+            
+            Returns:
+                str: A message that the book has been checked out."""
         self.borrowed = True
         return f"has been checked out"
 #    c. checkin - sets borrowed to False and returns a message that the book has been checked in
