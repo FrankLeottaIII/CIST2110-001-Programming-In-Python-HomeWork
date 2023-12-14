@@ -214,6 +214,9 @@ class Library:
 
         Args:
             filename (str): The name of the file to export to.
+
+        Returns:
+            None
         """
         with open(filename, "w", encoding='utf-8', newline="") as file:
             writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
@@ -226,12 +229,15 @@ class Library:
 #       This will be similar to the export_books_to_csv method but there is a slight difference with the borrowedBooks attribute if you get stuck this code might help:
 #       borrowed_books_titles = [book.title for book in user.borrowed_books]
 #       Use that and pythons .join method to create a string of the borrowed books titles
-    def export_users_to_csv(self, filename):
+    def export_users_to_csv(self, filename)-> None:
         """
         Export the users list to a csv file.
 
         Args:
             filename (str): The name of the file to export to.
+
+        Returns:
+            None
         """
         with open(filename, "w", newline="") as file:
             writer = csv.writer(file)
