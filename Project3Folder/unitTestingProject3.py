@@ -23,3 +23,4 @@ class TestProject3(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    #python -m unitTestingProject3
