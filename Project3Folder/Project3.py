@@ -592,10 +592,18 @@ def main():
                 print(f"User {user} not found")
             menu()
         elif choice == "10":#export books to csv
+            print("Export books to csv Selected.")
+            print("ok now, I will ask you for the filename you want to export the books to.  If you don't know the filename, you can search for the book using the search books option in the menu.")
+            continue_question()
+            print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
             filename = input("Enter the filename you want to export the books to: ")
             library.export_books_to_csv(filename)
             menu()
         elif choice == "11":#export users to csv
+            print("Export users to csv Selected.")
+            print("ok now, I will ask you for the filename you want to export the users to.  If you don't know the filename, you can search for the user using the search users option in the menu.")
+            continue_question()
+            print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
             filename = input("Enter the filename you want to export the users to: ")
             library.export_users_to_csv(filename)
             menu()
