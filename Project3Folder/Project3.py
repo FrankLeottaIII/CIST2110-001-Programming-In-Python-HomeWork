@@ -580,7 +580,7 @@ def main():
                 else:
                     print(f"Book with isbn: {isbn} is available")
             else:
-                print(f"Book not found")
+                print("Book not found")
             menu()
         elif choice == "9":#search users
             print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
@@ -589,7 +589,7 @@ def main():
             if user is not None:
                 print(f"User found: {user}")
             else:
-                print(f"User not found")
+                print(f"User {user} not found")
             menu()
         elif choice == "10":#export books to csv
             filename = input("Enter the filename you want to export the books to: ")
