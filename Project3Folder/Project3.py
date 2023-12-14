@@ -5,7 +5,7 @@
 #   \ \  \___|\ \  \\  \\ \  \\\  \|\  \\_\  \ \  \_|\ \ \  \____   \ \  \          __\_\  \
 #    \ \__\    \ \__\\ _\\ \_______\ \________\ \_______\ \_______\  \ \__\        |\_______\
 #     \|__|     \|__|\|__|\|_______|\|________|\|_______|\|_______|   \|__|        \|_______|
-# Author:
+# Author:Frank Robert Leotta III
 # CIST2110-001-Project-3 Library Management System (LMS)
 # Project 3 will implement a library management system (LMS) that will allow users to manage books, users, and a library to manage collection of books and users.
 # The LMS will be menu driven and will allow users to add, delete, and update books and users.
@@ -22,9 +22,9 @@ import csv
 # OUTLINE - The LMS will consist of the following classes and methods:
 
 # 1. Create a Book class that has the following attributes (create a __init__ method)):
-#    a. ISBN (int)
-#    b. Title (string)
-#    c. Author (string)
+#    a. isbn (int)
+#    b. title (string)
+#    c. author (string)
 #    d. borrowed (boolean) - this should not be passed in as a parameter, it should be set to False by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Book:
@@ -57,7 +57,7 @@ class Book:
                 str: The string representation of the book.
         """
         return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
-#    b. checkout - sets borrowed to True and returns a message that the book has been checked out
+#    b. check_out - sets borrowed to True and returns a message that the book has been checked out
     def check_out(self)->str: #says check_out in pytest, fixing it...
         """Summery:
         
@@ -70,16 +70,17 @@ class Book:
                 str: A message that the book has been checked out."""
         self.borrowed = True
         return f"has been checked out"
-#    c. checkin - sets borrowed to False and returns a message that the book has been checked in
+#    c. check_in - sets borrowed to False and returns a message that the book has been checked in
     def check_in(self):
         self.borrowed = False
         return f"Book has been checked in"
-#    d. isBorrowed - returns True if the book is borrowed and False if the book is not borrowed
-    def isBorrowed(self):
+#    d. borrowed - returns True if the book is borrowed and False if the book is not borrowed
+    def borrowed(self): ####################changed need to redo.... will probably be tested on
         if self.borrowed == True:
             return True
         else:
             return False
+# USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 
 # 2. Create a User class that has the following attributes (create a __init__ method)):
 #    a. Name (string)
