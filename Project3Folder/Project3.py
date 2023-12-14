@@ -121,12 +121,30 @@ class User:
 
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Library:
-    def __init__(self):
+    def __init__(self)-> None:
+        """ Summery:
+            Initializes a Library object with the following attributes: books and users.  The books and users attributes are set to empty lists by default.  This is a Library class exclusive method.
+
+            Args:
+                None
+            
+            Returns:
+                None
+        """
         self.books: list = []
         self.users: list = []
 # Methods:
 #    a. __str__ (returns a string representation of the library using the following format: Books: <Books>, Users: <Users>)
     def __str__(self):
+        """Summery:
+            Returns a string representation of the library using the following format: Books: <Books>, Users: <Users>
+
+            Args:
+                None
+            
+            Returns:
+                str: The string representation of the library.
+        """
         return f"Books: {self.books}, Users: {self.users}"
 #    b. add_book - adds a book to the books list (should take a book as a parameter)
     def add_book(self, book: Book)-> None:
