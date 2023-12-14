@@ -576,9 +576,9 @@ def main():
             book = library.find_book(isbn)
             if book is not None:
                 if book.borrowed():
-                    print(f"Book is not available")
+                    print(f"Book with isbn: {isbn} is not available")
                 else:
-                    print(f"Book is available")
+                    print(f"Book with isbn: {isbn} is available")
             else:
                 print(f"Book not found")
             menu()
