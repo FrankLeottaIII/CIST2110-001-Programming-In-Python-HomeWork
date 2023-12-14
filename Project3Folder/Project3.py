@@ -520,6 +520,10 @@ def imput_member_id()-> int:
         print("Error Error Error beep boop.  I am malfuntioning so you are being ushered into the  main menu.")
         menu()
         return None
+    except TypeError:
+        print("Error Error Error beep boop.  I am malfuntioning so you are being ushered into the  main menu.")
+        menu()
+        return None
 
 def main():
     import csv
