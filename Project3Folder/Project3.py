@@ -135,7 +135,7 @@ class Library:
         self.users: list = []
 # Methods:
 #    a. __str__ (returns a string representation of the library using the following format: Books: <Books>, Users: <Users>)
-    def __str__(self):
+    def __str__(self)-> str:
         """Summery:
             Returns a string representation of the library using the following format: Books: <Books>, Users: <Users>
 
@@ -150,13 +150,28 @@ class Library:
     def add_book(self, book: Book)-> None:
         """Summery:
             Adds a book to the books list.  A book object is passed in as a parameter.  This method does not return anything. This method is exclusive to the Library class.
+
+            Args:
+                book (Book): The book object to add to the books list.
+
+            Returns:
+                None
             """
         self.books.append(book)
-        return None
 
 #    c. add_user - adds a user to the users list (should take a user as a parameter)
-    def add_user(self, user: User):
+    def add_user(self, user: User)-> None:
+        """Summery:
+            Adds a user to the users list.  A user object is passed in as a parameter.  This method does not return anything. This method is exclusive to the Library class.
+
+            Args:
+                user (User): The user object to add to the users list.
+
+            Returns:
+                None
+            """
         self.users.append(user)
+
 #    d. find_book - returns the book with the given ISBN (should take an ISBN as a parameter)
     def find_book(self, isbn: int) -> Book:
         """
@@ -189,6 +204,7 @@ class Library:
         for user in self.users:
             if user.member_id == member_id:
                 return user
+            return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
