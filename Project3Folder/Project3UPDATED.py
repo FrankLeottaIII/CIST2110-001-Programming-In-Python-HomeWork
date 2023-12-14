@@ -35,7 +35,7 @@ class Book:
 
         Args:
             title (str): The title of the book.
-            author (str): The author of the book.
+            author (str): The author of the book.s
             isbn (int): The ISBN of the book.
         Returns:
             None

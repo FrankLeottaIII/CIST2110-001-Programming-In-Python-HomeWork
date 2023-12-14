@@ -28,10 +28,10 @@ import csv
 #    d. borrowed (boolean) - this should not be passed in as a parameter, it should be set to False by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class Book:
-    def __init__(self, title: str, author: str, isbn: int,) -> None:
+    def __init__(self, title: str, author: str, isbn: int) -> None:
         """
-        Initializes a Book object with the given attributes: isbn, title, author, and borrowed.
-        The borrowed attribute is not a necessary argument and is set to False by default.
+        Initializes a Book object with the given attributes: isbn, title, and author.
+        The borrowed attribute is set to False by default.
 
         Args:
             title (str): The title of the book.
@@ -75,17 +75,25 @@ class Book:
         self.borrowed = False
         return f"Book has been checked in"
 #    d. borrowed - returns True if the book is borrowed and False if the book is not borrowed
-    def borrowed(self): ####################changed need to redo.... will probably be tested on
+    def borrowed(self)->bool: 
+        """Summery:
+        This method is used to check to see if a book is borrowed or not.  If it is borrowed, it returns True and if it is not borrowed, it returns False.  The borrowed attribute is set to False by default.
+        
+        Args:
+            None
+            
+            Returns:
+                bool: True if the book is borrowed, False if the book is not borrowed"""
         if self.borrowed == True:
             return True
         else:
             return False
-# USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
+
 
 # 2. Create a User class that has the following attributes (create a __init__ method)):
-#    a. Name (string)
-#    c. ID (int)
-#   d. borrowedBooks (list of books)
+#    a. name (string)
+#    c. member_id (int)
+#    d. borrowed_books (list of books) - this should not be passed in as a parameter, it should be set to an empty list by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
     def __init__(self, name, member_id): #says member_id in pytest instead of ID, fixing it...
@@ -97,12 +105,12 @@ class User:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
     def __str__(self):
         return f"Name: {self.name}, ID: {self.member_id}, Borrowed Books: {self.borrowed_books}"
-#    b. borrow_book - adds the book to the borrowedBooks list, updates the isBorrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
+#    b. borrow_book - adds the book to the borrowed_books list, updates the borrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
     def borrow_book(self, book: Book):
         self.borrowed_books.append(book)
         book.check_out()
         return f"Book has been checked out"
-#    c. return_book - removes the book from the borrowedBooks list, updates the isBorrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
+#    c. return_book - removes the book from the borrowedBooks list, updates the borrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
     def return_book(self, book: Book):
         self.borrowed_books.remove(book)
         book.check_in()
@@ -173,7 +181,7 @@ class Library:
         Args:
             filename (str): The name of the file to export to.
         """
-        with open(filename, "w", newline="") as file:
+        with open(filename, "w", encoding='utf-8', newline="") as file:
             writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
             writer.writeheader()
             for book in self.books:
@@ -527,7 +535,7 @@ def main():
             isbn = imput_isbn()
             book = library.find_book(isbn)
             if book is not None:
-                if book.isBorrowed():
+                if book.borrowed():
                     print(f"Book is not available")
                 else:
                     print(f"Book is available")
