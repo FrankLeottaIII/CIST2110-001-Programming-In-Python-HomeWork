@@ -210,7 +210,9 @@ class Library:
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
     def export_books_to_csv(self, filename: str)-> None:
         """
-        Export the books list to a csv file.
+        Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
+          If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
+          exported as False.  If Filename is not found, the user is informed of the error and returned to the main menu.
 
         Args:
             filename (str): The name of the file to export to.
@@ -218,11 +220,16 @@ class Library:
         Returns:
             None
         """
-        with open(filename, "w", encoding='utf-8', newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
-            writer.writeheader()
-            for book in self.books:
-                writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
+        try:
+            with open(filename, "w", encoding='utf-8', newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
+                writer.writeheader()
+                for book in self.books:
+                    writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
+        except FileNotFoundError:
+            print(" this should not happen... if you see this, please contact the developer.")
+            print("File not found")
+            menu()
 
 
 #    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
@@ -231,7 +238,7 @@ class Library:
 #       Use that and pythons .join method to create a string of the borrowed books titles
     def export_users_to_csv(self, filename)-> None:
         """
-        Export the users list to a csv file.
+        Export the users list to a csv file.  if the user has borrowed books, the borrowed books titles are exported as a string. If the user has not borrowed any books, the borrowed books titles are exported as an empty string. The csv file should have the following format: Name,ID,Borrowed Books.  If Filename is not found, the user is informed of the error and returned to the main menu.
 
         Args:
             filename (str): The name of the file to export to.
@@ -239,12 +246,19 @@ class Library:
         Returns:
             None
         """
-        with open(filename, "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["Name", "ID", "Borrowed Books"])
-            for user in self.users:
-                borrowed_books_titles = [book.title for book in user.borrowed_books]
-                writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
+        try:
+            with open(filename, "w", encoding='utf-8', newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Name", "ID", "Borrowed Books"])
+                for user in self.users:
+                    borrowed_books_titles = [book.title for book in user.borrowed_books]
+                    writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
+        except FileNotFoundError:
+            print(" this should not happen... if you see this, please contact the developer.")
+            print("File not found")
+            menu()
+
+
 # 4. Create a menu that will allow users to:
 #    a. Add books
 #    b. Add users
@@ -614,7 +628,7 @@ def main():
             print("Error.  Please enter a valid option from the menu: ")
             menu()
     Walter = True
-
+Walter = True
 
 
 if __name__ == "__main__":
