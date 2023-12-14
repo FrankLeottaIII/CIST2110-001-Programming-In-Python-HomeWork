@@ -511,7 +511,7 @@ def imput_member_id()-> int:
     try:
         print("Enter the ID of the user. Do not use letters or special characters.")
         id = input("Enter the ID: ")
-        while id not in id.isdigit():
+        while not id.isdigit():
             print("Hold your horses, I said only to enter numbers, that means no letters or special characters.")
             id = input("Please enter a valid  ID number: ")
         id = int(id)
