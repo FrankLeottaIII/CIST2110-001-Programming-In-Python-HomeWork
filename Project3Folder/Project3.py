@@ -96,25 +96,64 @@ class Book:
 #    d. borrowed_books (list of books) - this should not be passed in as a parameter, it should be set to an empty list by default
 # USE SELF IN THE __INIT__ METHOD TO CREATE THESE ATTRIBUTES
 class User:
-    def __init__(self, name, member_id): #says member_id in pytest instead of ID, fixing it...
+    def __init__(self: str, name: int, member_id: int)-> None: #says member_id in pytest instead of ID, fixing it...
+        """Summery:
+            Initializes a User object with the given attributes: name, and member_id.
+            The borrowed_books attribute is set to an empty list by default.
+
+            Args:
+                name (str): The name of the user.
+                member_id (int): The ID of the user.
+            
+            Returns:
+                None
+        """
         self.name: str = name
         self.member_id: int = member_id
         self.borrowed_books: list = [] #says borrowed_books in pytest but barrowed books here, fixing it...
 
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
-    def __str__(self):
+    def __str__(self)-> str:
+        """Summery:
+            Returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>
+
+            Args:
+                None
+            
+            Returns:
+                str: The string representation of the user.
+                """
         return f"Name: {self.name}, ID: {self.member_id}, Borrowed Books: {self.borrowed_books}"
 #    b. borrow_book - adds the book to the borrowed_books list, updates the borrowed attribute of the book to True, and returns a message that the book has been checked out (should take a book as a parameter)
-    def borrow_book(self, book: Book):
+    def borrow_book(self, book: Book)-> str:
+        """Summery:
+            Adds the book to the borrowed_books list, updates the borrowed attribute of the book to True, and returns a message that the book has been checked out.
+
+            Args:
+                book (Book): The book object to add to the borrowed_books list.
+
+            Returns:
+                str: A message that the book has been checked out.
+                """
         self.borrowed_books.append(book)
         book.check_out()
-        return f"Book has been checked out"
+        return print("The book has been checked out")
+        
 #    c. return_book - removes the book from the borrowedBooks list, updates the borrowed attribute of the book to False, and returns a message that the book has been checked in (should take a book as a parameter)
-    def return_book(self, book: Book):
+    def return_book(self, book: Book)-> str:
+        """Summery:
+            Removes the book from the borrowed_books list, updates the borrowed attribute of the book to False, and returns a message that the book has been checked in.
+
+            Args:
+                book (Book): The book object to remove from the borrowed_books list.
+
+            Returns:
+                str: A message that the book has been checked in.
+                """
         self.borrowed_books.remove(book)
         book.check_in()
-        return f"Book has been checked in"
+        return print("The book has been checked in")
 # 3. Create a Library class that has the following attributes (create a __init__ method)):
 #    a. books (list of books)
 #    b. users (list of users)
