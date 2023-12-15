@@ -450,7 +450,7 @@ def imput_isbn()-> int:
 
 def imput_isbn_search()-> int:
     """Summary:
-        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.  The UnboundLocalError is raised if the user enters "restart" and this redirects the user to the main menu due to the false / true switch in the main function.
 
         Args:
             None
@@ -466,7 +466,7 @@ def imput_isbn_search()-> int:
             raise UnboundLocalError
          if isbn != "restart":
             while not isbn.isdigit():
-                print("Wrong, only enter numbers, no letters or special characters.")
+                print("Wrong, only enter numbers, no letters or special characters.  If you want to restart, enter restart.")
                 isbn = (input("Please enter a valid positive integer for the ISBN: "))
             isbn = int(isbn)
             return isbn
