@@ -198,7 +198,7 @@ def check_product_in_store(product: Product) -> bool:
 #nOTE
 def menu()-> int:
     """Summery:
-        This function displays a menu and returns the user's choice as an integer.  The menu is displayed using the input() function.
+        This function displays a menu and returns the user's choice as an integer.  The menu is displayed using the input() function.  The input is then checked to make sure that it is a valid input.  If the user enters an invalid input, it will ask the user to enter a valid input.  The code is encapulated in a try and except block to catch any errors... and will run normally if there is errors.  This funtion is a crazy train, it will not stop for anything.  If this funtion breaks, the whole program will turn to useless code, floating in the void... until the program is restarted I guess.
 
 
     Parameters:
@@ -207,21 +207,36 @@ def menu()-> int:
     Returns:
         int: The user's choice as an integer.
     """
-
-    print("welcome to the store Menu. What would you like to do?")
-    print("press 1 to Add Product")
-    print("press 2 to Add Customer")
-    print("press 3 to Add Product to Customer's Cart")
-    print("press 4 to Remove Product from Customer's Cart")
-    print("press 5 to Display Products")
-    print("press 6 to Display Customers")
-    print("press 7 to Display Customer's Cart")
-    choice = input("What would you like to do?")
-    choice_list = ["1", "2", "3", "4", "5", "6", "7"]
-    while choice not in choice_list:
-        print("Invalid input, please try again.")
+    try:
+        print("welcome to the store Menu. What would you like to do?")
+        print("press 1 to Add Product")
+        print("press 2 to Add Customer")
+        print("press 3 to Add Product to Customer's Cart")
+        print("press 4 to Remove Product from Customer's Cart")
+        print("press 5 to Display Products")
+        print("press 6 to Display Customers")
+        print("press 7 to Display Customer's Cart")
         choice = input("What would you like to do?")
-    return choice
+        choice_list = ["1", "2", "3", "4", "5", "6", "7"]
+        while choice not in choice_list:
+            print("Invalid input, please try again.")
+            choice = input("What would you like to do?")
+        return choice
+    except Exception as e:
+        print("welcome to the store Menu. What would you like to do?")
+        print("press 1 to Add Product")
+        print("press 2 to Add Customer")
+        print("press 3 to Add Product to Customer's Cart")
+        print("press 4 to Remove Product from Customer's Cart")
+        print("press 5 to Display Products")
+        print("press 6 to Display Customers")
+        print("press 7 to Display Customer's Cart")
+        choice = input("What would you like to do?")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7"]
+        while choice not in choice_list:
+            print("Invalid input, please try again.")
+            choice = input("What would you like to do?")
+        return choice
 
  
 
@@ -246,7 +261,7 @@ def add_price_now()-> float:
         
         """
     price = input("Please enter the product price using a decimal point: ") 
-    while price.isalpha() == True:
+    while price.isalpha() != True:
         print("Please only use numbers and decimals.")
         price = input("Please enter the product price: ")
 
@@ -343,7 +358,7 @@ def imput_product_id()-> str:
 # IE. store.add_product(product) where product is a Product object.
 # store.add_product(Product(name, price, product_id))
 # You can either ask the user for the name, price, and product_id or you can hard code it in the main function.
-sapling = ""
+
 
 def main():
     store = Store()
@@ -358,7 +373,9 @@ def main():
                 print(f"error:{e}, taking you back to the menu.")  
         elif imput == "1":
             try:
-                print("Add Product")
+                print("Add Product selected")
+                print("Please enter the product information in the following prompts.")
+                name = str(input("Please enter the product name: ")).upper()
                 price = add_price_now()
                 product_id = imput_product_id()
                 store.add_product(Product(name, price, product_id))
@@ -367,7 +384,7 @@ def main():
         elif imput == "2":
             try:
                 print("Add Customer")
-                name = input("Please enter the customer name: ")
+                name = str(input("Please enter the customer name: ")).capitalize()
                 customer_id = input("Please enter the customer id: ")
                 store.add_customer(Customer(name, customer_id))
             except Exception as e:
@@ -375,9 +392,9 @@ def main():
         elif imput == "3":
             try:
                 print("Add Product to Customer's Cart")
-                customer_name = str(input("Please enter the customer name: "))
+                customer_name = str(input("Please enter the customer name: ")).capitalize()
                 customer_check(customer_name, store)
-                product_name = input("Please enter the product name: ")
+                product_name = str(input("Please enter the product name: ")).upper()
                 product_check(product_name, store)
                 # customer = store.find_customer(customer_name)
                 # product = store.find_product(product_name)
