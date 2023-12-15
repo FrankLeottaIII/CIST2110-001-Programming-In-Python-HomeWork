@@ -247,57 +247,63 @@ class Library:
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
-    def export_books_to_csv(self, filename: str)-> None:
-        """
-        Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
-          If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
-          exported as False.  If Filename is not found, the user is informed of the error and returned to the main menu.
+def export_books_to_csv(self, filename: str)-> None:
+    """
+    Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
+        If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
+        exported as False.
+    The code is encapsulated in a try except block format.  If a FileNotFoundError, or any other error is raised, the user is informed that there is a problem and apologizes.
 
-        Args:
-            filename (str): The name of the file to export to.
+    Args:
+        filename (str): The name of the file to export to.
 
-        Returns:
-            None
-        """
-        try:
-            with open(filename, "w", encoding='utf-8', newline="") as file:
-                writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
-                writer.writeheader()
-                for book in self.books:
-                    writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
-        except FileNotFoundError:
-            print(" this should not happen... if you see this, please contact the developer.")
-            print("File not found")
-            menu()
+    Returns:
+        None
+    """
+    try:
+        with open(filename, "w", encoding='utf-8', newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
+            writer.writeheader()
+            for book in self.books:
+                writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
+    except FileNotFoundError:
+        print(" this should not happen... if you see this, please contact the developer.")
+        print("File not found")
+    except Exception as e:
+        print("An error has occured.  Please contact the developer.")
+        print("sorry")
 
 
 #    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
 #       This will be similar to the export_books_to_csv method but there is a slight difference with the borrowedBooks attribute if you get stuck this code might help:
 #       borrowed_books_titles = [book.title for book in user.borrowed_books]
 #       Use that and pythons .join method to create a string of the borrowed books titles
-    def export_users_to_csv(self, filename)-> None:
-        """
-        Export the users list to a csv file.  if the user has borrowed books, the borrowed books titles are exported as a string. If the user has not borrowed any books, the borrowed books titles are exported as an empty string. The csv file should have the following format: Name,ID,Borrowed Books.  If Filename is not found, the user is informed of the error and returned to the main menu.
+def export_users_to_csv(self, filename)-> None:
+    """
+    Export the users list to a csv file.  if the user has borrowed books, the borrowed books titles are exported as a string. If the user has not borrowed any books, the borrowed books titles are exported as an empty string. The csv file should have the following format: Name,ID,Borrowed Books. The code is encapsulated in a try except block format.  If a TypeError, FileNotFoundError, or any other error is raised, the user is informed that there is a problem and patiently waits there silently.
 
-        Args:
-            filename (str): The name of the file to export to.
+    Args:
+        filename (str): The name of the file to export to.
 
-        Returns:
-            None
-        """
-        try:
-            with open(filename, "w", encoding='utf-8', newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(["Name", "ID", "Borrowed Books"])
-                for user in self.users:
-                    borrowed_books_titles = [book.title for book in user.borrowed_books]
-                    writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
-        except FileNotFoundError:
-            print(" this should not happen... if you see this, please contact the developer.")
-            print("File not found")
-        except TypeError:
-            print(" Problem with the type of data being exported.  Please contact the developer.")
-            print("Bringing you back to the main menu.")
+    Returns:
+        None
+    """
+    try:
+        with open(filename, "w", encoding='utf-8', newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(["Name", "ID", "Borrowed Books"])
+            for user in self.users:
+                borrowed_books_titles = [book.title for book in user.borrowed_books]
+                writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
+    except FileNotFoundError:
+        print(" this should not happen... if you see this, please contact the developer.")
+        print("File not found")
+    except TypeError:
+        print(" Problem with the type of data being exported.  Please contact the developer.")
+        print("...")
+    except Exception as e:
+        print("An error has occured.  Please contact the developer.")
+        print("....")
 
 
 # 4. Create a menu that will allow users to:
@@ -316,8 +322,7 @@ class Library:
 choice = ""
 def menu()-> str:
     """Summary:
-        Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.  The ValueError, UnboundLocalError, TypeError, AttributeError, IndexError, and KeyError exceptions are the exact same way as if it was running normally but informing the users of the errors.  Most of the Exceptions will not really be nessary, but I am including them just in case, since this is a major funtion of the program... if this breaks, the program is useless.
-
+        Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.  The ValueError, UnboundLocalError, TypeError, AttributeError, IndexError, and KeyError exceptions are the exact same way as if it was running normally but informing the users of the errors.  Most of the Exceptions will not really be nessary, but it looks impressive.  If any other errors are raised, the code will act the same way as the non raised code. This function is used to call the appropriate methods and can under no cercumstances be broken, or the program will be utterly useless, and I bet some people will be mad at you for that.
         Args:
             None
         
@@ -329,6 +334,7 @@ def menu()-> str:
             choice (str): If AttributeError is raised.
             choice (str): If IndexError is raised.
             choice (str): If KeyError is raised.
+            choice (str): If any other error is raised.
     
     """
     global choice
@@ -388,6 +394,12 @@ def menu()-> str:
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
         return choice
+    except Exception as e:
+        choice = input("Exception.  Please enter a valid option from the menu: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
 # RQUIREMENTS:
 # 1. You should be doing error checking on all user input (make sure the user enters a valid ISBN, ID, etc.) and handle any errors appropriately (i.e. if the user enters an invalid ISBN, ask them to enter a valid ISBN)
 # 2. You should be using try except blocks to handle any errors
@@ -417,7 +429,7 @@ def menu()-> str:
 def continue_question()-> bool:
     """Summary:
         Asks the user if they want to continue using the program.  If the user enters y or Y, the program continues, and returns True.  If the user enters n or N, the user is informed they are going to catapulted back to the main menu.  The user is returned to the main menu, and returns False  If the user enters anything else, the program asks the user to enter yes or no, using the question_list list to determin if the input is valid.  The code is encapsulated in a try except block to handle errors.
-        If ValueError, UnboundLocalError, or TypeError is raised, the funtion will not keep their composure and go histerical. They will then inform the user they will be catapulted to the main menu... and then returns false.
+        If ValueError, UnboundLocalError, TypeError or any other error is raised, the funtion will not keep their composure and become histerical. They will then inform the user they will be catapulted to the main menu... and then returns false.
 
         Args:
             None
@@ -425,7 +437,10 @@ def continue_question()-> bool:
         Returns:
             True: If the user enters y or Y.
             False: If the user enters n or N.
-            False: if 
+            False: If ValueError is raised.
+            False: If UnboundLocalError is raised.
+            False: If TypeError is raised.
+            False: If any other error is raised.
     """
 
     print("Do you wish to continue?")
@@ -450,11 +465,14 @@ def continue_question()-> bool:
     except TypeError:
         print("Ok, you will be catapulted back to the main menu.")
         return False
+    except Exception as e:
+        print("Ok, you will be catapulted back to the main menu.")
+        return False
 #Methods to use for correct input from user:
 
-def imput_isbn()-> int: 
+def imput_isbn()-> int:
     """Summary:
-        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered. The code is encapsulated in a try-except block to handle errors.
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered. The code is encapsulated in a try-except block to handle errors. If a ValueError, UnboundLocalError, TypeError or any other error is raised, this prints out flavor text to the user and returns None..
 
         Args:
             None
@@ -462,6 +480,7 @@ def imput_isbn()-> int:
             isbn (int): The ISBN the user entered.
             None: If ValueError is raised.
             None: If UnboundLocalError is raised.
+            None: If TypeError is raised.
     """
     try:
         isbn = input("Enter the ISBN: ")
@@ -472,16 +491,18 @@ def imput_isbn()-> int:
         return isbn
     except ValueError:
         print("Hey now, not cool. Taking you back to the main menu while I clean up the mess you made")
-        menu()
         return None
     except UnboundLocalError:
         print("oh my...  Ok lets get you back to the main menu while I spruse up the place.")
-        menu()
         return None
+    except TypeError:
+        print("Looks like I dropped the ball on this one.  I will get you back to the main menu while I clean up the mess.")
+        return None
+
 
 def imput_isbn_search()-> int:
     """Summary:
-        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.  The UnboundLocalError is raised if the user enters "restart" and this returns False. If a TypeError is raised, this returns False.  If a ValueError is raised, this returns False. If a UnboundLocalError is raised, this returns False.
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.  The UnboundLocalError is raised if the user enters "restart" and this returns False. If a TypeError is raised, this returns False.  If a ValueError is raised, this returns False. If a UnboundLocalError is raised, this returns False.  If any other error is raised, this returns False.
 
         Args:
             None
@@ -490,6 +511,7 @@ def imput_isbn_search()-> int:
             False: If ValueError is raised.
             False: If UnboundLocalError is raised.
             False: If TypeError is raised.
+            False: If any other error is raised.
     """
     print ("Enter the ISBN of the book you want to search for.  Please watch your capitalization and enter it ver batem.")
     try: 
@@ -508,12 +530,14 @@ def imput_isbn_search()-> int:
         return False
     except TypeError:
         return False
+    except Exception as e:
+        return False
 
 
 ############################################
 def imput_title()-> str:
     """Summery:
-        Asks the user to enter a title. Since books can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors. If a ValueError, TypeError, or an UnboundLocalError is raised, the function returns  title False as a bool varible.
+        Asks the user to enter a title. Since books can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors. If a ValueError, TypeError, or an UnboundLocalError is raised, the function returns  title False as a bool varible. If any other error is raised, the function returns  title False as a bool varible.
 
         Args:
             None
@@ -523,6 +547,7 @@ def imput_title()-> str:
             False: If ValueError is raised.
             False: If TypeError is raised.
             False: If UnboundLocalError is raised.
+            false: If any other error is raised.
     """
     try:
         print ("Please enter the title of the book.  Please watch your capitalization and enter it ver batem.")
@@ -534,10 +559,12 @@ def imput_title()-> str:
         return False
     except UnboundLocalError:
         return False
+    except Exception as e:
+        return False
 ##############33
 def imput_author()-> str:
     """Summery:
-        Asks the user to enter an author. Since authors can have number, letter and special numbers in them, no real checking is need...Authors can be robots or internet users nowadays so its only natural they have odd names.  The only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu, and returns nothing  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, TypeError, or an UnboundLocalError, the function returns  author False as a bool varible. 
+        Asks the user to enter an author. Since authors can have number, letter and special numbers in them, no real checking is need...Authors can be robots or internet users nowadays so its only natural they have odd names.  The only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu, and returns nothing  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, TypeError, or an UnboundLocalError, the function returns  author False as a bool varible. If any other error is raised, the function returns  author False as a bool varible.
 
         Args:
             None
@@ -547,6 +574,7 @@ def imput_author()-> str:
             author (bool): If ValueError is raised.
             author (bool): If TypeError is raised.
             author (bool): If UnboundLocalError is raised.
+            author (bool): If any other error is raised.
     """
     try:
         print ("Enter the author of the book.  Please watch your capitalization and enter it ver batem.")
@@ -567,10 +595,15 @@ def imput_author()-> str:
         author = bool(author)
         author = False
         return author
+    except Exception as e:
+        author = False
+        author = bool(author)
+        author = False
+        return author
 ##############333
 def imput_name()-> str:
     """Summery:
-        Asks the user to enter a name. Since names can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  name False as a bool varible.   If there is a TypeError, the function returns  name False as a bool varible.
+        Asks the user to enter a name. Since names can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  name False as a bool varible.   If there is a TypeError, the function returns  name False as a bool varible. If any other error is raised, the function returns  name False as a bool varible.
 
         Args:
             None
@@ -594,12 +627,17 @@ def imput_name()-> str:
         name = bool(name)
         name = False
         return name
+    except Exception as e:
+        name = False
+        name = bool(name)
+        name = False
+        return name
 
 
 #######
 def imput_member_id()-> int:
     """Summery:
-        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  id False as a bool varible.   If there is a TypeError, the function returns  id False as a bool varible.
+        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  id False as a bool varible.   If there is a TypeError, the function returns  id False as a bool varible. If any other error is raised, the function returns  id False as a bool varible.
 
         Args:
             None
@@ -608,6 +646,7 @@ def imput_member_id()-> int:
             id (int): The ID the user entered.
             id (bool): If ValueError is raised.
             id (bool): If TypeError is raised.
+            id (bool): If any other error is raised.
     """
     try:
         print("Enter the ID of the user. Do not use letters or special characters.")
@@ -627,12 +666,18 @@ def imput_member_id()-> int:
         id = bool(id)
         id = False
         return id
+    except Exception as e:
+        id  = False
+        id = bool(id)
+        id = False
+        return id
+
 the_user = ""
 a_user = ""
 restore = True
 stay = True
 def main()-> None:
-    """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. 
+    """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. if the user chooses to exit, the program ends.  If the user chooses to restart, the program restarts.  If the user chooses to continue, the program continues.  If the user chooses to export the books or users to a csv file, the program exports the books or users to a csv file.  If the user chooses to search for a book or user, the program searches for the book or user.  If the user chooses to check if a book is available, the program checks if the book is available.  If the user chooses to borrow a book, the program borrows the book.  If the user chooses to return a book, the program returns the book.  If the user chooses to add a book, the program adds a book.  If the user chooses to add a user, the program adds a user.  If the user chooses to delete a book, the program deletes a book.  If the user chooses to delete a user, the program deletes a user.  The program has a while loop that keeps the program running until the user chooses to exit.  The code is encapsulated in a try except block to handle errors, except for this main funtion... but if that breaks, the program is useless anyway, but it would never break... probably.
 
         Args:
             None
@@ -676,6 +721,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except NameError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "2": #add users
             try:
                 print("Add users Selected.  Please answer the following questions to add a user.")
@@ -694,6 +743,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "3": #delete books
             try:
                 print("Delete books Selected.")
@@ -716,6 +769,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "4": #delete users
             try:
                 print("Delete users Selected.")
@@ -740,6 +797,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "5": #borrow books
             try:
                 print("Borrow books Selected.")
@@ -767,6 +828,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "6": #return books
             try:
                 print("Return books Selected.")
@@ -794,6 +859,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "7":#search books
             try:
                 print("Search books Selected.")
@@ -813,6 +882,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "8":#check if book is available to be borrowed
             try:
                 print("Check if book is available Selected.")
@@ -833,6 +906,10 @@ def main()-> None:
                             print("Error.  Taking you back to the main menu: ")
                         except TypeError:
                             print("Error.  Taking you   back to the main menu: ")
+                        except Exception as e:
+                            print("Error.")
+                            print(e)
+                            print("Taking you back to the main menu: ")
                     else:
                         print("Book not found")
                 if sassafras == False:
@@ -846,6 +923,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "9":#search users
             try:
                 print("Search users Selected.")
@@ -864,6 +945,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "10":#export books to csv
             try:
                 print("Export books to csv Selected.")
@@ -887,6 +972,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "11":#export users to csv
             try:
                 print("Export users to csv Selected.")
@@ -908,6 +997,10 @@ def main()-> None:
                 print("Error.  Taking you back to the main menu: ")
             except UnboundLocalError:
                 print("Error.  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "12":
             try:
                 print("Exit Selected.")
@@ -927,6 +1020,10 @@ def main()-> None:
                 print("It seems your computer does not want you to quit.  Spooky...  Taking you back to the main menu: ")
             except TypeError:
                 print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
         elif choice == "restart":
             try:
                 print("Restart Selected.")
@@ -937,6 +1034,10 @@ def main()-> None:
                 print("It seems your computer does not want you to restart.  Spooky...  Taking you back to the main menu: ")
             except TypeError:
                 print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
 
         else:
             try:
@@ -947,9 +1048,13 @@ def main()-> None:
                 print("It seems your computer is very comfused.  Have you maintained it properly?\nAnyway...  Taking you back to the main menu: ")
             except TypeError:
                 print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
+            except Exception as e:
+                print("Error.")
+                print(e)
+                print("Taking you back to the main menu: ")
 
 
-    if Walter == False:
+    if Walter == False or Walter != True:
         print("Looks like you broke the program.  I hope you are happy with yourself.\nShutting down.")
         quit()
 
