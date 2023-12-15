@@ -110,7 +110,7 @@ class User:
         """
         self.name: str = name
         self.member_id: int = member_id
-        self.borrowed_books: list = [] #says borrowed_books in pytest but barrowed books here, fixing it...
+        self.borrowed_books: list = [] 
 
 # Methods:
 #    a. __str__ (returns a string representation of the user using the following format: Name: <Name>, ID: <ID>, Borrowed Books: <Borrowed Books>)
