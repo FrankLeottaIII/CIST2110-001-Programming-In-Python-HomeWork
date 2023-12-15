@@ -173,22 +173,22 @@ def check_product_in_store(product: Product) -> bool:
     else:
         return False
     
- def should_banish_to_menu(varible) -> None:
-    """Summary:
-    This function prints out a message and then returns to the menu.
+# def should_banish_to_menu(varible) -> None:
+#     """Summary:
+#     This function prints out a message and then returns to the menu.
 
-    Parameters:
-    Varible: The varible that is being checked to see if it is true or false
+#     Parameters:
+#     Varible: The varible that is being checked to see if it is true or false
 
-    Returns:
-     if True, prints string and None, 
-     If False, menu() function.
-    """
-    if varible == True:
-        print("...authenticated... beep boop")
-        return None
-    if varible == False:
-        menu()
+#     Returns:
+#      if True, prints string and None, 
+#      If False, menu() function.
+#     """
+#     if varible == True:
+#         print("...authenticated... beep boop")
+#         return None
+#     if varible == False:
+#         return False
 
 
 # The menu function should return the user's choice as an integer.
@@ -280,7 +280,7 @@ def customer_check(customer_name: str, store: Store)-> str:
 
 def product_check(product_name: str, store: Store)-> str:
     """Summery:
-        This function checks to see if the product is in the store object.  If the product is not in the store object, it will ask the user to enter a product that is in the store. If there are no products in the store, it will tell the user that there are no products in the store. The function will return the name of the product. If the user enters "quit", it will return to the menu.
+        This function checks to see if the product is in the store object.  If the product is not in the store object, it will ask the user to enter a product that is in the store. If there are no products in the store, it will tell the user that there are no products in the store and return none. The function will return the name of the product. If the user enters "quit", it will return  None.
         
     Parameters:
         product_name (str): The name of the product.
@@ -288,16 +288,18 @@ def product_check(product_name: str, store: Store)-> str:
         
     Returns:
         str: The name of the product.
+        None: If the user enters "quit", it will return to the menu.
         
         
         """
     while product_name not in store.products or store.products == []:
         if store.products == []:
             print("There are no products in the store.")
-            menu()
+            return None
         elif product_name == "quit":
-            menu()
-        print("Product not found.")
+            print("Product not found.")
+            return None
+
         product_name = input("Please enter the product name.  Type quit to go to main menu: ")
     return product_name
 
@@ -335,51 +337,69 @@ def main():
                 print("Exiting Program")
                 quit()
             except Exception as e: #this is a catch all, it will catch any error
-                print("Something went wrong, taking you back to the menu.")
+                print(f"error:{e}, taking you back to the menu.")  
         elif imput == "1":
-            print("Add Product")
-            name = input("Please enter the product name: ")
-            price = input("Please enter the product price: ")
-            products_id = input("Please enter the product id: ")
-            add_price_check(price)
-            store.add_product(Product(name, price, products_id))
+            try:
+                print("Add Product")
+                name = input("Please enter the product name: ")
+                price = input("Please enter the product price: ")
+                products_id = input("Please enter the product id: ")
+                add_price_check(price)
+                store.add_product(Product(name, price, products_id))
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
         elif imput == "2":
-            print("Add Customer")
-            name = input("Please enter the customer name: ")
-            customer_id = input("Please enter the customer id: ")
-            store.add_customer(Customer(name, customer_id))
+            try:
+                print("Add Customer")
+                name = input("Please enter the customer name: ")
+                customer_id = input("Please enter the customer id: ")
+                store.add_customer(Customer(name, customer_id))
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
         elif imput == "3":
-            print("Add Product to Customer's Cart")
-            customer_name = input("Please enter the customer name: ")
-            customer_check(customer_name, store)
-            product_name = input("Please enter the product name: ")
-            product_check(product_name, store)
-            # customer = store.find_customer(customer_name)
-            # product = store.find_product(product_name)
-            add_product_to_customer_cart(customer_name, product_name)
-            
+            try:
+                print("Add Product to Customer's Cart")
+                customer_name = input("Please enter the customer name: ")
+                customer_check(customer_name, store)
+                product_name = input("Please enter the product name: ")
+                product_check(product_name, store)
+                # customer = store.find_customer(customer_name)
+                # product = store.find_product(product_name)
+                add_product_to_customer_cart(customer_name, product_name)
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")   
         elif imput == "4":
-            print("Remove Product from Customer's Cart")
-            customer_name = input("Please enter the customer name: ")
-            customer_name = customer_check(customer_name, store)
-            customer_name = customer_check(customer_name, store)
-            product_name = input("Please enter the product name: ")
-            product_name = product_check(product_name, store)
-            
-            remove_product_from_customer_cart(customer_name,  product_name)
+            try:
+                print("Remove Product from Customer's Cart")
+                customer_name = input("Please enter the customer name: ")
+                customer_check(customer_name, store)
+                product_name = input("Please enter the product name: ")
+                product_check(product_name, store)
+                remove_product_from_customer_cart(customer_name, product_name)
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
         elif imput == "5":
-            print("Display Products")
-            store.display_products()
+            try:
+                print("Display Products")
+                store.display_products()
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
         elif imput == "6":
-            print("Display Customers")
-            store.display_customers()
+            try:
+                print("Display Customers")
+                store.display_customers()
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
         elif imput == "7":
-            print("Display Customer's Cart")
-            customer_name = input("Please enter the customer name: ")
-            customer_name = customer_check(customer_name, store)
-            display_products_pretty(customer_name)
+            try:
+                print("Display Customer's Cart")
+                customer_name = input("Please enter the customer name: ")
+                customer_check(customer_name, store)
+                display_products_pretty(customer_name)
+            except Exception as e:
+                print(f"error:{e}, taking you back to the menu.")
 
-      # remove this line when you start working on the main function
+
 
 
 if __name__ == "__main__":
