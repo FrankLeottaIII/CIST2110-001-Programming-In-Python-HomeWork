@@ -9,7 +9,7 @@ from Project3 import Book, User, Library
 #   \ \  \___|\ \  \\  \\ \  \\\  \|\  \\_\  \ \  \_|\ \ \  \____   \ \  \          __\_\  \
 #    \ \__\    \ \__\\ _\\ \_______\ \________\ \_______\ \_______\  \ \__\        |\_______\
 #     \|__|     \|__|\|__|\|_______|\|________|\|_______|\|_______|   \|__|        \|_______|
-# Author: Frank R. Leotta III
+# Author: Frank Robert Leotta III
 # CIST2110-001-Project-3 Library Management System (LMS) Test Cases
 
 
