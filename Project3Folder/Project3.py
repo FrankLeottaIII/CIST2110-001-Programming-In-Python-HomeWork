@@ -694,7 +694,6 @@ def main()-> None:
     library = Library() #creates a library object
     Walter = True
     while Walter == True: #walter will always be true, bringing it back to choice.  
-        print(library)
         choice = menu()
         if choice == "1": #add books
             try:
