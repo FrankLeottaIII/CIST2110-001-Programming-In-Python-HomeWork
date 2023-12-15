@@ -340,25 +340,25 @@ def menu()-> str:
         print("Press 11 to Export users to csv")
         print("Press 12 to Exit")
         choice = input("Enter your choice: ")
-        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
         return choice
     except ValueError:
         choice = input("ValueError.  Please enter a valid option from the menu: ")
-        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12" "restart"]
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
         return choice
     except UnboundLocalError:
             print("UnboundLocalError.  Please enter a valid option from the menu: ")
-            choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+            choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
             while choice not in choice_list:
                 choice = input("Error.  Please enter a valid option from the menu: ")
             return choice
     except TypeError:
         choice = str(input("TypeError.  Please enter a valid option from the menu: "))
-        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]    
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]    
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
         return choice
@@ -400,6 +400,7 @@ def continue_question()-> bool:
             True: If the user enters y or Y.
             False: If the user enters n or N.
     """
+    global choice
     print("Do you wish to continue?")
     print ("Enter y or Y for yes")
     print ("Enter n or N for no")
@@ -412,11 +413,11 @@ def continue_question()-> bool:
             return True
         elif question == "n" or question == "N":
             print("Ok, you will be catapulted back to the main menu.")
-            menu()
+            choice = menu()
             return False
     except ValueError:
         print("ValueError. Beep boop. escorting you back to the main menu.")
-        menu()
+        choice = menu()
         return False
 #Methods to use for correct input from user:
 
@@ -447,6 +448,34 @@ def imput_isbn()-> int:
         menu()
         return None
 
+def imput_isbn_search()-> int:
+    """Summary:
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.
+
+        Args:
+            None
+        Returns:
+            isbn (int): The ISBN the user entered.
+            False: If ValueError is raised.
+            False: If UnboundLocalError is raised.
+    """
+    print ("Enter the ISBN of the book you want to search for.  Please watch your capitalization and enter it ver batem.")
+    try: 
+         isbn = input("Enter the ISBN: ")
+         if isbn == "restart":
+            raise UnboundLocalError
+         if isbn != "restart":
+            while not isbn.isdigit():
+                print("Wrong, only enter numbers, no letters or special characters.")
+                isbn = (input("Please enter a valid positive integer for the ISBN: "))
+            isbn = int(isbn)
+            return isbn
+    except ValueError:
+        print("Hey now, not cool. Taking you back to the main menu while I clean up the mess you made")
+        return False
+    except UnboundLocalError:
+        print("oh my...  Ok lets get you back to the main menu while I spruse up the place.")
+        return False
 
 
 ############################################
@@ -547,9 +576,10 @@ def main()-> None:
             None
     """
     import csv
-    library = Library()
+    library = Library() #creates a library object
     Walter = True
     while Walter == True:
+        print(library)
         choice = menu()
         if choice == "1": #add books
             print("Add books Selected.  Please answer the following questions to add a book.")
@@ -557,9 +587,10 @@ def main()-> None:
             title = imput_title()
             author = imput_author()
             book = Book(title, author, isbn)
-            library.add_book(book)
-            print(f"Book added: {book}")
-            menu()
+            library.add_book(book) #does this add the book to the library?
+            print(library)
+            print(f"Book added:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn},")
+            
         elif choice == "2": #add users
             print("Add users Selected.  Please answer the following questions to add a user.")
             name = imput_name()
@@ -567,7 +598,6 @@ def main()-> None:
             user = User(name, id)
             library.add_user(user)
             print(f"User added: {user}")
-            menu()
         elif choice == "3": #delete books
             print("Delete books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to delete.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
@@ -579,7 +609,6 @@ def main()-> None:
                 print(f"Book deleted: {book}")
             else:
                 print(f"Book with {isbn} ISBN not found")
-                menu()
         elif choice == "4": #delete users
             print("Delete users Selected.")
             print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
@@ -591,49 +620,50 @@ def main()-> None:
                 print(f"User deleted: {user}")
             else:
                 print("User not found")
-                menu()
         elif choice == "5": #borrow books
             print("Borrow books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
-            isbn = imput_isbn()
-            book = library.find_book(isbn)
-            if book is not None:
-                print(f"Book found: {book}")
-                print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                continue_question()
-                id = imput_member_id()
-                user = library.find_user(id)
-                if user is not None:
-                    user.borrow_book(book)
-                    print(f"Book borrowed: {book}")
+            isbn = imput_isbn_search()
+            if isbn != False:
+                book = library.find_book(isbn)
+                if book is not None:
+                    print(f"Book found: {book}")
+                    print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                    continue_question()
+                    id = imput_member_id()
+                    user = library.find_user(id)
+                    if user is not None:
+                        user.borrow_book(book)
+                        print(f"Book borrowed: {book}")
+                    else:
+                        print("User not found")
                 else:
-                    print("User not found")
-                    menu()
-            else:
-                print("Book not found")
-                menu()
-            menu()
+                    print("Book not found")
+            if isbn == False:
+                print("Taking you back to the main menu.")
         elif choice == "6": #return books
             print("Return books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
             continue_question()
-            isbn = imput_isbn()
-            book = library.find_book(isbn)
-            if book is not None:
-                print(f"Book found: {book}")
-                print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                continue_question()
-                id = imput_member_id()
-                user = library.find_user(id)
-                if user is not None:
-                    user.return_book(book)
-                    print(f"Book returned: {book}")
+            isbn = imput_isbn_search()
+            if isbn != False:
+                book = library.find_book(isbn)
+                if book is not None:
+                    print(f"Book found: {book}")
+                    print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                    continue_question()
+                    id = imput_member_id()
+                    user = library.find_user(id)
+                    if user is not None:
+                        user.return_book(book)
+                        print(f"Book returned: {book}")
+                    else:
+                        print(f"User {user} not found in the library system")
                 else:
-                    print(f"User {user} not found in the library system")
-            else:
-                print("Book was not found in the library")
-            menu()
+                    print("Book was not found in the library")
+            if isbn == False:
+                print("Taking you back to the main menu.")
         elif choice == "7":#search books
             print("Search books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to search for.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
@@ -641,10 +671,9 @@ def main()-> None:
             isbn = imput_isbn()
             book = library.find_book(isbn)
             if book is not None:
-                print(f"Book found: {book}")
+                print(f"Book found: ")
             else:
                 print("Book not found")
-                menu()
         elif choice == "8":#check if book is available to be borrowed
             print("Check if book is available Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
@@ -652,13 +681,17 @@ def main()-> None:
             isbn = imput_isbn()
             book = library.find_book(isbn)
             if book is not None:
-                if book.borrowed():
-                    print(f"Book with isbn: {isbn} is not available")
-                else:
-                    print(f"Book with isbn: {isbn} is available")
+                try:
+                    if book.borrowed == True:
+                        print(f"Book with isbn: {isbn} is not available")
+                    else:
+                        print(f"Book with isbn: {isbn} is available")
+                except AttributeError:
+                    print("Error.  Taking you back to the main menu: ")
+                except TypeError:
+                    print("Error.  Taking you back to the main menu: ")
             else:
                 print("Book not found")
-            menu()
         elif choice == "9":#search users
             print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
             id = input("Enter the ID of the user you want to search for: ")
@@ -667,7 +700,6 @@ def main()-> None:
                 print(f"User found: {user}")
             else:
                 print(f"User {user} not found")
-            menu()
         elif choice == "10":#export books to csv
             print("Export books to csv Selected.")
             print("ok now, I will ask you for the filename you want to export the books to.  If you don't know the filename, you can search for the book using the search books option in the menu.")
@@ -675,7 +707,6 @@ def main()-> None:
             print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
             filename = input("Enter the filename you want to export the books to: ")
             library.export_books_to_csv(filename)
-            menu()
         elif choice == "11":#export users to csv
             print("Export users to csv Selected.")
             print("ok now, I will ask you for the filename you want to export the users to.  If you don't know the filename, you can search for the user using the search users option in the menu.")
@@ -683,15 +714,14 @@ def main()-> None:
             print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
             filename = input("Enter the filename you want to export the users to: ")
             library.export_users_to_csv(filename)
-            menu()
         elif choice == "12":
             print("Goodbye!")
             quit()
+        elif choice == "restart":
+            print("bringing you back to the main menu.")
         else:
             print("Error.  Please enter a valid option from the menu: ")
-            menu()
-    Walter = True
-Walter = True
+            choice = menu()
 
 
 if __name__ == "__main__":
