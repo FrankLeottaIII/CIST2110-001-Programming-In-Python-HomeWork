@@ -623,19 +623,17 @@ def main()-> None:
         elif choice == "5": #borrow books
             print("Borrow books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            continue_question()
             isbn = imput_isbn_search()
             if isbn != False:
                 book = library.find_book(isbn)
                 if book is not None:
-                    print(f"Book found: {book}")
+                    print(f"Book found: ")
                     print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                    continue_question()
                     id = imput_member_id()
                     user = library.find_user(id)
                     if user is not None:
                         user.borrow_book(book)
-                        print(f"Book borrowed: {book}")
+                        print(f"Book borrowed: Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}")
                     else:
                         print("User not found")
                 else:
@@ -645,14 +643,12 @@ def main()-> None:
         elif choice == "6": #return books
             print("Return books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            continue_question()
             isbn = imput_isbn_search()
             if isbn != False:
                 book = library.find_book(isbn)
                 if book is not None:
                     print(f"Book found: {book}")
                     print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                    continue_question()
                     id = imput_member_id()
                     user = library.find_user(id)
                     if user is not None:
@@ -667,13 +663,15 @@ def main()-> None:
         elif choice == "7":#search books
             print("Search books Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to search for.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            continue_question()
-            isbn = imput_isbn()
-            book = library.find_book(isbn)
-            if book is not None:
-                print(f"Book found: ")
-            else:
-                print("Book not found")
+            isbn = imput_isbn_search()
+            if isbn != False:
+                book = library.find_book(isbn)
+                if book is not None:
+                    print(f"Book found:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}, Borrowed: {book.borrowed}")
+                else:
+                    print("Book not found")
+            if isbn == False:
+                print("Taking you back to the main menu.")
         elif choice == "8":#check if book is available to be borrowed
             print("Check if book is available Selected.")
             print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
@@ -683,9 +681,9 @@ def main()-> None:
             if book is not None:
                 try:
                     if book.borrowed == True:
-                        print(f"Book with isbn: {isbn} is not available")
+                        print(f"Book with isbn:{isbn} is not available")
                     else:
-                        print(f"Book with isbn: {isbn} is available")
+                        print(f"Book with isbn:{isbn} is available")
                 except AttributeError:
                     print("Error.  Taking you back to the main menu: ")
                 except TypeError:
@@ -703,10 +701,14 @@ def main()-> None:
         elif choice == "10":#export books to csv
             print("Export books to csv Selected.")
             print("ok now, I will ask you for the filename you want to export the books to.  If you don't know the filename, you can search for the book using the search books option in the menu.")
-            continue_question()
-            print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
-            filename = input("Enter the filename you want to export the books to: ")
-            library.export_books_to_csv(filename)
+            bob  = True
+            bob =continue_question()
+            if bob != False:
+                print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
+                filename = input("Enter the filename you want to export the books to: ")
+                library.export_books_to_csv(filename)
+            if bob == False:
+                print("Taking you back to the main menu.")
         elif choice == "11":#export users to csv
             print("Export users to csv Selected.")
             print("ok now, I will ask you for the filename you want to export the users to.  If you don't know the filename, you can search for the user using the search users option in the menu.")
