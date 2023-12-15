@@ -216,13 +216,15 @@ def menu()-> int:
         print("press 5 to Display Products")
         print("press 6 to Display Customers")
         print("press 7 to Display Customer's Cart")
-        choice = input("What would you like to do?")
+        choice = input("What would you like to do?: ")
         choice_list = ["1", "2", "3", "4", "5", "6", "7"]
         while choice not in choice_list:
-            print("Invalid input, please try again.")
-            choice = input("What would you like to do?")
+            print("NOT COOL MAN!!!... sorry. please try again...")
+            choice = input("What would you like to do?: ")
         return choice
     except Exception as e:
+        print(f"error:{e}, taking you back to the menu.")
+        print("")
         print("welcome to the store Menu. What would you like to do?")
         print("press 1 to Add Product")
         print("press 2 to Add Customer")
@@ -231,11 +233,11 @@ def menu()-> int:
         print("press 5 to Display Products")
         print("press 6 to Display Customers")
         print("press 7 to Display Customer's Cart")
-        choice = input("What would you like to do?")
+        choice = input("What would you like to do?: ")
         choice_list = ["1", "2", "3", "4", "5", "6", "7"]
         while choice not in choice_list:
-            print("Invalid input, please try again.")
-            choice = input("What would you like to do?")
+            print("NOT COOL MAN!!!... sorry. please try again...")
+            choice = input("What would you like to do?: ")
         return choice
 
  
@@ -260,16 +262,16 @@ def add_price_now()-> float:
         
         
         """
-    price = input("Please enter the product price using a decimal point: ") 
-    while price.isalpha() != True:
-        print("Please only use numbers and decimals.")
-        price = input("Please enter the product price: ")
+    try:
+        price = input("Please enter the product price using a decimal point: ") 
+        while price.isalpha() != True:
+            print("Please only use positive numbers.")
+            price = input("Please enter the product price: ")
+        price = abs(float(price))
+        return price
+    except Exception as e:
+        print(f"error:{e}, not cool man")
 
-    while price < 0:
-        print("Please only use positive numbers.")
-        price = input("Please enter the product price: ")
-    price = float(price)
-    return price
 
 def customer_check(customer_name: str, store: Store)-> str:
     """Summery:
