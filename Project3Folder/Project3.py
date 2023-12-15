@@ -420,7 +420,7 @@ def continue_question()-> bool:
         return False
 #Methods to use for correct input from user:
 
-def imput_isbn(): 
+def imput_isbn()-> int: 
     """Summary:
         Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered. The code is encapsulated in a try-except block to handle errors.
 
