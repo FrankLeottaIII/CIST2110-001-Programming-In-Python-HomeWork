@@ -331,8 +331,11 @@ def main():
     while waldo == True:
         imput = menu()
         if imput == "0":
-            print("Exiting Program")
-            quit()
+            try:
+                print("Exiting Program")
+                quit()
+            except Exception as e: #this is a catch all, it will catch any error
+                print("Something went wrong, taking you back to the menu.")
         elif imput == "1":
             print("Add Product")
             name = input("Please enter the product name: ")
