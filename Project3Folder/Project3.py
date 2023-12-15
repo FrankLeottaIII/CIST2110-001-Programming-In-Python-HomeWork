@@ -243,7 +243,8 @@ class Library:
         for user in self.users: #for each user in the users list
             if user.member_id == member_id: #if the user's member_id matches the member_id passed in as a parameter
                 return user #return the user
-        return None #if the user is not found, return None
+            else:
+                return None #if the user is not found, return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
