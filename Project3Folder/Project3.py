@@ -312,7 +312,7 @@ class Library:
 #    m. Export users to csv
 #    z. Exit
 choice = ""
-def menu():
+def menu()-> str:
     """Summary:
         Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.
 
@@ -349,7 +349,19 @@ def menu():
         choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
-    return choice
+        return choice
+    except UnboundLocalError:
+            print("UnboundLocalError.  Please enter a valid option from the menu: ")
+            choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]
+            while choice not in choice_list:
+                choice = input("Error.  Please enter a valid option from the menu: ")
+            return choice
+    except TypeError:
+        choice = str(input("TypeError.  Please enter a valid option from the menu: "))
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12"]    
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
 # RQUIREMENTS:
 # 1. You should be doing error checking on all user input (make sure the user enters a valid ISBN, ID, etc.) and handle any errors appropriately (i.e. if the user enters an invalid ISBN, ask them to enter a valid ISBN)
 # 2. You should be using try except blocks to handle any errors
@@ -536,9 +548,9 @@ def main()-> None:
     """
     import csv
     library = Library()
-    menu()
     Walter = True
     while Walter == True:
+        choice = menu()
         if choice == "1": #add books
             print("Add books Selected.  Please answer the following questions to add a book.")
             isbn = imput_isbn()
