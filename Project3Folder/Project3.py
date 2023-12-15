@@ -253,7 +253,8 @@ class Library:
         Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
             If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
             exported as False.
-        The code is encapsulated in a try except block format.  If a FileNotFoundError, or any other error is raised, the user is informed that there is a problem and apologizes.
+        The code is encapsulated in a try except block format.
+            If a FileNotFoundError, or any other error is raised, the user is informed that there is a problem and apologizes.
 
         Args:
             filename (str): The name of the file to export to.
@@ -269,7 +270,7 @@ class Library:
                     writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
         except FileNotFoundError:
             print(" this should not happen... if you see this, please contact the developer.")
-            print("File not found")
+            print("Sorry, File not found")
         except Exception as e:
             print("An error has occured.  Please contact the developer.")
             print("sorry")
