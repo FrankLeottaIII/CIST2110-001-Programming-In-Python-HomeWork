@@ -287,6 +287,7 @@ def add_price_now()-> float:
         cent = abs(int(cent))
         price = str(f"{dollar}.{cent}")
         price = float(price)
+        print(f"the price of the product is ${price}, nice.")
         return price
     except Exception as e:
         print(f"error:{e}, not cool man")
