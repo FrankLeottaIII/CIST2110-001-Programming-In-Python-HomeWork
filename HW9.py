@@ -266,13 +266,14 @@ def add_price_now()-> float:
         print("ok, now lets enter the whole doller amount and cent amount for the item ")
         print("do not use decimal, I will insert it for you.")
         dollar = input("Please enter the dollar amount of the item: ") 
-        while dollar.isalpha() != True:
+        switch = True
+        while dollar.isalpha() is not True:
             print("Please only use positive numbers.")
             dollar = input("Please enter the product price: ")
         print("ok, now lets enter the cent amount for the item ")
         print("do not use decimal, as that would be silly.")
         cent = input("Please enter the cent amount of the item: ")
-        while cent.isalpha() != True:
+        while cent.isalpha() is not True:
             print("Please only use positive numbers.")
             cent = input("Please enter the product price: ")
         dollar = abs(int(dollar))
