@@ -566,6 +566,8 @@ def imput_member_id()-> int:
         menu()
         return None
 
+restore = True
+
 def main()-> None:
     """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. 
 
@@ -578,153 +580,271 @@ def main()-> None:
     import csv
     library = Library() #creates a library object
     Walter = True
-    while Walter == True:
+    while Walter == True: #walter will always be true, bringing it back to choice.  
         print(library)
         choice = menu()
         if choice == "1": #add books
-            print("Add books Selected.  Please answer the following questions to add a book.")
-            isbn = imput_isbn()
-            title = imput_title()
-            author = imput_author()
-            book = Book(title, author, isbn)
-            library.add_book(book) #does this add the book to the library?
-            print(library)
-            print(f"Book added:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn},")
-            
+            try:
+                print("Add books Selected.  Please answer the following questions to add a book.")
+                isbn = imput_isbn()
+                title = imput_title()
+                author = imput_author()
+                book = Book(title, author, isbn)
+                library.add_book(book) #does this add the book to the library?
+                print(library)
+                print(f"Book added:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn},")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "2": #add users
-            print("Add users Selected.  Please answer the following questions to add a user.")
-            name = imput_name()
-            id = imput_member_id()
-            user = User(name, id)
-            library.add_user(user)
-            print(f"User added: {user}")
+            try:
+                print("Add users Selected.  Please answer the following questions to add a user.")
+                name = imput_name()
+                id = imput_member_id()
+                user = User(name, id)
+                library.add_user(user)
+                print(f"User added: {user}")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "3": #delete books
-            print("Delete books Selected.")
-            print("ok now, I will ask you for the ISBN of the book you want to delete.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            continue_question()
-            isbn = imput_isbn()
-            book = library.find_book(isbn)
-            if book is not None:
-                library.books.remove(book)
-                print(f"Book deleted: {book}")
-            else:
-                print(f"Book with {isbn} ISBN not found")
+            try:
+                print("Delete books Selected.")
+                print("ok now, I will ask you for the ISBN of the book you want to delete.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
+                continue_question()
+                isbn = imput_isbn()
+                book = library.find_book(isbn)
+                if book is not None:
+                    library.books.remove(book)
+                    print(f"Book deleted: {book}")
+                else:
+                    print(f"Book with {isbn} ISBN not found")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "4": #delete users
-            print("Delete users Selected.")
-            print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-            continue_question()
-            id = imput_member_id()
-            user = library.find_user(id)
-            if user is not None:
-                library.users.remove(user)
-                print(f"User deleted: {user}")
-            else:
-                print("User not found")
+            try:
+                print("Delete users Selected.")
+                print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                continue_question()
+                id = imput_member_id()
+                user = library.find_user(id)
+                if user is not None:
+                    library.users.remove(user)
+                    print(f"User deleted: {user}")
+                else:
+                    print("User not found")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "5": #borrow books
-            print("Borrow books Selected.")
-            print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            isbn = imput_isbn_search()
-            if isbn != False:
-                book = library.find_book(isbn)
-                if book is not None:
-                    print(f"Book found: ")
-                    print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                    id = imput_member_id()
-                    user = library.find_user(id)
-                    if user is not None:
-                        user.borrow_book(book)
-                        print(f"Book borrowed: Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}")
+            try:
+                print("Borrow books Selected.")
+                print("ok now, I will ask you for the ISBN of the book you want to borrow.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
+                isbn = imput_isbn_search()
+                if isbn != False:
+                    book = library.find_book(isbn)
+                    if book is not None:
+                        print(f"Book found: ")
+                        print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                        id = imput_member_id()
+                        user = library.find_user(id)
+                        if user is not None:
+                            user.borrow_book(book)
+                            print(f"Book borrowed: Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}")
+                        else:
+                            print("User not found")
                     else:
-                        print("User not found")
-                else:
-                    print("Book not found")
-            if isbn == False:
-                print("Taking you back to the main menu.")
+                        print("Book not found")
+                if isbn == False:
+                    print("Taking you back to the main menu.")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "6": #return books
-            print("Return books Selected.")
-            print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            isbn = imput_isbn_search()
-            if isbn != False:
-                book = library.find_book(isbn)
-                if book is not None:
-                    print(f"Book found: {book}")
-                    print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                    id = imput_member_id()
-                    user = library.find_user(id)
-                    if user is not None:
-                        user.return_book(book)
-                        print(f"Book returned: {book}")
+            try:
+                print("Return books Selected.")
+                print("ok now, I will ask you for the ISBN of the book you want to return.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
+                isbn = imput_isbn_search()
+                if isbn != False:
+                    book = library.find_book(isbn)
+                    if book is not None:
+                        print(f"Book found: {book}")
+                        print("Please tell me which user is returning the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                        id = imput_member_id()
+                        user = library.find_user(id)
+                        if user is not None:
+                            user.return_book(book)
+                            print(f"Book returned: {book}")
+                        else:
+                            print(f"User {user} not found in the library system")
                     else:
-                        print(f"User {user} not found in the library system")
-                else:
-                    print("Book was not found in the library")
-            if isbn == False:
-                print("Taking you back to the main menu.")
+                        print("Book was not found in the library")
+                if isbn == False:
+                    print("Taking you back to the main menu.")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "7":#search books
-            print("Search books Selected.")
-            print("ok now, I will ask you for the ISBN of the book you want to search for.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            isbn = imput_isbn_search()
-            if isbn != False:
+            try:
+                print("Search books Selected.")
+                print("ok now, I will ask you for the ISBN of the book you want to search for.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
+                isbn = imput_isbn_search()
+                if isbn != False:
+                    book = library.find_book(isbn)
+                    if book is not None:
+                        print(f"Book found:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}, Borrowed: {book.borrowed}")
+                    else:
+                        print("Book not found")
+                if isbn == False:
+                    print("Taking you back to the main menu.")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
+        elif choice == "8":#check if book is available to be borrowed
+            try:
+                print("Check if book is available Selected.")
+                print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
+                continue_question()
+                isbn = imput_isbn()
                 book = library.find_book(isbn)
                 if book is not None:
-                    print(f"Book found:  Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}, Borrowed: {book.borrowed}")
+                    try:
+                        if book.borrowed == True:
+                            print(f"Book with isbn:{isbn} is not available")
+                        else:
+                            print(f"Book with isbn:{isbn} is available")
+                    except AttributeError:
+                        print("Error.  Taking you back to the main menu: ")
+                    except TypeError:
+                        print("Error.  Taking you back to the main menu: ")
                 else:
                     print("Book not found")
-            if isbn == False:
-                print("Taking you back to the main menu.")
-        elif choice == "8":#check if book is available to be borrowed
-            print("Check if book is available Selected.")
-            print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-            continue_question()
-            isbn = imput_isbn()
-            book = library.find_book(isbn)
-            if book is not None:
-                try:
-                    if book.borrowed == True:
-                        print(f"Book with isbn:{isbn} is not available")
-                    else:
-                        print(f"Book with isbn:{isbn} is available")
-                except AttributeError:
-                    print("Error.  Taking you back to the main menu: ")
-                except TypeError:
-                    print("Error.  Taking you back to the main menu: ")
-            else:
-                print("Book not found")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "9":#search users
-            print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-            id = input("Enter the ID of the user you want to search for: ")
-            user = library.find_user(id)
-            if user is not None:
-                print(f"User found: {user}")
-            else:
-                print(f"User {user} not found")
+            try:
+                print("Search users Selected.")
+                print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
+                id = input("Enter the ID of the user you want to search for: ")
+                user = library.find_user(id)
+                if user is not None:
+                    print(f"User found: {user}")
+                else:
+                    print(f"User {user} not found")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "10":#export books to csv
-            print("Export books to csv Selected.")
-            print("ok now, I will ask you for the filename you want to export the books to.  If you don't know the filename, you can search for the book using the search books option in the menu.")
-            bob  = True
-            bob =continue_question()
-            if bob != False:
-                print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
-                filename = input("Enter the filename you want to export the books to: ")
-                library.export_books_to_csv(filename)
-            if bob == False:
-                print("Taking you back to the main menu.")
+            try:
+                print("Export books to csv Selected.")
+                print("ok now, I will ask you for the filename you want to export the books to.  If you don't know the filename, you can search for the book using the search books option in the menu.")
+                bob  = True
+                bob =continue_question()
+                if bob != False:
+                    print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
+                    filename = input("Enter the filename you want to export the books to: ")
+                    library.export_books_to_csv(filename)
+                if bob == False:
+                    print("Taking you back to the main menu.")
+            except FileNotFoundError:
+                print(" this should not happen... if you see this, please contact the developer.")
+                print("Escorting you back to the main menu.")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "11":#export users to csv
-            print("Export users to csv Selected.")
-            print("ok now, I will ask you for the filename you want to export the users to.  If you don't know the filename, you can search for the user using the search users option in the menu.")
-            continue_question()
-            print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
-            filename = input("Enter the filename you want to export the users to: ")
-            library.export_users_to_csv(filename)
+            try:
+                print("Export users to csv Selected.")
+                print("ok now, I will ask you for the filename you want to export the users to.  If you don't know the filename, you can search for the user using the search users option in the menu.")
+                walrus = True
+                walrus = continue_question()
+                if walrus != False:
+                    print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
+                    filename = input("Enter the filename you want to export the users to: ")
+                    library.export_users_to_csv(filename)
+                if walrus == False:
+                    print("Taking you back to the main menu.")
+            except FileNotFoundError:
+                print(" this should not happen... if you see this, please contact the developer.")
+                print("Escorting you back to the main menu.")
+            except ValueError:
+                print("Error.  Taking you back to the main menu: ")
+            except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
         elif choice == "12":
-            print("Goodbye!")
-            quit()
+            try:
+                print("Exit Selected.")
+                print("Are you sure you want to exit?  All unsaved data will be lost.")
+                regret = True
+                regret = continue_question()
+                if regret != False:
+                    print("Goodbye!")
+                    quit()
+                if regret == False:
+                    print("Taking you back to the main menu.")
+            except FileNotFoundError:
+                print("Wait what? the programm... its malfuntioning!!!  I am taking you back to the main menu.")
+            except ValueError:
+                print("It seems your computer does not want you to quit.  Spooky...  Taking you back to the main menu: ")
+            except TypeError:
+                print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
         elif choice == "restart":
-            print("bringing you back to the main menu.")
-        else:
-            print("Error.  Please enter a valid option from the menu: ")
-            choice = menu()
+            try:
+                print("Restart Selected.")
+                print("congradulations, you have found the secret restart option.  You will be taken back to the main menu.")
+            except FileNotFoundError:
+                print("Wait what? the programm... its malfuntioning!!!  I am taking you back to the main menu.")
+            except ValueError:
+                print("It seems your computer does not want you to restart.  Spooky...  Taking you back to the main menu: ")
+            except TypeError:
+                print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
 
+        else:
+            try:
+                print("Error.  Please use your keyboard to select a valid option from the menu: ")
+            except FileNotFoundError:
+                print("Wait what? the programm... its malfuntioning!!!  \nThis error should not be possible.  \nI am taking you back to the main menu.")
+            except ValueError:
+                print("It seems your computer is very comfused.  Have you maintained it properly?\nAnyway...  Taking you back to the main menu: ")
+            except TypeError:
+                print("Beep boop error...how could this even happen?  Taking you back to the main menu: ")
+
+
+    if Walter == False:
+        print("Looks like you broke the program.  I hope you are happy with yourself.\nShutting down.")
+        quit()
 
 if __name__ == "__main__":
     main()
