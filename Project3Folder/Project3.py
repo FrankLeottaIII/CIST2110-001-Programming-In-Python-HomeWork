@@ -48,46 +48,81 @@ class Book:
 #    a. __str__ (returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>)
     def __str__(self)-> str:
         """Summery:
-            Returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>
+            Returns a string representation of the book using the following format: ISBN: <ISBN>, Title: <Title>, Author: <Author>, Borrowed: <Borrowed>.  
 
             Args:
                 None
             
             Returns:
                 str: The string representation of the book.
+                None: If any error is raised.
         """
-        return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
+        try:
+            return f"ISBN: {self.isbn}, Title: {self.title}, Author: {self.author}, Borrowed: {self.borrowed}"
+        except Exception as e:
+            print("looks like that book is purely imaginary...")
+            print(f"its either that or {e} is the problem...")
 #    b. check_out - sets borrowed to True and returns a message that the book has been checked out
     def check_out(self)->str: #says check_out in pytest, fixing it...
         """Summery:
         
-        Sets the borrowed attribute to True and returns a message that the book has been checked out.
+        Sets the borrowed attribute to True and returns a message that the book has been checked out.  The code is encapsulated in a try except block format.  If any error is raised, the function questions its sanity and wonders about if it saw one of schrodinger's cats or if it was the error that was raised. In this state, the method returns None.
         
         Args:
             None
             
             Returns:
-                str: A message that the book has been checked out."""
-        self.borrowed = True
-        return f"has been checked out"
+                str: A message that the book has been checked out.
+                None: If any error is raised.
+                """
+        try:
+            self.borrowed = True
+            return f"the book has been checked out"
+        except Exception as e:
+            print("...what")
+            print(f"Was it on of my roomates cats or the error: {e} that broke me?")
+
 #    c. check_in - sets borrowed to False and returns a message that the book has been checked in
-    def check_in(self):
-        self.borrowed = False
+    def check_in(self)->str:
+        """Summery:
+        Sets the borrowed attribute to False and returns a message that the book has been checked in.  The code is encapsulated in a try except block format.  If any error is raised, the function smiles and does not check in the users book... it just stares at the user and gives nothing to the user.
+        Args:
+            None
+            
+            Returns:
+                str: A message that the book has been checked in.
+                None: If any error is raised."""
+        try:
+            self.borrowed = False
+            return f"the book has been checked in"
+        except Exception as e:
+            print(":)")
+            print("...")
+
         return f"Book has been checked in"
 #    d. borrowed - returns True if the book is borrowed and False if the book is not borrowed
     def borrowed(self)->bool: 
         """Summery:
-        This method is used to check to see if a book is borrowed or not.  If it is borrowed, it returns True and if it is not borrowed, it returns False.  The borrowed attribute is set to False by default.
+        This method is used to check to see if a book is borrowed or not. 
+        If it is borrowed, it returns True and if it is not borrowed, it returns False.
+        The borrowed attribute is set to False by default.
+        The code is encapsulated in a try except block format.  If any error is raised, the function becomes catotonic giving out nothing to the user.
         
         Args:
             None
             
             Returns:
-                bool: True if the book is borrowed, False if the book is not borrowed"""
-        if self.borrowed == True:
-            return True
-        else:
-            return False
+                bool: True if the book is borrowed, False if the book is not borrowed
+                None: If any error is raised."""
+        try:
+            if self.borrowed == True:
+                return True
+            else:
+                return False
+        except Exception as e: 
+            print("...")
+            
+
 
 
 # 2. Create a User class that has the following attributes (create a __init__ method)):
