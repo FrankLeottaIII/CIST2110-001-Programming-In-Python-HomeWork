@@ -400,7 +400,7 @@ def continue_question()-> bool:
             True: If the user enters y or Y.
             False: If the user enters n or N.
     """
-    global choice
+
     print("Do you wish to continue?")
     print ("Enter y or Y for yes")
     print ("Enter n or N for no")
@@ -413,7 +413,6 @@ def continue_question()-> bool:
             return True
         elif question == "n" or question == "N":
             print("Ok, you will be catapulted back to the main menu.")
-            choice = menu()
             return False
     except ValueError:
         print("ValueError. Beep boop. escorting you back to the main menu.")
@@ -521,33 +520,44 @@ def imput_author()-> str:
 ##############333
 def imput_name()-> str:
     """Summery:
-        Asks the user to enter a name. Since names can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.
+        Asks the user to enter a name. Since names can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  name False as a bool varible.   If there is a TypeError, the function returns  name False as a bool varible.
 
         Args:
             None
         
         Returns:
             name (str): The name the user entered.
+            name (bool): If ValueError is raised.
+            name (bool): If TypeError is raised.
     """
     try:
         print ("Enter the name of the user.  Please watch your capitalization and enter it ver batem.")
         name = input("Please enter the name: ")
         return name
     except ValueError:
-        print("Error, the Value is somehow incorrect..which is odd since names are usually cut and dry. Let me escort you to the main menu while I clean this up for next time.")
-        menu()
-        return None
+        name = False
+        name = bool(name)
+        name = False
+        return name
+    except TypeError:
+        name = False
+        name = bool(name)
+        name = False
+        return name
+
+
 #######
 def imput_member_id()-> int:
     """Summery:
-        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.
+        Asks the user to enter an ID.  If the ID is not a number, the user is asked to enter a valid ID.  The  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, the function returns  id False as a bool varible.   If there is a TypeError, the function returns  id False as a bool varible.
 
         Args:
             None
         
         Returns:
             id (int): The ID the user entered.
-            None: If ValueError is raised.
+            id (bool): If ValueError is raised.
+            id (bool): If TypeError is raised.
     """
     try:
         print("Enter the ID of the user. Do not use letters or special characters.")
@@ -558,16 +568,18 @@ def imput_member_id()-> int:
         id = int(id)
         return id
     except ValueError:
-        print("Error Error Error beep boop.  I am malfuntioning so you are being ushered into the  main menu.")
-        menu()
-        return None
+        id  = False
+        id = bool(id)
+        id = False
+        return id
     except TypeError:
-        print("Error Error Error beep boop.  I am malfuntioning so you are being ushered into the  main menu.")
-        menu()
-        return None
+        id  = False
+        id = bool(id)
+        id = False
+        return id
 
 restore = True
-
+stay = True
 def main()-> None:
     """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. 
 
@@ -577,6 +589,10 @@ def main()-> None:
         Returns:
             None
     """
+    global restore
+    global stay
+    restore = True
+    stay = True
     import csv
     library = Library() #creates a library object
     Walter = True
@@ -601,7 +617,11 @@ def main()-> None:
             try:
                 print("Add users Selected.  Please answer the following questions to add a user.")
                 name = imput_name()
+                if name == False:
+                    raise TypeError
                 id = imput_member_id()
+                if id == False:
+                    raise TypeError
                 user = User(name, id)
                 library.add_user(user)
                 print(f"User added: {user}")
@@ -615,14 +635,19 @@ def main()-> None:
             try:
                 print("Delete books Selected.")
                 print("ok now, I will ask you for the ISBN of the book you want to delete.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-                continue_question()
-                isbn = imput_isbn()
-                book = library.find_book(isbn)
-                if book is not None:
-                    library.books.remove(book)
-                    print(f"Book deleted: {book}")
-                else:
-                    print(f"Book with {isbn} ISBN not found")
+                billy = True
+                billy = continue_question()
+                if billy != False:
+
+                    isbn = imput_isbn()
+                    book = library.find_book(isbn)
+                    if book is not None:
+                        library.books.remove(book)
+                        print(f"Book deleted: {book}")
+                    else:
+                        print(f"Book with {isbn} ISBN not found")
+                if billy == False:
+                    print("Safely landed back at the main menu.")
             except ValueError:
                 print("Error.  Taking you back to the main menu: ")
             except TypeError:
@@ -633,14 +658,18 @@ def main()-> None:
             try:
                 print("Delete users Selected.")
                 print("ok now, I will ask you for the ID of the user you want to delete.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                continue_question()
-                id = imput_member_id()
-                user = library.find_user(id)
-                if user is not None:
-                    library.users.remove(user)
-                    print(f"User deleted: {user}")
-                else:
-                    print("User not found")
+                greg = True
+                greg = continue_question()
+                if greg != False:
+                    id = imput_member_id()
+                    user = library.find_user(id)
+                    if user is not None:
+                        library.users.remove(user)
+                        print(f"User deleted: {user}")
+                    else:
+                        print("User not found")
+                if greg == False:
+                    print("Safely landed back at the main menu.")
             except ValueError:
                 print("Error.  Taking you back to the main menu: ")
             except TypeError:
@@ -724,21 +753,29 @@ def main()-> None:
             try:
                 print("Check if book is available Selected.")
                 print("ok now, I will ask you for the ISBN of the book you want to check.  If you don't know the ISBN, you can search for the book using the search books option in the menu.")
-                continue_question()
-                isbn = imput_isbn()
-                book = library.find_book(isbn)
-                if book is not None:
-                    try:
-                        if book.borrowed == True:
-                            print(f"Book with isbn:{isbn} is not available")
-                        else:
-                            print(f"Book with isbn:{isbn} is available")
-                    except AttributeError:
-                        print("Error.  Taking you back to the main menu: ")
-                    except TypeError:
-                        print("Error.  Taking you back to the main menu: ")
-                else:
-                    print("Book not found")
+                sassafras = True
+
+                sassafras = continue_question()
+                if sassafras != False:
+                    isbn = imput_isbn()
+                    book = library.find_book(isbn)
+                    if book is not None:
+                        try:
+                            if book.borrowed == True:
+                                print(f"Book with isbn:{isbn} is not available")
+                            else:
+                                print(f"Book with isbn:{isbn} is available")
+                        except AttributeError:
+                            print("Error.  Taking you back to the main menu: ")
+                        except TypeError:
+                            print("Error.  Taking you   back to the main menu: ")
+                    else:
+                        print("Book not found")
+                if sassafras == False:
+                    print("You land roughly and are out for several hours.")
+                    print(" You awaken to find yourself back at the main menu fully healed.")
+                    print("A wizard must have healed you up while you were out.")
+                    print("anyway back to buisness.")
             except ValueError:
                 print("Error.  Taking you back to the main menu: ")
             except TypeError:
@@ -772,7 +809,9 @@ def main()-> None:
                     filename = input("Enter the filename you want to export the books to: ")
                     library.export_books_to_csv(filename)
                 if bob == False:
-                    print("Taking you back to the main menu.")
+                    print("After a long journey, you land back at the main menu.  You are tired and need to rest, but there is no time for that.  You must continue.")
+                    print("You can't rest with so many people depending on you.")
+                    print("You pretend that this converstation did not happen and use the main menu")
             except FileNotFoundError:
                 print(" this should not happen... if you see this, please contact the developer.")
                 print("Escorting you back to the main menu.")
@@ -793,7 +832,7 @@ def main()-> None:
                     filename = input("Enter the filename you want to export the users to: ")
                     library.export_users_to_csv(filename)
                 if walrus == False:
-                    print("Taking you back to the main menu.")
+                    print("It seems like you are not ready to export users to csv.  You activate the paracute given to you and land back at the main menu.")
             except FileNotFoundError:
                 print(" this should not happen... if you see this, please contact the developer.")
                 print("Escorting you back to the main menu.")
@@ -813,7 +852,9 @@ def main()-> None:
                     print("Goodbye!")
                     quit()
                 if regret == False:
-                    print("Taking you back to the main menu.")
+                    print("You can't stop, you will not stop. You glide back safely to the main menu with the glider included in your flight.")
+                    print("The glider discintegrates after landing and you can no longer use it.")
+                    print("You are back at the main menu.")
             except FileNotFoundError:
                 print("Wait what? the programm... its malfuntioning!!!  I am taking you back to the main menu.")
             except ValueError:
