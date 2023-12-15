@@ -295,7 +295,9 @@ class Library:
         except FileNotFoundError:
             print(" this should not happen... if you see this, please contact the developer.")
             print("File not found")
-            menu()
+        except TypeError:
+            print(" Problem with the type of data being exported.  Please contact the developer.")
+            print("Bringing you back to the main menu.")
 
 
 # 4. Create a menu that will allow users to:
@@ -314,13 +316,19 @@ class Library:
 choice = ""
 def menu()-> str:
     """Summary:
-        Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.
+        Lists the menu options for the user to choose from.  The user chooses an option and if the option is valid, the user's choice is returned.    If the option is invalid due to the input not being in the c, the user is asked to choose again, using a while loop.  A list called choice_list  is used to determin if the option is invalid or not.  The choice_list will have all the options in the menu  The user's choice is returned when a valid option is chosen, breaking the while loop.  The code is encapsulated in a try except block to handle errors.  The ValueError, UnboundLocalError, TypeError, AttributeError, IndexError, and KeyError exceptions are the exact same way as if it was running normally but informing the users of the errors.  Most of the Exceptions will not really be nessary, but I am including them just in case, since this is a major funtion of the program... if this breaks, the program is useless.
 
         Args:
             None
         
         Returns:
             choice (str): The user's choice from the menu.
+            choice (str): If ValueError is raised.
+            choice (str): If UnboundLocalError is raised.
+            choice (str): If TypeError is raised.
+            choice (str): If AttributeError is raised.
+            choice (str): If IndexError is raised.
+            choice (str): If KeyError is raised.
     
     """
     global choice
@@ -362,6 +370,24 @@ def menu()-> str:
         while choice not in choice_list:
             choice = input("Error.  Please enter a valid option from the menu: ")
         return choice
+    except AttributeError:
+        choice = input("AttributeError.  Please enter a valid option from the menu: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
+    except IndexError:
+        choice = input("IndexError.  Please enter a valid option from the menu: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
+    except KeyError:
+        choice = input("KeyError.  Please enter a valid option from the menu: ")
+        choice_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "restart"]
+        while choice not in choice_list:
+            choice = input("Error.  Please enter a valid option from the menu: ")
+        return choice
 # RQUIREMENTS:
 # 1. You should be doing error checking on all user input (make sure the user enters a valid ISBN, ID, etc.) and handle any errors appropriately (i.e. if the user enters an invalid ISBN, ask them to enter a valid ISBN)
 # 2. You should be using try except blocks to handle any errors
@@ -391,7 +417,7 @@ def menu()-> str:
 def continue_question()-> bool:
     """Summary:
         Asks the user if they want to continue using the program.  If the user enters y or Y, the program continues, and returns True.  If the user enters n or N, the user is informed they are going to catapulted back to the main menu.  The user is returned to the main menu, and returns False  If the user enters anything else, the program asks the user to enter yes or no, using the question_list list to determin if the input is valid.  The code is encapsulated in a try except block to handle errors.
-        If ValueError is raised, the funtion will notify the user of the error and politely return to the menu and returns false.
+        If ValueError, UnboundLocalError, or TypeError is raised, the funtion will not keep their composure and go histerical. They will then inform the user they will be catapulted to the main menu... and then returns false.
 
         Args:
             None
@@ -399,6 +425,7 @@ def continue_question()-> bool:
         Returns:
             True: If the user enters y or Y.
             False: If the user enters n or N.
+            False: if 
     """
 
     print("Do you wish to continue?")
@@ -415,8 +442,13 @@ def continue_question()-> bool:
             print("Ok, you will be catapulted back to the main menu.")
             return False
     except ValueError:
-        print("ValueError. Beep boop. escorting you back to the main menu.")
-        choice = menu()
+        print("Ok, you will be catapulted back to the main menu.")
+        return False
+    except UnboundLocalError:
+        print("Ok, you will be catapulted back to the main menu.")
+        return False
+    except TypeError:
+        print("Ok, you will be catapulted back to the main menu.")
         return False
 #Methods to use for correct input from user:
 
@@ -449,7 +481,7 @@ def imput_isbn()-> int:
 
 def imput_isbn_search()-> int:
     """Summary:
-        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.  The UnboundLocalError is raised if the user enters "restart" and this redirects the user to the main menu due to the false / true switch in the main function.
+        Asks the user to enter an ISBN. If the ISBN is not a valid number, the user is asked to enter a valid ISBN, and will not continue until a valid ISBN is entered.  The only exception to this is "restart", which will return raise a UnboundLocalError The code is encapsulated in a try-except block to handle errors.  The UnboundLocalError is raised if the user enters "restart" and this returns False. If a TypeError is raised, this returns False.  If a ValueError is raised, this returns False. If a UnboundLocalError is raised, this returns False.
 
         Args:
             None
@@ -457,6 +489,7 @@ def imput_isbn_search()-> int:
             isbn (int): The ISBN the user entered.
             False: If ValueError is raised.
             False: If UnboundLocalError is raised.
+            False: If TypeError is raised.
     """
     print ("Enter the ISBN of the book you want to search for.  Please watch your capitalization and enter it ver batem.")
     try: 
@@ -470,53 +503,70 @@ def imput_isbn_search()-> int:
             isbn = int(isbn)
             return isbn
     except ValueError:
-        print("Hey now, not cool. Taking you back to the main menu while I clean up the mess you made")
         return False
     except UnboundLocalError:
-        print("oh my...  Ok lets get you back to the main menu while I spruse up the place.")
+        return False
+    except TypeError:
         return False
 
 
 ############################################
 def imput_title()-> str:
     """Summery:
-        Asks the user to enter a title. Since books can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors.
+        Asks the user to enter a title. Since books can have number, letter and special numbers in them, no real checking is need.  the only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu.  The code is encapsulated in a try except block to handle errors. If a ValueError, TypeError, or an UnboundLocalError is raised, the function returns  title False as a bool varible.
 
         Args:
             None
         
         Returns:
             title (str): The title the user entered.
-            None: If ValueError is raised.
+            False: If ValueError is raised.
+            False: If TypeError is raised.
+            False: If UnboundLocalError is raised.
     """
     try:
         print ("Please enter the title of the book.  Please watch your capitalization and enter it ver batem.")
         title = input("Please enter the title: ")
         return title
     except ValueError:
-        print("Error, the Value is somehow incorrect... anyway let me escort you to the main menu.")
-        menu()
-        return None
+        return False
+    except TypeError:
+        return False
+    except UnboundLocalError:
+        return False
 ##############33
 def imput_author()-> str:
     """Summery:
-        Asks the user to enter an author. Since authors can have number, letter and special numbers in them, no real checking is need...Authors can be robots or internet users nowadays so its only natural they have odd names.  The only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu, and returns nothing  The code is encapsulated in a try except block to handle errors.
+        Asks the user to enter an author. Since authors can have number, letter and special numbers in them, no real checking is need...Authors can be robots or internet users nowadays so its only natural they have odd names.  The only issue is to inform the user to watch capitalization and enter it in ver badem, or they will have to go back and delete the book via the main menu, and returns nothing  The code is encapsulated in a try except block to handle errors.  If there is a ValueError, TypeError, or an UnboundLocalError, the function returns  author False as a bool varible. 
 
         Args:
             None
         
         Returns:
             author (str): The author the user entered.
-            None: If ValueError is raised.
+            author (bool): If ValueError is raised.
+            author (bool): If TypeError is raised.
+            author (bool): If UnboundLocalError is raised.
     """
     try:
         print ("Enter the author of the book.  Please watch your capitalization and enter it ver batem.")
         author = input("Please enter the author: ")
         return author
     except ValueError:
-        print("Error, the Value is somehow incorrect...what a mess. Let me escort you to the main menu while I clean this up for next time.")
-        menu()
-        return None
+        author = False
+        author = bool(author)
+        author = False
+        return author
+    except TypeError:
+        author = False
+        author = bool(author)
+        author = False
+        return author
+    except UnboundLocalError
+        author = False
+        author = bool(author)
+        author = False
+        return author
 ##############333
 def imput_name()-> str:
     """Summery:
@@ -603,8 +653,14 @@ def main()-> None:
             try:
                 print("Add books Selected.  Please answer the following questions to add a book.")
                 isbn = imput_isbn()
+                if isbn == False:
+                    raise TypeError
                 title = imput_title()
+                if title == False:
+                    raise TypeError
                 author = imput_author()
+                if author == False:
+                    raise TypeError
                 book = Book(title, author, isbn)
                 library.add_book(book) #does this add the book to the library?
                 print(library)
@@ -612,6 +668,12 @@ def main()-> None:
             except ValueError:
                 print("Error.  Taking you back to the main menu: ")
             except TypeError:
+                print("Error.  Taking you back to the main menu: ")
+            except UnboundLocalError:
+                print("Error.  Taking you back to the main menu: ")
+            except AttributeError:
+                print("Error.  Taking you back to the main menu: ")
+            except NameError:
                 print("Error.  Taking you back to the main menu: ")
         elif choice == "2": #add users
             try:
@@ -638,7 +700,6 @@ def main()-> None:
                 billy = True
                 billy = continue_question()
                 if billy != False:
-
                     isbn = imput_isbn()
                     book = library.find_book(isbn)
                     if book is not None:
