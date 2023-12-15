@@ -562,7 +562,7 @@ def imput_author()-> str:
         author = bool(author)
         author = False
         return author
-    except UnboundLocalError
+    except UnboundLocalError:
         author = False
         author = bool(author)
         author = False
@@ -627,7 +627,7 @@ def imput_member_id()-> int:
         id = bool(id)
         id = False
         return id
-
+the_user = ""
 restore = True
 stay = True
 def main()-> None:
@@ -848,11 +848,13 @@ def main()-> None:
                 print("Search users Selected.")
                 print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
                 id = input("Enter the ID of the user you want to search for: ")
-                user = library.find_user(id)
-                if user is not None:
-                    print(f"User found: {user}")
+                global the_user
+                the_user = ""
+                the_user = library.find_user(id)
+                if the_user is not None:
+                    print(f"User found: {the_user}")
                 else:
-                    print(f"User {user} not found")
+                    print(f"User {the_user} not found")
             except ValueError:
                 print("Error.  Taking you back to the main menu: ")
             except TypeError:
