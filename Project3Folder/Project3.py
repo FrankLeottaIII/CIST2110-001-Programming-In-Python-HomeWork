@@ -628,6 +628,7 @@ def imput_member_id()-> int:
         id = False
         return id
 the_user = ""
+a_user = ""
 restore = True
 stay = True
 def main()-> None:
@@ -723,10 +724,12 @@ def main()-> None:
                 greg = continue_question()
                 if greg != False:
                     id = imput_member_id()
-                    user = library.find_user(id)
-                    if user is not None:
-                        library.users.remove(user)
-                        print(f"User deleted: {user}")
+                    global a_user
+                    a_user = ""
+                    a_user = library.find_user(id)
+                    if a_user is not None:
+                        library.users.remove(a_user)
+                        print(f"User deleted: {a_user}")
                     else:
                         print("User not found")
                 if greg == False:
