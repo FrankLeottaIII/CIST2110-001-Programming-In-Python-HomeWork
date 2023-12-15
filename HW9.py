@@ -263,11 +263,22 @@ def add_price_now()-> float:
         
         """
     try:
-        price = input("Please enter the product price using a decimal point: ") 
-        while price.isalpha() != True:
+        print("ok, now lets enter the whole doller amount and cent amount for the item ")
+        print("do not use decimal, I will insert it for you.")
+        dollar = input("Please enter the dollar amount of the item: ") 
+        while dollar.isalpha() != True:
             print("Please only use positive numbers.")
-            price = input("Please enter the product price: ")
-        price = abs(float(price))
+            dollar = input("Please enter the product price: ")
+        print("ok, now lets enter the cent amount for the item ")
+        print("do not use decimal, as that would be silly.")
+        cent = input("Please enter the cent amount of the item: ")
+        while cent.isalpha() != True:
+            print("Please only use positive numbers.")
+            cent = input("Please enter the product price: ")
+        dollar = abs(int(dollar))
+        cent = abs(int(cent))
+        price = str(f"{dollar}.{cent}")
+        price = float(price)
         return price
     except Exception as e:
         print(f"error:{e}, not cool man")
@@ -275,7 +286,7 @@ def add_price_now()-> float:
 
 def customer_check(customer_name: str, store: Store)-> str:
     """Summery:
-        This function checks to see if the customer is in the store object.  If the customer is not in the store object, it will ask the user to enter a customer that is in the store.  If there are no customers in the store, it will tell the user that there are no customers in the store. The function will return the name of the customer.  If the user enters "quit", it will return to the menu.
+        This function checks to see if the customer is in the store object.  If the customer is not in the store object, it will ask the user to enter a customer that is in the store.  If there are no customers in the store, it will tell the user that there are no customers in the store and return False. If the customer is in the store, the function will return the name of the customer.  If the user enters "quit", it will return False
         
     Parameters:
         customer_name (str): The name of the customer.
@@ -283,16 +294,13 @@ def customer_check(customer_name: str, store: Store)-> str:
         
     Returns:
         str: The name of the customer.
-        
-        
+        False: If there are no customers in the store.
         """
-    while customer_name not in store.customers or store.customers == [] or customer_name == "quit":
-        if store.customers == []:
-            print("There are no customers in the store.")
-        elif customer_name == "quit":
-            print("Customer not found.")
-        customer_name = input("Please enter the customer name. Type quit to exit back to menu: ")
-    return customer_name
+    if customer_name not in store.customers or store.customers == [] or customer_name == "quit":
+        print("There are no customers in the store.")
+        return False
+    else:
+        return customer_name
 
 def product_check(product_name: str, store: Store)-> str:
     """Summery:
@@ -304,20 +312,14 @@ def product_check(product_name: str, store: Store)-> str:
         
     Returns:
         str: The name of the product.
-        None: If the user enters "quit", it will return to the menu.
-        
+        False: If there are no products in the store.
+        False: If the user enters "quit".
         
         """
-    while product_name not in store.products or store.products == []:
-        if store.products == []:
-            print("There are no products in the store.")
-            return None
-        elif product_name == "quit":
-            print("Product not found.")
-            return None
-
-        product_name = input("Please enter the product name.  Type quit to go to main menu: ")
-    return product_name
+    if product_name not in store.products or store.products == []:
+        return False
+    else:
+        return product_name
 
 
 def imput_product_id()-> str:
@@ -395,22 +397,34 @@ def main():
             try:
                 print("Add Product to Customer's Cart")
                 customer_name = str(input("Please enter the customer name: ")).capitalize()
-                customer_check(customer_name, store)
-                product_name = str(input("Please enter the product name: ")).upper()
-                product_check(product_name, store)
+                customer_string = customer_check(customer_name, store)
+                if customer_string != False:     
+                    product_name = str(input("Please enter the product name: ")).upper()
+                    product_string = product_check(product_name, store)
+                    if product_string != False:
                 # customer = store.find_customer(customer_name)
                 # product = store.find_product(product_name)
-                add_product_to_customer_cart(customer_name, product_name)
+                        add_product_to_customer_cart(customer_string, product_string)
+                    elif product_string == False:
+                        print("Product not found!!!")
+                elif customer_string == False:
+                    print("Customer not found!!!")
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")   
         elif imput == "4":
             try:
                 print("Remove Product from Customer's Cart")
                 customer_name = input("Please enter the customer name: ")
-                customer_check(customer_name, store)
-                product_name = input("Please enter the product name: ")
-                product_check(product_name, store)
-                remove_product_from_customer_cart(customer_name, product_name)
+                customer_string = customer_check(customer_name, store)
+                if customer_string != False:
+                    product_name = input("Please enter the product name: ")
+                    product_string = product_check(product_name, store)
+                    if product_string != False:
+                        remove_product_from_customer_cart(customer_string, product_string)
+                    elif product_string == False:
+                        print("Product not found!!!")
+                elif customer_string == False:
+                    print("Customer not found!!!")
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
         elif imput == "5":
@@ -429,8 +443,12 @@ def main():
             try:
                 print("Display Customer's Cart")
                 customer_name = str(input("Please enter the customer name: ")).capitalize()
-                customer = customer_check(customer_name, store)
-                customer.display_products_pretty()
+                shopper = customer_check(customer_name, store)
+                if shopper != False:
+                    shopper.display_products_pretty()
+                elif shopper == False:
+                    print("Customer not found!!!")
+
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
 
