@@ -428,9 +428,9 @@ def main():
         elif imput == "7":
             try:
                 print("Display Customer's Cart")
-                customer_name = input("Please enter the customer name: ")
-                customer_check(customer_name, store)
-                display_products_pretty(customer_name)
+                customer_name = str(input("Please enter the customer name: ")).capitalize()
+                customer = customer_check(customer_name, store)
+                customer.display_products_pretty()
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
 
