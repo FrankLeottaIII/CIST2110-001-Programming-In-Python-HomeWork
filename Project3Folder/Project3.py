@@ -248,63 +248,63 @@ class Library:
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
-def export_books_to_csv(self, filename: str)-> None:
-    """
-    Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
-        If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
-        exported as False.
-    The code is encapsulated in a try except block format.  If a FileNotFoundError, or any other error is raised, the user is informed that there is a problem and apologizes.
+    def export_books_to_csv(self, filename: str)-> None:
+        """
+        Export the books list to a csv file. The csv file should have the following format: ISBN,Title,Author,Borrowed.
+            If the book is borrowed, the borrowed attribute is exported as True. If the book is not borrowed, the borrowed attribute is 
+            exported as False.
+        The code is encapsulated in a try except block format.  If a FileNotFoundError, or any other error is raised, the user is informed that there is a problem and apologizes.
 
-    Args:
-        filename (str): The name of the file to export to.
+        Args:
+            filename (str): The name of the file to export to.
 
-    Returns:
-        None
-    """
-    try:
-        with open(filename, "w", encoding='utf-8', newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
-            writer.writeheader()
-            for book in self.books:
-                writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
-    except FileNotFoundError:
-        print(" this should not happen... if you see this, please contact the developer.")
-        print("File not found")
-    except Exception as e:
-        print("An error has occured.  Please contact the developer.")
-        print("sorry")
+        Returns:
+            None
+        """
+        try:
+            with open(filename, "w", encoding='utf-8', newline="") as file:
+                writer = csv.DictWriter(file, fieldnames=["ISBN", "Title", "Author", "Borrowed"])
+                writer.writeheader()
+                for book in self.books:
+                    writer.writerow({"ISBN": book.isbn, "Title": book.title, "Author": book.author, "Borrowed": book.borrowed})
+        except FileNotFoundError:
+            print(" this should not happen... if you see this, please contact the developer.")
+            print("File not found")
+        except Exception as e:
+            print("An error has occured.  Please contact the developer.")
+            print("sorry")
 
 
 #    g. export_users_to_csv - exports the users list to a csv file (should take a filename as a parameter)
 #       This will be similar to the export_books_to_csv method but there is a slight difference with the borrowedBooks attribute if you get stuck this code might help:
 #       borrowed_books_titles = [book.title for book in user.borrowed_books]
 #       Use that and pythons .join method to create a string of the borrowed books titles
-def export_users_to_csv(self, filename)-> None:
-    """
-    Export the users list to a csv file.  if the user has borrowed books, the borrowed books titles are exported as a string. If the user has not borrowed any books, the borrowed books titles are exported as an empty string. The csv file should have the following format: Name,ID,Borrowed Books. The code is encapsulated in a try except block format.  If a TypeError, FileNotFoundError, or any other error is raised, the user is informed that there is a problem and patiently waits there silently.
+    def export_users_to_csv(self, filename)-> None:
+        """
+        Export the users list to a csv file.  if the user has borrowed books, the borrowed books titles are exported as a string. If the user has not borrowed any books, the borrowed books titles are exported as an empty string. The csv file should have the following format: Name,ID,Borrowed Books. The code is encapsulated in a try except block format.  If a TypeError, FileNotFoundError, or any other error is raised, the user is informed that there is a problem and patiently waits there silently.
 
-    Args:
-        filename (str): The name of the file to export to.
+        Args:
+            filename (str): The name of the file to export to.
 
-    Returns:
-        None
-    """
-    try:
-        with open(filename, "w", encoding='utf-8', newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["Name", "ID", "Borrowed Books"])
-            for user in self.users:
-                borrowed_books_titles = [book.title for book in user.borrowed_books]
-                writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
-    except FileNotFoundError:
-        print(" this should not happen... if you see this, please contact the developer.")
-        print("File not found")
-    except TypeError:
-        print(" Problem with the type of data being exported.  Please contact the developer.")
-        print("...")
-    except Exception as e:
-        print("An error has occured.  Please contact the developer.")
-        print("....")
+        Returns:
+            None
+        """
+        try:
+            with open(filename, "w", encoding='utf-8', newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Name", "ID", "Borrowed Books"])
+                for user in self.users:
+                    borrowed_books_titles = [book.title for book in user.borrowed_books]
+                    writer.writerow([user.name, user.member_id, ", ".join(borrowed_books_titles)])
+        except FileNotFoundError:
+            print(" this should not happen... if you see this, please contact the developer.")
+            print("File not found")
+        except TypeError:
+            print(" Problem with the type of data being exported.  Please contact the developer.")
+            print("...")
+        except Exception as e:
+            print("An error has occured.  Please contact the developer.")
+            print("....")
 
 
 # 4. Create a menu that will allow users to:
@@ -677,6 +677,7 @@ the_user = ""
 a_user = ""
 restore = True
 stay = True
+filename = ""
 def main()-> None:
     """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. if the user chooses to exit, the program ends.  If the user chooses to restart, the program restarts.  If the user chooses to continue, the program continues.  If the user chooses to export the books or users to a csv file, the program exports the books or users to a csv file.  If the user chooses to search for a book or user, the program searches for the book or user.  If the user chooses to check if a book is available, the program checks if the book is available.  If the user chooses to borrow a book, the program borrows the book.  If the user chooses to return a book, the program returns the book.  If the user chooses to add a book, the program adds a book.  If the user chooses to add a user, the program adds a user.  If the user chooses to delete a book, the program deletes a book.  If the user chooses to delete a user, the program deletes a user.  The program has a while loop that keeps the program running until the user chooses to exit.  The code is encapsulated in a try except block to handle errors, except for this main funtion... but if that breaks, the program is useless anyway, but it would never break... probably.
 
@@ -957,6 +958,8 @@ def main()-> None:
                 bob =continue_question()
                 if bob != False:
                     print("make sure to add .csv to the end of the filename, or the file will not be saved as a csv file.")
+                    global filename
+                    filename = ""
                     filename = input("Enter the filename you want to export the books to: ")
                     library.export_books_to_csv(filename)
                 if bob == False:
