@@ -85,11 +85,14 @@ def test_library_find_book():
 
 
 def test_library_find_user(): ############This is the test case that I added
+    """summery: 
+        This test case is to test the find user function in the library class.  It will create a library object, a user object, add the user to the library, then find the user in the library.  If the user is found, the test will pass.  If the user is not found, the test will fail.
+    """
     library = Library()
     user = User("John Doe", 1)
     library.add_user(user)
     found = library.find_user(1)
     assert found == user
     ### Implement this test case ###
+    #how do you pytest an input()
 
-####note, need to include remove empty book  in the project 3, since The pytests are 

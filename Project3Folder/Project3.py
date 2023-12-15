@@ -232,18 +232,18 @@ class Library:
 #    e. find_user - returns the user with the given ID (should take an ID as a parameter)
     def find_user(self, member_id: int) -> User:
         """
-        Find a user by their ID.
+        Find a user by their ID. This method takes an ID as a parameter. This method searches the user list to see if the parameter ID matches the ID in the user list. It returns the user object if found, None otherwise.
 
         Args:
-            id (int): The ID of the user to find.
+            member_id (int): The ID of the user to find.
 
         Returns:
             User: The user object if found, None otherwise.
         """
-        for user in self.users:
-            if user.member_id == member_id:
-                return user
-            return None
+        for user in self.users: #for each user in the users list
+            if user.member_id == member_id: #if the user's member_id matches the member_id passed in as a parameter
+                return user #return the user
+        return None #if the user is not found, return None
 #    f. export_books_to_csv - exports the books list to a csv file (should take a filename as a parameter)
 #       The csv file should have the following format: ISBN,Title,Author,Borrowed
 #       The csv.DictWriter class is very useful for this: https://docs.python.org/3/library/csv.html#csv.DictWriter
@@ -752,7 +752,7 @@ def main()-> None:
                         print("Please tell me which user is borrowing the book.  If you don't know the ID, you can search for the user using the search users option in the menu.")
                         id = imput_member_id()
                         user = library.find_user(id)
-                        if user is not None:
+                        if user is not None: #if the user is found
                             user.borrow_book(book)
                             print(f"Book borrowed: Title: {book.title}, Author: {book.author}, ISBN: {book.isbn}")
                         else:
@@ -850,10 +850,10 @@ def main()-> None:
             try:
                 print("Search users Selected.")
                 print("ok now, I will ask you for the ID of the user you want to search for.  If you don't know the ID, you can search for the user using the search users option in the menu.")
-                id = input("Enter the ID of the user you want to search for: ")
+                ID = imput_member_id()
                 global the_user
                 the_user = ""
-                the_user = library.find_user(id)
+                the_user = library.find_user(ID)
                 if the_user is not None:
                     print(f"User found: {the_user}")
                 else:
