@@ -525,7 +525,15 @@ def imput_member_id()-> int:
         menu()
         return None
 
-def main():
+def main()-> None:
+    """Summery: the main function of the program.  This function is used to call the menu function, and the other functions in the program. 
+
+        Args:
+            None
+
+        Returns:
+            None
+    """
     import csv
     library = Library()
     menu()
