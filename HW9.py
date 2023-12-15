@@ -8,11 +8,13 @@
 
 ### INSERT CODE FROM LAB11.PY HERE Questions 1-11###
 import tabulate #pip install tabulate first if need be.
+
+#note: i am altering it to give it typehinting... 
 class Product:
-    def __init__(self, name, price: float, product_id):# self is ref that varible  regular and optional varibles. assume name product price is required
-        self.name = name # self is a ref to the object, name is a varible, self.name is a attribute
-        self.price = price 
-        self.product_id = product_id
+    def __init__(self, name: str, price: float, product_id: str):# self is ref that varible  regular and optional varibles. assume name product price is required
+        self.name: str = name # self is a ref to the object, name is a varible, self.name is a attribute
+        self.price: float = price 
+        self.product_id: str = product_id
 
     def __str__(self):
         return f"Product: {self.name}, Price: {self.price}, ID: {self.product_id}" # could tpye haha  you will never get this, its always typing it up in the stirng format
@@ -92,7 +94,7 @@ customer2 = Customer("Jane", 2)
 # Hint: You can use the add_to_cart method from the Customer class.
 # Hint2: This method does not need to be in a class. 
 # It should be a regular function that takes in a Customer object and a Product object.
-def add_product_to_customer_cart(customer: Customer, product: Product)-> None: # self is the customer, product is the product
+def add_product_to_customer_cart(customer: Customer, product: Product)-> str: # self is the customer, product is the product
     """Summery:
         This function adds a product to a customer's cart.  It also prints out the product that was added and the customer's name in a string.
     
@@ -101,12 +103,12 @@ def add_product_to_customer_cart(customer: Customer, product: Product)-> None: #
         product (Product): The product object.
     
     Returns:
-        None
+        str: the product that was added and the customer's name in a string.
     
     
     """
     customer.add_to_cart(product) # add the product to the cart list
-    print(f"{product.name} was added to {customer.name}'s cart") # print out the product that was added and the customer's name.
+    return print(f"{product.name} was added to {customer.name}'s cart") # print out the product that was added and the customer's name.
 
 # 2. Create a method called remove_product_from_customer_cart that takes in a Customer object and a Product object. 
 # The method should remove the product from the customer's cart. 
@@ -231,28 +233,27 @@ def menu()-> int:
 
 ##############3
 #check imput funtions
-def add_price_check(price: float)-> float:
+def add_price_now()-> float:
     """Summery:
-        This function checks to see if the price is a number.  If it is not a number, it will ask the user to enter a number.
+        This funtion gets the price of the product from the user and returns it as a float.  It checks to make sure that the user only enters numbers and decimals.  It also checks to make sure that the user only enters positive numbers.  If the user enters a negative number, it will ask the user to enter a positive number.  If the user enters a letter, it will ask the user to enter a number.
         
     Parameters:
-        price (float): The price of the product.
+        none
         
     Returns:
         float: The price of the product.
         
         
         """
+    price = input("Please enter the product price using a decimal point: ") 
     while price.isalpha() == True:
-        while "." not in price:
-
-            print("Please only use numbers and decimals.")
-            price = input("Please enter the product price: ")
         print("Please only use numbers and decimals.")
         price = input("Please enter the product price: ")
-        while price < 0:
-            print("Please only use positive numbers.")
-            price = input("Please enter the product price: ")
+
+    while price < 0:
+        print("Please only use positive numbers.")
+        price = input("Please enter the product price: ")
+    price = float(price)
     return price
 
 def customer_check(customer_name: str, store: Store)-> str:
@@ -271,10 +272,8 @@ def customer_check(customer_name: str, store: Store)-> str:
     while customer_name not in store.customers or store.customers == [] or customer_name == "quit":
         if store.customers == []:
             print("There are no customers in the store.")
-            menu()
         elif customer_name == "quit":
-            menu()
-        print("Customer not found.")
+            print("Customer not found.")
         customer_name = input("Please enter the customer name. Type quit to exit back to menu: ")
     return customer_name
 
@@ -303,6 +302,25 @@ def product_check(product_name: str, store: Store)-> str:
         product_name = input("Please enter the product name.  Type quit to go to main menu: ")
     return product_name
 
+
+def imput_product_id()-> str:
+    """Summery:
+        This function gets the product id from the user and returns it as a string, since product identifiers can have letters and numbers in them.  It strips the white spaces off of the user input, and returns the product id as a string.
+        
+        Args:
+            None
+
+        Returns:
+            str: The product id.
+        """
+    product_id = input("Please enter the product id: ").strip()
+    product_id = str(product_id)
+    return product_id
+
+    
+
+
+
 # 4. Create a main function that will call the menu function and then call the appropriate methods based on the user's choice. The main function should be in a while loop that will continue to call the menu function until the user enters 0 to exit the program.
 # IMPORTANT: The main function should create a Store object and then call the appropriate methods on the Store object. Without the Store object, you will not be able to add products or customers.
 # IE main function should look something like this:
@@ -325,27 +343,25 @@ def product_check(product_name: str, store: Store)-> str:
 # IE. store.add_product(product) where product is a Product object.
 # store.add_product(Product(name, price, product_id))
 # You can either ask the user for the name, price, and product_id or you can hard code it in the main function.
-
+sapling = ""
 
 def main():
     store = Store()
     waldo = True
     while waldo == True:
         imput = menu()
-        if imput == "0":
+        if imput == "0":# exit program
             try:
-                print("Exiting Program")
+                print("Exiting Program...")
                 quit()
             except Exception as e: #this is a catch all, it will catch any error
                 print(f"error:{e}, taking you back to the menu.")  
         elif imput == "1":
             try:
                 print("Add Product")
-                name = input("Please enter the product name: ")
-                price = input("Please enter the product price: ")
-                products_id = input("Please enter the product id: ")
-                add_price_check(price)
-                store.add_product(Product(name, price, products_id))
+                price = add_price_now()
+                product_id = imput_product_id()
+                store.add_product(Product(name, price, product_id))
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
         elif imput == "2":
@@ -359,7 +375,7 @@ def main():
         elif imput == "3":
             try:
                 print("Add Product to Customer's Cart")
-                customer_name = input("Please enter the customer name: ")
+                customer_name = str(input("Please enter the customer name: "))
                 customer_check(customer_name, store)
                 product_name = input("Please enter the product name: ")
                 product_check(product_name, store)
