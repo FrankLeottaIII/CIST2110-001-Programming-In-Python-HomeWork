@@ -49,7 +49,7 @@ class Customer:
         for product in self.cart:
             print(product)
 
-    def display_products_pretty(self): # customer.display_products_pretty()
+    def display_products_pretty(self): # self is the customer  
         print(f"{self.name}'s cart:") # print out the customer's name and the total price of all the products in the cart.  Self.name is whatever funtion you are currently in
         print(tabulate.tabulate(
         [{"Name": Product.name, "Price": Product.price, "ID": Product.product_id} for Product in self.cart], 
@@ -304,24 +304,20 @@ def customer_check(customer_name: str, store: Store)-> str:
     Returns:
         str: The name of the customer.
         False: If there are no customers in the store.
-        False: If the user enters "quit".
-
         """
-    if store.customers == []:
-        print("There are no customers in the store.")
-        return None
-    elif customer_name not in store.customers: # 
+    if customer_name not in store.customers:
         print("Customer not fond.")
-        return None
-    elif customer_name in store.customers: #this states that if the customer is in the store, it will 
-        return customer_name
+        return False
+    elif store.customers == []:
+        print("There are no customers in the store.")
+        return False
     elif customer_name == "quit":
         print("...")
-        return None
+        return False
     else:
         return customer_name
 
-def product_check(name: str, price, product_id, store: Store)-> str:
+def product_check(product_name: str, store: Store)-> str:
     """Summery:
         This function checks to see if the product is in the store object.  If the product is not in the store object, it will ask the user to enter a product that is in the store. If there are no products in the store, it will tell the user that there are no products in the store and return none. The function will return the name of the product. If the user enters "quit", it will return  None.
         
@@ -335,7 +331,6 @@ def product_check(name: str, price, product_id, store: Store)-> str:
         False: If the user enters "quit".
         
         """
-    product_name = Product(name, price, product_id)
     if product_name not in store.products or store.products == []:
         return False
     else:
@@ -420,16 +415,13 @@ def main():
                 customer_name = input("Please enter the customer name: ")
                 customer_name = str(customer_name)
                 customer_name = customer_name.lower()
-                customer_id = input("Please enter the customer id: ")
-                customer_name = Customer(customer_name, customer_id)
                 customer_string = customer_check(customer_name, store)
                 if customer_string != False:     
-                    product_name = str(input("Please enter the product name: ")).upper()
-                    price = add_price_now()
-                    product_id = imput_product_id()
-                    product_string = product_check(product_name, price, product_id, store)
+                    product_name = str(input("Please enter the product name: "))
+                    product_string = product_check(product_name, store)
                     if product_string != False:
-                        product_string = Product(product_name, price, product_id)
+                # customer = store.find_customer(customer_name)
+                # product = store.find_product(product_name)
                         add_product_to_customer_cart(customer_string, product_string)
                     elif product_string == False:
                         print("Product not found!!!")
@@ -441,22 +433,15 @@ def main():
             try:
                 print("Remove Product from Customer's Cart")
                 customer_name = input("Please enter the customer name: ")
-                id = input("Please enter the customer id: ")
-                customer_name = Customer(customer_name, id)
                 customer_string = customer_check(customer_name, store)
-                if customer_string != None:
+                if customer_string != False:
                     product_name = input("Please enter the product name: ")
-                    product_name = str(product_name)
-                    product_name = product_name.upper()
-                    price = add_price_now()
-                    product_id = imput_product_id()
-                    product_string = product_check(product_name, price, product_id, store)
+                    product_string = product_check(product_name, store)
                     if product_string != False:
-                        product_string = Product(product_name, price, product_id)
                         remove_product_from_customer_cart(customer_string, product_string)
                     elif product_string == False:
                         print("Product not found!!!")
-                elif customer_string == None:
+                elif customer_string == False:
                     print("Customer not found!!!")
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
@@ -477,13 +462,13 @@ def main():
                 print("Display Customer's Cart")
                 customer_name = str(input("Please enter the customer name: "))
                 customer_name = customer_name.lower()
-                id = input("Please enter the customer id: ")
-                customer_name = Customer(customer_name, id)
-                customer_name = customer_check(customer_name, store)
-                if customer_name != None:
-                    customer_name.display_products_pretty()#this was a pain to sort out. Remember to only call this on a customer object, not a string or a store class object.  store class objects do not have a display_products_pretty() method.
-                elif customer_name == None:
+                shopper = customer_check(customer_name, store)
+                if shopper != False:
+                    shopper = str(shopper)
+                    store.display_products_pretty(shopper)
+                elif shopper == False:
                     print("Customer not found!!!")
+
             except Exception as e:
                 print(f"error:{e}, taking you back to the menu.")
 
